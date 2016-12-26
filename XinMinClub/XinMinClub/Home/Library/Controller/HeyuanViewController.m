@@ -35,7 +35,7 @@
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_ADVERTISEMENT_DataList",@"Params":dict}];
         // 网络请求
         [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
-
+        
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
 //            NSLog(@"ADJson:%@",json);

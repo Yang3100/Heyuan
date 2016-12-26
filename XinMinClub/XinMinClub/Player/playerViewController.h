@@ -18,6 +18,8 @@
 //// 传递的数据(小节数据)
 //- (void)getDataMp3NameArray:(NSArray*)nameArr Mp3UrlArray:(NSArray*)mp3Arr LyricArray:(NSArray*)lyricArr AutorNameArray:(NSArray*)autoNameArr Mp3IDArray:(NSArray*)IDArr;
 
++ (instancetype)defaultDataModel;
+
 //第2种数据传输方式
 // 小节数据Json
 - (void)getJson:(NSDictionary*)json;

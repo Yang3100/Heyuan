@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  ForgetViewController.h
 //  XinMinClub
 //
 //  Created by yangkejun on 16/3/19.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMPageController.h"
 
-@interface HomeViewController : WMPageController
+@interface ForgetViewController : UIViewController
 
+@property (nonatomic, copy) NSString *iphoneNum;
 
 @end

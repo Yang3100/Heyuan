@@ -77,11 +77,10 @@
 //    [self abcccc:indexPath.row];
     NSLog(@"touch小节%d",indexPath.row);
     NSLog(@"xxxxxxxxxxx:%@",_jsonData);
-    playerViewController *pvc = [[playerViewController alloc] init];
-    pvc.touchNum = indexPath.row;
-    [pvc getJson:self.jsonData];
-    pvc.title = @"儒学新编--卷二";
-    [self.viewController.navigationController pushViewController:pvc animated:YES];
+    [playerViewController defaultDataModel].touchNum = indexPath.row;
+    [[playerViewController defaultDataModel] getJson:self.jsonData];
+    [playerViewController defaultDataModel].title = @"儒学新编--卷二";
+    [self.viewController.navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
 
 }
 

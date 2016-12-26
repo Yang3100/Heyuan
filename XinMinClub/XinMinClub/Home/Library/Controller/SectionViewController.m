@@ -52,10 +52,21 @@
     [self.view addSubview:self.chapterView];
 }
 
+#pragma mark 视图控制器将要显示
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // 设置navigationBar背景透明
+    [self kj_setNavigationBar];
+    // KVO观察滚动距离
+    [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
+    [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
+}
+#pragma mark 视图控制器将要结束显示
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    // 只修改这个navigationBar的样式和颜色
     
+    // 只修改这个navigationBar的样式和颜色
     [self.navigationController.navigationBar lt_reset];// 清除设置的navigationBar的属性
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     // 移除键值监听
@@ -68,13 +79,6 @@
     // 设置navigationBar背景透明
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    // 设置navigationBar背景透明
-    [self kj_setNavigationBar];
 }
 
 #pragma mark 上一级传入的数据
@@ -92,7 +96,7 @@
     // 获取章节列表
     NSDictionary *dict = @{@"GJ_WJ_ID":[json valueForKey:@"WJ_ID"]};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WJ_ZJ_TYPE", @"Params":dict}];
-    [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDict) {
+    [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDict) {
 //        NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
         
         // 主线程执行
@@ -159,8 +163,8 @@
 - (chapterView*)chapterView{
     if (!_chapterView) {
         _chapterView = [[chapterView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
-        // KVO观察滚动距离
-        [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
+//        // KVO观察滚动距离
+//        [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
     }
     return _chapterView;
 }
@@ -168,8 +172,8 @@
 - (detailsView*)detailsView{
     if (!_detailsView) {
         _detailsView = [[detailsView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
-        // KVO观察滚动距离
-        [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
+//        // KVO观察滚动距离
+//        [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
     }
     return _detailsView;
 }

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  RegisterViewController.h
 //  XinMinClub
 //
 //  Created by yangkejun on 16/3/18.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@interface RegisterViewController : UIViewController
+
 
 @end
-

@@ -10,8 +10,6 @@
 #import "FBKVOController.h"
 #import "DataModel.h"
 #import "DownloadModule.h"
-//#import "PalyerViewController.h"
-//#import "ReaderTableViewController.h"
 #import "UserDataModel.h"
 
 @interface HomeNavController () {

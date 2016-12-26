@@ -59,6 +59,15 @@
 
 @implementation playerViewController
 
+#pragma mark 单利化播放器
++ (instancetype)defaultDataModel {
+    static playerViewController *pvc;
+    if (!pvc) {
+        pvc = [[super allocWithZone:NULL] init];
+    }
+    return pvc;
+}
+
 - (instancetype)init{
     if (self==[super init]) {
         kj_player = [[player alloc] init];
@@ -80,18 +89,30 @@
     [self initView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // 播放准备
+    [self startPlayBefore];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.500]];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     
-    // 移除三个KVO观察播放属性
-    [kj_player removeObserver:self forKeyPath:@"songTime"];
-    [kj_player removeObserver:self forKeyPath:@"currentTime"];
-    [kj_player removeObserver:self forKeyPath:@"isPlayComplete"];
+    [self.navigationController.navigationBar lt_reset];
+//    [kj_player removeObserver]; // 移除观察者
+//    // 移除三个KVO观察播放属性
+//    [kj_player removeObserver:self forKeyPath:@"songTime"];
+//    [kj_player removeObserver:self forKeyPath:@"currentTime"];
+//    [kj_player removeObserver:self forKeyPath:@"isPlayComplete"];
 }
 
 #pragma mark 界面布局
 - (void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.lyricTableView];
     [self.view addSubview:self.backView];
@@ -160,7 +181,7 @@
         
         // 歌手图片动画效果
         _rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        _rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2];
+        _rotationAnimation.toValue = [NSNumber numberWithFloat:M_PI * 2];
         _rotationAnimation.duration = 20;
         _rotationAnimation.cumulative = YES;
         _rotationAnimation.repeatCount = CGFLOAT_MAX; // 设置旋转次数
@@ -470,6 +491,7 @@ bool isRound = NO;
     }else{
         isPlay=NO;
         [kj_player pause]; // 暂停
+        NSLog(@"%@--%hhd--%hhd", _rotationAnimation.toValue,_rotationAnimation.cumulative,_rotationAnimation.additive);
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
     }
@@ -611,7 +633,8 @@ bool isObserve = YES;
     [kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
     [kj_player play]; // 播放
     [self imageViewRotate]; // 旋转歌手图片
-    //    [self playButtonPress];
+    
+    [self setNowPlayingInfo];
 }
 
 //解析歌词内容
@@ -639,12 +662,34 @@ bool isObserve = YES;
     [self.lyricTableView getLyric:lrcArry];
 }
 
+#pragma mark - 设置控制中心正在播放的信息
+-(void)setNowPlayingInfo{
+    NSMutableDictionary *songDict=[NSMutableDictionary dictionary];
+    //歌名
+    [songDict setObject:@"31321af  暗杀" forKey:MPMediaItemPropertyTitle];
+    //歌手名
+    [songDict setObject:@"发送到发放的" forKey:MPMediaItemPropertyArtist];
+    //歌曲的总时间
+    [songDict setObject:[NSNumber numberWithDouble:323.0] forKeyedSubscript:MPMediaItemPropertyPlaybackDuration];
+    //设置歌曲图片
+    MPMediaItemArtwork *imageItem=[[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"19"]];
+    [songDict setObject:imageItem forKey:MPMediaItemPropertyArtwork];
+    //设置控制中心歌曲信息
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songDict];
+    
+    //    NSDictionary *info=[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
+    //    NSMutableDictionary *dict=[NSMutableDictionary dictionaryWithDictionary:info];
+    //    [dict setObject:@(kj_player.currentTime) forKeyedSubscript:MPNowPlayingInfoPropertyElapsedPlaybackTime];
+    //    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
+    
+}
+
 #pragma mark 后台播放和锁屏播放
 - (void)remoteControlReceivedWithEvent:(UIEvent *)receivedEvent {
     if (receivedEvent.type == UIEventTypeRemoteControl) {
         switch (receivedEvent.subtype) {
             case UIEventSubtypeRemoteControlTogglePlayPause:
-                NSLog(@"点击了播放");
+                NSLog(@"0");
                 // [self playAndStopSong:self.playButton];
                 break;
             case UIEventSubtypeRemoteControlPreviousTrack:
@@ -672,23 +717,5 @@ bool isObserve = YES;
         }
     }
 }
-- (void)playButtonPress {
-    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
-    Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
-    if (playingInfoCenter) {
-        NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
-        MPMediaItemArtwork *albumArt;
-        albumArt = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"19"]];
-        [songInfo setObject:[dict valueForKey:@"GJ_NAME"] forKey:MPMediaItemPropertyTitle ];
-        //        [ songInfo setObject:LyrucsArray[PositionLyrics] forKey:MPMediaItemPropertyArtist ];
-        [songInfo setObject:albumArt forKey:MPMediaItemPropertyArtwork];
-        //音乐剩余时长
-        [songInfo setObject:[NSNumber numberWithDouble:kj_player.songTime] forKey:MPMediaItemPropertyPlaybackDuration];
-        //音乐当前播放时间 在计时器中修改
-        [songInfo setObject:[NSNumber numberWithDouble:kj_player.currentTime] forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
-        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
-    }
-}
-
 
 @end

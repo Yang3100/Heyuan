@@ -12,15 +12,12 @@
 #import "UIImageView+WebCache.h"  // 加载网络图片
 #import "SVProgressHUD.h" // 第三方库提示
 
-
+#import "shareObjectModel.h"
 #import "DataModel.h"
 #import "SaveModule.h"
 #import "UserDataModel.h"
 #import "SectionData.h"
 
-//引用所有swift文件
-//#import "WXApi.h"
-//#import <TencentOpenAPI/TencentOAuth.h>
 #import "XinMinClub-Swift.h"
 
 // 微信SDK
@@ -33,7 +30,6 @@
 #define MyGreat_pch
 
 //获取屏幕 宽度、高度
-#define SCREEN_FRAME ([UIScreen mainScreen].applicationFrame)
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 

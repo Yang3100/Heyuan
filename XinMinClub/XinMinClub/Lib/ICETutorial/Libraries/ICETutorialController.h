@@ -50,9 +50,6 @@ typedef void (^ButtonBlock)(UIButton *button);
 // State.
 - (ScrollingState)getCurrentState;
 
-
-- (void)touchhhhhh;
-
 @end
 
 @protocol ICETutorialControllerDelegate <NSObject>

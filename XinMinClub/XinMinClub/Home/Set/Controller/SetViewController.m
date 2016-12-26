@@ -14,9 +14,7 @@
 #import "Help.h"
 #import "SVProgressHUD.h"
 #import "UserDataModel.h"
-#import "LoginViewController.h"
-#import "HelloWord.h"
-#import "AppDelegate.h"
+#import "loginView.h"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height) // 屏幕高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width) // 屏幕宽度
@@ -48,7 +46,6 @@
     NSTimer *timer;
     UIAlertController *clearAlert;
     UIAlertController *sexAlert;
-    HelloWord *lvc;
 }
 
 @property (nonatomic, strong) UITableView *setTableView;
@@ -229,10 +226,11 @@ static NSString *setCellIdentifier = @"setCell";
             [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
             
             [userModel_ loginOut];
-            [HelloWord deleteAccount];
-            ((AppDelegate*)[[UIApplication sharedApplication] delegate]).helloWord.ThereAreNoPassword = NO;
-            [((AppDelegate*)[[UIApplication sharedApplication] delegate]).leadViewController dismissViewControllerAnimated:NO completion:^{
-                [((AppDelegate*)[[UIApplication sharedApplication] delegate]).leadViewController presentViewController:((AppDelegate*)[[UIApplication sharedApplication] delegate]).loginView animated:YES completion:nil];
+            // 删除本地账号密码
+            [[shareObjectModel shareObject] deleteAccountAndPassword];
+            [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{
+                loginView *lv = [[loginView alloc] init];
+                [[self appRootViewController] presentViewController:lv animated:NO completion:nil];
             }];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -241,6 +239,16 @@ static NSString *setCellIdentifier = @"setCell";
         [choiceAlert addAction:sureAction];
     }
     return choiceAlert;
+}
+
+#pragma mark 最顶层视图控制器
+- (UIViewController *)appRootViewController{
+    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController*topVC=appRootVC;
+    while(topVC.presentedViewController) {
+        topVC=topVC.presentedViewController;
+    }
+    return topVC;
 }
 
 - (UIControl *)backView {

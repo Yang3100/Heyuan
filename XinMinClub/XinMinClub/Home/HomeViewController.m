@@ -9,10 +9,6 @@
 #import "HomeViewController.h"
 #import "MyViewController.h"
 #import "HeyuanViewController.h"
-//#import "GlobalDialogBoxCentralNervousSystem.h"
-
-//#import "PalyerViewController.h"
-//#import "ReaderTableViewController.h"
 
 @interface HomeViewController () <SetViewDelegate, MyDelegate> {
     SetViewController *setVC;
@@ -30,15 +26,6 @@
 @end
 
 @implementation HomeViewController
-
-+(instancetype)shareObject{
-    static HomeViewController *homeViewController = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        homeViewController = [[super allocWithZone:NULL] init];
-    });
-    return homeViewController;
-}
 
 - (NSArray<NSString *> *)titles {
     return @[@"个人",@"和源"];
@@ -66,16 +53,6 @@
     [self setBarButtonItems];
     if (!userController) userController = [[UserViewController alloc] init];
     [DataModel defaultDataModel].activityPlayer=0;
-//    [[GlobalDialogBoxCentralNervousSystem shareObject] viewDidLoad];
-//    [GlobalDialogBoxCentralNervousSystem shareObject].homeDelegate = self;
-//    [[PalyerViewController shareObject ] viewDidLoad];
-
-//    [[PalyerViewController shareObject ] addObserver:self forKeyPath:@"PalyerState" options:NSKeyValueObservingOptionNew context:nil];
-//    [[PalyerViewController shareObject ] addObserver:self forKeyPath:@"PalyerLyr" options:NSKeyValueObservingOptionNew context:nil];
-//    [[PalyerViewController shareObject ] addObserver:self forKeyPath:@"PalyerName" options:NSKeyValueObservingOptionNew context:nil];
-//    [[PalyerViewController shareObject ] addObserver:self forKeyPath:@"PalyerImage" options:NSKeyValueObservingOptionNew context:nil];
-//    [[ReaderTableViewController shareObject] viewDidLoad];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -88,38 +65,6 @@
     [super viewWillDisappear:animated];
     
     self.navigationController.toolbarHidden = YES;
-}
-
-#pragma mark GlobalDialogBoxCentralNervousSystemDelegate
-
-- (void)pushAlertView:(NSInteger)judge{
-    if (judge==1) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下一章未发现音频文集" message:@"是否跳转到相应的界面" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action= [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            //跳转到相应的播放6器
-//            [self.navigationController pushViewController: [ReaderTableViewController shareObject] animated:NO];
-        }];
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"選擇取消");
-        }];
-        [alertController addAction:action];
-        [alertController addAction:action1];
-        [self.navigationController presentViewController:alertController animated:YES completion:nil];
-    }else{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"传入章节已经播放完成" message:@"是否自动更新播放" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action= [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if (self.p_CompleteState ) {
-                self.p_CompleteState = NO;
-            }else
-                self.p_CompleteState = YES;
-        }];
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"選擇取消");
-        }];
-        [alertController addAction:action];
-        [alertController addAction:action1];
-        [self.navigationController presentViewController:alertController animated:YES completion:nil];
-    }
 }
 
 // 设置按钮

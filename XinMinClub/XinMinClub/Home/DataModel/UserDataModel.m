@@ -470,7 +470,8 @@
     NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Update_User\", \"Params\": {\"Sys_GX_User\": {\"USER_BASE_NAME\":\"%@\",\"USER_SEX\":\"%@\",\"USER_BIRTHDAY\":\"%@\",\"USER_CITY\":\"%@\",\"USER_CONTENT\":\"%@\",\"USER_UID\":\"%@\"}}}",Right_ID,USER_BASE_NAME,USER_SEX,USER_BIRTHDAY,USER_CITY,USER_CONTENT,USER_UID];
     NSLog(@"saveUserInternetData:%@",param);    // 把拼接后的字符串转换为data，设置请求体
     
-    request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // 解析数据
         if (data != nil) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];

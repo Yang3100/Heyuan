@@ -130,11 +130,6 @@
     self.gradientView.frame = self.view.bounds;
     self.gradientView.alpha = 0.8;
 }
-#warning hhhhhhhhhhhhhhhhhhhhh
-- (void)touchhhhhh{
-    [self.delegate tutorialController:self didClickOnLeftButton:self.leftButton];
-}
-
 #pragma mark - Actions
 - (IBAction)didClickOnLogon:(id)sender {
     if ([self.delegate respondsToSelector:@selector(tutorialController:didClickOnLeftButton:)]) {
