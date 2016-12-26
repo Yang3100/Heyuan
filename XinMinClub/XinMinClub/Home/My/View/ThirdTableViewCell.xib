@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="first" selectionStyle="default" indentationWidth="10" reuseIdentifier="third" rowHeight="149" id="KGk-i7-Jjw" customClass="ThirdTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="137"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="452" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuL-Ee-XzM">
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-Dn-c6V">
+                                <color key="backgroundColor" red="0.89314736038394416" green="0.89314736038394416" blue="0.89314736038394416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="oQU-j5-ZId"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5Bl-JQ-s8t">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="论语" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-EE-OJi">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_1917.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="XjW-rr-RPO">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XjW-rr-RPO" secondAttribute="height" multiplier="1:1" id="Vb1-cr-lmI"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-b0-Qsd">
+                                <frame key="frameInset" minX="155" minY="104" width="93" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11章，10章下载" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiC-is-e81">
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.65826115131916652" green="0.65826115131916652" blue="0.65826115131916652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCs-fu-9mz">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qCs-fu-9mz" secondAttribute="height" multiplier="1:1" id="7ft-5t-T9U"/>
+                                    <constraint firstAttribute="width" constant="16" id="eNa-2v-Y76"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Iel-b0-Qsd" firstAttribute="baseline" secondItem="XjW-rr-RPO" secondAttribute="baseline" constant="-10" id="4Bf-rn-BJG"/>
+                            <constraint firstItem="qCs-fu-9mz" firstAttribute="leading" secondItem="5Bl-JQ-s8t" secondAttribute="leading" id="DZI-gW-JRg"/>
+                            <constraint firstItem="XjW-rr-RPO" firstAttribute="leading" secondItem="FuL-Ee-XzM" secondAttribute="leading" constant="15" id="FBH-DJ-H1J"/>
+                            <constraint firstItem="XjW-rr-RPO" firstAttribute="top" secondItem="FuL-Ee-XzM" secondAttribute="top" constant="10" id="O9W-gF-pmQ"/>
+                            <constraint firstAttribute="bottom" secondItem="4w5-Dn-c6V" secondAttribute="bottom" id="RqM-Lg-0XG"/>
+                            <constraint firstItem="5Bl-JQ-s8t" firstAttribute="top" secondItem="XjW-rr-RPO" secondAttribute="top" constant="10" id="S3l-gE-tcY"/>
+                            <constraint firstItem="XjW-rr-RPO" firstAttribute="centerY" secondItem="FuL-Ee-XzM" secondAttribute="centerY" id="X7M-UU-c9v"/>
+                            <constraint firstItem="Iel-b0-Qsd" firstAttribute="leading" secondItem="qCs-fu-9mz" secondAttribute="trailing" id="aHW-ap-cmc"/>
+                            <constraint firstItem="Iel-b0-Qsd" firstAttribute="leading" secondItem="XjW-rr-RPO" secondAttribute="trailing" constant="8" id="cjz-AC-d0s"/>
+                            <constraint firstAttribute="trailing" secondItem="4w5-Dn-c6V" secondAttribute="trailing" constant="-20" id="d3A-g7-vII"/>
+                            <constraint firstItem="Iel-b0-Qsd" firstAttribute="leading" secondItem="5Bl-JQ-s8t" secondAttribute="leading" id="dAJ-RH-LY5"/>
+                            <constraint firstAttribute="trailing" secondItem="4w5-Dn-c6V" secondAttribute="trailing" id="dZ9-DX-TcU"/>
+                            <constraint firstItem="qCs-fu-9mz" firstAttribute="centerY" secondItem="Iel-b0-Qsd" secondAttribute="centerY" id="nek-sE-qh6"/>
+                            <constraint firstAttribute="bottom" secondItem="4w5-Dn-c6V" secondAttribute="bottom" id="sDk-ms-SxM"/>
+                            <constraint firstItem="5Bl-JQ-s8t" firstAttribute="leading" secondItem="XjW-rr-RPO" secondAttribute="trailing" constant="8" id="tL1-aE-Bya"/>
+                            <constraint firstItem="4w5-Dn-c6V" firstAttribute="leading" secondItem="qCs-fu-9mz" secondAttribute="leading" id="tcm-6s-gfa"/>
+                            <constraint firstItem="qCs-fu-9mz" firstAttribute="height" secondItem="Iel-b0-Qsd" secondAttribute="height" id="zid-gJ-5Mz"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cjz-AC-d0s"/>
+                                <exclude reference="dAJ-RH-LY5"/>
+                                <exclude reference="RqM-Lg-0XG"/>
+                                <exclude reference="dZ9-DX-TcU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="FuL-Ee-XzM" secondAttribute="bottom" id="Cc3-ct-G3Q"/>
+                    <constraint firstItem="FuL-Ee-XzM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="QjO-81-HTI"/>
+                    <constraint firstItem="FuL-Ee-XzM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QrA-Te-W99"/>
+                    <constraint firstAttribute="trailing" secondItem="FuL-Ee-XzM" secondAttribute="trailing" id="nM1-Nc-OOz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookDetail" destination="PiC-is-e81" id="bNJ-iZ-KSa"/>
+                <outlet property="bookImageView" destination="XjW-rr-RPO" id="8BP-Yc-8AH"/>
+                <outlet property="bookName" destination="1J2-EE-OJi" id="g9P-MN-A23"/>
+                <outlet property="footLine" destination="4w5-Dn-c6V" id="v0v-LQ-U2W"/>
+            </connections>
+            <point key="canvasLocation" x="334" y="258.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Check_personal.png" width="45" height="45"/>
+        <image name="IMG_1917.JPG" width="1041" height="1629"/>
+    </resources>
+</document>

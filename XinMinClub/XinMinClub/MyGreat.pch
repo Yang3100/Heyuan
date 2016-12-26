@@ -1,0 +1,59 @@
+//
+//  MyGreat.pch
+//  XinMinClub
+//
+//  Created by 贺军 on 16/4/14.
+//  Copyright © 2016年 yangkejun. All rights reserved.
+//
+
+// 第三方库
+#import "UINavigationBar+Awesome.h"
+#import "UIView+Draw.h"   // 设置view边框
+#import "UIImageView+WebCache.h"  // 加载网络图片
+#import "SVProgressHUD.h" // 第三方库提示
+
+
+#import "DataModel.h"
+#import "SaveModule.h"
+#import "UserDataModel.h"
+#import "SectionData.h"
+
+//引用所有swift文件
+//#import "WXApi.h"
+//#import <TencentOpenAPI/TencentOAuth.h>
+#import "XinMinClub-Swift.h"
+
+// 微信SDK
+#import "WXApi.h"
+#import "WXApiObject.h"
+
+#import "ShareView.h"
+
+#ifndef MyGreat_pch
+#define MyGreat_pch
+
+//获取屏幕 宽度、高度
+#define SCREEN_FRAME ([UIScreen mainScreen].applicationFrame)
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+// 占位图
+#define cachePicture ([UIImage imageNamed:@"b"])
+// 网络占位图网站
+#define networkPictureUrl (@"http://pic.qiantucdn.com/00/95/71/01bOOOPICc3.jpg")
+//(@"http://pic.qiantucdn.com/58pic/21/44/18/09h58PICwRf_1024.jpg")
+
+#define RGB_MAX 255.0
+#define RGB255_COLOR(r,g,b,a) [UIColor colorWithRed:((r)/RGB_MAX) green:((g)/RGB_MAX) blue:((b)/RGB_MAX) alpha:a]
+
+//IP地址（北京）
+//http://218.240.52.135  // 北京ip
+//http://192.168.3.153   // 成都ip
+#define IP @"http://218.240.52.135"
+#define IPUrl @"http://218.240.52.135/App/App.ashx"
+#define IPZ @"http://192.168.3.153"
+#define IPZUrl @"http://192.168.3.153/App/App.ashx"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#endif /* MyGreat_pch */

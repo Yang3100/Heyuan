@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookCell" rowHeight="159" id="KGk-i7-Jjw" customClass="BookCell">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="359" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-N6-SkB">
+                        <rect key="frame" x="13" y="49" width="11" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="xqZ-N6-SkB" secondAttribute="height" multiplier="1:1" id="IXR-bU-Bjy"/>
+                            <constraint firstAttribute="width" constant="11" id="NJ2-tf-2zc"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-Bf-0gh">
+                        <rect key="frame" x="13" y="24" width="30" height="18"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点亮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-xh-1wa">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOo-oy-uHe">
+                        <rect key="frame" x="0.0" y="5" width="5" height="58"/>
+                        <color key="backgroundColor" red="0.56494135612360119" green="0.095246997280712328" blue="0.11274463017858803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="5" id="3iC-bL-bgJ"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="btf-U6-qNy">
+                        <rect key="frame" x="29" y="47" width="112" height="15"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李行亮□点亮 第三期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-Fc-Tbe">
+                                <rect key="frame" x="0.0" y="0.0" width="112" height="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" tag="1020" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Box-DD-CCm">
+                        <rect key="frame" x="309" y="14" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Box-DD-CCm" secondAttribute="height" multiplier="1:1" id="HJh-sq-FnK"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="actionbutton.png"/>
+                        <connections>
+                            <action selector="bookMenu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HIF-hN-vTb"/>
+                        </connections>
+                    </button>
+                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-Sh-cMa">
+                        <rect key="frame" x="13" y="63" width="336" height="2"/>
+                        <color key="progressTintColor" red="0.73023095029999996" green="0.12481589429999999" blue="0.15482158709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </progressView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="btf-U6-qNy" firstAttribute="leading" secondItem="xqZ-N6-SkB" secondAttribute="trailing" constant="5" id="BfF-dg-gnw"/>
+                    <constraint firstAttribute="trailing" secondItem="Box-DD-CCm" secondAttribute="trailing" constant="10" id="EH8-HK-xLO"/>
+                    <constraint firstItem="1ev-Sh-cMa" firstAttribute="leading" secondItem="QWU-Bf-0gh" secondAttribute="leading" id="FfZ-eq-iSN"/>
+                    <constraint firstItem="Box-DD-CCm" firstAttribute="trailing" secondItem="1ev-Sh-cMa" secondAttribute="trailing" id="O5z-ca-BOJ"/>
+                    <constraint firstItem="xqZ-N6-SkB" firstAttribute="bottom" secondItem="uOo-oy-uHe" secondAttribute="bottom" constant="-3" id="SoT-Xp-bBy"/>
+                    <constraint firstItem="btf-U6-qNy" firstAttribute="bottom" secondItem="xqZ-N6-SkB" secondAttribute="bottom" constant="2" id="TMI-5p-heN"/>
+                    <constraint firstItem="Box-DD-CCm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UXi-ox-AVy"/>
+                    <constraint firstItem="xqZ-N6-SkB" firstAttribute="leading" secondItem="uOo-oy-uHe" secondAttribute="trailing" constant="8" id="anf-wM-anI"/>
+                    <constraint firstItem="uOo-oy-uHe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iFn-zN-6jH"/>
+                    <constraint firstItem="1ev-Sh-cMa" firstAttribute="top" secondItem="uOo-oy-uHe" secondAttribute="bottom" id="jgD-Wc-BhT"/>
+                    <constraint firstAttribute="bottom" secondItem="uOo-oy-uHe" secondAttribute="bottom" constant="5" id="n4h-i3-VNJ"/>
+                    <constraint firstItem="btf-U6-qNy" firstAttribute="top" secondItem="eMM-xh-1wa" secondAttribute="bottom" constant="5" id="p89-LW-Zpw"/>
+                    <constraint firstItem="uOo-oy-uHe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="y3K-zv-hKl"/>
+                    <constraint firstItem="xqZ-N6-SkB" firstAttribute="leading" secondItem="QWU-Bf-0gh" secondAttribute="leading" id="zn6-0V-FGe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="accessoryButton" destination="Box-DD-CCm" id="aoU-cP-kPh"/>
+                <outlet property="authorName" destination="Htf-Fc-Tbe" id="JEx-NK-7aA"/>
+                <outlet property="downloadProgress" destination="1ev-Sh-cMa" id="fY3-xi-dzO"/>
+                <outlet property="sectionsName" destination="eMM-xh-1wa" id="hfZ-su-Mkg"/>
+                <outlet property="statusView" destination="uOo-oy-uHe" id="T93-YJ-a2r"/>
+            </connections>
+            <point key="canvasLocation" x="192.5" y="377.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Check_personal.png" width="45" height="45"/>
+        <image name="actionbutton.png" width="40" height="40"/>
+    </resources>
+</document>

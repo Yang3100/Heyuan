@@ -1,0 +1,55 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "727112470668043C36495A567D04B7D7DF3C0072",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C8CC2092A90157FD9933B4FF82EF91A52366A57A" : 9223372036854775807,
+    "60A0E5046E77DC9179C9223CFDE5BE2D17461CFD" : 9223372036854775807,
+    "7E855D1BE3DAB3C20D73B5FEC4AE71F65CAB08CB" : 0,
+    "727112470668043C36495A567D04B7D7DF3C0072" : 9223372036854775807,
+    "8ECC236EF5A18950BE1BCD53A47D642640ADA44C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2B73BA47-E98A-4730-ADD1-B4E6D851C056",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C8CC2092A90157FD9933B4FF82EF91A52366A57A" : "%E5%92%8C%E6%BA%90iOS\/",
+    "60A0E5046E77DC9179C9223CFDE5BE2D17461CFD" : "heyuanNew\/",
+    "7E855D1BE3DAB3C20D73B5FEC4AE71F65CAB08CB" : "",
+    "727112470668043C36495A567D04B7D7DF3C0072" : "heyuanOC\/",
+    "8ECC236EF5A18950BE1BCD53A47D642640ADA44C" : "hahaheyuan\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "XinMinClub",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "XinMinClub\/XinMinClub.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yangKJ\/heyuanNew.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60A0E5046E77DC9179C9223CFDE5BE2D17461CFD"
+    },
+    {
+<<<<<<< HEAD
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jason-zzzz\/heyuanOC.git",
+=======
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yangKJ\/heyuanOC.git",
+>>>>>>> master
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "727112470668043C36495A567D04B7D7DF3C0072"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jason-zzzz\/Project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7E855D1BE3DAB3C20D73B5FEC4AE71F65CAB08CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jason-zzzz\/hahaheyuan.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8ECC236EF5A18950BE1BCD53A47D642640ADA44C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yangKJ\/-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C8CC2092A90157FD9933B4FF82EF91A52366A57A"
+    }
+  ]
+}

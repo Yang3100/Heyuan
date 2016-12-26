@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="toolCell" id="gTV-IL-0wX" customClass="ToolCell">
+            <rect key="frame" x="0.0" y="0.0" width="68" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="68" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mxn-qY-A4I">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刪除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tud-LB-srt">
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nk-Z1-29k">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="2Nk-Z1-29k" secondAttribute="height" multiplier="1:1" id="wai-lZ-dA0"/>
+                        </constraints>
+                        <connections>
+                            <action selector="deleteAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Mc7-70-3gL"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="2Nk-Z1-29k" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="AiC-L9-jzq"/>
+                <constraint firstItem="2Nk-Z1-29k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="FA2-IY-j1Q"/>
+                <constraint firstItem="mxn-qY-A4I" firstAttribute="centerX" secondItem="2Nk-Z1-29k" secondAttribute="centerX" id="FiT-zH-BTA"/>
+                <constraint firstItem="mxn-qY-A4I" firstAttribute="top" secondItem="2Nk-Z1-29k" secondAttribute="bottom" constant="10" id="NgD-t5-VkF"/>
+                <constraint firstItem="2Nk-Z1-29k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="gAi-Dv-xNK"/>
+            </constraints>
+            <size key="customSize" width="120" height="151"/>
+            <connections>
+                <outlet property="toolCellButton" destination="2Nk-Z1-29k" id="hMS-dR-4bx"/>
+                <outlet property="toolCellLabel" destination="Tud-LB-srt" id="n9g-kg-wBj"/>
+            </connections>
+            <point key="canvasLocation" x="235" y="312.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
