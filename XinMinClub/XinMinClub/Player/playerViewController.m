@@ -703,12 +703,12 @@ bool isObserve = YES;
                 
                 break;
             case UIEventSubtypeRemoteControlPlay:
-                NSLog(@"3");//播放
+                NSLog(@"3");//锁屏播放
                 //[self playAndStopSong:self.playButton];
                 
                 break;
             case UIEventSubtypeRemoteControlPause:
-                NSLog(@"4");//
+                NSLog(@"4");//锁屏暂停
                 // [self playAndStopSong:self.playButton];
                 
                 break;
