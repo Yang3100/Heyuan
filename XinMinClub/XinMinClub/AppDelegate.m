@@ -13,7 +13,7 @@
 #import "loginView.h"
 #import "RegisterViewController.h"
 
-@interface AppDelegate ()<WXApiDelegate,ICETutorialControllerDelegate>{
+@interface AppDelegate ()<WXApiDelegate, ICETutorialControllerDelegate>{
     ICETutorialController *leadViewController;
 }
 

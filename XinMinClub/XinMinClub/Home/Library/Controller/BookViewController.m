@@ -188,7 +188,7 @@
 
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"collectionView.tag = %d,section = %d, row = %d", collectionView.tag,indexPath.section, indexPath.row);
+//    NSLog(@"collectionView.tag = %d,section = %d, row = %d", collectionView.tag,indexPath.section, indexPath.row);
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = [dica valueForKey:@"WJ_NAME"];

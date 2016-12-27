@@ -30,18 +30,21 @@
  *  添加观察者
  */
 - (void)addObserver {
-    // 监听媒体资源的状态
-    [_songItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    // 监听媒体资源缓冲情况
-    [_songItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-    __weak typeof(self) weakSelf = self;
-    // 监听播放进度
-    self.timeObserve = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-        CGFloat current = CMTimeGetSeconds(time);
-        weakSelf.currentTime = current;
-    }];
-    // 监听播放是否完成
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    // 后台执行：
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 监听媒体资源的状态
+        [_songItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+        // 监听媒体资源缓冲情况
+        [_songItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+        __weak typeof(self) weakSelf = self;
+        // 监听播放进度
+        self.timeObserve = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+            CGFloat current = CMTimeGetSeconds(time);
+            weakSelf.currentTime = current;
+        }];
+        // 监听播放是否完成
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerFinish:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    });
 }
 
 /**

@@ -58,9 +58,12 @@
     
     // 设置navigationBar背景透明
     [self kj_setNavigationBar];
-    // KVO观察滚动距离
-    [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
-    [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
+    // 后台执行：
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // KVO观察滚动距离
+        [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
+        [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
+    });
 }
 #pragma mark 视图控制器将要结束显示
 - (void)viewWillDisappear:(BOOL)animated {
@@ -227,7 +230,7 @@
     [self abcdTag:sender.tag];
 }
 
-- (void)abcdTag:(int)tag{
+- (void)abcdTag:(NSInteger)tag{
     for (int x=0; x<3; x++) {
         if (tag==x) {
             [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",x]] setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];

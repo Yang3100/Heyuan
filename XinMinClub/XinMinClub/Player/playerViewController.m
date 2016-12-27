@@ -627,12 +627,17 @@ bool isObserve = YES;
     NSString *urlString = [NSString stringWithFormat:@"http://218.240.52.135%@",[dict valueForKey:@"GJ_MP3"]];
     [kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
     [kj_player addObserver]; // 添加新的观察者
-    // 三个KVO观察播放属性
-    [kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
-    [kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
-    [kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
+    // 后台执行：
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // something
+        // 三个KVO观察播放属性
+        [kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
+        [kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
+        [kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
+        [self imageViewRotate]; // 旋转歌手图片
+    });
+    
     [kj_player play]; // 播放
-    [self imageViewRotate]; // 旋转歌手图片
     
     [self setNowPlayingInfo];
 }
