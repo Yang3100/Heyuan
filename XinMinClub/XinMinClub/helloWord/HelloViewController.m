@@ -12,7 +12,7 @@
 
 @interface HelloViewController (){
     UIImage *adImage;
-    UIButton *but; // 跳过
+    UILabel *lab; // 跳过数字
     NSTimer *timer; // 定时器
     NSInteger num;
     int istrue;
@@ -41,14 +41,30 @@
     [self.view addSubview:adImageView];
     
     // 测试button
-    but = [UIButton buttonWithType:UIButtonTypeCustom];
-    but.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-60, 30, 40, 40);
-    but.backgroundColor = [UIColor purpleColor];
-    but.layer.masksToBounds = YES;
-    but.layer.cornerRadius = 20;
-    but.layer.borderWidth = 1;
+    UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
+    but.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-50, 30, 30, 30);
+//    but.layer.masksToBounds = YES;
+//    but.layer.cornerRadius = 20;
+//    but.layer.borderWidth = 1;
+    [but setImage:[UIImage imageNamed:@"跳过广告"] forState:UIControlStateNormal];
     [but addTarget:self action:@selector(butAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:but];
+    
+    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+    l.center = CGPointMake(but.center.x, but.center.y+25);
+    l.text = @"跳过广告";
+    l.textColor = RGB255_COLOR(158,149,122,1);
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:l];
+    
+    lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 25)];
+    lab.center = but.center;
+    lab.text = [NSString stringWithFormat:@"%ld秒",(long)num];
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.textColor = [UIColor whiteColor];
+    lab.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:lab];
 }
 
 - (void)ADImage:(UIImage*)adim waitingTime:(NSTimeInterval)time{
@@ -62,7 +78,8 @@
 
 // 定时器执行操作方法
 - (void)updateTimer {
-    [but setTitle:[NSString stringWithFormat:@"%ld秒",(long)num] forState:UIControlStateNormal];
+    lab.text = [NSString stringWithFormat:@"%ld秒",(long)num];
+//    [but setTitle:[NSString stringWithFormat:@"%ld秒",(long)num] forState:UIControlStateNormal];
     num--;
     // 满足条件后，停止当前的运行循环
     if (num < 1) {

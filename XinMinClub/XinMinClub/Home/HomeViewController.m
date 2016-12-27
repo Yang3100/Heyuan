@@ -28,7 +28,7 @@
 @implementation HomeViewController
 
 - (NSArray<NSString *> *)titles {
-    return @[@"个人",@"和源"];
+    return @[@"个人",@"和源",@"发现"];
 }
 
 - (instancetype)init{
@@ -44,6 +44,7 @@
         self.titleColorNormal = RGB255_COLOR(88, 88, 88, 1);
         self.titleColorSelected = RGB255_COLOR(1, 0, 0, 1);
         self.selectIndex=1;
+        self.preloadPolicy = 1;
     }
     return self;
 }
@@ -266,8 +267,8 @@
 }
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    UIImageView *_beijing=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    _beijing.image=[UIImage imageNamed:@"beijing"];
+//    UIImageView *_beijing=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+//    _beijing.image=[UIImage imageNamed:@"beijing"];
 
     if (index == 0) {
         myViewController = [[MyViewController alloc] init];
@@ -276,12 +277,15 @@
         myViewController.delegate = self;
 //        [myViewController.view addSubview:_beijing];
         return myViewController;
-    }
-//    if (index==1) {
+    }else if (index==1) {
         HeyuanViewController *libraryViewController = [[HeyuanViewController alloc] init];
         libraryViewController.view.backgroundColor = [UIColor colorWithWhite:0.940 alpha:1.000];
         return libraryViewController;
-//    }
+    }else{
+        courseViewController *cvc = [[courseViewController alloc]init];
+        return cvc;
+    }
+    
 }
 
 @end

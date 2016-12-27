@@ -82,25 +82,24 @@
     // 1.判断本地有无保存账号密码
     if ([[shareObjectModel shareObject] isSaveAccountAndPassword]) { // 1-1  本地保存了账号密码
         HelloViewController *hvc = [[HelloViewController alloc] init];
-        hvc.view.backgroundColor = [UIColor purpleColor];
-        [hvc ADImage:cachePicture waitingTime:3];
+        [hvc ADImage:[UIImage imageNamed:@"欢迎"] waitingTime:3];
         self.window.rootViewController = hvc;
     }else { // 1-2  本地没有保存账号密码
         // 设置滚动的文字和图片
-        ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"仁愛謹信  知行合一" pictureName:@"tu1" duration:3.0];
-        ICETutorialPage *layer2 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"雅讀詩書氣質華" pictureName:@"tu2" duration:3.0];
-        ICETutorialPage *layer3 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"仁愛謹信  知行合一" pictureName:@"tu3" duration:3.0];
-        ICETutorialPage *layer4 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"好學者不如樂學者" pictureName:@"tu4" duration:3.0];
-        NSArray *tutorialLayers = @[layer1,layer2,layer3,layer4];
+        ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"仁愛謹信  知行合一" pictureName:@"引导页1" duration:3.0];
+        ICETutorialPage *layer2 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"雅讀詩書氣質華" pictureName:@"引导页2" duration:3.0];
+        ICETutorialPage *layer3 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"仁愛謹信  知行合一" pictureName:@"引导页3" duration:3.0];
+        ICETutorialPage *layer4 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"好學者不如樂學者" pictureName:@"引导页4" duration:3.0];
+        NSArray *tutorialLayers = @[layer4,layer2,layer3,layer1];
         // Set the common style for the title.
         ICETutorialLabelStyle *titleStyle = [[ICETutorialLabelStyle alloc] init];
         [titleStyle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17.0f]];
-        [titleStyle setTextColor:[UIColor whiteColor]];
+        [titleStyle setTextColor:RGB255_COLOR(122, 111, 77, 1)];
         [titleStyle setLinesNumber:1];
         [titleStyle setOffset:180];
         [[ICETutorialStyle sharedInstance] setTitleStyle:titleStyle];
         // Set the subTitles style with few properties and let the others by default.
-        [[ICETutorialStyle sharedInstance] setSubTitleColor:[UIColor whiteColor]];
+        [[ICETutorialStyle sharedInstance] setSubTitleColor:RGB255_COLOR(212, 175, 116, 1)];
         [[ICETutorialStyle sharedInstance] setSubTitleOffset:150];
         // Init tutorial.
         leadViewController = [[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self];

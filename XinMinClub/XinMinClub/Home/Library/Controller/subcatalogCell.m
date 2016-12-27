@@ -16,8 +16,6 @@
     NSArray<NSDictionary*> *myData;   // 获取到的数据数组
 }
 
-@property(nonatomic, readonly) UIViewController *viewController;
-
 @end
 
 @implementation subcatalogCell
@@ -75,12 +73,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [self abcccc:indexPath.row];
-    NSLog(@"touch小节%d",indexPath.row);
-    NSLog(@"xxxxxxxxxxx:%@",_jsonData);
+    NSLog(@"touch小节%ld",(long)indexPath.row);
     [playerViewController defaultDataModel].touchNum = indexPath.row;
     [[playerViewController defaultDataModel] getJson:self.jsonData];
     [playerViewController defaultDataModel].title = @"儒学新编--卷二";
-    [self.viewController.navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
+    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
 
 }
 

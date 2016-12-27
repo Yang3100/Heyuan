@@ -228,6 +228,30 @@
 		682609ED1DFFCBF60017C4E3 /* 般若.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 682609D21DFFCBF50017C4E3 /* 般若.jpg */; };
 		682609EE1DFFCBF60017C4E3 /* 菩提.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 682609D31DFFCBF50017C4E3 /* 菩提.jpg */; };
 		682ECC841DC6F00900A8156F /* NineNine.m in Sources */ = {isa = PBXBuildFile; fileRef = 682ECC831DC6F00900A8156F /* NineNine.m */; };
+		682F42931E1200B6004B3651 /* courseCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F42881E1200B6004B3651 /* courseCell2.swift */; };
+		682F42941E1200B6004B3651 /* courseCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F42891E1200B6004B3651 /* courseCell3.swift */; };
+		682F42951E1200B6004B3651 /* courseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F428A1E1200B6004B3651 /* courseCollection.swift */; };
+		682F42961E1200B6004B3651 /* courseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F428B1E1200B6004B3651 /* courseCollectionViewCell.swift */; };
+		682F42971E1200B6004B3651 /* courseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F428C1E1200B6004B3651 /* courseListCell.swift */; };
+		682F42981E1200B6004B3651 /* courseListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682F428D1E1200B6004B3651 /* courseListCell.xib */; };
+		682F42991E1200B6004B3651 /* courseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F428E1E1200B6004B3651 /* courseListViewController.swift */; };
+		682F429A1E1200B6004B3651 /* courseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F428F1E1200B6004B3651 /* courseViewController.swift */; };
+		682F429B1E1200B6004B3651 /* MJscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 682F42911E1200B6004B3651 /* MJscroll.m */; };
+		682F429C1E1200B6004B3651 /* teacherIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F42921E1200B6004B3651 /* teacherIntro.swift */; };
+		682F429E1E120CA8004B3651 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F429D1E120CA8004B3651 /* header.png */; };
+		682F42A51E1213E7004B3651 /* 233.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42A11E1213E7004B3651 /* 233.png */; };
+		682F42A61E1213E7004B3651 /* 244.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42A21E1213E7004B3651 /* 244.png */; };
+		682F42A71E1213E7004B3651 /* 255.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42A31E1213E7004B3651 /* 255.png */; };
+		682F42A91E124B0C004B3651 /* 211.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42A81E124B0C004B3651 /* 211.png */; };
+		682F42AD1E12561B004B3651 /* 注册.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42AB1E12561B004B3651 /* 注册.png */; };
+		682F42AE1E12561B004B3651 /* 登录.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42AC1E12561B004B3651 /* 登录.png */; };
+		682F42B31E1256D3004B3651 /* 引导页1.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42AF1E1256D3004B3651 /* 引导页1.png */; };
+		682F42B41E1256D3004B3651 /* 引导页2.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42B01E1256D3004B3651 /* 引导页2.png */; };
+		682F42B51E1256D3004B3651 /* 引导页3.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42B11E1256D3004B3651 /* 引导页3.png */; };
+		682F42B61E1256D3004B3651 /* 引导页4.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42B21E1256D3004B3651 /* 引导页4.png */; };
+		682F42BA1E125D36004B3651 /* 欢迎.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42B81E125D36004B3651 /* 欢迎.png */; };
+		682F42BB1E125D36004B3651 /* 跳过广告.png in Resources */ = {isa = PBXBuildFile; fileRef = 682F42B91E125D36004B3651 /* 跳过广告.png */; };
+		682F42BD1E1276F1004B3651 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682F42BC1E1276F1004B3651 /* WebViewController.swift */; };
 		683539851CCE41F10071172B /* Save_personal_nom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683539831CCE41F10071172B /* Save_personal_nom@3x.png */; };
 		683539861CCE41F10071172B /* svae_presonal_nom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683539841CCE41F10071172B /* svae_presonal_nom@2x.png */; };
 		6849BF671E0937C000C9A5D2 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BF641E0937C000C9A5D2 /* FBKVOController.m */; };
@@ -248,11 +272,6 @@
 		6849C0171E09407900C9A5D2 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849C0051E09407900C9A5D2 /* UIImageView+HighlightedWebCache.m */; };
 		6849C0181E09407900C9A5D2 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849C0071E09407900C9A5D2 /* UIImageView+WebCache.m */; };
 		6849C0191E09407900C9A5D2 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849C0091E09407900C9A5D2 /* UIView+WebCacheOperation.m */; };
-		684BEF871DA88FC9004F70CA /* background-gradient@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 684BEF841DA88FC9004F70CA /* background-gradient@3x.png */; };
-		684BEF8B1DA8935A004F70CA /* tu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 684BEF8A1DA8935A004F70CA /* tu1.png */; };
-		684BEF8D1DA89567004F70CA /* tu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 684BEF8C1DA89567004F70CA /* tu2.png */; };
-		684BEF901DA896E6004F70CA /* tu3.png in Resources */ = {isa = PBXBuildFile; fileRef = 684BEF8E1DA896E6004F70CA /* tu3.png */; };
-		684BEF911DA896E6004F70CA /* tu4.png in Resources */ = {isa = PBXBuildFile; fileRef = 684BEF8F1DA896E6004F70CA /* tu4.png */; };
 		6852D2461E0983F100CA55D6 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D2451E0983F100CA55D6 /* SectionViewController.m */; };
 		6852D2491E0A524600CA55D6 /* chapterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D2481E0A524600CA55D6 /* chapterView.m */; };
 		6852D24C1E0ABA1600CA55D6 /* detailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D24B1E0ABA1600CA55D6 /* detailsView.m */; };
@@ -373,8 +392,6 @@
 		68BCF3BB1E00EF02008AB490 /* yejian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF38D1E00EF02008AB490 /* yejian@2x.png */; };
 		68BDBD6E1E0B9B6A009547D4 /* DetailsCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BDBD6C1E0B9B6A009547D4 /* DetailsCell4.m */; };
 		68BDBD6F1E0B9B6A009547D4 /* DetailsCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68BDBD6D1E0B9B6A009547D4 /* DetailsCell4.xib */; };
-		68C2F8CF1D2102FC004F7D4E /* taoci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68C2F8CD1D2102FC004F7D4E /* taoci.jpg */; };
-		68C2F8D01D2102FC004F7D4E /* yu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68C2F8CE1D2102FC004F7D4E /* yu.jpg */; };
 		68C365671E0CB9C800069534 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C365631E0CB9C800069534 /* libWeChatSDK.a */; };
 		68C365691E0CBAFA00069534 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C365681E0CBAFA00069534 /* SystemConfiguration.framework */; };
 		68C3656B1E0CBB0300069534 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C3656A1E0CBB0300069534 /* CoreTelephony.framework */; };
@@ -747,6 +764,31 @@
 		682609D31DFFCBF50017C4E3 /* 菩提.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "菩提.jpg"; sourceTree = "<group>"; };
 		682ECC821DC6F00900A8156F /* NineNine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineNine.h; sourceTree = "<group>"; };
 		682ECC831DC6F00900A8156F /* NineNine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineNine.m; sourceTree = "<group>"; };
+		682F42881E1200B6004B3651 /* courseCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseCell2.swift; sourceTree = "<group>"; };
+		682F42891E1200B6004B3651 /* courseCell3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseCell3.swift; sourceTree = "<group>"; };
+		682F428A1E1200B6004B3651 /* courseCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseCollection.swift; sourceTree = "<group>"; };
+		682F428B1E1200B6004B3651 /* courseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseCollectionViewCell.swift; sourceTree = "<group>"; };
+		682F428C1E1200B6004B3651 /* courseListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseListCell.swift; sourceTree = "<group>"; };
+		682F428D1E1200B6004B3651 /* courseListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = courseListCell.xib; sourceTree = "<group>"; };
+		682F428E1E1200B6004B3651 /* courseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseListViewController.swift; sourceTree = "<group>"; };
+		682F428F1E1200B6004B3651 /* courseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseViewController.swift; sourceTree = "<group>"; };
+		682F42901E1200B6004B3651 /* MJscroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJscroll.h; sourceTree = "<group>"; };
+		682F42911E1200B6004B3651 /* MJscroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJscroll.m; sourceTree = "<group>"; };
+		682F42921E1200B6004B3651 /* teacherIntro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = teacherIntro.swift; sourceTree = "<group>"; };
+		682F429D1E120CA8004B3651 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		682F42A11E1213E7004B3651 /* 233.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 233.png; sourceTree = "<group>"; };
+		682F42A21E1213E7004B3651 /* 244.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 244.png; sourceTree = "<group>"; };
+		682F42A31E1213E7004B3651 /* 255.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 255.png; sourceTree = "<group>"; };
+		682F42A81E124B0C004B3651 /* 211.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 211.png; sourceTree = "<group>"; };
+		682F42AB1E12561B004B3651 /* 注册.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "注册.png"; sourceTree = "<group>"; };
+		682F42AC1E12561B004B3651 /* 登录.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "登录.png"; sourceTree = "<group>"; };
+		682F42AF1E1256D3004B3651 /* 引导页1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页1.png"; sourceTree = "<group>"; };
+		682F42B01E1256D3004B3651 /* 引导页2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页2.png"; sourceTree = "<group>"; };
+		682F42B11E1256D3004B3651 /* 引导页3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页3.png"; sourceTree = "<group>"; };
+		682F42B21E1256D3004B3651 /* 引导页4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页4.png"; sourceTree = "<group>"; };
+		682F42B81E125D36004B3651 /* 欢迎.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎.png"; sourceTree = "<group>"; };
+		682F42B91E125D36004B3651 /* 跳过广告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "跳过广告.png"; sourceTree = "<group>"; };
+		682F42BC1E1276F1004B3651 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		683539831CCE41F10071172B /* Save_personal_nom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Save_personal_nom@3x.png"; sourceTree = "<group>"; };
 		683539841CCE41F10071172B /* svae_presonal_nom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "svae_presonal_nom@2x.png"; sourceTree = "<group>"; };
 		6841B0A11C9BAC5D003D1056 /* XinMinClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XinMinClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -787,11 +829,6 @@
 		6849C0071E09407900C9A5D2 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		6849C0081E09407900C9A5D2 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		6849C0091E09407900C9A5D2 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		684BEF841DA88FC9004F70CA /* background-gradient@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient@3x.png"; sourceTree = "<group>"; };
-		684BEF8A1DA8935A004F70CA /* tu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tu1.png; path = "和源图片/tu1.png"; sourceTree = "<group>"; };
-		684BEF8C1DA89567004F70CA /* tu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tu2.png; path = "和源图片/tu2.png"; sourceTree = "<group>"; };
-		684BEF8E1DA896E6004F70CA /* tu3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tu3.png; path = "和源图片/tu3.png"; sourceTree = "<group>"; };
-		684BEF8F1DA896E6004F70CA /* tu4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tu4.png; path = "和源图片/tu4.png"; sourceTree = "<group>"; };
 		6852D2441E0983F100CA55D6 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		6852D2451E0983F100CA55D6 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
 		6852D2471E0A524600CA55D6 /* chapterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chapterView.h; sourceTree = "<group>"; };
@@ -924,8 +961,6 @@
 		68BDBD6B1E0B9B6A009547D4 /* DetailsCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCell4.h; sourceTree = "<group>"; };
 		68BDBD6C1E0B9B6A009547D4 /* DetailsCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCell4.m; sourceTree = "<group>"; };
 		68BDBD6D1E0B9B6A009547D4 /* DetailsCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsCell4.xib; sourceTree = "<group>"; };
-		68C2F8CD1D2102FC004F7D4E /* taoci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = taoci.jpg; sourceTree = "<group>"; };
-		68C2F8CE1D2102FC004F7D4E /* yu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yu.jpg; sourceTree = "<group>"; };
 		68C365631E0CB9C800069534 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		68C365641E0CB9C800069534 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		68C365651E0CB9C800069534 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -1045,11 +1080,11 @@
 			isa = PBXGroup;
 			children = (
 				1A40331A1E0908A80006613F /* tubiao */,
-				685E554B1D1CEF9800DD0F8F /* 和源图片 */,
 				689B34801CCDEEC0002464EA /* 纯色版本 */,
 				1A07BEAF1CB658D300E327DA /* IMG_1960.JPG */,
 				68EF9A101D3D25760085A65A /* maoboli.jpg */,
 				688AB8941CD289D60012FB55 /* 1false.jpg */,
+				682F429D1E120CA8004B3651 /* header.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -1693,6 +1728,67 @@
 			path = "釋";
 			sourceTree = "<group>";
 		};
+		682F42861E1200B6004B3651 /* FindSection */ = {
+			isa = PBXGroup;
+			children = (
+				682F42871E1200B6004B3651 /* textSection */,
+			);
+			path = FindSection;
+			sourceTree = "<group>";
+		};
+		682F42871E1200B6004B3651 /* textSection */ = {
+			isa = PBXGroup;
+			children = (
+				682F429F1E1213E7004B3651 /* 竹简图片 */,
+				682F428F1E1200B6004B3651 /* courseViewController.swift */,
+				682F42881E1200B6004B3651 /* courseCell2.swift */,
+				682F42891E1200B6004B3651 /* courseCell3.swift */,
+				682F428A1E1200B6004B3651 /* courseCollection.swift */,
+				682F428B1E1200B6004B3651 /* courseCollectionViewCell.swift */,
+				682F428C1E1200B6004B3651 /* courseListCell.swift */,
+				682F428D1E1200B6004B3651 /* courseListCell.xib */,
+				682F428E1E1200B6004B3651 /* courseListViewController.swift */,
+				682F42BC1E1276F1004B3651 /* WebViewController.swift */,
+				682F42901E1200B6004B3651 /* MJscroll.h */,
+				682F42911E1200B6004B3651 /* MJscroll.m */,
+				682F42921E1200B6004B3651 /* teacherIntro.swift */,
+			);
+			path = textSection;
+			sourceTree = "<group>";
+		};
+		682F429F1E1213E7004B3651 /* 竹简图片 */ = {
+			isa = PBXGroup;
+			children = (
+				682F42A81E124B0C004B3651 /* 211.png */,
+				682F42A11E1213E7004B3651 /* 233.png */,
+				682F42A21E1213E7004B3651 /* 244.png */,
+				682F42A31E1213E7004B3651 /* 255.png */,
+			);
+			path = "竹简图片";
+			sourceTree = "<group>";
+		};
+		682F42AA1E12561B004B3651 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				682F42AF1E1256D3004B3651 /* 引导页1.png */,
+				682F42B01E1256D3004B3651 /* 引导页2.png */,
+				682F42B11E1256D3004B3651 /* 引导页3.png */,
+				682F42B21E1256D3004B3651 /* 引导页4.png */,
+				682F42AB1E12561B004B3651 /* 注册.png */,
+				682F42AC1E12561B004B3651 /* 登录.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		682F42B71E125D36004B3651 /* picture */ = {
+			isa = PBXGroup;
+			children = (
+				682F42B81E125D36004B3651 /* 欢迎.png */,
+				682F42B91E125D36004B3651 /* 跳过广告.png */,
+			);
+			path = picture;
+			sourceTree = "<group>";
+		};
 		6841B0981C9BAC5D003D1056 = {
 			isa = PBXGroup;
 			children = (
@@ -1714,6 +1810,7 @@
 			isa = PBXGroup;
 			children = (
 				1A011D531D3E02F20040EA23 /* New Group */,
+				682F42861E1200B6004B3651 /* FindSection */,
 				68E8B7281E0000B1000CB44A /* swift */,
 				6841B0BC1C9BACAD003D1056 /* Lib */,
 				68EB89B11E0E995100611357 /* loginSection */,
@@ -1802,19 +1899,6 @@
 			);
 			name = SDWebImage;
 			path = Lib/SDWebImage;
-			sourceTree = "<group>";
-		};
-		685E554B1D1CEF9800DD0F8F /* 和源图片 */ = {
-			isa = PBXGroup;
-			children = (
-				68C2F8CD1D2102FC004F7D4E /* taoci.jpg */,
-				68C2F8CE1D2102FC004F7D4E /* yu.jpg */,
-				684BEF8A1DA8935A004F70CA /* tu1.png */,
-				684BEF8C1DA89567004F70CA /* tu2.png */,
-				684BEF8E1DA896E6004F70CA /* tu3.png */,
-				684BEF8F1DA896E6004F70CA /* tu4.png */,
-			);
-			name = "和源图片";
 			sourceTree = "<group>";
 		};
 		68622F8D1CA3F23500F13471 /* UINavigationBar+Awesome */ = {
@@ -2038,8 +2122,8 @@
 		68E4F14B1C9BACDB00839E2C /* ICETutorial */ = {
 			isa = PBXGroup;
 			children = (
+				682F42AA1E12561B004B3651 /* Resources */,
 				68E4F14C1C9BACDB00839E2C /* Libraries */,
-				68E4F1531C9BACDB00839E2C /* Resources */,
 			);
 			name = ICETutorial;
 			path = Lib/ICETutorial;
@@ -2056,14 +2140,6 @@
 				68E4F1521C9BACDB00839E2C /* ICETutorialStyle.m */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		68E4F1531C9BACDB00839E2C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				684BEF841DA88FC9004F70CA /* background-gradient@3x.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		68E8B7051DFFF423000CB44A /* Frameworks */ = {
@@ -2130,6 +2206,7 @@
 		68EB89881E0E681200611357 /* helloWord */ = {
 			isa = PBXGroup;
 			children = (
+				682F42B71E125D36004B3651 /* picture */,
 				68EB898B1E0E681200611357 /* shareObjectModel.h */,
 				68EB898C1E0E681200611357 /* shareObjectModel.m */,
 				68EB89891E0E681200611357 /* HelloViewController.h */,
@@ -2245,6 +2322,7 @@
 				687F66421E0BDCE10000D000 /* Player_progress_bar@3x.png in Resources */,
 				6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */,
 				792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */,
+				682F42A71E1213E7004B3651 /* 255.png in Resources */,
 				1A40336A1E0908A80006613F /* quanbu.png in Resources */,
 				689B34AA1CCDEEC0002464EA /* Check_personal@3x.png in Resources */,
 				682609EC1DFFCBF60017C4E3 /* 自在.jpg in Resources */,
@@ -2285,9 +2363,6 @@
 				682609D91DFFCBF50017C4E3 /* 詩禮.jpg in Resources */,
 				68BCF3B31E00EF02008AB490 /* 34.png in Resources */,
 				1A4033771E0908A80006613F /* xiazai.png in Resources */,
-				68C2F8D01D2102FC004F7D4E /* yu.jpg in Resources */,
-				684BEF901DA896E6004F70CA /* tu3.png in Resources */,
-				684BEF871DA88FC9004F70CA /* background-gradient@3x.png in Resources */,
 				689B34CA1CCDEEC0002464EA /* svae_presonal@2x.png in Resources */,
 				687F663E1E0BDCE10000D000 /* 001_0000s_0007_组-4.png in Resources */,
 				68BCF3981E00EF02008AB490 /* mulu@2x.png in Resources */,
@@ -2303,12 +2378,15 @@
 				1AFA65651CF3520800706798 /* 1234.png in Resources */,
 				68BCF3AA1E00EF02008AB490 /* 20.png in Resources */,
 				689B34B31CCDEEC0002464EA /* Magnifying_glass_personal@2x.png in Resources */,
+				682F42A61E1213E7004B3651 /* 244.png in Resources */,
 				687F663B1E0BDCE10000D000 /* 001_0000s_0004_110.png in Resources */,
 				689B34BB1CCDEEC0002464EA /* Play_personal@2x.png in Resources */,
 				1A4033631E0908A80006613F /* jiarugouwuche.png in Resources */,
 				68BCF3A91E00EF02008AB490 /* 19.png in Resources */,
 				1A40336C1E0908A80006613F /* shangcheng.png in Resources */,
 				689B34B61CCDEEC0002464EA /* Management_individual@2x.png in Resources */,
+				682F429E1E120CA8004B3651 /* header.png in Resources */,
+				682F42AE1E12561B004B3651 /* 登录.png in Resources */,
 				1A4033821E0908A80006613F /* zizai.png in Resources */,
 				1A831E351CEC1AEF00588BA9 /* 33@2x.png in Resources */,
 				1A40335B1E0908A80006613F /* fasong.png in Resources */,
@@ -2328,9 +2406,11 @@
 				689B34C01CCDEEC0002464EA /* Recent_personal@3x.png in Resources */,
 				682609E41DFFCBF50017C4E3 /* 轩箓.JPG in Resources */,
 				1A4329B51DF7B838005A1BE2 /* LaunchScreen.storyboard in Resources */,
+				682F42B61E1256D3004B3651 /* 引导页4.png in Resources */,
 				1A4EBA0F1CCDF092008A4564 /* actionbutton@2x.png in Resources */,
 				689B34B41CCDEEC0002464EA /* Magnifying_glass_personal@3x.png in Resources */,
 				1A4033651E0908A80006613F /* kongjian.png in Resources */,
+				682F42B31E1256D3004B3651 /* 引导页1.png in Resources */,
 				1A4033741E0908A80006613F /* woxihaun.png in Resources */,
 				682609DB1DFFCBF50017C4E3 /* 雅赏.jpg in Resources */,
 				689B34D01CCDEEE9002464EA /* Join_the_corpus@3x.png in Resources */,
@@ -2346,7 +2426,6 @@
 				68BCF3A61E00EF02008AB490 /* 15.jpg in Resources */,
 				682609DC1DFFCBF50017C4E3 /* 青囊.JPG in Resources */,
 				1A4033601E0908A80006613F /* goin.png in Resources */,
-				684BEF8D1DA89567004F70CA /* tu2.png in Resources */,
 				683539851CCE41F10071172B /* Save_personal_nom@3x.png in Resources */,
 				68BCF38F1E00EF02008AB490 /* b.png in Resources */,
 				1A4033561E0908A80006613F /* chanshuo.png in Resources */,
@@ -2361,7 +2440,9 @@
 				68BCF3B51E00EF02008AB490 /* 5.jpg in Resources */,
 				687F663C1E0BDCE10000D000 /* 001_0000s_0005_组-2.png in Resources */,
 				682609DA1DFFCBF50017C4E3 /* 逸經.jpg in Resources */,
+				682F42B51E1256D3004B3651 /* 引导页3.png in Resources */,
 				689B34C61CCDEEC0002464EA /* Song_single_person@2x.png in Resources */,
+				682F42AD1E12561B004B3651 /* 注册.png in Resources */,
 				68BCF3901E00EF02008AB490 /* dianjihou.png in Resources */,
 				688AB8951CD289D60012FB55 /* 1false.jpg in Resources */,
 				68E8B73C1E0000B1000CB44A /* heile.png in Resources */,
@@ -2376,6 +2457,7 @@
 				68BCF3951E00EF02008AB490 /* fenxiang@2x.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu-.png in Resources */,
 				68BCF3B41E00EF02008AB490 /* 4.jpg in Resources */,
+				682F42BA1E125D36004B3651 /* 欢迎.png in Resources */,
 				68BCF3AF1E00EF02008AB490 /* 27.jpg in Resources */,
 				68BCF3B81E00EF02008AB490 /* 8.jpg in Resources */,
 				682609E01DFFCBF50017C4E3 /* 抱朴.jpg in Resources */,
@@ -2392,7 +2474,6 @@
 				68BCF3971E00EF02008AB490 /* jindu@2x.png in Resources */,
 				68BCF39E1E00EF02008AB490 /* rijian@2x.png in Resources */,
 				1A4EBA1D1CCE0917008A4564 /* ForthTableViewCell.xib in Resources */,
-				684BEF8B1DA8935A004F70CA /* tu1.png in Resources */,
 				689B34B51CCDEEC0002464EA /* Management_ individual@3x.png in Resources */,
 				1A4033661E0908A80006613F /* lijijiesuan.png in Resources */,
 				1A6711211CBB485C0028529C /* cityData.sqlite in Resources */,
@@ -2420,7 +2501,7 @@
 				1A40337D1E0908A80006613F /* zanting.png in Resources */,
 				682609DD1DFFCBF50017C4E3 /* 一炁.jpg in Resources */,
 				68BCF3A31E00EF02008AB490 /* 12.jpg in Resources */,
-				684BEF911DA896E6004F70CA /* tu4.png in Resources */,
+				682F42BB1E125D36004B3651 /* 跳过广告.png in Resources */,
 				682609E31DFFCBF50017C4E3 /* 玉虛.jpg in Resources */,
 				1A4033681E0908A80006613F /* puti.png in Resources */,
 				1A91BE961CB360D500689AE0 /* BookCell.xib in Resources */,
@@ -2428,6 +2509,7 @@
 				1A4033801E0908A80006613F /* zhifuxuanzeqian.png in Resources */,
 				682609D51DFFCBF50017C4E3 /* 宿儒.jpg in Resources */,
 				68BCF3921E00EF02008AB490 /* down@2x.png in Resources */,
+				682F42A51E1213E7004B3651 /* 233.png in Resources */,
 				1A831E341CEC1AEF00588BA9 /* 44@2x.png in Resources */,
 				68BCF39C1E00EF02008AB490 /* navigation2.png in Resources */,
 				689B34BC1CCDEEC0002464EA /* Play_personal@3x.png in Resources */,
@@ -2458,16 +2540,18 @@
 				68BCF3911E00EF02008AB490 /* dianjiqian.png in Resources */,
 				1A4EBA101CCDF092008A4564 /* setbutton@2x.png in Resources */,
 				689B34C91CCDEEC0002464EA /* Suspend_personal@3x.png in Resources */,
-				68C2F8CF1D2102FC004F7D4E /* taoci.jpg in Resources */,
 				682609D41DFFCBF50017C4E3 /* 乐水.jpg in Resources */,
 				1AFA65661CF3520800706798 /* 123.png in Resources */,
 				68BCF3941E00EF02008AB490 /* fanhui@2x.png in Resources */,
 				689B34BD1CCDEEC0002464EA /* player@2x.png in Resources */,
+				682F42A91E124B0C004B3651 /* 211.png in Resources */,
 				1A831E361CEC1AEF00588BA9 /* 22@2x.png in Resources */,
 				682609E71DFFCBF60017C4E3 /* 悬壶.jpg in Resources */,
 				1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */,
 				1A40336E1E0908A80006613F /* shezhi.png in Resources */,
 				1A4033641E0908A80006613F /* jiarushuji.png in Resources */,
+				682F42B41E1256D3004B3651 /* 引导页2.png in Resources */,
+				682F42981E1200B6004B3651 /* courseListCell.xib in Resources */,
 				1A4033621E0908A80006613F /* gouwuche.png in Resources */,
 				1A4033701E0908A80006613F /* tijiaodingdan.png in Resources */,
 				689B34AE1CCDEEC0002464EA /* Download_individual@3x.png in Resources */,
@@ -2504,17 +2588,20 @@
 				687F66321E0BDCE10000D000 /* lyricView.m in Sources */,
 				6814F0881C9FE86C000FD40B /* MJRefreshHeader.m in Sources */,
 				6849C00F1E09407900C9A5D2 /* SDWebImageDownloader.m in Sources */,
+				682F429B1E1200B6004B3651 /* MJscroll.m in Sources */,
 				68EB89C41E0E995100611357 /* ForgetViewController.m in Sources */,
 				1AF93BDB1CD2069400574CBC /* SectionOperation.m in Sources */,
 				68987BB41CB604130007303A /* SaveData.m in Sources */,
 				1AF1AFD31CBFF0B500001233 /* SectionManageView.m in Sources */,
 				68EB89D71E0E9BFC00611357 /* NSArray Chinese.m in Sources */,
 				6814F08C1C9FE86C000FD40B /* MJRefreshBackGifFooter.m in Sources */,
+				682F42951E1200B6004B3651 /* courseCollection.swift in Sources */,
 				1A0EBF331CF6EB9600E910AD /* RefreshLabelView.m in Sources */,
 				1A91BE8C1CB360D500689AE0 /* TotalTableViewController.m in Sources */,
 				1A49AB1E1CAD162F003DA6DB /* SectionCell.m in Sources */,
 				1A49AB0B1CAD162F003DA6DB /* ADViewController.m in Sources */,
 				682563511E02C0B500A5F7CC /* BookViewController.m in Sources */,
+				682F429C1E1200B6004B3651 /* teacherIntro.swift in Sources */,
 				6849C00A1E09407900C9A5D2 /* MKAnnotationView+WebCache.m in Sources */,
 				1A91BE841CB360D500689AE0 /* MyViewController.m in Sources */,
 				1A91BE861CB360D500689AE0 /* AuthorTableViewController.m in Sources */,
@@ -2525,6 +2612,7 @@
 				6852D2491E0A524600CA55D6 /* chapterView.m in Sources */,
 				6814F0861C9FE86C000FD40B /* MJRefreshComponent.m in Sources */,
 				1A970A101CE1BC91005C3706 /* SaveModule.m in Sources */,
+				682F42971E1200B6004B3651 /* courseListCell.swift in Sources */,
 				1A8D0DA51CCF4052009AAE2C /* JSTextView.m in Sources */,
 				1A6711201CBB485C0028529C /* AddressModel.m in Sources */,
 				6814F0891C9FE86C000FD40B /* MJRefreshAutoGifFooter.m in Sources */,
@@ -2538,6 +2626,7 @@
 				6814F08D1C9FE86C000FD40B /* MJRefreshBackNormalFooter.m in Sources */,
 				6852D24F1E0ABB2500CA55D6 /* readView.m in Sources */,
 				1A91BE7D1CB360D500689AE0 /* SectionData.m in Sources */,
+				682F42931E1200B6004B3651 /* courseCell2.swift in Sources */,
 				1A91BE7E1CB360D500689AE0 /* Downloading.m in Sources */,
 				1A91BE971CB360D500689AE0 /* EssayCell.m in Sources */,
 				68E8B7431E0000B1000CB44A /* delaySection.swift in Sources */,
@@ -2580,6 +2669,7 @@
 				1A67110F1CBB48410028529C /* ProvinceAddressModel.m in Sources */,
 				1AEEB0311CD1171D0076E396 /* MyBookListController.m in Sources */,
 				6852D24C1E0ABA1600CA55D6 /* detailsView.m in Sources */,
+				682F42941E1200B6004B3651 /* courseCell3.swift in Sources */,
 				1A011D5C1D3E03100040EA23 /* AppDelegate.m in Sources */,
 				1A91BE8B1CB360D500689AE0 /* LocalSection.m in Sources */,
 				68EB89CF1E0E995100611357 /* SubmitViewController.m in Sources */,
@@ -2588,6 +2678,7 @@
 				68FA88031CF3019C007638D0 /* KJ_BookCell2.m in Sources */,
 				680682CC1C9D7D3700C2E3C3 /* WMMenuItem.m in Sources */,
 				1A91BEA01CB360D500689AE0 /* ThirdTableViewCell.m in Sources */,
+				682F429A1E1200B6004B3651 /* courseViewController.swift in Sources */,
 				6814F0951C9FE86C000FD40B /* UIScrollView+MJRefresh.m in Sources */,
 				68EB89D81E0E9BFC00611357 /* NSDictionary Chinese.m in Sources */,
 				1A91BE951CB360D500689AE0 /* BookCell.m in Sources */,
@@ -2618,6 +2709,7 @@
 				1A1B13C31CBB7B2B00BCE619 /* SetViewController.m in Sources */,
 				68987BB11CB5FAD50007303A /* SaveClass.m in Sources */,
 				1A91BE801CB360D500689AE0 /* ILikeAuthor.m in Sources */,
+				682F42991E1200B6004B3651 /* courseListViewController.swift in Sources */,
 				68622F901CA3F23500F13471 /* UINavigationBar+Awesome.m in Sources */,
 				1A91BE9E1CB360D500689AE0 /* SecondTableViewCell.m in Sources */,
 				1A67110C1CBB48410028529C /* AddressFMDBManager.m in Sources */,
@@ -2629,6 +2721,7 @@
 				1A07BE951CB63E3000E327DA /* VPImageCropperViewController.m in Sources */,
 				6849C0141E09407900C9A5D2 /* UIImage+GIF.m in Sources */,
 				1A91BE821CB360D500689AE0 /* ILikePage.m in Sources */,
+				682F42961E1200B6004B3651 /* courseCollectionViewCell.swift in Sources */,
 				1A6711221CBB485C0028529C /* FMDatabase.m in Sources */,
 				1A05832D1CBC8B2400AD762C /* SVProgressHUD.m in Sources */,
 				1A6711231CBB485C0028529C /* FMDatabaseAdditions.m in Sources */,
@@ -2639,6 +2732,7 @@
 				1A0EBF351CF6EB9600E910AD /* RefreshView.m in Sources */,
 				1A05832B1CBC8B2400AD762C /* SVProgressAnimatedView.m in Sources */,
 				68E8B7441E0000B1000CB44A /* networkSection.swift in Sources */,
+				682F42BD1E1276F1004B3651 /* WebViewController.swift in Sources */,
 				792CB8A21CE36355001933E4 /* subcatalogCell.m in Sources */,
 				1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */,
 				1A4EB8F21CCDCF27008A4564 /* BookData.m in Sources */,

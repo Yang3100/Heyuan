@@ -10,7 +10,7 @@
 #import "ICETutorialPage.h"
 #import "ICETutorialStyle.h"
 
-#define TUTORIAL_LABEL_TEXT_COLOR               [UIColor whiteColor]
+#define TUTORIAL_LABEL_TEXT_COLOR               [UIColor blueColor]
 #define TUTORIAL_LABEL_HEIGHT                   45
 #define TUTORIAL_TITLE_FONT                     [UIFont fontWithName:@"Helvetica-Bold" size:17.0f]
 #define TUTORIAL_TITLE_LINES_NUMBER             1
