@@ -8,10 +8,6 @@
 
 #import "ShareView.h"
 
-// 微信SDK
-#import "WXApi.h"
-#import "WXApiObject.h"
-
 //获取屏幕 宽度、高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -55,27 +51,25 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 - (void)initView{
     backBut = [UIButton buttonWithType:UIButtonTypeCustom];
     backBut.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    backBut.backgroundColor = [UIColor blackColor];
+//    backBut.backgroundColor = [UIColor blackColor];
+    [backBut setImage:[UIImage imageNamed:@"sharebackground"] forState:UIControlStateNormal];
     backBut.alpha = 0;
     [backBut addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [[self appRootViewController].view addSubview:backBut];
     // 动画效果
     [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        backBut.alpha = 0.5;
+        backBut.alpha = 1;
     } completion:nil];
     
     whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
     whiteView.backgroundColor = [UIColor whiteColor];
     
-    NSArray *nameArray = @[@"QQ",@"QZone",@"WeChat",@"微信朋友圈"];
+    NSArray *nameArray = @[[UIImage imageNamed:@"QQ"],[UIImage imageNamed:@"QZone"],[UIImage imageNamed:@"WeChat"],[UIImage imageNamed:@"朋友圈"]];
     for (int a=0; a<4; a++) {
         UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-        but.frame = CGRectMake(0, whiteView.frame.size.height/4*a, SCREEN_WIDTH, whiteView.frame.size.height/4);
+        but.frame = CGRectMake(0, whiteView.frame.size.height/4*a, SCREEN_WIDTH, whiteView.frame.size.height/4-5);
         but.tag = a;
-        but.layer.masksToBounds = YES;
-        but.layer.borderWidth = 1;
-        [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [but setTitle:nameArray[a] forState:UIControlStateNormal];
+        [but setImage:nameArray[a] forState:UIControlStateNormal];
         [but addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [whiteView addSubview:but];
     }
@@ -158,7 +152,14 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         }
         [WXApi sendReq:req];
     }else if (where==QQ||where==QZone){ // QQ
-        
+        QQApiTextObject *txtObj = [QQApiTextObject objectWithText:_text];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:txtObj];
+        if (where==QZone) {
+            NSLog(@"QZone不支持分享纯文字");
+        }else{
+            //将内容分享到qq
+            [QQApiInterface sendReq:req];
+        }
     }
     
 }
@@ -185,7 +186,16 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         }
         [WXApi sendReq:req];
     }else if (where==QQ||where==QZone){ // QQ
-        
+        //分享内容
+        QQApiWebImageObject *imageObj = [QQApiWebImageObject objectWithPreviewImageURL:urlString title:self.title description:self.describe];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:imageObj];
+        if (where==QQ) {
+            // 分享到QQ
+            [QQApiInterface sendReq:req];
+        }else {
+            // 将内容分享到qzone
+            [QQApiInterface SendReqToQZone:req];
+        }
     }
     
 }
@@ -213,7 +223,16 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         }
         [WXApi sendReq:req];
     }else if (where==QQ||where==QZone){ // QQ
-        
+        //分享内容
+        QQApiNewsObject *newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:self.webUrl] title:self.title description:self.describe previewImageData:daa];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+        if (where==QQ) {
+            // 分享到QQ
+            [QQApiInterface sendReq:req];
+        }else {
+            // 将内容分享到qzone
+            [QQApiInterface SendReqToQZone:req];
+        }
     }
 }
 
@@ -244,7 +263,16 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         }
         [WXApi sendReq:req];
     }else if (where==QQ||where==QZone){ // QQ
-        
+        //分享内容
+        QQApiAudioObject *musicObj = [QQApiAudioObject objectWithURL:[NSURL URLWithString:self.musicUrl] title:_title description:_describe previewImageData:daa];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:musicObj];
+        if (where==QQ) {
+            // 分享到QQ
+            [QQApiInterface sendReq:req];
+        }else {
+            // 将内容分享到qzone
+            [QQApiInterface SendReqToQZone:req];
+        }
     }
 }
 
@@ -272,7 +300,16 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         }
         [WXApi sendReq:req];
     }else if (where==QQ||where==QZone){ // QQ
-        
+        //分享内容
+        QQApiVideoObject *videoObj = [QQApiVideoObject objectWithURL:[NSURL URLWithString:self.videoUrl] title:_title description:self.describe previewImageData:daa];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:videoObj];
+        if (where==QQ) {
+            // 分享到QQ
+            [QQApiInterface sendReq:req];
+        }else {
+            // 将内容分享到qzone
+            [QQApiInterface SendReqToQZone:req];
+        }
     }
 }
 

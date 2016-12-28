@@ -10,10 +10,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HelloViewController.h"
 #import "ICETutorialController.h"
-#import "loginView.h"
+#import "loginViewController.h"
 #import "RegisterViewController.h"
 
-@interface AppDelegate ()<WXApiDelegate, ICETutorialControllerDelegate>{
+
+@interface AppDelegate ()<WXApiDelegate, QQApiInterfaceDelegate, ICETutorialControllerDelegate>{
     ICETutorialController *leadViewController;
 }
 
@@ -29,8 +30,7 @@
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event{
-    if(event.type==UIEventTypeRemoteControl)
-    {
+    if(event.type==UIEventTypeRemoteControl){
         NSInteger order=-1;
         switch (event.subtype) {
             case UIEventSubtypeRemoteControlPause:
@@ -58,9 +58,10 @@
 }
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    [WXApi registerApp:@"wxd1e9cf61f91dac3f" withDescription:@"weixin"];
-
+    
+    [WXApi registerApp:@"wxd1e9cf61f91dac3f"];
+    [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self]; //如果没写这句，会提示（EQQAPIAPPNOTREGISTED ）App未注册的错误
+    
     // 一句话解决所有TableView的多余cell就一句代码放在AppDelegate里
     [[UITableView appearance] setTableFooterView:[UIView new]];
     
@@ -69,7 +70,7 @@
     // 返回按钮
     [self setNavigationBarBackButton:nil withText:@""];
     [self setColor];
-
+    
     return YES;
 }
 
@@ -78,7 +79,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-   
+    
     // 1.判断本地有无保存账号密码
     if ([[shareObjectModel shareObject] isSaveAccountAndPassword]) { // 1-1  本地保存了账号密码
         HelloViewController *hvc = [[HelloViewController alloc] init];
@@ -127,45 +128,71 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
-#pragma mark WXApiDelegate
+#pragma mark WXApiDelegate - QQApiInterfaceDelegate
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     [WXApi handleOpenURL:url delegate:self];
+    [TencentOAuth HandleOpenURL:url];  // QQ分享
     return YES;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     [WXApi handleOpenURL:url delegate:self];
+    
+    [QQApiInterface handleOpenURL:url delegate:self]; // QQ登录
+    [TencentOAuth HandleOpenURL:url]; // QQ分享
     return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     [WXApi handleOpenURL:url delegate:self];
+    
+    [QQApiInterface handleOpenURL:url delegate:self]; // QQ登录
+    [TencentOAuth HandleOpenURL:url]; // QQ分享
     return YES;
 }
 #pragma mark WeChat登录,登陆成功的通知
+// 处理来至QQ的请求
+- (void)onReq:(BaseResp *)req{
+    NSLog(@"hahahaa!!!");
+}
+
+// 处理来至QQ的响应
 - (void)onResp:(BaseResp *)resp {
-    //WeChat
-    if ([resp isKindOfClass:[SendAuthResp class]]){
+    NSLog(@"heiheiheee!!!");
+    if ([resp isKindOfClass:[SendAuthResp class]]){ //WeChat
         SendAuthResp *rep = (SendAuthResp *)resp;
         if (rep.errCode == 0) {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:WXLoginSuccess object:@{@"code":rep.code}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatLoadSucessful" object:@{@"code":rep.code}];
             NSLog(@"%dloadSuccess!!!,错误提示字段%@,响应类型:%d",rep.errCode,rep.errStr,rep.type);
         }else{
             NSLog(@"%dloadSuccess!!!,错误提示字段%@,响应类型:%d",rep.errCode,rep.errStr,rep.type);
         }
         
+    }else if ([resp isKindOfClass:[QQBaseResp class]]){ //QQ
+        NSLog(@"QQQQQQ");
+        if (resp.errCode == 0) {
+            NSLog(@"%dQQloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
+        }else{
+            NSLog(@"%dWWloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
+        }
     }
     
-    //QQ
 }
+
+// 处理QQ在线状态的回调
+- (void)isOnlineResponse:(NSDictionary *)response{
+    NSLog(@"666%@",response);
+}
+
+
 
 #pragma mark - ICETutorialController delegate
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
-//    NSLog(@"点击了登录");
-    loginView *lv = [[loginView alloc] init];
-    [leadViewController presentViewController:lv animated:YES completion:nil];
+    //    NSLog(@"点击了登录");
+    loginViewController *lvc = [[loginViewController alloc] init];
+    [leadViewController presentViewController:lvc animated:YES completion:nil];
 }
 
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender {
-//    NSLog(@"点击了注册");
+    //    NSLog(@"点击了注册");
     RegisterViewController *rvc = [[RegisterViewController alloc] init];
     [leadViewController presentViewController:rvc animated:YES completion:nil];
 }

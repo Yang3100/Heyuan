@@ -14,7 +14,7 @@
 #import "Help.h"
 #import "SVProgressHUD.h"
 #import "UserDataModel.h"
-#import "loginView.h"
+#import "loginViewController.h"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height) // 屏幕高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width) // 屏幕宽度
@@ -229,8 +229,8 @@ static NSString *setCellIdentifier = @"setCell";
             // 删除本地账号密码
             [[shareObjectModel shareObject] deleteAccountAndPassword];
             [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{
-                loginView *lv = [[loginView alloc] init];
-                [[self appRootViewController] presentViewController:lv animated:NO completion:nil];
+                loginViewController *lvc = [[loginViewController alloc] init];
+                [[self appRootViewController] presentViewController:lvc animated:NO completion:nil];
             }];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

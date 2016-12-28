@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "SubmitViewController.h"
-#import "loginView.h"
+#import "loginViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -224,8 +224,8 @@
 #pragma mark ButtonActions
 // 登陆小按钮
 - (IBAction)loadAction:(id)sender{
-    loginView *loginViewController = [[loginView alloc] init];
-    [self presentViewController:loginViewController animated:YES completion:nil];
+    loginViewController *lvc = [[loginViewController alloc] init];
+    [self presentViewController:lvc animated:YES completion:nil];
 }
 
 #pragma mark  手机号码规范

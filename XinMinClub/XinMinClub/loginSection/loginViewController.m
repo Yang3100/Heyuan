@@ -6,12 +6,12 @@
 //  Copyright © 2016年 yangkejun. All rights reserved.
 //
 
-#import "loginView.h"
+#import "loginViewController.h"
 #import "HomeViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetViewController.h"
 
-@interface loginView () <UITextFieldDelegate> {
+@interface loginViewController () <UITextFieldDelegate,TencentSessionDelegate> {
     UITextField *userField_, *keyField_;
     UITextField *curTextField_;
     UILabel *userLabel_ , *keyLabel_;
@@ -21,6 +21,8 @@
     UILabel *titleLabel_;
     UIButton *registerBtn_;
     UIButton *forgetBtn_;
+    
+    TencentOAuth *_tencentOAuth;
 }
 
 @property (nonatomic ,strong) UIImageView *DishangfangLoogin;
@@ -29,7 +31,7 @@
 
 @end
 
-@implementation loginView
+@implementation loginViewController
 
 - (void)loadView{
     //自己创建UIControl添加事件
@@ -58,6 +60,9 @@
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"wechatLoadSucessful" object:nil];
+//    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
 }
 
 
@@ -306,14 +311,169 @@
     [self presentViewController:fvc animated:YES completion:nil];
 }
 
+#pragma mark - 第三方登录
 -(IBAction)QQLoogin:(id)sender{
     NSLog(@"点击了QQ登陆!!!");
+
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
+    NSArray *_permissionArray = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
+    [_tencentOAuth authorize:_permissionArray];
     
+//    //登录成功之后调用代理方法（协议必须实现的三个方法）
+//    //qq登录成功之后  在协议的方法中返回信息
 }
 -(IBAction)WeixingLoogin:(id)sender{
     NSLog(@"点击了WeChat登陆!!!");
-    
+    SendAuthReq *req = [[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"123";
+//    @"4834c3128326dd7fa321fb16331c39ad";
+//    req.openID = @"123";
+    [WXApi sendReq:req];
 }
+
+#pragma mark - WeChat登陆成功之后获取token
+- (void)WXLogin:(NSNotification *)notifi {
+    NSLog(@"wechatLoadSucessful:%@",notifi);
+//    AFHTTPRequestOperationManager *manage = [AFHTTPRequestOperationManager manager];
+//    manage.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manage GET:@"https://api.weixin.qq.com/sns/oauth2/access_token" parameters:@{@"appid":WX_AppID, @"secret":WX_AppSecret, @"code":notifi.object[@"code"], @"grant_type":@"authorization_code"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+//        /*"access_token" = "OezXcEiiBSKSxW0eoylIeBPKSgTfwua1QABCnleka9CqGYr9J4wP2NHLDEFTP0vqsiS4DFDyXNQmYSaM6dW1s8MrQi6NSC9dV6ZqqjazKWQv3kfeozrm-fbZTXU80vLaWYflw07nkDhmX3KJHsEVxQ";
+//         "expires_in" = 7200;
+//         openid = o22U5xMHZTjYDi3VwBva3JW6mqGk;
+//         "refresh_token" = "OezXcEiiBSKSxW0eoylIeBPKSgTfwua1QABCnleka9CqGYr9J4wP2NHLDEFTP0vq6O1ZVOcyb8uL5dLrcuRaydRmY9BcYgJeOLqRjlLyp5HpBlYc2Ikja-RFm6ghGQ32r_iZfQfAQhtEqwk9ibf8vA";
+//         scope = "snsapi_userinfo";
+//         unionid = o4bo2vzI0vCvGTa11GBMkx0SbcwQ;*/
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:WXSaveToken];
+//        
+//        [self saveTokenAndRequireWXInfo];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"access_token error-->%@", error.localizedDescription);
+//    }];
+}
+
+// 获取用户信息
+- (void)saveTokenAndRequireWXInfo {
+//    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:WXSaveToken];
+//    AFHTTPRequestOperationManager *manage = [AFHTTPRequestOperationManager manager];
+//    manage.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manage GET:@"https://api.weixin.qq.com/sns/userinfo" parameters:@{@"openid":dict[@"openid"], @"access_token":dict[@"access_token"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+//        //        NSLog(@"%@",dict);
+//        //        {
+//        //            city = "xxx";
+//        //            country = xxx;
+//        //            headimgurl = “http://wx.qlogo.cn/mmopen/xxxxxxx/0”;
+//        //            language = "zh_CN";
+//        //            nickname = xxx;
+//        //            openid = xxxxxxxxxxxxxxxxxxx;
+//        //            privilege =     (
+//        //            );
+//        //            province = "xxx";
+//        //            sex = 0;
+//        //            unionid = xxxxxxxxxxxxxxxxxx;
+//        //        }
+//        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:WXResponse_UserInfo];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"userinfo error-->%@", error.localizedDescription);
+//    }];
+}
+
+#pragma TencentSessionDelegate
+/**
+ * [该逻辑未实现]因token失效而需要执行重新登录授权。在用户调用某个api接口时，如果服务器返回token失效，则触发该回调协议接口，由第三方决定是否跳转到登录授权页面，让用户重新授权。
+ * \param tencentOAuth 登录授权对象。
+ * \return 是否仍然回调返回原始的api请求结果。
+ * \note 不实现该协议接口则默认为不开启重新登录授权流程。若需要重新登录授权请调用\ref TencentOAuth#reauthorizeWithPermissions: \n注意：重新登录授权时用户可能会修改登录的帐号
+ */
+- (BOOL)tencentNeedPerformReAuth:(TencentOAuth *)tencentOAuth{
+    return YES;
+}
+- (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions{
+    // incrAuthWithPermissions是增量授权时需要调用的登录接口
+    // permissions是需要增量授权的权限列表
+    [tencentOAuth incrAuthWithPermissions:permissions];
+    return NO; // 返回NO表明不需要再回传未授权API接口的原始请求结果；
+    // 否则可以返回YES
+}
+-(void)tencentDidLogin{
+    NSLog(@"----ok-----");
+    /** Access Token凭证，用于后续访问各开放接口 */
+    if (_tencentOAuth.accessToken) {
+        //获取用户信息。 调用这个方法后，qq的sdk会自动调用
+        //- (void)getUserInfoResponse:(APIResponse*) response
+        //这个方法就是 用户信息的回调方法。
+        
+        [_tencentOAuth getUserInfo];
+    }else{
+        
+        NSLog(@"accessToken 没有获取成功");
+    }
+}
+//-(NSArray *)getAuthorizedPermissions:(NSArray *)permissions withExtraParams:(NSDictionary *)extraParams{
+//    NSLog(@"----%@********%@-----",permissions,extraParams);
+//    return permissions;
+//}
+- (void)getUserInfoResponse:(APIResponse*) response{
+    NSLog(@"*********");
+    NSLog(@" response %@",response);
+    NSLog(@"*********");
+}
+
+-(void)tencentDidNotLogin:(BOOL)cancelled{
+    if (cancelled) {
+        NSLog(@"用户点击取消按键,主动退出登录");
+    }else{
+        NSLog(@"其他原因,导致登录失败");
+    }
+}
+-(void)tencentDidNotNetWork{
+    NSLog(@"没有网络了， 怎么登录成功呢");
+}
+
+//#pragma mark - QQ登陆成功之后获取token
+//- (void)tencentDidLogin{
+//    if ([_tencentOAuth.accessToken length] > 0 && _tencentOAuth.accessToken) {
+//        NSLog(@"success%@-->%@-->%@-->%@-->%@",_tencentOAuth.openId, _tencentOAuth.accessToken, _tencentOAuth.appId, _tencentOAuth.openId, _tencentOAuth.expirationDate);
+//        
+////        [[NSUserDefaults standardUserDefaults] setObject:@{@"accessToken":_tencentOAuth.accessToken, @"expirationDate":_tencentOAuth.expirationDate, @"openId":_tencentOAuth.openId, @"appId":_tencentOAuth.appId} forKey:QQSaveToken];
+//        [_tencentOAuth getUserInfo]; //调用此方法会在- (void)getUserInfoResponse:(APIResponse *)response中返回数据
+//    }
+//    else {
+//        NSLog(@"fail%@-->%@-->%@-->%@-->%@",_tencentOAuth.openId, _tencentOAuth.accessToken, _tencentOAuth.appId, _tencentOAuth.openId, _tencentOAuth.expirationDate);
+//    }
+//}
+//- (void)getUserInfoResponse:(APIResponse *)response{
+//        NSLog(@"--->respons:%@",response.jsonResponse);
+////    [[NSUserDefaults standardUserDefaults] setObject:@{@"headerImage":response.jsonResponse[@"figureurl_qq_2"], @"nickname":response.jsonResponse[@"nickname"], @"description":[NSString stringWithFormat:@"%@-%@ %@", response.jsonResponse[@"province"], response.jsonResponse[@"city"], response.jsonResponse[@"gender"]]} forKey:QQResponse_UserInfo];
+//    [self parseQQUserShow];
+//}
+//- (void)parseQQUserShow{
+//    NSLog(@"-->QQ个人信息UserShow");
+////    if ([[NSUserDefaults standardUserDefaults] objectForKey:QQResponse_UserInfo]) {
+////        
+////        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:QQResponse_UserInfo];
+////        NSLog(@"-->QQ个人信息UserShow%@", dict);
+////        [_WXheaderImageView sd_setImageWithURL:[NSURL URLWithString:dict[@"headerImage"]] placeholderImage:nil options:SDWebImageProgressiveDownload];
+////        _WXnameLabel.text = dict[@"nickname"];
+////        _WXdescriptionLabel.text = dict[@"description"];
+////    }
+//}
+//- (void)tencentDidNotLogin:(BOOL)cancelled{
+//    NSLog(@"tencentDidNotLogin");
+//    if (cancelled){
+//        NSLog(@"tencentDidNotLogin用户取消登录");
+//    }else{
+//        NSLog(@"tencentDidNotLogin登录失败");
+//    }
+//}
+//- (void)tencentDidNotNetWork{
+//    NSLog(@"tencentDidNotNetWork无网络连接，请设置网络");
+//}
 
 // 登录请求
 - (void)logicRequest{

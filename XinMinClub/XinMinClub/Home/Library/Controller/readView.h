@@ -10,7 +10,7 @@
 
 @interface readView : UIView
 
-@property(nonatomic,strong) NSArray *type;
+//@property(nonatomic,strong) NSArray *type;
 @property(nonatomic,assign) BOOL isTopView; // 是不是显示在最上面
 
 @property(nonatomic,strong) NSString *bookID; // 书集ID

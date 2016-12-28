@@ -9,7 +9,7 @@
 #import "SubmitViewController.h"
 #import "UserDataModel.h"
 #import "HomeViewController.h"
-#import "loginView.h"
+#import "loginViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -448,8 +448,8 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"手机号码已被注册" message:@"请直接登录" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"手机号码已存在");
-        loginView *l=[[loginView alloc] init];
-        [self presentViewController:l animated:NO completion:nil];
+        loginViewController *lvc = [[loginViewController alloc] init];
+        [self presentViewController:lvc animated:NO completion:nil];
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];
