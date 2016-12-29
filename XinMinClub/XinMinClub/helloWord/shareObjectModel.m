@@ -47,7 +47,7 @@
     // 后台对数据类型的需要
     NSDictionary *dict = @{@"PhoneNo":account, @"PassWord":password};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Login",@"Params":dict}];
-    [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
+    [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
     //回调函数获取数据
     [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
         NSString *str = [[json valueForKey:@"RET"] valueForKey:@"DATA"];

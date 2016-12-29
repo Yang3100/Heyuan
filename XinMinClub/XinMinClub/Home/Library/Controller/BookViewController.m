@@ -87,12 +87,12 @@
         // 后台对数据类型的需要
         NSDictionary *dict = @{@"TYPE":type,@"Page_Index":@(iNum),@"Page_Count":@"9"};
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WenJi_DataList",@"Params":dict}];
-        [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
+        [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
     });
     
     //回调函数获取数据
     [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-        //        NSLog(@"xxx%@",json);
+                NSLog(@"xxx%@",json);
         NSNumber *mapXNum = [[json valueForKey:@"RET"] valueForKey:@"Record_Count"];
         libraryTotal = [mapXNum intValue];
         // 主线程执行

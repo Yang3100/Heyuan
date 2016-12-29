@@ -33,6 +33,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import "ShareView.h"
+#import "playerViewController.h"
 
 #ifndef MyGreat_pch
 #define MyGreat_pch

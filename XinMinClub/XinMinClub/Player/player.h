@@ -35,4 +35,6 @@
  */
 - (void)pause;
 
++ (instancetype)instancePlayer;
+
 @end

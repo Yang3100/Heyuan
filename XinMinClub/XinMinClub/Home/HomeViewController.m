@@ -21,6 +21,7 @@
     UILabel *label1;
     UIImage *im1;
     UIImageView *image1;
+    playerViewController *p;
 }
 
 @end

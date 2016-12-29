@@ -32,7 +32,9 @@
 -(void)setLyricLocation:(NSInteger)lyricLocation{
     // 使被选中的行移到中间
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lyricLocation inSection:0];
-    [self.lyricTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    if (lrcArry.count) {
+        [self.lyricTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
     _lyricLocation = lyricLocation;
     [self.lyricTableView reloadData];
 }

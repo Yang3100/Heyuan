@@ -30,30 +30,40 @@
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event{
-    if(event.type==UIEventTypeRemoteControl){
+    playerViewController *p = [playerViewController defaultDataModel];
+    if(event.type==UIEventTypeRemoteControl)
+    {
         NSInteger order=-1;
         switch (event.subtype) {
-            case UIEventSubtypeRemoteControlPause:
-                order=UIEventSubtypeRemoteControlPause;
-                break;
-            case UIEventSubtypeRemoteControlPlay:
-                order=UIEventSubtypeRemoteControlPlay;
-                break;
-            case UIEventSubtypeRemoteControlNextTrack:
-                order=UIEventSubtypeRemoteControlNextTrack;
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                NSLog(@"0");
+                // [self playAndStopSong:self.playButton];
                 break;
             case UIEventSubtypeRemoteControlPreviousTrack:
-                order=UIEventSubtypeRemoteControlPreviousTrack;
+                NSLog(@"1");//上一首
+                [p instancePlay:@"on"];
+                
                 break;
-            case UIEventSubtypeRemoteControlTogglePlayPause:
-                order=UIEventSubtypeRemoteControlTogglePlayPause;
+            case UIEventSubtypeRemoteControlNextTrack:
+                NSLog(@"2");//下一首
+                [p instancePlay:@"next"];
+                
                 break;
+            case UIEventSubtypeRemoteControlPlay:
+                NSLog(@"3");//锁屏播放
+                [p instancePlay:@"play"];
+                
+                break;
+            case UIEventSubtypeRemoteControlPause:
+                NSLog(@"4");//锁屏暂停
+                [p instancePlay:@"play"];
+                
             default:
                 order=-1;
                 break;
         }
-        NSDictionary *orderDict=@{@"order":@(order)};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kAppDidReceiveRemoteControlNotification" object:nil userInfo:orderDict];
+        //        NSDictionary *orderDict=@{@"order":@(order)};
+        //        [[NSNotificationCenter defaultCenter] postNotificationName:@"kAppDidReceiveRemoteControlNotification" object:nil userInfo:orderDict];
     }
 }
 
@@ -156,23 +166,23 @@
 
 // 处理来至QQ的响应
 - (void)onResp:(BaseResp *)resp {
-    NSLog(@"heiheiheee!!!");
     if ([resp isKindOfClass:[SendAuthResp class]]){ //WeChat
         SendAuthResp *rep = (SendAuthResp *)resp;
         if (rep.errCode == 0) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"wechatLoadSucessful" object:@{@"code":rep.code}];
-            NSLog(@"%dloadSuccess!!!,错误提示字段%@,响应类型:%d",rep.errCode,rep.errStr,rep.type);
+            NSLog(@"微信成功登陆code:%@,state:%@,lang:%@,country:%@",rep.code,rep.state,rep.lang,rep.country);
         }else{
-            NSLog(@"%dloadSuccess!!!,错误提示字段%@,响应类型:%d",rep.errCode,rep.errStr,rep.type);
+            NSLog(@"loadErr:%d,错误提示字段%@,响应类型:%d",rep.errCode,rep.errStr,rep.type);
         }
         
     }else if ([resp isKindOfClass:[QQBaseResp class]]){ //QQ
-        NSLog(@"QQQQQQ");
-        if (resp.errCode == 0) {
-            NSLog(@"%dQQloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
-        }else{
-            NSLog(@"%dWWloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
-        }
+        QQBaseResp *rep = (QQBaseResp *)resp;
+        NSLog(@"result:%@,extendInfo:%@,type:%d,errorDescription:%@", rep.result,rep.extendInfo,rep.type,rep.errorDescription);
+//        if (rep.errCode == 0) {
+//            NSLog(@"QQ成功登陆");
+//        }else{
+//            NSLog(@"%dWWloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
+//        }
     }
     
 }

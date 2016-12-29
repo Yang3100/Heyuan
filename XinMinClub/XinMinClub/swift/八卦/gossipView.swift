@@ -65,13 +65,16 @@ import UIKit
         self.addSubview(kunView)
         
         qianImageView = UIImageView()
-        qianImageView.frame = CGRect(x:0, y:0, width:93, height:12)
+        qianImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         qianImageView.center = qianView.center
         qianImageView.image = UIImage(named:"qiangua")
         self.addSubview(qianImageView)
         
+        print(x1/2)
+        print(y1/8)
+        
         kunImageView = UIImageView()
-        kunImageView.frame = CGRect(x:0, y:0, width:93, height:12)
+        kunImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         kunImageView.center = kunView.center
         kunImageView.image = UIImage(named:"kungua")
         self.addSubview(kunImageView)
