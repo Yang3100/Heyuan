@@ -10,7 +10,7 @@
 
 // 选择分享内容类型
 typedef NS_ENUM(NSInteger, SelectedShareContent) {
-    ShareText,  // 文字  默认从0开始
+    ShareText=0,  // 文字  默认从0开始
     ShareImage, // 图片
     ShareWeb,   // 网页
     ShareMusic, // 音乐
