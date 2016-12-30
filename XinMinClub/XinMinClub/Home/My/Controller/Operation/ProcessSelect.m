@@ -11,6 +11,7 @@
 #import "DataModel.h"
 //#import "TransferStationObject.h"
 #import "UserDataModel.h"
+#import "SectionViewController.h"
 //#import "KJ_BackTableViewController.h"
 //#import "PalyerViewController.h"
 //#import "ReaderTableViewController.h"
@@ -68,6 +69,24 @@
     
     [self initArr];
     [self playAll:0 section:data];
+}
+
+- (UIViewController *)popBookWithData:(BookData *)data {
+    SectionViewController *svc = [[SectionViewController alloc] init];
+    svc.title = data.bookName; // 书集名字
+    
+    [DataModel defaultDataModel].bookImageUrl = [NSURL URLWithString:data.imagePath]; // 书集封面Url
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
+    [dic setObject:data.imagePath forKey:@"WJ_IMG"];
+    [dic setObject:data.bookName forKey:@"WJ_NAME"];
+    [dic setObject:data.authorName forKey:@"WJ_USER"];
+    [dic setObject:data.type forKey:@"WJ_TYPE"];
+    [dic setObject:data.details forKey:@"WJ_CONTENT"];
+    [dic setObject:data.language forKey:@"WJ_LANGUAGE"];
+    [dic setObject:data.bookID forKey:@"WJ_ID"];
+    [svc getJsonData:[[NSMutableDictionary alloc] initWithDictionary:dic]];
+    
+    return svc;
 }
 
 - (void)playAll:(NSInteger)num section:(id)data {
@@ -197,7 +216,7 @@
                 a++;
                 NSLog(@"%@playCount:%d", data.sectionName, a);
                 data.playCount = [NSString stringWithFormat:@"%d",a];
-//                [dataModel_.recentPlayIDAndCount ysetObject:data.playCount forKey:data.sectionID];
+//                [dataModel_.recentPlayIDAndCount setObject:data.playCount forKey:data.sectionID];
                 
                 // 设置cell选中状态
                 NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
@@ -218,6 +237,12 @@
 //                    }else
 //                        [self kj_pushIsPlayerOrEBook:2];
 //                }];
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:100];
+//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
+                SectionViewController *svc = [[SectionViewController alloc] init];
+                svc.title = data.libraryTitle; // 书集名字
+                [DataModel defaultDataModel].bookImageUrl = [NSURL URLWithString:aUrl]; // 书集封面Url
+                [svc getJsonData:dic];
             } else {
                 [self kj_pushIsPlayerOrEBook:1];
             }

@@ -36,6 +36,7 @@
     
     download = [[DownloadModule alloc] init];
     saveModule = [SaveModule defaultObject];
+    _process = [[ProcessSelect alloc] init];
     fileManager = [NSFileManager defaultManager];
     
     _addBook = NO;
@@ -56,6 +57,8 @@
     _downloadingSections = [NSMutableArray array];
     _downloadSection = [NSMutableArray array];
     _downloadSectionList = [NSMutableArray array];
+    
+    _playingArray = [NSMutableArray arrayWithCapacity:10];
     
     _recentPlay = [NSMutableArray array];
     _recentPlayIDAndCount = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -310,13 +313,22 @@
 }
 
 // 添加到全部文集
-- (BOOL)addAllLibrary:(NSString *)libraryID ImageUrl:(NSString *)url BookName:(NSString *)bookName AuthorName:(NSString *)authorName Type:(NSString *)type Language:(NSString *)language Detail:(NSString *)details{
+- (BOOL)addAllLibrary:(NSDictionary *)dic {
+    
+    NSString *bookName = [dic valueForKey:@"WJ_NAME"];
+    NSString *authorName = [dic valueForKey:@"WJ_USER"];
+    NSString *type = [dic valueForKey:@"WJ_TYPE"];
+    NSString *details = [dic valueForKey:@"WJ_CONTENT"];
+    NSString *language = [dic valueForKey:@"WJ_LANGUAGE"];
+    NSString *libraryID = [dic valueForKey:@"WJ_ID"];
+//        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
+    NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
     
     if ([[_allBookAndID allKeys] containsObject:libraryID]) {
         return NO;
     }
     
-    [saveModule saveBookDataWithBookID:libraryID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:bookName,@"bookName",authorName,@"authorName",url,@"imagePath", type, @"libraryType", language, @"libraryLanguage", details, @"libraryDetails",nil]] isMyBook:NO];
+    [saveModule saveBookDataWithBookID:libraryID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:bookName,@"bookName",authorName,@"authorName",url,@"imagePath", type, @"libraryType", language, @"libraryLanguage", details, @"libraryDetails", libraryID, @"WJ_ID",nil]] isMyBook:NO];
     
     NSLog(@"%@%@%@",url,authorName,libraryID);
     UIImageView *imageView = [[UIImageView alloc] init];

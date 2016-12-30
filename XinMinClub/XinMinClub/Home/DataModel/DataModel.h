@@ -10,6 +10,7 @@
 #import "SectionData.h"
 #import "BookData.h"
 #import "SectionOperation.h"
+#import "ProcessSelect.h"
 
 // navigation及其他相关控件颜色
 #define DEFAULT_COLOR [UIColor colorWithRed:0.594 green:0.705 blue:0.670 alpha:1.000]
@@ -97,6 +98,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 // 正在播放章节
 @property (nonatomic, strong) SectionData *playingSection;
+@property (nonatomic, strong) NSMutableArray <SectionData *>* playingArray;
 
 // 播放定时
 @property (nonatomic, assign) NSInteger playTime;
@@ -105,12 +107,14 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 活动的播放器
 @property (nonatomic, assign) NSInteger activityPlayer;
 
+@property (nonatomic, strong) ProcessSelect * process;//处理点击
+
 + (instancetype)defaultDataModel;
 
 // 加入我的文集
 - (BOOL)addMyLibrary:(NSString *)libraryID ImageUrl:(NSString *)url BookName:(NSString *)bookName AuthorName:(NSString *)authorName Type:(NSString *)type Language:(NSString *)language Detail:(NSString *)details;
 // 加入全部文集
-- (BOOL)addAllLibrary:(NSString *)libraryID ImageUrl:(NSString *)url BookName:(NSString *)bookName AuthorName:(NSString *)authorName Type:(NSString *)type Language:(NSString *)language Detail:(NSString *)details;
+- (BOOL)addAllLibrary:(NSDictionary *)dic;
 // 取得本地文集
 - (void)getAllLocalBook;
 // 取得最近播放章节
