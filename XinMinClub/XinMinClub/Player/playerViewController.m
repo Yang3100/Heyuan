@@ -85,10 +85,13 @@
     jsonDict = json;
     NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
-    total = num.intValue-1;
+    total = num.intValue;
+    [self.menuTable reloadData];
 }
 
 - (void)setTouchNum:(int)touchNum{
+    // 关闭防呆模式
+    [self preventSBPattern:NO];
     _touchNum = touchNum;
     kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
     if ([lastPlayName isEqualToString:[kj_dict valueForKey:@"GJ_NAME"]]) {
@@ -101,6 +104,16 @@
         [self startPlayBefore];
         lastPlayName = [kj_dict valueForKey:@"GJ_NAME"];
     }
+}
+
+- (void)preventSBPattern:(BOOL)yes{
+    self.likeButton.selected = yes;
+    self.downloadButton.selected = yes;
+    self.shareButton.selected = yes;
+    self.progress.selected = yes;
+    self.upButton.selected = yes;
+    self.playButton.selected = yes;
+    self.nextButton.selected = yes;
 }
 
 - (void)viewDidLoad {
@@ -146,6 +159,9 @@
     
     [self.view addSubview:self.menuBack];
     [_menuBack addSubview:self.menuTable];
+    
+    // 开启防呆模式
+    [self preventSBPattern:YES];
 }
 
 - (lyricView*)lyricTableView{
@@ -170,7 +186,7 @@
 - (UIImageView *)backImageView{
     if (!_backImageView) {
         _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        UIImage *image  = [UIImage imageNamed:@"001_0000_7675119_085617932000_2"];
+        UIImage *image  = [UIImage imageNamed:@"yellowBackground"];
         _backImageView.image = image;
     }
     return _backImageView;
@@ -211,7 +227,7 @@
     if (!_shareButton) {
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _shareButton.frame = CGRectMake(SCREEN_WIDTH-X-X/2, self.progress.frame.origin.y-2*X+X/3, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0000_share"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playShare"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_shareButton setImage:image forState:UIControlStateNormal];
         [_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -221,7 +237,7 @@
     if (_downloadButton == nil) {
         _downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _downloadButton.frame = CGRectMake(SCREEN_WIDTH-3*X-X/2, self.shareButton.frame.origin.y, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0001_Player_download"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playDownload"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_downloadButton setImage:image forState:UIControlStateNormal];
         [_downloadButton addTarget:self action:@selector(download:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -232,8 +248,8 @@
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _likeButton.frame = CGRectMake(SCREEN_WIDTH-5*X-X/2, self.shareButton.frame.origin.y, X, X);
         
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0003_102"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //        UIImage *image2 = [[UIImage imageNamed:@"001_0000s_0002_102-副本"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playLike"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //        UIImage *image2 = [[UIImage imageNamed:@"playLiked"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
         //        // 是否添加到收藏(喜欢)里面
         //        if ([[UserDataModel defaultDataModel].userLikeBookID containsObject:_kj_IDArray[SongTags]]) {
@@ -253,7 +269,7 @@
     if (_progress == nil) {
         _progress = [[UISlider alloc]initWithFrame:CGRectMake(70, SCREEN_HEIGHT-4*X+X/2, SCREEN_WIDTH-140, 20)];
         UIImage *thumbImage = [UIImage imageNamed:@"Player_progress_bar"];
-        UIImage *thumbImage1 = [UIImage imageNamed:@"001_0000_B副本"];
+        UIImage *thumbImage1 = [UIImage imageNamed:@"pro"];
         [_progress setMaximumTrackImage:thumbImage1 forState:UIControlStateNormal];
         [_progress setThumbImage:thumbImage forState:UIControlStateNormal];
         _progress.value=0;
@@ -302,7 +318,7 @@
     if (_roundButton == nil) {
         _roundButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _roundButton.frame = CGRectMake(X, SCREEN_HEIGHT-2*X, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0001_Player_download@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playRound"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_roundButton setImage:image forState:UIControlStateNormal];
         [_roundButton addTarget:self action:@selector(round:) forControlEvents:UIControlEventTouchUpInside];
         isRound = NO;
@@ -314,7 +330,7 @@
     if (_upButton == nil) {
         _upButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _upButton.frame = CGRectMake(4*X, self.roundButton.frame.origin.y, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0006_组-3"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playOn"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_upButton setImage:image forState:UIControlStateNormal];
         [_upButton setImage:image forState:UIControlStateNormal];
         [_upButton addTarget:self action:@selector(on:) forControlEvents:UIControlEventTouchUpInside];
@@ -325,7 +341,7 @@
     if (_playButton == nil) {
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _playButton.frame = CGRectMake(7*X, self.roundButton.frame.origin.y-X/2, 2*X, 2*X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0009_组-5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"play"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_playButton setImage:image forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
         self.isPlay=NO;
@@ -337,7 +353,7 @@
     if (!_nextButton) {
         _nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextButton.frame = CGRectMake(11*X, self.roundButton.frame.origin.y, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0007_组-4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playNext"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_nextButton setImage:image forState:UIControlStateNormal];
         [_nextButton addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -347,7 +363,7 @@
     if (!_menuButton) {
         _menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _menuButton.frame = CGRectMake(14*X, self.roundButton.frame.origin.y, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0005_组-2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"playMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_menuButton setImage:image forState:UIControlStateNormal];
         [_menuButton addTarget:self action:@selector(menuButton:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -371,7 +387,7 @@
         CGFloat width = SCREEN_WIDTH;
         CGFloat height = SCREEN_HEIGHT * 2 / 5;
         _menuTable = [[UITableView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-height, width, height) style:UITableViewStyleGrouped];
-        _menuTable.backgroundColor = [UIColor orangeColor];
+        _menuTable.backgroundColor = RGB255_COLOR(213.0,186.0,139.0,0.95);
         _menuTable.delegate = self;
         _menuTable.dataSource = self;
         _menuTable.tableHeaderView = nil;
@@ -385,9 +401,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
-    
     NSString *urlString = [dict valueForKey:@"GJ_NAME"];
-    
     cell.textLabel.text = urlString;
     cell.backgroundColor = [UIColor clearColor];
     return cell;
@@ -406,7 +420,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self next:indexPath];
+//    [self next:indexPath];
+    self.touchNum = indexPath.row;
     _menuBack.hidden = YES;
 }
 
@@ -437,7 +452,8 @@
     }else{
         ocsv.describe = [dict valueForKey:@"GJ_USER"]; // 作者名字
     }
-    ocsv.thumbImage = [DataModel defaultDataModel].bookImageUrl;
+    ocsv.thumbImage = networkPictureUrl;
+    NSLog(@"%@",[DataModel defaultDataModel].bookImageUrl);
     ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
 
     [self.view addSubview:ocsv];
@@ -456,15 +472,15 @@
     //状态1：随机播放 状态2：单曲循环
     if (isRound) {
         isRound = NO;
-        [_roundButton setImage:[UIImage imageNamed:@"001_0000s_0004_110"] forState:UIControlStateNormal];
+        [_roundButton setImage:[UIImage imageNamed:@"xuanhuan"] forState:UIControlStateNormal];
     }else{
         isRound = YES;
-        [_roundButton setImage:[UIImage imageNamed:@"001_0000s_0001_Player_download@2x"] forState:UIControlStateNormal];
+        [_roundButton setImage:[UIImage imageNamed:@"playRound"] forState:UIControlStateNormal];
     }
 }
 #pragma mark 上一首
 - (IBAction)on:(UIButton *)sender {
-    if (_touchNum > 0 && _touchNum < total) {
+    if (_touchNum > 0 && _touchNum < total-1) {
         _touchNum--;
         [self startPlayBefore];
     }else {
@@ -486,7 +502,7 @@
         [self startPlayBefore];
         return;
     }
-    if (_touchNum < total) {
+    if (_touchNum < total-1) {
         _touchNum++;
         [self startPlayBefore];
     }else{
@@ -514,13 +530,13 @@
         }else{
             [_kj_player play]; // 播放
             [self imageViewRotate]; // 旋转歌手图片
-            [self.playButton setImage:[UIImage imageNamed:@"001_0000s_0008_组-5-副本"] forState:UIControlStateNormal];
+            [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
         }
     }else{
         self.isPlay=NO;
         [_kj_player pause]; // 暂停
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
-        [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
     }
 
     
