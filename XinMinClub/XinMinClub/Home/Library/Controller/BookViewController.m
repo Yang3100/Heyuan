@@ -87,7 +87,7 @@
         // 后台对数据类型的需要
         NSDictionary *dict = @{@"TYPE":type,@"Page_Index":@(iNum),@"Page_Count":@"9"};
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WenJi_DataList",@"Params":dict}];
-        [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
+        [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
     });
     
     //回调函数获取数据
@@ -189,10 +189,13 @@
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    NSLog(@"collectionView.tag = %d,section = %d, row = %d", collectionView.tag,indexPath.section, indexPath.row);
+#warning mark 传入数据到章节
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = [dica valueForKey:@"WJ_NAME"];
     [svc getJsonData:dica];
+    
+#warning mark 点击了文集，传入数据到全部文集当中
     
 //    KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
 //    kj_svc.libraryTitle = [dica valueForKey:@"WJ_NAME"];

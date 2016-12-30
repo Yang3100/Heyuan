@@ -34,7 +34,7 @@
         NSDictionary *dict = @{@"Page_Index":@"1",@"Page_Count":@"15"};
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_ADVERTISEMENT_DataList",@"Params":dict}];
         // 网络请求
-        [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
+        [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
         
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
@@ -42,7 +42,7 @@
             dataArray = [[json valueForKey:@"RET"] valueForKey:@"SYS_ADVERTISEMENT"];
             NSMutableArray *imageUrlArray = [NSMutableArray array];
             for (NSDictionary *dicc in dataArray) {
-                NSString *app = IPZ;
+                NSString *app = IP;
                 NSString *urlString = [app stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                 [imageUrlArray addObject:urlString];
             }

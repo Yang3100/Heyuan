@@ -47,9 +47,9 @@
     // 后台对数据类型的需要
     NSDictionary *dict = @{@"PhoneNo":account, @"PassWord":password};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Login",@"Params":dict}];
-    [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
     //回调函数获取数据
-    [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         NSString *str = [[json valueForKey:@"RET"] valueForKey:@"DATA"];
         if ([str isEqualToString:@"0"]) {
             NSLog(@"账号密码错误!!!");

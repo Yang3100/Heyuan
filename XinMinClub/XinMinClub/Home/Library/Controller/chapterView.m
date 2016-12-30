@@ -164,7 +164,7 @@
     // 获取小节列表
     NSDictionary *dict = @{@"GJ_WJ_ID":_bookID, @"GJ_WJ_ZY_TYPE":type,@"Page_Index":@"1",@"Page_Count":@"100000"};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WJ_ZJ_TYPE_DataList", @"Params":dict}];
-    [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDxx) {
+    [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDxx) {
                 NSLog(@"Get_WJ_ZJ_TYPE_DataList:%@",jsonDict);
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{

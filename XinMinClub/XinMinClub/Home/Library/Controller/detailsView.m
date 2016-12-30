@@ -81,16 +81,16 @@
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section==0) {
+//    if (section==0) {
         return self.textArray.count+1;
-    }
-    return 20;
+//    }
+//    return 20;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
+//    if (indexPath.section==0) {
         if(indexPath.row == 0){
             return 80;
         }
@@ -98,12 +98,12 @@
             return 150;
         }
         return 50;
-    }
-    return UITableViewAutomaticDimension;
+//    }
+//    return UITableViewAutomaticDimension;
 }
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewAutomaticDimension;
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
     if (indexPath.section==0&&indexPath.row==0) {
@@ -115,8 +115,8 @@
         cell.textLabel.textColor = [UIColor colorWithWhite:0.373 alpha:1.000];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    if (indexPath.section==0&&indexPath.row>0){
+    }else{
+//    if (indexPath.section==0&&indexPath.row>0){
         DetailsCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell1" forIndexPath:indexPath];
         cell.details1Text = self.textArray[indexPath.row-1];
         cell.details1Title = dataArray[indexPath.row-1];
@@ -125,25 +125,26 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+//    }
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell2" forIndexPath:indexPath];
-    //    commentData = commentArray[indexPath.row];
-    //    ((DetailsCell2*)cell).detailsImageUrl = commentData.commentImageUrl;
-    //    ((DetailsCell2*)cell).details2Text = commentData.commentName;
-    //    ((DetailsCell2*)cell).details2Time = commentData.commentTime;
-    //    ((DetailsCell2*)cell).details2Title = commentData.commentText;
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.textColor = [UIColor colorWithWhite:0.373 alpha:1.000];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell2" forIndexPath:indexPath];
+//    //    commentData = commentArray[indexPath.row];
+//    //    ((DetailsCell2*)cell).detailsImageUrl = commentData.commentImageUrl;
+//    //    ((DetailsCell2*)cell).details2Text = commentData.commentName;
+//    //    ((DetailsCell2*)cell).details2Time = commentData.commentTime;
+//    //    ((DetailsCell2*)cell).details2Title = commentData.commentText;
+//    cell.backgroundColor = [UIColor whiteColor];
+//    cell.textLabel.textColor = [UIColor colorWithWhite:0.373 alpha:1.000];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    return cell;
+//    return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        return 30;
-    }
-    return 0.1;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    if (section == 1) {
+//        return 30;
+//    }
+//    return 0.1;
+//}
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 //    if (section == 1) {
 //        return 60;
@@ -151,19 +152,19 @@
 //    return 0.1;
 //}
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *aView = [UIView new];
-    if (section == 1) {
-        aView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 20);
-        aView.backgroundColor = [UIColor colorWithWhite:0.898 alpha:1.000];
-        UILabel *aaa = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 150, 30)];
-        aaa.text = @"用户评价";
-        
-        [aView addSubview:aaa];
-    }
-    
-    return aView;
-}
+//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *aView = [UIView new];
+//    if (section == 1) {
+//        aView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 20);
+//        aView.backgroundColor = [UIColor colorWithWhite:0.898 alpha:1.000];
+//        UILabel *aaa = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 150, 30)];
+//        aaa.text = @"用户评价";
+//        
+//        [aView addSubview:aaa];
+//    }
+//    
+//    return aView;
+//}
 
 
 @end

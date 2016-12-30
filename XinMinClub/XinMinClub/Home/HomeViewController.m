@@ -47,6 +47,11 @@
         self.selectIndex=1;
         self.preloadPolicy = 1;
     }
+    p = [playerViewController defaultDataModel];
+    [p addObserver:self forKeyPath:@"songTimes" options:NSKeyValueObservingOptionNew context:nil];
+    [p addObserver:self forKeyPath:@"currentLyricNum" options:NSKeyValueObservingOptionNew context:nil];
+    [p addObserver:self forKeyPath:@"isPlay" options:NSKeyValueObservingOptionNew context:nil];
+    
     return self;
 }
 
@@ -56,6 +61,14 @@
     if (!userController) userController = [[UserViewController alloc] init];
     [DataModel defaultDataModel].activityPlayer=0;
 }
+
+- (void)didReceiveMemoryWarning {
+    p = [playerViewController defaultDataModel];
+    [p removeObserver:self forKeyPath:@"songTimes"];
+    [p removeObserver:self forKeyPath:@"currentLyricNum"];
+    [p removeObserver:self forKeyPath:@"isPlay"];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -85,24 +98,24 @@
     // 设置最下面的toolBar
     self.navigationController.toolbarHidden = NO;
     [self.navigationController.toolbar setBarStyle:UIBarStyleDefault];
-    self.navigationController.toolbar.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+    //    self.navigationController.toolbar.backgroundColor = RGB255_COLOR(255, 255, 255, 1);
     
     UIBarButtonItem *barButtonItem=[[UIBarButtonItem alloc]init];
-    UIView *toolBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-30, 40)];
+    UIView *toolBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     toolBarView.backgroundColor = [UIColor clearColor];
     
     CGFloat tw = toolBarView.frame.size.width;
     CGFloat th = toolBarView.frame.size.height;
     
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button1.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+    //    button1.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button1.frame = CGRectMake(0, 0, tw*6/8, th);
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button2.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
-    button2.frame = CGRectMake(tw*3/4, 0, tw/8, th);
+    //    button2.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+    button2.frame = CGRectMake(tw*2/3, 0, tw/8, th);
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
-    button3.frame = CGRectMake( tw*7/8, 0, tw/8, th);
+    //    button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+    button3.frame = CGRectMake(tw*4/5, 0, tw/8, th);
     
     [button1 addTarget:self action:@selector(button1Action:) forControlEvents:UIControlEventTouchUpInside];
     [button2 addTarget:self action:@selector(button2Action:) forControlEvents:UIControlEventTouchUpInside];
@@ -117,7 +130,7 @@
     label2 = [[UILabel alloc]initWithFrame:CGRectMake(th-4, th/2, tw-tw/4-th-6, th/2)];
     label1.font = [UIFont systemFontOfSize:13];
     label2.font = [UIFont systemFontOfSize:12];
-    label2.textColor = [UIColor colorWithWhite:0.573 alpha:0.800];
+    //    label2.textColor = [UIColor colorWithWhite:0.573 alpha:0.800];
     label1.text = @"未播放";
     label2.text = @"未播放";
     UIImage *im2 = [UIImage imageNamed:@"Play_personal"];
@@ -148,7 +161,7 @@
     [toolBarView addSubview:button2];
     [toolBarView addSubview:button3];
     barButtonItem.customView = toolBarView;
-    toolBarView.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+    toolBarView.backgroundColor = RGB255_COLOR(255, 255, 255, 1);
     
     NSArray *barButtonItemArray = [[NSArray alloc]initWithObjects:barButtonItem, nil];
     self.toolbarItems = barButtonItemArray;
@@ -214,23 +227,34 @@
 
 // toolBar上面的按钮
 - (void)button1Action:(UIButton *)button {
-    NSLog(@"点击了播放头像和歌曲");
-//    [self.navigationController pushViewController:[PalyerViewController shareObject]  animated:YES];
+    //    NSLog(@"点击了播放头像和歌曲");
+    [self.navigationController pushViewController:p  animated:YES];
 }
 - (void)button2Action:(UIButton *)button {
     NSLog(@"点击了播放按钮");
-//    if ([[PalyerViewController shareObject ] ClickPalyer]==1) {
-//        image2.alpha=0;
-//        image22.alpha=1;
-//    }else{
-//        image2.alpha=1;
-//        image22.alpha=0;
-//    }
+    //    if ([[PalyerViewController shareObject ] ClickPalyer]==1) {
+    //        image2.alpha=0;
+    //        image22.alpha=1;
+    //    }else{
+    //        image2.alpha=1;
+    //        image22.alpha=0;
+    //    }
+    p = [playerViewController defaultDataModel];
+    p.isPrepare ? [p instancePlay:@"play"]: nil;
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     //监听,发生变化调用
-    if ([keyPath isEqualToString:@"PalyerState"]) {
-        if ([[change valueForKey:@"new"]intValue]==1) {
+    
+    p = [playerViewController defaultDataModel];
+    if ([keyPath isEqualToString:@"currentLyricNum"]) {
+        if (!p.lrcArray.count) {
+            return;
+        }
+        label2.text = p.lrcArray[p.currentLyricNum];
+    }
+    
+    if ([keyPath isEqualToString:@"isPlay"]) {
+        if (p.isPlay) {
             image2.alpha=0;
             image22.alpha=1;
         }else{
@@ -238,18 +262,18 @@
             image22.alpha=0;
         }
     }
-    if ([keyPath isEqualToString:@"PalyerLyr"]) {
-        label2.text=[change valueForKey:@"new"];
-    }
-    if ([keyPath isEqualToString:@"PalyerName"]) {
-        label1.text=[change valueForKey:@"new"];
-    }
-    if ([keyPath isEqualToString:@"PalyerImage"]) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[change valueForKey:@"new"]]];
-            UIImage *authorPortraits=[UIImage imageWithData:data];
-            image1.image=authorPortraits;
-        });
+    
+    if ([keyPath isEqualToString:@"songTimes"]) {
+        label1.text = [p.dic valueForKey:@"GJ_NAME"];
+        label2.text = p.lrcArray[p.currentLyricNum];
+        image1.image = p.authorImageView.image;
+        if (p.isPlay) {
+            image2.alpha=0;
+            image22.alpha=1;
+        }else{
+            image2.alpha=1;
+            image22.alpha=0;
+        }
     }
 }
 

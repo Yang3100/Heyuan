@@ -279,14 +279,44 @@
         [iPhone_ becomeFirstResponder];
         return;
     }
-    [self addAlertView];
+    NSString *kj_iphoneNum = [NSString stringWithFormat:@"%@",iPhone_.text];
+    // 获取手机号
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_Phone_List", @"Params":@{@"Phones":kj_iphoneNum}}];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
+    
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
+        NSLog(@"-----%@",json);
+        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"DATA"];
+        if ([dataString isEqualToString:@"No"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self addAlertView];
+            });
+        }else{
+            NSLog(@"手机号已存在!!!");
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self addAlertViewIphone];
+            });
+        }
+    }];
+}
+
+-(void)addAlertViewIphone{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"手机号码已被注册" message:@"请直接登录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"手机号码已存在");
+        loginViewController *lvc = [[loginViewController alloc] init];
+        [self presentViewController:lvc animated:NO completion:nil];
+    }];
+    [alertController addAction:action1];
+    [self presentViewController:alertController animated:YES completion:NULL];
 }
 
 -(void)addAlertView{
+    NSString *kj_iphoneNum = [NSString stringWithFormat:@"%@",iPhone_.text];
     NSString *s = @"我们将发送验证都手机号码：+86\n";
-    NSString *ss = [NSString stringWithFormat:@"%@",iPhone_.text];
-    NSString *sss = [s stringByAppendingString:ss];
-    
+    NSString *sss = [s stringByAppendingString:kj_iphoneNum];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认手机号" message:sss preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -312,7 +342,7 @@
     request.HTTPMethod=@"POST";//设置请求方法
     // 参数
     NSString *param = [NSString stringWithFormat:@"{\"FunName\":\"Set_Right_Code\",\"Params\":{\"DATA\":\"%@\"}}",iPhone_.text];
-    NSLog(@"%@",param);    // 把拼接后的字符串转换为data，设置请求体
+//    NSLog(@"%@",param);    // 把拼接后的字符串转换为data，设置请求体
     
     request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -348,7 +378,7 @@
 -(void)addAlertViewTitle:(NSString*)title Message:(NSString*)message{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"密码修改成功!!!");
+        
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];

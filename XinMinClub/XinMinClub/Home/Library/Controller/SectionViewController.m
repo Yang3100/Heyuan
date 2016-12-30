@@ -87,11 +87,6 @@
 #pragma mark 上一级传入的数据
 - (void)getJsonData:(NSDictionary*)json {
     bookJson = json;
-#warning aakk  json
-    NSLog(@"json:%@",json);
-    //    kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dica valueForKey:@"WJ_TITLE_IMG"]];
-    // 保存数据到“我的”里面
-    [[DataModel defaultDataModel] addAllLibrary:[json valueForKey:@"WJ_ID"] ImageUrl:[IP stringByAppendingString:[json valueForKey:@"WJ_IMG"]] BookName:[json valueForKey:@"WJ_NAME"] AuthorName:[json valueForKey:@"WJ_USER"] Type:[json valueForKey:@"WJ_TYPE"] Language:[json valueForKey:@"WJ_LANGUAGE"] Detail:[json valueForKey:@"WJ_CONTENT"]];
     NSString *imageUrlstring = [IP stringByAppendingString:[json valueForKey:@"WJ_IMG"]];
     NSURL *url = [NSURL URLWithString:imageUrlstring];
     [self.bookImageView sd_setImageWithURL:url placeholderImage:cachePicture];

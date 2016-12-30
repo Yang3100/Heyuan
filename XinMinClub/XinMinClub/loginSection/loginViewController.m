@@ -338,10 +338,10 @@
     // 获取openID
     NSString *paramString = [networkSection getParamStringWithParam:@{@"appid":@"wxd1e9cf61f91dac3f", @"secret":@"1df4f2886207500e38a4ebd7088c7aea", @"code":notifi.object[@"code"], @"grant_type":@"authorization_code"}];
     // 网络请求
-    [networkSection getJsonDataWithUrlString:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code" param:paramString];
+    [networkSection getLoadJsonDataWithUrlString:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code" param:paramString];
     
     //回调函数获取数据
-    [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
 
         NSLog(@"-----%@",json);
         /*{
@@ -377,16 +377,24 @@
     NSLog(@"----ok-----");
     NSLog(@"openId:%@",_tencentOAuth.openId);
     // 后台对数据类型的需要
-    NSDictionary *dict = @{@"OpenID":_tencentOAuth.openId,@"Password":@"abc123456"};
+    NSString *pass = @"abc1234568";
+    NSDictionary *dict = @{@"OpenID":_tencentOAuth.openId,@"Password":pass};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"WeiXin_Login",@"Params":dict}];
     // 网络请求
-    [networkSection getJsonDataWithUrlString:IPZUrl param:paramString];
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
 
     //回调函数获取数据
-    [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-        
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         NSLog(@"-----%@",json);
-        
+        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Page_Current_Index"];
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+        [self presentViewController:nav animated:YES completion:^{
+            // 保存到本地
+            [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
+            [UserDataModel defaultDataModel].userID = dataString;
+            
+        }];
     }];
 
     /** Access Token凭证，用于后续访问各开放接口 */
@@ -424,8 +432,12 @@
 // 登录请求
 - (void)logicRequest{
     // 拼接参数
-    NSString *param = [NSString stringWithFormat:@"{\"FunName\": \"Login\", \"Params\": { \"PhoneNo\": \"%@\", \"PassWord\": \"%@\" }}",userField_.text,keyField_.text];
-    [networkSection getRequestDataBlock:IPUrl :param block:^(NSDictionary *json) {
+    NSString *param = [NSString stringWithFormat:@"{\"FunName\": \"Login\", \"Params\": {\"PhoneNo\":\"%@\", \"PassWord\":\"%@\"}}",userField_.text,keyField_.text];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:param];
+    
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         // Data为0表示注册失败,1表示验证码不对,2表示手机已存在,其他得到的是UserID
         NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"DATA"];
         if ([dataString isEqualToString:@"0"]) {
