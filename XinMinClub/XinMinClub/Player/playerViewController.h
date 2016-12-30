@@ -30,7 +30,10 @@
 
 + (instancetype)defaultDataModel;
 
-//第2种数据传输方式
+//第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
+- (void)getDict:(NSDictionary*)dict;
+
+//第2种数据传输方式 -  从文集点入的方式
 // 小节数据Json
 - (void)getJson:(NSDictionary*)json;
 // 点击的那个小节

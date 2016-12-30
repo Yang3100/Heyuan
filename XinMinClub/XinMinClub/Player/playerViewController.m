@@ -20,6 +20,9 @@
     NSDictionary *jsonDict;
     int total; // 总歌曲数
     NSMutableArray *timeArry;
+    int lastPlayNum;  // 保存上一次播放的音频
+    bool isRound; // 是否循环
+    bool isAnalysisComplete; // 歌词是否解析完毕
 }
 
 @property (nonatomic, strong) CABasicAnimation *rotationAnimation; /**< 歌手图片旋转动画 */
@@ -71,6 +74,8 @@
         self.isPrepare = NO;
         self.isSingleComplete = NO;
         self.currentLyricNum = 0;
+        lastPlayNum = 0;
+        isAnalysisComplete = NO;
     }
     return self;
 }
@@ -79,6 +84,16 @@
     jsonDict = json;
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
     total = num.intValue-1;
+}
+
+- (void)setTouchNum:(int)touchNum{
+    _touchNum = touchNum;
+    if (touchNum==lastPlayNum) {
+        
+    }else{
+        // 播放准备
+        [self startPlayBefore];
+    }
 }
 
 - (void)viewDidLoad {
@@ -90,8 +105,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    // 播放准备
-    [self startPlayBefore];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.500]];
 }
@@ -100,11 +113,6 @@
     [super viewWillDisappear:YES];
     
     [self.navigationController.navigationBar lt_reset];
-//    [kj_player removeObserver]; // 移除观察者
-//    // 移除三个KVO观察播放属性
-//    [kj_player removeObserver:self forKeyPath:@"songTime"];
-//    [kj_player removeObserver:self forKeyPath:@"currentTime"];
-//    [kj_player removeObserver:self forKeyPath:@"isPlayComplete"];
 }
 
 #pragma mark 界面布局
@@ -167,9 +175,7 @@
     if (!_authorImageView) {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(X/2, self.shareButton.frame.origin.y-2*X+X/3, 3*X, 3*X);
-        
-        imageView.image = [UIImage imageNamed:@"19"];
-        
+        [imageView sd_setImageWithURL:[DataModel defaultDataModel].bookImageUrl placeholderImage:cachePicture];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.layer.masksToBounds = YES;
         imageView.layer.borderWidth = 2;
@@ -292,9 +298,10 @@
     if (_roundButton == nil) {
         _roundButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _roundButton.frame = CGRectMake(X, SCREEN_HEIGHT-2*X, X, X);
-        UIImage *image = [[UIImage imageNamed:@"001_0000s_0004_110"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"001_0000s_0001_Player_download@2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_roundButton setImage:image forState:UIControlStateNormal];
         [_roundButton addTarget:self action:@selector(round:) forControlEvents:UIControlEventTouchUpInside];
+        isRound = NO;
     }
     return _roundButton;
 }
@@ -426,15 +433,15 @@
     _menuBack.hidden = NO;
 }
 #pragma mark 循环状态
-bool isRound = NO;
 - (IBAction)round:(UIButton*)sender {
     //状态1：随机播放 状态2：单曲循环
-    isRound = !isRound;
     if (isRound) {
+        isRound = NO;
         [_roundButton setImage:[UIImage imageNamed:@"001_0000s_0004_110"] forState:UIControlStateNormal];
-        return;
+    }else{
+        isRound = YES;
+        [_roundButton setImage:[UIImage imageNamed:@"001_0000s_0001_Player_download@2x"] forState:UIControlStateNormal];
     }
-     [_roundButton setImage:[UIImage imageNamed:@"001_0000s_0001_Player_download@2x"] forState:UIControlStateNormal];
 }
 #pragma mark 上一首
 - (IBAction)on:(UIButton *)sender {
@@ -491,7 +498,6 @@ bool isRound = NO;
     }else{
         self.isPlay=NO;
         [_kj_player pause]; // 暂停
-        NSLog(@"%@--%hhd--%hhd", _rotationAnimation.toValue,_rotationAnimation.cumulative,_rotationAnimation.additive);
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
     }
@@ -681,6 +687,7 @@ bool fir = YES;
             }
         }
     }
+    isAnalysisComplete = YES;
     [self.lyricTableView getLyric:_lrcArray];
 }
 
@@ -698,12 +705,15 @@ bool fir = YES;
     if (![dict valueForKey:@"GJ_NAME"]) {
         return;
     }
+    NSString *authorName;
+    if ([[dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
+         authorName = @"和源";
+    }else{
+        authorName = [dict valueForKey:@"GJ_USER"];
+    }
     [songDict setObject:[dict valueForKey:@"GJ_NAME"] forKey:MPMediaItemPropertyTitle];
     //作者
-    [songDict setObject:[_lrcArray objectAtIndex:self.currentLyricNum] forKey:MPMediaItemPropertyArtist];
-    //    //设置歌曲图片
-    //    MPMediaItemArtwork *imageItem=[[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"19"]];
-    //    [songDict setObject:imageItem forKey:MPMediaItemPropertyArtwork];
+    [songDict setObject:authorName forKey:MPMediaItemPropertyArtist];
     //歌曲的总时间
     [songDict setObject:[NSNumber numberWithDouble:_kj_player.songTime] forKeyedSubscript:MPMediaItemPropertyPlaybackDuration];
     //设置已经播放时长
@@ -722,8 +732,9 @@ bool fir = YES;
         _lrcLabel.textColor = [UIColor whiteColor];
         [_lrcImageView addSubview:self.lrcLabel];
     }
-    _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
-    _lrcImageView.image = [UIImage imageNamed:@"19"];
+//    _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
+    [_lrcImageView sd_setImageWithURL:[DataModel defaultDataModel].bookImageUrl placeholderImage:cachePicture];
+    
     //获取添加了歌词数据的背景图
     UIGraphicsBeginImageContextWithOptions(_lrcImageView.frame.size, NO, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -731,12 +742,10 @@ bool fir = YES;
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     //设置显示的图片
-    [songDict setObject:[[MPMediaItemArtwork alloc] initWithImage:img]
-                 forKey:MPMediaItemPropertyArtwork];
+    [songDict setObject:[[MPMediaItemArtwork alloc] initWithImage:img] forKey:MPMediaItemPropertyArtwork];
     
     //设置控制中心歌曲信息
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songDict];
-    
 }
 
 

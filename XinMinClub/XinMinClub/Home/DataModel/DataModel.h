@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;
 
+@property(nonatomic, strong) NSURL *bookImageUrl; // 书集封面Url
+
 // 默认语言
 @property (nonatomic, assign) SelectedDefaultLanguage setDefaultLanguage;
 

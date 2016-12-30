@@ -232,13 +232,7 @@
 }
 - (void)button2Action:(UIButton *)button {
     NSLog(@"点击了播放按钮");
-    //    if ([[PalyerViewController shareObject ] ClickPalyer]==1) {
-    //        image2.alpha=0;
-    //        image22.alpha=1;
-    //    }else{
-    //        image2.alpha=1;
-    //        image22.alpha=0;
-    //    }
+
     p = [playerViewController defaultDataModel];
     p.isPrepare ? [p instancePlay:@"play"]: nil;
 }
@@ -246,11 +240,11 @@
     //监听,发生变化调用
     
     p = [playerViewController defaultDataModel];
-    if ([keyPath isEqualToString:@"currentLyricNum"]) {
-        if (!p.lrcArray.count) {
-            return;
-        }
-        label2.text = p.lrcArray[p.currentLyricNum];
+
+    if ([[p.dic valueForKey:@"GJ_USER"] isEqualToString:@""]) {
+        label2.text = @"和源";
+    }else{
+        label2.text = [p.dic valueForKey:@"GJ_USER"];
     }
     
     if ([keyPath isEqualToString:@"isPlay"]) {

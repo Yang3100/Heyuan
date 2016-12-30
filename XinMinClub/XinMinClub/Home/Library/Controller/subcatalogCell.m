@@ -73,7 +73,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [self abcccc:indexPath.row];
-    NSLog(@"touch小节%ld",(long)indexPath.row);
+    NSLog(@"touch小节%ld------%@",(long)indexPath.row,self.jsonData);
     [playerViewController defaultDataModel].touchNum = indexPath.row;
     [[playerViewController defaultDataModel] getJson:self.jsonData];
     [playerViewController defaultDataModel].title = @"儒学新编--卷二";
