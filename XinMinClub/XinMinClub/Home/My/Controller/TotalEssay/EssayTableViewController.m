@@ -54,21 +54,9 @@ static NSString *EssayIdentifier = @"essay";
 #pragma mark - Table view data source & Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    #warning aa aaaaaaaaaaaa
-//    BookData *data = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row * 2]];
-//    KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
-//    kj_svc.libraryTitle = data.bookName;
-//    kj_svc.libraryAuthorName = data.authorName;
-//    kj_svc.libraryType = data.type;
-//    kj_svc.libraryDetails = data.details;
-//    kj_svc.libraryLanguage = data.language;
-//    kj_svc.libraryNum = data.bookID;
-//    //            kj_svc.libraryAuthorImageUrl = data.imagePath;
-//    kj_svc.libraryImageUrl = data.imagePath;
-//    
-//    [self.navigationController pushViewController:kj_svc animated:NO];
-//    
-//    [_delegate popEssayList];
+
+    BookData *data = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row * 2]];
+    [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

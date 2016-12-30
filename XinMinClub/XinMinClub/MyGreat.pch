@@ -34,6 +34,7 @@
 
 #import "ShareView.h"
 #import "playerViewController.h"
+#import "SectionViewController.h"
 
 #ifndef MyGreat_pch
 #define MyGreat_pch
@@ -59,6 +60,9 @@
 #define IPZ @"http://192.168.3.153"
 #define IPZUrl @"http://192.168.3.153/App/App.ashx"
 
+#define DATA_MODEL [DataModel defaultDataModel]
+//#define USER_DATA_MODEL 
+#define SAVE_MODEL [SaveModule defaultObject]
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #endif /* MyGreat_pch */

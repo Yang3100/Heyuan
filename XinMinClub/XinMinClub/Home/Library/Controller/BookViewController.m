@@ -189,7 +189,7 @@
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    NSLog(@"collectionView.tag = %d,section = %d, row = %d", collectionView.tag,indexPath.section, indexPath.row);
-#warning mark 传入数据到章节
+#warning mark传入数据到文集
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = [dica valueForKey:@"WJ_NAME"]; // 书集名字
@@ -198,19 +198,10 @@
     [DataModel defaultDataModel].bookImageUrl = string; // 书集封面Url
     [svc getJsonData:dica];
     
-#warning mark 点击了文集，传入数据到全部文集当中
+#warning mark点击了文集，传入数据到全部文集当中
     
-//    KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
-//    kj_svc.libraryTitle = [dica valueForKey:@"WJ_NAME"];
-//    kj_svc.libraryAuthorName = [dica valueForKey:@"WJ_USER"];
-//    kj_svc.libraryType = [dica valueForKey:@"WJ_TYPE"];
-//    kj_svc.libraryDetails = [dica valueForKey:@"WJ_CONTENT"];
-//    kj_svc.libraryLanguage = [dica valueForKey:@"WJ_LANGUAGE"];
-//    kj_svc.libraryNum = [dica valueForKey:@"WJ_ID"];
-//    kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dica valueForKey:@"WJ_TITLE_IMG"]];
-//    kj_svc.libraryImageUrl = [IP stringByAppendingString:[dica valueForKey:@"WJ_IMG"]];
-//    
-//    [[DataModel defaultDataModel] addAllLibrary:kj_svc.libraryNum ImageUrl:kj_svc.libraryImageUrl BookName:kj_svc.libraryTitle AuthorName:kj_svc.libraryAuthorName Type:kj_svc.libraryType Language:kj_svc.libraryLanguage Detail:kj_svc.libraryDetails];
+    [[DataModel defaultDataModel] addAllLibrary:dica];
+    
     [self.navigationController pushViewController:svc animated:YES];
 }
 
