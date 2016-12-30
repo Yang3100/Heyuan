@@ -7,19 +7,17 @@
 //
 
 #import "ReadCell.h"
-#import "ReadTableView.h"
 
 @interface ReadCell(){
     BOOL buttonStatus;
-    NSMutableArray *clickButtonTag;
-    NSMutableArray *deleteButtonTag;
-    int a;
+//    NSMutableArray *clickButtonTag;
+//    NSMutableArray *deleteButtonTag;
+//    int a;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *readTitleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *readPlayButton;
-@property (weak, nonatomic) IBOutlet UIButton *readSpreadButton;
 @property (weak, nonatomic) IBOutlet UILabel *readTextLabel;
+@property (weak, nonatomic) IBOutlet UIButton *readSpreadButton;
 
 @end
 
@@ -28,9 +26,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    clickButtonTag = [NSMutableArray array];
-    deleteButtonTag = [NSMutableArray array];
-    a = 0;
+//    clickButtonTag = [NSMutableArray array];
+//    deleteButtonTag = [NSMutableArray array];
+//    a = 0;
     buttonStatus=NO;
 }
 
@@ -45,37 +43,39 @@
 }
 
 - (void)setReadText:(NSString *)readText{
-    self.readTextLabel.text = readText;
+    self.readTextLabel.textAlignment = NSTextAlignmentCenter;
+    self.readTextLabel.text = [self getBook:readText];
 }
 
 - (void)setReadNum:(NSInteger)readNum{
     self.readSpreadButton.tag = readNum;
 }
 
-- (IBAction)playButtonAction:(UIButton *)sender {
-    NSLog(@"点击了播放");
-//    self.readMp3
+- (void)setJson:(NSDictionary *)json{
 
 }
 
 - (IBAction)spreadButton:(UIButton *)sender {
-    if (buttonStatus == NO) {
-        buttonStatus=YES;
-        self.infoDic = @{@"buttonTag":@(sender.tag)};
-        //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"spread" object:nil userInfo:_infoDic];
-        //发送消息
-        [[NSNotificationCenter defaultCenter]postNotification:notice];
-    }
-    else if(buttonStatus == YES){
-        buttonStatus=NO;
-        self.infoDic = @{@"buttonTag":@(sender.tag)};
-        //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"spreadNo" object:nil userInfo:_infoDic];
-        // 发送消息
-        [[NSNotificationCenter defaultCenter] postNotification:notice];
-    }
+    buttonStatus = !buttonStatus;
 }
+
+-(NSString *)getBook:(NSString *)Book{
+    // 分割歌词
+    NSString *text=@"";
+    NSArray *sepArray=[Book componentsSeparatedByString:@"["];
+    NSArray *lineArray;
+    for(int i=0;i<sepArray.count;i++){
+        if([sepArray[i] length]>0){
+            lineArray=[sepArray[i] componentsSeparatedByString:@"]"];
+            if(![lineArray[0] isEqualToString:@"\n"]){
+                text = [NSString stringWithFormat:@"%@%@",text,lineArray.count>1?lineArray[1]:@""];
+            }
+        }
+    }
+    return text;
+}
+
+
 
 @end
 

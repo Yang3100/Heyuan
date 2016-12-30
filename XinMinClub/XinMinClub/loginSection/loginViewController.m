@@ -6,12 +6,12 @@
 //  Copyright © 2016年 yangkejun. All rights reserved.
 //
 
-#import "loginView.h"
+#import "loginViewController.h"
 #import "HomeViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetViewController.h"
 
-@interface loginView () <UITextFieldDelegate> {
+@interface loginViewController () <UITextFieldDelegate,TencentSessionDelegate> {
     UITextField *userField_, *keyField_;
     UITextField *curTextField_;
     UILabel *userLabel_ , *keyLabel_;
@@ -21,6 +21,8 @@
     UILabel *titleLabel_;
     UIButton *registerBtn_;
     UIButton *forgetBtn_;
+    
+    TencentOAuth *_tencentOAuth;
 }
 
 @property (nonatomic ,strong) UIImageView *DishangfangLoogin;
@@ -29,7 +31,7 @@
 
 @end
 
-@implementation loginView
+@implementation loginViewController
 
 - (void)loadView{
     //自己创建UIControl添加事件
@@ -58,6 +60,9 @@
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"wechatLoadSucessful" object:nil];
+//    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
 }
 
 
@@ -306,20 +311,133 @@
     [self presentViewController:fvc animated:YES completion:nil];
 }
 
+#pragma mark - 第三方登录
 -(IBAction)QQLoogin:(id)sender{
     NSLog(@"点击了QQ登陆!!!");
-    
+
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
+    NSArray *permissions = [NSArray arrayWithObjects:
+                            kOPEN_PERMISSION_GET_USER_INFO,
+                            kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                            kOPEN_PERMISSION_ADD_SHARE,
+                            nil];
+    [_tencentOAuth authorize:permissions];
 }
 -(IBAction)WeixingLoogin:(id)sender{
     NSLog(@"点击了WeChat登陆!!!");
+    //构造SendAuthReq结构体
+    SendAuthReq* req =[[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"12345aa" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
+}
+
+#pragma mark - WeChat登陆成功之后获取token
+- (void)WXLogin:(NSNotification *)notifi {
+    // 获取openID
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"appid":@"wxd1e9cf61f91dac3f", @"secret":@"1df4f2886207500e38a4ebd7088c7aea", @"code":notifi.object[@"code"], @"grant_type":@"authorization_code"}];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code" param:paramString];
+    
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
+
+        NSLog(@"-----%@",json);
+        /*{
+            "access_token":"ACCESS_TOKEN",
+            "expires_in":7200,
+            "refresh_token":"REFRESH_TOKEN",
+            "openid":"OPENID",
+            "scope":"SCOPE" 
+        }*/
+    }];
+    
     
 }
+
+#pragma TencentSessionDelegate
+/**
+ * [该逻辑未实现]因token失效而需要执行重新登录授权。在用户调用某个api接口时，如果服务器返回token失效，则触发该回调协议接口，由第三方决定是否跳转到登录授权页面，让用户重新授权。
+ * \param tencentOAuth 登录授权对象。
+ * \return 是否仍然回调返回原始的api请求结果。
+ * \note 不实现该协议接口则默认为不开启重新登录授权流程。若需要重新登录授权请调用\ref TencentOAuth#reauthorizeWithPermissions: \n注意：重新登录授权时用户可能会修改登录的帐号
+ */
+- (BOOL)tencentNeedPerformReAuth:(TencentOAuth *)tencentOAuth{
+    return YES;
+}
+- (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions{
+    // incrAuthWithPermissions是增量授权时需要调用的登录接口
+    // permissions是需要增量授权的权限列表
+    [tencentOAuth incrAuthWithPermissions:permissions];
+    return NO; // 返回NO表明不需要再回传未授权API接口的原始请求结果；
+    // 否则可以返回YES
+}
+-(void)tencentDidLogin{
+    NSLog(@"----ok-----");
+    NSLog(@"openId:%@",_tencentOAuth.openId);
+    // 后台对数据类型的需要
+    NSString *pass = @"abc1234568";
+    NSDictionary *dict = @{@"OpenID":_tencentOAuth.openId,@"Password":pass};
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"WeiXin_Login",@"Params":dict}];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
+
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
+        NSLog(@"-----%@",json);
+        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Page_Current_Index"];
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+        [self presentViewController:nav animated:YES completion:^{
+            // 保存到本地
+            [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
+            [UserDataModel defaultDataModel].userID = dataString;
+            
+        }];
+    }];
+
+    /** Access Token凭证，用于后续访问各开放接口 */
+    if (_tencentOAuth.accessToken) {
+        //获取用户信息。 调用这个方法后，qq的sdk会自动调用
+        //- (void)getUserInfoResponse:(APIResponse*) response
+        //这个方法就是 用户信息的回调方法。
+        [_tencentOAuth getUserInfo];
+    }else{
+        NSLog(@"accessToken 没有获取成功");
+    }
+}
+//-(NSArray *)getAuthorizedPermissions:(NSArray *)permissions withExtraParams:(NSDictionary *)extraParams{
+//    NSLog(@"----%@********%@-----",permissions,extraParams);
+//    return permissions;
+//}
+- (void)getUserInfoResponse:(APIResponse*)response{
+    NSLog(@"*********");
+    NSLog(@" response %@",response.message);
+//    NSLog(@"*********%@",response.jsonResponse[@"figureurl_qq_2"]);
+}
+
+-(void)tencentDidNotLogin:(BOOL)cancelled{
+    if (cancelled) {
+        NSLog(@"用户点击取消按键,主动退出登录");
+    }else{
+        NSLog(@"其他原因,导致登录失败");
+    }
+}
+-(void)tencentDidNotNetWork{
+    NSLog(@"没有网络了， 怎么登录成功呢");
+}
+
 
 // 登录请求
 - (void)logicRequest{
     // 拼接参数
-    NSString *param = [NSString stringWithFormat:@"{\"FunName\": \"Login\", \"Params\": { \"PhoneNo\": \"%@\", \"PassWord\": \"%@\" }}",userField_.text,keyField_.text];
-    [networkSection getRequestDataBlock:IPUrl :param block:^(NSDictionary *json) {
+    NSString *param = [NSString stringWithFormat:@"{\"FunName\": \"Login\", \"Params\": {\"PhoneNo\":\"%@\", \"PassWord\":\"%@\"}}",userField_.text,keyField_.text];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:param];
+    
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         // Data为0表示注册失败,1表示验证码不对,2表示手机已存在,其他得到的是UserID
         NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"DATA"];
         if ([dataString isEqualToString:@"0"]) {

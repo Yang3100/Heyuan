@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "player.h"
 
 @interface playerViewController : UIViewController
+
+@property (nonatomic, assign) bool isPlay;
+@property (nonatomic, assign) bool isPrepare;//播放器装备完毕
+@property (nonatomic, strong) player *kj_player; /**< 播放器 */
+@property (nonatomic, assign) int currentLyricNum;// 当前歌词位置
+@property (nonatomic, assign) bool isSingleComplete;//单首播放完毕
+@property (nonatomic, copy) NSMutableDictionary *dic;
+@property (nonatomic, copy) NSMutableArray *lrcArray;
+@property(nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
 
 ////第一种数据传输方式
 //// 书集数据
@@ -25,5 +35,7 @@
 - (void)getJson:(NSDictionary*)json;
 // 点击的那个小节
 @property(nonatomic,assign) int touchNum;
+
+- (void)instancePlay:(NSString *)state;
 
 @end

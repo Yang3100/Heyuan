@@ -129,7 +129,7 @@
             [UserDataModel defaultDataModel].userID = userID;
             istrue = 1;
         }else{ // 登录失败
-            NSLog(@"登录失败!!!");
+            NSLog(@"账号密码错误登录失败!!!");
             istrue = 2;
         }
         if (isUnload) {

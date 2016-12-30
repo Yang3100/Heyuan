@@ -17,6 +17,15 @@
 
 @implementation player
 
+
++ (instancetype)instancePlayer {
+    static player *p;
+    if (!p) {
+        p = [[super allocWithZone:NULL] init];
+    }
+    return p;
+}
+
 /**
  *  初始化播放器
  */
@@ -84,8 +93,10 @@
                 break;
         }
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-        self.songTime = CMTimeGetSeconds(songItem.duration); // 获取到媒体的总时长
         // 媒体缓冲
+        if (!((self.songTime - CMTimeGetSeconds(songItem.duration)) <= 0.0001) || (self.songTime - CMTimeGetSeconds(songItem.duration)) < -0.01) {
+            self.songTime = CMTimeGetSeconds(songItem.duration); // 获取到媒体的总时长
+        }
         NSArray *array=songItem.loadedTimeRanges;
         CMTimeRange timeRange = [array.firstObject CMTimeRangeValue];//本次缓冲时间范围
         float startSeconds = CMTimeGetSeconds(timeRange.start);

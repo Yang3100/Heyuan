@@ -8,7 +8,7 @@
 
 #import "ForgetViewController.h"
 #import "RegisterViewController.h"
-#import "loginView.h"
+#import "loginViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -419,8 +419,8 @@
 // 登录小按钮
 - (IBAction)loadAction:(id)sender{
     NSLog(@"点击了登录");
-    loginView *lv = [[loginView alloc] init];
-    [self presentViewController:lv animated:YES completion:nil];
+    loginViewController *lvc = [[loginViewController alloc] init];
+    [self presentViewController:lvc animated:YES completion:nil];
 }
 // 注册小按钮
 - (IBAction)registerAction:(id)sender{
@@ -537,8 +537,8 @@
 -(void)addAlertView{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"密码修改成功!!!" message:@"请重新登录!!!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        loginView *lv = [[loginView alloc] init];
-        [self presentViewController:lv animated:YES completion:nil];
+        loginViewController *lvc = [[loginViewController alloc] init];
+        [self presentViewController:lvc animated:YES completion:nil];
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];

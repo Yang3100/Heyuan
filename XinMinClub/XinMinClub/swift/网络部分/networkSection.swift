@@ -43,7 +43,7 @@ import UIKit
                 // 错误转成可选值(解析处理的json为空的时候,放在程序崩掉!!)
                 let retureMessage = try? JSONSerialization.jsonObject(with:data!, options:[])
                 if (retureMessage == nil) {
-//                    print(NSString(data:data!, encoding:String.Encoding.utf8.rawValue)!)
+                    print(NSString(data:data!, encoding:String.Encoding.utf8.rawValue)!)
                     return
                 }
                 //此处是具体的解析，具体请移步下面
@@ -95,6 +95,64 @@ import UIKit
     }
 
 
+
+    
+    //MARK:网络登陆那块的网络接口 - 不加加载等待
+    static var getLoadRequestDataClosuresCallBack:((_ json:NSDictionary)->(Void))?
+    class func getLoadJsonData(urlString:String, param:String){
+        // 登录请求的URL
+        let Url = URL(string:urlString)
+        let request = NSMutableURLRequest(url:Url!)
+        // 设置请求超时时间
+        request.timeoutInterval = 30
+        request.httpMethod = "POST"
+        request.httpBody = param.data(using:String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if (error != nil) {
+                return
+            }
+            else {
+                if (data == nil) {
+                    // 无网络
+                    print("无网络")
+//                    self.showAlert(title:"wu",message:"aa")
+                    return
+                }
+                // 此处是具体的解析出来的数据json，具体请移步下面
+                let retureMessage = try? JSONSerialization.jsonObject(with:data!, options:[])
+                // 错误转成可选值(解析处理的json为空的时候,放在程序崩掉!!)
+                if (retureMessage == nil) {
+                    // 无网络或者服务器无反应
+                    print("服务器无反应")
+                    print(NSString(data:data!, encoding:String.Encoding.utf8.rawValue)!)
+                    return
+                }
+                //返回数据
+                networkSection.getLoadRequestDataClosuresCallBack!(retureMessage as! NSDictionary)
+            }
+        }
+        // 启动任务
+        dataTask.resume()
+    }
+    //显示消息（AlertView）
+    func showAlert(title:String="mo", message:String="ren"){
+        let alertController = UIAlertController(title:title, message:message, preferredStyle:.alert)
+        let cancelAction = UIAlertAction(title:"确定", style:.cancel, handler:nil)
+        alertController.addAction(cancelAction)
+        self.AppRootViewController()?.present(alertController, animated:true, completion: nil)
+    }
+    
+    //获取当前view所在的viewCOntroller
+    func AppRootViewController() -> UIViewController? {
+        var topVC  = UIApplication.shared.keyWindow?.rootViewController
+        while topVC?.presentedViewController != nil {
+            topVC = topVC?.presentedViewController
+        }
+        return topVC!
+    }
+    
 }
 
 

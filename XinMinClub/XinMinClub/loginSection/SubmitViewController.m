@@ -9,7 +9,7 @@
 #import "SubmitViewController.h"
 #import "UserDataModel.h"
 #import "HomeViewController.h"
-#import "loginView.h"
+#import "loginViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -401,9 +401,9 @@
                     });
                 }else if ([dataString isEqualToString:@"2"]){
                     // 手机已存在
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self addAlertView];
-                    });
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self addAlertView];
+//                    });
                 }else{
                     // 注册成功
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -439,17 +439,6 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"密码修改成功!!!");
-    }];
-    [alertController addAction:action1];
-    [self presentViewController:alertController animated:YES completion:NULL];
-}
-
--(void)addAlertView{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"手机号码已被注册" message:@"请直接登录" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"手机号码已存在");
-        loginView *l=[[loginView alloc] init];
-        [self presentViewController:l animated:NO completion:nil];
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];

@@ -11,6 +11,7 @@
 #import "UIView+Draw.h"   // 设置view边框
 #import "UIImageView+WebCache.h"  // 加载网络图片
 #import "SVProgressHUD.h" // 第三方库提示
+#import "MJRefresh.h"
 
 #import "shareObjectModel.h"
 #import "DataModel.h"
@@ -24,7 +25,15 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 
+// QQsdk
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/TencentMessageObject.h>
+#import <TencentOpenAPI/TencentApiInterface.h>
+#import <TencentOpenAPI/QQApiInterfaceObject.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
 #import "ShareView.h"
+#import "playerViewController.h"
 
 #ifndef MyGreat_pch
 #define MyGreat_pch
