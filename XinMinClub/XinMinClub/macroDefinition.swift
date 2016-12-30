@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-let WXDoctor_App_ID = "wxd1e9cf61f91dac3f"  // 注册微信时的AppID
-let WXDoctor_App_Secret = "4834c3128326dd7fa321fb16331c39ad" // 注册时得到的AppSecret
+let WXDoctor_App_ID = "wxeb4693506532bea3"  // 注册微信时的AppID
+let WXDoctor_App_Secret = "323a0eb9b8f7f0505f08c98f4511b8ff" // 注册时得到的AppSecret
 let WXPatient_App_ID = "wxbd02bfeea4292***"
 let WXPatient_App_Secret = "4a788217f363358276309ab655707***"
 let WX_ACCESS_TOKEN = "access_token"

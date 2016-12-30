@@ -83,12 +83,9 @@
 		1A49AB0D1CAD162F003DA6DB /* HeyuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AAE71CAD162F003DA6DB /* HeyuanViewController.m */; };
 		1A49AB121CAD162F003DA6DB /* DetailsCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AAF41CAD162F003DA6DB /* DetailsCell1.m */; };
 		1A49AB131CAD162F003DA6DB /* DetailsCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A49AAF51CAD162F003DA6DB /* DetailsCell1.xib */; };
-		1A49AB161CAD162F003DA6DB /* DetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AAFA1CAD162F003DA6DB /* DetailsTableView.m */; };
 		1A49AB171CAD162F003DA6DB /* LibraryCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AAFC1CAD162F003DA6DB /* LibraryCollectionCell.m */; };
 		1A49AB1B1CAD162F003DA6DB /* ReadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AB041CAD162F003DA6DB /* ReadCell.m */; };
 		1A49AB1C1CAD162F003DA6DB /* ReadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A49AB051CAD162F003DA6DB /* ReadCell.xib */; };
-		1A49AB1E1CAD162F003DA6DB /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A49AB091CAD162F003DA6DB /* SectionCell.m */; };
-		1A49AB1F1CAD162F003DA6DB /* SectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A49AB0A1CAD162F003DA6DB /* SectionCell.xib */; };
 		1A4C839A1E0A614100EDAC43 /* macroDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C83991E0A614100EDAC43 /* macroDefinition.swift */; };
 		1A4EB8F21CCDCF27008A4564 /* BookData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EB8F11CCDCF27008A4564 /* BookData.m */; };
 		1A4EBA0F1CCDF092008A4564 /* actionbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A4EBA0D1CCDF092008A4564 /* actionbutton@2x.png */; };
@@ -439,7 +436,6 @@
 		68EE61E31E13CFB1001E34AD /* 朋友圈.png in Resources */ = {isa = PBXBuildFile; fileRef = 68EE61DE1E13CFB1001E34AD /* 朋友圈.png */; };
 		68EF23E31E0D0371007A0A6C /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EF23E21E0D0371007A0A6C /* ShareView.m */; };
 		68EF9A111D3D25760085A65A /* maoboli.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68EF9A101D3D25760085A65A /* maoboli.jpg */; };
-		68FA88031CF3019C007638D0 /* KJ_BookCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA88021CF3019C007638D0 /* KJ_BookCell2.m */; };
 		792CB8A21CE36355001933E4 /* subcatalogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 792CB8A01CE36355001933E4 /* subcatalogCell.m */; };
 		792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792CB8A11CE36355001933E4 /* subcatalogCell.xib */; };
 /* End PBXBuildFile section */
@@ -541,16 +537,11 @@
 		1A49AAF31CAD162F003DA6DB /* DetailsCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCell1.h; sourceTree = "<group>"; };
 		1A49AAF41CAD162F003DA6DB /* DetailsCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCell1.m; sourceTree = "<group>"; };
 		1A49AAF51CAD162F003DA6DB /* DetailsCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsCell1.xib; sourceTree = "<group>"; };
-		1A49AAF91CAD162F003DA6DB /* DetailsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableView.h; sourceTree = "<group>"; };
-		1A49AAFA1CAD162F003DA6DB /* DetailsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableView.m; sourceTree = "<group>"; };
 		1A49AAFB1CAD162F003DA6DB /* LibraryCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCollectionCell.h; sourceTree = "<group>"; };
 		1A49AAFC1CAD162F003DA6DB /* LibraryCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCollectionCell.m; sourceTree = "<group>"; };
 		1A49AB031CAD162F003DA6DB /* ReadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadCell.h; sourceTree = "<group>"; };
 		1A49AB041CAD162F003DA6DB /* ReadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadCell.m; sourceTree = "<group>"; usesTabs = 0; };
 		1A49AB051CAD162F003DA6DB /* ReadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadCell.xib; sourceTree = "<group>"; };
-		1A49AB081CAD162F003DA6DB /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
-		1A49AB091CAD162F003DA6DB /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
-		1A49AB0A1CAD162F003DA6DB /* SectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionCell.xib; sourceTree = "<group>"; };
 		1A4C83991E0A614100EDAC43 /* macroDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = macroDefinition.swift; sourceTree = "<group>"; };
 		1A4EB8F01CCDCF27008A4564 /* BookData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookData.h; sourceTree = "<group>"; };
 		1A4EB8F11CCDCF27008A4564 /* BookData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookData.m; sourceTree = "<group>"; };
@@ -1063,8 +1054,6 @@
 		68EF23E11E0D0371007A0A6C /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		68EF23E21E0D0371007A0A6C /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		68EF9A101D3D25760085A65A /* maoboli.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maoboli.jpg; sourceTree = "<group>"; };
-		68FA88011CF3019C007638D0 /* KJ_BookCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJ_BookCell2.h; sourceTree = "<group>"; };
-		68FA88021CF3019C007638D0 /* KJ_BookCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJ_BookCell2.m; sourceTree = "<group>"; };
 		792CB89F1CE36355001933E4 /* subcatalogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subcatalogCell.h; sourceTree = "<group>"; };
 		792CB8A01CE36355001933E4 /* subcatalogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = subcatalogCell.m; sourceTree = "<group>"; };
 		792CB8A11CE36355001933E4 /* subcatalogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = subcatalogCell.xib; sourceTree = "<group>"; };
@@ -1278,16 +1267,9 @@
 			isa = PBXGroup;
 			children = (
 				1A49AAF21CAD162F003DA6DB /* DetailsCell */,
-				1A49AAF91CAD162F003DA6DB /* DetailsTableView.h */,
-				1A49AAFA1CAD162F003DA6DB /* DetailsTableView.m */,
 				1A49AAFB1CAD162F003DA6DB /* LibraryCollectionCell.h */,
 				1A49AAFC1CAD162F003DA6DB /* LibraryCollectionCell.m */,
 				1A49AB021CAD162F003DA6DB /* ReadCell */,
-				1A49AB081CAD162F003DA6DB /* SectionCell.h */,
-				1A49AB091CAD162F003DA6DB /* SectionCell.m */,
-				1A49AB0A1CAD162F003DA6DB /* SectionCell.xib */,
-				68FA88011CF3019C007638D0 /* KJ_BookCell2.h */,
-				68FA88021CF3019C007638D0 /* KJ_BookCell2.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2683,7 +2665,6 @@
 				1A831E211CEB7CEA00588BA9 /* 44.png in Resources */,
 				68BCF3AD1E00EF02008AB490 /* 25.jpg in Resources */,
 				1A91BE941CB360D500689AE0 /* AuthorCell.xib in Resources */,
-				1A49AB1F1CAD162F003DA6DB /* SectionCell.xib in Resources */,
 				68E8B73D1E0000B1000CB44A /* kungua.png in Resources */,
 				68BCF3BA1E00EF02008AB490 /* xian1@2x.png in Resources */,
 				1A011D5D1D3E03100040EA23 /* Assets.xcassets in Resources */,
@@ -2746,7 +2727,6 @@
 				682F42951E1200B6004B3651 /* courseCollection.swift in Sources */,
 				1A0EBF331CF6EB9600E910AD /* RefreshLabelView.m in Sources */,
 				1A91BE8C1CB360D500689AE0 /* TotalTableViewController.m in Sources */,
-				1A49AB1E1CAD162F003DA6DB /* SectionCell.m in Sources */,
 				1A49AB0B1CAD162F003DA6DB /* ADViewController.m in Sources */,
 				682563511E02C0B500A5F7CC /* BookViewController.m in Sources */,
 				682F429C1E1200B6004B3651 /* teacherIntro.swift in Sources */,
@@ -2785,7 +2765,6 @@
 				6849C00B1E09407900C9A5D2 /* NSData+ImageContentType.m in Sources */,
 				6849C00C1E09407900C9A5D2 /* SDImageCache.m in Sources */,
 				68E8B7391E0000B1000CB44A /* SwiftyJSON.swift in Sources */,
-				1A49AB161CAD162F003DA6DB /* DetailsTableView.m in Sources */,
 				6814F0901C9FE86C000FD40B /* MJRefreshNormalHeader.m in Sources */,
 				6814F0851C9FE86C000FD40B /* MJRefreshBackFooter.m in Sources */,
 				680682CB1C9D7D3700C2E3C3 /* WMFooldView.m in Sources */,
@@ -2822,7 +2801,6 @@
 				68EB89CF1E0E995100611357 /* SubmitViewController.m in Sources */,
 				68EA9B271CC7687500A41AC2 /* DetailsCell2.m in Sources */,
 				68EB89CD1E0E995100611357 /* loginViewController.m in Sources */,
-				68FA88031CF3019C007638D0 /* KJ_BookCell2.m in Sources */,
 				680682CC1C9D7D3700C2E3C3 /* WMMenuItem.m in Sources */,
 				1A91BEA01CB360D500689AE0 /* ThirdTableViewCell.m in Sources */,
 				682F429A1E1200B6004B3651 /* courseViewController.swift in Sources */,

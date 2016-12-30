@@ -335,25 +335,35 @@
 
 #pragma mark - WeChat登陆成功之后获取token
 - (void)WXLogin:(NSNotification *)notifi {
-    // 获取openID
-    NSString *paramString = [networkSection getParamStringWithParam:@{@"appid":@"wxd1e9cf61f91dac3f", @"secret":@"1df4f2886207500e38a4ebd7088c7aea", @"code":notifi.object[@"code"], @"grant_type":@"authorization_code"}];
-    // 网络请求
-    [networkSection getLoadJsonDataWithUrlString:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code" param:paramString];
+    NSString *string = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxeb4693506532bea3&secret=323a0eb9b8f7f0505f08c98f4511b8ff&code=%@&grant_type=authorization_code",notifi.object[@"code"]];
+    //第一步，创建URL
+    NSURL *url = [NSURL URLWithString:string];
     
-    //回调函数获取数据
-    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
+    //第二步，通过URL创建网络请求
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    //NSURLRequest初始化方法第一个参数：请求访问路径，第二个参数：缓存协议，第三个参数：网络请求超时时间（秒）
+    /* 其中缓存协议是个枚举类型包含：
+    NSURLRequestUseProtocolCachePolicy（基础策略）
+    NSURLRequestReloadIgnoringLocalCacheData（忽略本地缓存）
+    NSURLRequestReturnCacheDataElseLoad（首先使用缓存，如果没有本地缓存，才从原地址下载）
+    NSURLRequestReturnCacheDataDontLoad（使用本地缓存，从不下载，如果本地没有缓存，则请求失败，此策略多用于离线操作）
+    NSURLRequestReloadIgnoringLocalAndRemoteCacheData（无视任何缓存策略，无论是本地的还是远程的，总是从原地址重新下载）
+    NSURLRequestReloadRevalidatingCacheData（如果本地缓存是有效的则不下载，其他任何情况都从原地址重新下载）*/
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:received options:kNilOptions error:nil];
 
-        NSLog(@"-----%@",json);
-        /*{
-            "access_token":"ACCESS_TOKEN",
-            "expires_in":7200,
-            "refresh_token":"REFRESH_TOKEN",
-            "openid":"OPENID",
-            "scope":"SCOPE" 
-        }*/
+    NSString *pass = @"abc1234568";
+    NSString *dataString = [dict valueForKey:@"openid"];
+    HomeViewController *hvc = [[HomeViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+    [self presentViewController:nav animated:YES completion:^{
+        // 保存到本地
+        [[shareObjectModel shareObject] setAccount:dataString Password:pass];
+        [UserDataModel defaultDataModel].userID = dataString;
     }];
-    
-    
+
 }
 
 #pragma TencentSessionDelegate

@@ -19,6 +19,9 @@
     int iNum;
     ReadCell *r_cell;
     BOOL MyState;
+    
+
+    NSMutableArray<NSDictionary*> *jsonArrayDict; // 获取到的小节数据字典
 }
 
 @property (nonatomic,strong) NSArray *kj_readListArray;
@@ -35,6 +38,7 @@
         isFristDisplay=NO;
         listNumArray = [NSMutableArray array];
         dataArray = [NSMutableArray array];
+        jsonArrayDict = [NSMutableArray array];
         
         UINib *nib = [UINib nibWithNibName:@"ReadCell" bundle:nil];
         [self.readTableView registerNib:nib forCellReuseIdentifier:@"readCell"];
@@ -122,6 +126,24 @@
     return lan;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [playerViewController defaultDataModel].touchNum = indexPath.row;
+    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
+    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
+    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
+}
+//  获取当前view所处的viewController重写读方法
+- (UIViewController *)viewController{
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            // 上面if判断是否为UIViewController的子类
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
 - (void)startNetwork{
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -133,11 +155,10 @@
     
     //回调函数获取数据
     [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-//                NSLog(@"xxx%@",json);
-        NSLog(@"bbbbbbbbbbbbbbbbbbbbb");
         NSNumber *mapXNum = [[json valueForKey:@"RET"] valueForKey:@"Record_Count"];
         NSInteger myInteger = [mapXNum integerValue];
         [listNumArray addObject:@(myInteger)];
+        [jsonArrayDict addObject:json];
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{
             [dataArray addObject:json];
