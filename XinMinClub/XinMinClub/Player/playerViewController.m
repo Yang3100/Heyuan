@@ -497,6 +497,7 @@
         }
         NSLog(@"最后一首也播放结束!!!");
         self.isPrepare = NO;
+        DATA_MODEL.playingSection = nil;
     }
 }
 
@@ -509,6 +510,7 @@
         self.isPlay=YES;
         if (_kj_player.isPlayComplete) {
             [self startPlayBefore];
+            
         }else{
             [_kj_player play]; // 播放
             [self imageViewRotate]; // 旋转歌手图片
@@ -520,6 +522,14 @@
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
     }
+
+    
+#pragma mark TODO
+//    DATA_MODEL.playingSection = DATA_MODEL.playingArray[_touchNum];
+//    SectionData *da = DATA_MODEL.playingArray[_touchNum];
+//    [SAVE_MODEL saveRecentPlaySection:da withSectionID:da.clickSectionID];
+    [self setNowPlayingInfo];
+
 }
 
 
@@ -565,6 +575,8 @@
         self.songTimeLabel.text = [self convertStringWithTime:_kj_player.songTime];
         self.pro.progress = _kj_player.cacheValue; // 缓存进度条
     } else if ([keyPath isEqualToString:@"currentTime"]) {
+//        [[DataModel defaultDataModel].recentPlay addObject:nil];
+        [DATA_MODEL addRecentPlay:_dic];
         [self progressValueChage:YES];
         [self setNowPlayingInfo];  // 锁屏播放
     } else if ([keyPath isEqualToString:@"isPlayComplete"]) {

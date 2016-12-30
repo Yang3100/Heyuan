@@ -114,7 +114,7 @@
     //    button2.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button2.frame = CGRectMake(tw*2/3, 0, tw/8, th);
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
+//        button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button3.frame = CGRectMake(tw*4/5, 0, tw/8, th);
     
     [button1 addTarget:self action:@selector(button1Action:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,7 +130,7 @@
     label2 = [[UILabel alloc]initWithFrame:CGRectMake(th-4, th/2, tw-tw/4-th-6, th/2)];
     label1.font = [UIFont systemFontOfSize:13];
     label2.font = [UIFont systemFontOfSize:12];
-    //    label2.textColor = [UIColor colorWithWhite:0.573 alpha:0.800];
+    label2.textColor = [UIColor colorWithWhite:0.573 alpha:0.800];
     label1.text = @"未播放";
     label2.text = @"未播放";
     UIImage *im2 = [UIImage imageNamed:@"Play_personal"];
