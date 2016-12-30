@@ -193,9 +193,9 @@
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = [dica valueForKey:@"WJ_NAME"]; // 书集名字
+    [DataModel defaultDataModel].bookName = svc.title;
     NSString *string = [IP stringByAppendingString:[dica valueForKey:@"WJ_IMG"]];
-    NSURL *url = [NSURL URLWithString:string];
-    [DataModel defaultDataModel].bookImageUrl = url; // 书集封面Url
+    [DataModel defaultDataModel].bookImageUrl = string; // 书集封面Url
     [svc getJsonData:dica];
     
 #warning mark 点击了文集，传入数据到全部文集当中

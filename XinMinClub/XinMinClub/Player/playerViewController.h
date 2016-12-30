@@ -17,7 +17,7 @@
 @property (nonatomic, assign) int currentLyricNum;// 当前歌词位置
 @property (nonatomic, assign) bool isSingleComplete;//单首播放完毕
 @property (nonatomic, copy) NSMutableDictionary *dic;
-@property (nonatomic, copy) NSMutableArray *lrcArray;
+@property (nonatomic, strong) NSMutableArray *lrcArray;
 @property(nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
 
 ////第一种数据传输方式
@@ -32,6 +32,7 @@
 
 //第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
 - (void)getDict:(NSDictionary*)dict;
+
 
 //第2种数据传输方式 -  从文集点入的方式
 // 小节数据Json

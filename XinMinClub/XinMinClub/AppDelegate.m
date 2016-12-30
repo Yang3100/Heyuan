@@ -69,7 +69,7 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [WXApi registerApp:@"wxd1e9cf61f91dac3f"];
+    [WXApi registerApp:@"wxeb4693506532bea3"];
     [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self]; //如果没写这句，会提示（EQQAPIAPPNOTREGISTED ）App未注册的错误
     
     // 一句话解决所有TableView的多余cell就一句代码放在AppDelegate里

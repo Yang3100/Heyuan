@@ -22,7 +22,6 @@
     NSMutableArray *timeArry;
     int lastPlayNum;  // 保存上一次播放的音频
     bool isRound; // 是否循环
-    bool isAnalysisComplete; // 歌词是否解析完毕
 }
 
 @property (nonatomic, strong) CABasicAnimation *rotationAnimation; /**< 歌手图片旋转动画 */
@@ -74,8 +73,9 @@
         self.isPrepare = NO;
         self.isSingleComplete = NO;
         self.currentLyricNum = 0;
-        lastPlayNum = 0;
-        isAnalysisComplete = NO;
+        lastPlayNum = -1;
+        self.lrcArray = [NSMutableArray array];
+        timeArry = [NSMutableArray array];
     }
     return self;
 }
@@ -88,11 +88,12 @@
 
 - (void)setTouchNum:(int)touchNum{
     _touchNum = touchNum;
-    if (touchNum==lastPlayNum) {
-        
-    }else{
+    if (touchNum!=lastPlayNum&&lastPlayNum>=0) {
+        lastPlayNum = touchNum;
         // 播放准备
         [self startPlayBefore];
+    }else if (lastPlayNum<0){ // 代表第一次进入播放器
+        [self play:nil];
     }
 }
 
@@ -175,8 +176,8 @@
     if (!_authorImageView) {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(X/2, self.shareButton.frame.origin.y-2*X+X/3, 3*X, 3*X);
-        [imageView sd_setImageWithURL:[DataModel defaultDataModel].bookImageUrl placeholderImage:cachePicture];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = cachePicture;
         imageView.layer.masksToBounds = YES;
         imageView.layer.borderWidth = 2;
         imageView.layer.cornerRadius = (3*X)/2;
@@ -325,7 +326,6 @@
         [_playButton setImage:image forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
         self.isPlay=NO;
-        [self play:_playButton];
     }
     return _playButton;
 }
@@ -407,8 +407,7 @@
     _menuBack.hidden = YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     if ([touch.view isDescendantOfView:_menuTable]) {
         return NO;
     }
@@ -422,6 +421,23 @@
 
 - (IBAction)share:(UIButton *)sender {
     NSLog(@"点击了分享!!!");
+    if (lastPlayNum<0){
+        NSLog(@"无数据分享!!!");
+        return;
+    }
+    ShareView *ocsv = [[ShareView alloc]init];
+    ocsv.setShareContent = ShareMusic;
+    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    ocsv.title = [dict valueForKey:@"GJ_NAME"]; // 小节名字
+    if ([[dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
+        ocsv.describe = @"和源";
+    }else{
+        ocsv.describe = [dict valueForKey:@"GJ_USER"]; // 作者名字
+    }
+    ocsv.thumbImage = [DataModel defaultDataModel].bookImageUrl;
+    ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
+
+    [self.view addSubview:ocsv];
 }
 - (IBAction)like:(UIButton *)sender {
     
@@ -501,8 +517,6 @@
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
     }
-    
-    [self setNowPlayingInfo];
 }
 
 
@@ -549,7 +563,7 @@
         self.pro.progress = _kj_player.cacheValue; // 缓存进度条
     } else if ([keyPath isEqualToString:@"currentTime"]) {
         [self progressValueChage:YES];
-        [self setNowPlayingInfo];
+        [self setNowPlayingInfo];  // 锁屏播放
     } else if ([keyPath isEqualToString:@"isPlayComplete"]) {
         NSNumber *number = [change valueForKey:@"new"];
         if (number.intValue==1) {
@@ -644,32 +658,37 @@ bool fir = YES;
     self.progress.value = 0;
     self.currentLyricNum = 0; // 歌词位置清零
     self.authorNameLabel.text = [dict valueForKey:@"GJ_NAME"];
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
+    [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     [self.playButton setImage:[UIImage imageNamed:@"001_0000s_0008_组-5-副本"] forState:UIControlStateNormal];
     
+    // 解析歌词
     [self paserLrcFileContents:[dict valueForKey:@"GJ_CONTENT_CN"]];// 传入歌词
     
     [_kj_player removeObserver]; // 移除观察者
     _kj_player.isPlayComplete = NO; // 播放状态
-    NSString *urlString = [NSString stringWithFormat:@"http://218.240.52.135%@",[dict valueForKey:@"GJ_MP3"]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[dict valueForKey:@"GJ_MP3"]];
     [_kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
     [_kj_player addObserver]; // 添加新的观察者
     // 三个KVO观察播放属性
     [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
     [_kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
     [_kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
+   
     [_kj_player play]; // 播放
     self.isPrepare = YES;
     [self imageViewRotate]; // 旋转歌手图片
     
+    [self setNowPlayingInfo];  // 设置锁屏播放
 }
 
 
 //解析歌词内容
 - (void)paserLrcFileContents:(NSString *)contents {
     NSArray *array = [contents componentsSeparatedByString:@"\n"];
-    _lrcArray = [NSMutableArray array];
-    timeArry = [NSMutableArray array];
+    [_lrcArray removeAllObjects];
+    [timeArry removeAllObjects];
     for (int i = 0; i < [array count]; i++) {
         NSString *lineString = [array objectAtIndex:i];
         NSArray *lineArray = [lineString componentsSeparatedByString:@"]"];
@@ -687,8 +706,7 @@ bool fir = YES;
             }
         }
     }
-    isAnalysisComplete = YES;
-    [self.lyricTableView getLyric:_lrcArray];
+    [self.lyricTableView getLyric:_lrcArray];  // 传入歌词到歌词table当中
 }
 
 #pragma mark - 设置控制中心正在播放的信息
@@ -732,8 +750,11 @@ bool fir = YES;
         _lrcLabel.textColor = [UIColor whiteColor];
         [_lrcImageView addSubview:self.lrcLabel];
     }
-//    _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
-    [_lrcImageView sd_setImageWithURL:[DataModel defaultDataModel].bookImageUrl placeholderImage:cachePicture];
+    if (!_lrcArray) {
+        _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
+    }
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
+    [_lrcImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     //获取添加了歌词数据的背景图
     UIGraphicsBeginImageContextWithOptions(_lrcImageView.frame.size, NO, 0.0);
