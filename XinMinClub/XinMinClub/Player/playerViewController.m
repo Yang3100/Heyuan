@@ -519,15 +519,14 @@
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"001_0000s_0009_组-5"] forState:UIControlStateNormal];
     }
-<<<<<<< HEAD
+
     
 #pragma mark TODO
 //    DATA_MODEL.playingSection = DATA_MODEL.playingArray[_touchNum];
 //    SectionData *da = DATA_MODEL.playingArray[_touchNum];
 //    [SAVE_MODEL saveRecentPlaySection:da withSectionID:da.clickSectionID];
     [self setNowPlayingInfo];
-=======
->>>>>>> master
+
 }
 
 
