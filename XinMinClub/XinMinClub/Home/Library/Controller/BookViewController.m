@@ -92,7 +92,7 @@
     
     //回调函数获取数据
     [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-                NSLog(@"xxx%@",json);
+//                NSLog(@"xxx%@",json);
         NSNumber *mapXNum = [[json valueForKey:@"RET"] valueForKey:@"Record_Count"];
         libraryTotal = [mapXNum intValue];
         // 主线程执行
@@ -192,7 +192,10 @@
 #warning mark 传入数据到章节
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
-    svc.title = [dica valueForKey:@"WJ_NAME"];
+    svc.title = [dica valueForKey:@"WJ_NAME"]; // 书集名字
+    NSString *string = [IP stringByAppendingString:[dica valueForKey:@"WJ_IMG"]];
+    NSURL *url = [NSURL URLWithString:string];
+    [DataModel defaultDataModel].bookImageUrl = url; // 书集封面Url
     [svc getJsonData:dica];
     
 #warning mark 点击了文集，传入数据到全部文集当中
