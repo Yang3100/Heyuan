@@ -305,9 +305,10 @@
 -(void)addAlertViewIphone{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"手机号码已被注册" message:@"请直接登录" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"手机号码已存在");
-        loginViewController *lvc = [[loginViewController alloc] init];
-        [self presentViewController:lvc animated:NO completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^(void){           
+            loginViewController *lvc = [[loginViewController alloc] init];
+            [self presentViewController:lvc animated:NO completion:nil];
+        });
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];

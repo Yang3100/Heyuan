@@ -127,10 +127,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [playerViewController defaultDataModel].touchNum = indexPath.row;
-    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
-    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
-    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
+#warning mark - 阅读传输数据
+//    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
+//    [playerViewController defaultDataModel].touchNum = indexPath.row;
+//    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
+//    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
 }
 //  获取当前view所处的viewController重写读方法
 - (UIViewController *)viewController{

@@ -407,14 +407,8 @@
                 }else{
                     // 注册成功
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self addAlertViewTitle:@"注册成功!!!" Message:@"欢迎使用和源!!!"];
-                        HomeViewController *hvc = [[HomeViewController alloc] init];
-                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
-                        [self presentViewController:nav animated:YES completion:^{
-                            // 保存到本地
-                            [[shareObjectModel shareObject] setAccount:self.iphoneNum Password:_password.text];
-                            [UserDataModel defaultDataModel].userID = dataString;
-                        }];
+                        [self addAlertTitle:@"注册成功!!!" Message:@"欢迎使用和源!!!" DataStr:dataString];
+                        
                     });
                 }
             }
@@ -435,10 +429,27 @@
 }
 
 #pragma mark 弹出AlertView
+-(void)addAlertTitle:(NSString*)title Message:(NSString*)message DataStr:(NSString*)dataString{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            HomeViewController *hvc = [[HomeViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+            [self presentViewController:nav animated:YES completion:^{
+                // 保存到本地
+                [[shareObjectModel shareObject] setAccount:self.iphoneNum Password:_password.text];
+                [UserDataModel defaultDataModel].userID = dataString;
+            }];
+        });
+    }];
+    [alertController addAction:action1];
+    [self presentViewController:alertController animated:YES completion:NULL];
+}
+
 -(void)addAlertViewTitle:(NSString*)title Message:(NSString*)message{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"密码修改成功!!!");
+        
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];

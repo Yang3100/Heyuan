@@ -537,8 +537,10 @@
 -(void)addAlertView{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"密码修改成功!!!" message:@"请重新登录!!!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        loginViewController *lvc = [[loginViewController alloc] init];
-        [self presentViewController:lvc animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^(void){            
+            loginViewController *lvc = [[loginViewController alloc] init];
+            [self presentViewController:lvc animated:YES completion:nil];
+        });
     }];
     [alertController addAction:action1];
     [self presentViewController:alertController animated:YES completion:NULL];
