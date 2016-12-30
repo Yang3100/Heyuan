@@ -379,7 +379,7 @@
 //    NSURL *urlString = [NSURL URLWithString:url];
     
 //    [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-    NSString *playCount = 0;
+    NSString *playCount = @"0";
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                              sectionID,@"sectionID",
                              sectionName, @"sectionName",
