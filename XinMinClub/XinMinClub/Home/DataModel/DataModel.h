@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 // 最近播放章节
 @property (nonatomic, strong) NSMutableArray <SectionData *> * recentPlay;
+@property (nonatomic, strong) NSMutableDictionary *recentPlayAndID;
 // 最近播放章节数目
 @property (nonatomic, assign) NSInteger playAmount;
 // 最近播放章节ID及其播放次数
@@ -119,6 +120,8 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (void)getAllLocalBook;
 // 取得最近播放章节
 - (void)getAllRecentPlaySection;
+// 加入最近播放章节
+- (void)addRecentPlay:(NSDictionary *)dic;
 // 取得所有章节
 - (void)getAllLocalSection;
 

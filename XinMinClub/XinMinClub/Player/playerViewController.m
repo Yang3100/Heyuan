@@ -505,9 +505,9 @@
     }
     
 #pragma mark TODO
-    DATA_MODEL.playingSection = DATA_MODEL.playingArray[_touchNum];
-    SectionData *da = DATA_MODEL.playingArray[_touchNum];
-    [SAVE_MODEL saveRecentPlaySection:da withSectionID:da.clickSectionID];
+//    DATA_MODEL.playingSection = DATA_MODEL.playingArray[_touchNum];
+//    SectionData *da = DATA_MODEL.playingArray[_touchNum];
+//    [SAVE_MODEL saveRecentPlaySection:da withSectionID:da.clickSectionID];
     [self setNowPlayingInfo];
 }
 
@@ -554,7 +554,8 @@
         self.songTimeLabel.text = [self convertStringWithTime:_kj_player.songTime];
         self.pro.progress = _kj_player.cacheValue; // 缓存进度条
     } else if ([keyPath isEqualToString:@"currentTime"]) {
-        [[DataModel defaultDataModel].recentPlay addObject:nil];
+//        [[DataModel defaultDataModel].recentPlay addObject:nil];
+        [DATA_MODEL addRecentPlay:_dic];
         [self progressValueChage:YES];
         [self setNowPlayingInfo];
     } else if ([keyPath isEqualToString:@"isPlayComplete"]) {

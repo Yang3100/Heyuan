@@ -61,6 +61,7 @@
     _playingArray = [NSMutableArray arrayWithCapacity:10];
     
     _recentPlay = [NSMutableArray array];
+    _recentPlayAndID = [NSMutableDictionary dictionaryWithCapacity:10];
     _recentPlayIDAndCount = [NSMutableDictionary dictionaryWithCapacity:10];
     _recentPlayIDAndCount = [UserDataModel defaultDataModel].userRecentPlayIDAndCount;
     
@@ -354,6 +355,47 @@
         
     }];
     return YES;
+}
+
+- (void)addRecentPlay:(NSDictionary *)dic {
+    NSString *sectionName = [dic valueForKey:@"GJ_NAME"];
+    NSString *authorName = [dic valueForKey:@"GJ_ZJ"];
+    NSString *type = [dic valueForKey:@"GJ_TYP1"];
+    NSString *details = [dic valueForKey:@"GJ_CONTENT_CN"];
+//    NSString *language = [dic valueForKey:@"WJ_LANGUAGE"];
+    NSString *sectionID = [dic valueForKey:@"GJ_ID"];
+    NSString *mp3 = [dic valueForKey:@"GJ_MP3"];
+    //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
+//    NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
+    
+//    if ([_recentPlay containsObject:libraryID]) {
+//        return;
+//    }
+    
+//    [saveModule saveBookDataWithBookID:libraryID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:bookName,@"bookName",authorName,@"authorName",url,@"imagePath", type, @"libraryType", language, @"libraryLanguage", details, @"libraryDetails", libraryID, @"WJ_ID",nil]] isMyBook:NO];
+    
+//    NSLog(@"%@%@%@",url,authorName,libraryID);
+//    UIImageView *imageView = [[UIImageView alloc] init];
+//    NSURL *urlString = [NSURL URLWithString:url];
+    
+//    [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    NSString *playCount = 0;
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                             sectionID,@"sectionID",
+                             sectionName, @"sectionName",
+                             authorName, @"author",
+                             type, @"bookName",
+                             details, @"libraryDetails",
+                             mp3, @"mp3",
+                              playCount, @"playCount",
+                             nil];
+        SectionData *data = [[SectionData alloc] initWithDic:dict];
+        [_recentPlayAndID setObject:[NSNull null] forKey:data.sectionID];
+        [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%d",_recentPlayAndID.count / 2]];
+        _addAllBook = YES;
+        NSLog(@"____%@+++++",_allBookAndID);
+        
+//    }];
 }
 
 @end
