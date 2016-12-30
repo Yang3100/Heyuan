@@ -72,10 +72,8 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [self abcccc:indexPath.row];
-    NSLog(@"touch小节%ld------%@",(long)indexPath.row,self.jsonData);
-    [playerViewController defaultDataModel].touchNum = indexPath.row;
     [[playerViewController defaultDataModel] getJson:self.jsonData];
+    [playerViewController defaultDataModel].touchNum = indexPath.row;
     [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
     [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
 

@@ -19,7 +19,7 @@
 
 // 选择分享的地方
 typedef NS_ENUM(NSInteger, ShareToWhere) {
-    QQ,
+    QQ=0,
     QZone,
     WeChat,
     FriendsCircle
@@ -51,14 +51,14 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 - (void)initView{
     backBut = [UIButton buttonWithType:UIButtonTypeCustom];
     backBut.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//    backBut.backgroundColor = [UIColor blackColor];
-    [backBut setImage:[UIImage imageNamed:@"sharebackground"] forState:UIControlStateNormal];
+    backBut.backgroundColor = [UIColor blackColor];
+//    [backBut setImage:[UIImage imageNamed:@"sharebackground"] forState:UIControlStateNormal];
     backBut.alpha = 0;
     [backBut addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [[self appRootViewController].view addSubview:backBut];
     // 动画效果
     [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        backBut.alpha = 1;
+        backBut.alpha = 0.3;
     } completion:nil];
     
     whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
@@ -249,8 +249,8 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         WXMusicObject *music = [WXMusicObject object];
         music.musicUrl = self.musicUrl;
         music.musicLowBandUrl = music.musicUrl;  // 网页音乐
-        music.musicDataUrl = self.musicUrl;
-        music.musicLowBandDataUrl = music.musicDataUrl;  // 音乐lowband数据url地址
+//        music.musicDataUrl = self.musicUrl;
+//        music.musicLowBandDataUrl = music.musicDataUrl;  // 音乐lowband数据url地址
         message.mediaObject = music;
         
         SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];

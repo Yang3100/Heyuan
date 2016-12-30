@@ -20,8 +20,9 @@
     NSDictionary *jsonDict;
     int total; // 总歌曲数
     NSMutableArray *timeArry;
-    int lastPlayNum;  // 保存上一次播放的音频
+    NSString *lastPlayName;  // 保存上一次播放的音频的名字
     bool isRound; // 是否循环
+    NSDictionary *kj_dict;
 }
 
 @property (nonatomic, strong) CABasicAnimation *rotationAnimation; /**< 歌手图片旋转动画 */
@@ -71,9 +72,9 @@
         _kj_player = [[player alloc] init];
         _kj_player.isPlayComplete = YES;
         self.isPrepare = NO;
-        self.isSingleComplete = NO;
+//        self.isSingleComplete = NO;
         self.currentLyricNum = 0;
-        lastPlayNum = -1;
+        lastPlayName = @"ykj_luandayixieshuju";
         self.lrcArray = [NSMutableArray array];
         timeArry = [NSMutableArray array];
     }
@@ -82,18 +83,23 @@
 #pragma mark 获取到数据json
 - (void)getJson:(NSDictionary *)json{
     jsonDict = json;
+    NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
     total = num.intValue-1;
 }
 
 - (void)setTouchNum:(int)touchNum{
     _touchNum = touchNum;
-    if (touchNum!=lastPlayNum&&lastPlayNum>=0) {
-        lastPlayNum = touchNum;
+    kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    if ([lastPlayName isEqualToString:[kj_dict valueForKey:@"GJ_NAME"]]) {
+        NSLog(@"继续播放!!!");
+    }else if([lastPlayName isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+        lastPlayName = [kj_dict valueForKey:@"GJ_NAME"];
+        [self play:nil];
+    }else{
         // 播放准备
         [self startPlayBefore];
-    }else if (lastPlayNum<0){ // 代表第一次进入播放器
-        [self play:nil];
+        lastPlayName = [kj_dict valueForKey:@"GJ_NAME"];
     }
 }
 
@@ -145,11 +151,8 @@
 - (lyricView*)lyricTableView{
     if (!_lyricTableView) {
         _lyricTableView = [[lyricView alloc] init];
-//        _lyricTableView.frame = CGRectMake(-30, 150, SCREEN_HEIGHT-(6*X-X/2)-65-50, SCREEN_WIDTH-50);
         _lyricTableView.frame = CGRectMake(30, 120, SCREEN_WIDTH-60, SCREEN_WIDTH-50);
-//        _lyricTableView.backgroundColor = [UIColor grayColor];
         [_lyricTableView initView];
-//        _lyricTableView.transform=CGAffineTransformMakeRotation(M_PI/2);
     }
     return _lyricTableView;
 }
@@ -421,7 +424,7 @@
 
 - (IBAction)share:(UIButton *)sender {
     NSLog(@"点击了分享!!!");
-    if (lastPlayNum<0){
+    if ([lastPlayName isEqualToString:@"ykj_luandayixieshuju"]){ // 第一次进入播放器
         NSLog(@"无数据分享!!!");
         return;
     }
@@ -502,7 +505,7 @@
  *  播放 与 暂停
  */
 - (IBAction)play:(UIButton *)sender {
-    self.isSingleComplete = NO;
+//    self.isSingleComplete = NO;
     if (!self.isPlay) {
         self.isPlay=YES;
         if (_kj_player.isPlayComplete) {
@@ -580,7 +583,7 @@
         NSNumber *number = [change valueForKey:@"new"];
         if (number.intValue==1) {
             [self next:nil];
-            self.isSingleComplete = YES;
+//            self.isSingleComplete = YES;
         }else {
             NSLog(@"正在播放!!!");
         }
@@ -650,37 +653,26 @@ bool isObserve = YES;
 /**
  *  播放之前的准备
  */
-bool fir = YES;
 - (void)startPlayBefore {
-    //    if (fir) {
-    //        fir = !fir;
-    //    } else {
-    //        if (_isPlay) {
-    //            return;
-    //        }
-    //        if (!_isSingleComplete) {
-    //            return;
-    //        }
-    //    }
-    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
-    _dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+//    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
     // 重置显示的数据
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
     self.progress.value = 0;
     self.currentLyricNum = 0; // 歌词位置清零
-    self.authorNameLabel.text = [dict valueForKey:@"GJ_NAME"];
+    self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
     NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     [self.playButton setImage:[UIImage imageNamed:@"001_0000s_0008_组-5-副本"] forState:UIControlStateNormal];
     
     // 解析歌词
-    [self paserLrcFileContents:[dict valueForKey:@"GJ_CONTENT_CN"]];// 传入歌词
+    [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 传入歌词
     
     [_kj_player removeObserver]; // 移除观察者
     _kj_player.isPlayComplete = NO; // 播放状态
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[dict valueForKey:@"GJ_MP3"]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[kj_dict valueForKey:@"GJ_MP3"]];
     [_kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
     [_kj_player addObserver]; // 添加新的观察者
     // 三个KVO观察播放属性
@@ -762,9 +754,7 @@ bool fir = YES;
         _lrcLabel.textColor = [UIColor whiteColor];
         [_lrcImageView addSubview:self.lrcLabel];
     }
-    if (!_lrcArray) {
-        _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
-    }
+    _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
     NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
     [_lrcImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     

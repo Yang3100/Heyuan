@@ -62,7 +62,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"wechatLoadSucessful" object:nil];
-//    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
+    //    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
 }
 
 
@@ -314,7 +314,7 @@
 #pragma mark - 第三方登录
 -(IBAction)QQLoogin:(id)sender{
     NSLog(@"点击了QQ登陆!!!");
-
+    
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
     NSArray *permissions = [NSArray arrayWithObjects:
                             kOPEN_PERMISSION_GET_USER_INFO,
@@ -343,27 +343,28 @@
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     //NSURLRequest初始化方法第一个参数：请求访问路径，第二个参数：缓存协议，第三个参数：网络请求超时时间（秒）
     /* 其中缓存协议是个枚举类型包含：
-    NSURLRequestUseProtocolCachePolicy（基础策略）
-    NSURLRequestReloadIgnoringLocalCacheData（忽略本地缓存）
-    NSURLRequestReturnCacheDataElseLoad（首先使用缓存，如果没有本地缓存，才从原地址下载）
-    NSURLRequestReturnCacheDataDontLoad（使用本地缓存，从不下载，如果本地没有缓存，则请求失败，此策略多用于离线操作）
-    NSURLRequestReloadIgnoringLocalAndRemoteCacheData（无视任何缓存策略，无论是本地的还是远程的，总是从原地址重新下载）
-    NSURLRequestReloadRevalidatingCacheData（如果本地缓存是有效的则不下载，其他任何情况都从原地址重新下载）*/
+     NSURLRequestUseProtocolCachePolicy（基础策略）
+     NSURLRequestReloadIgnoringLocalCacheData（忽略本地缓存）
+     NSURLRequestReturnCacheDataElseLoad（首先使用缓存，如果没有本地缓存，才从原地址下载）
+     NSURLRequestReturnCacheDataDontLoad（使用本地缓存，从不下载，如果本地没有缓存，则请求失败，此策略多用于离线操作）
+     NSURLRequestReloadIgnoringLocalAndRemoteCacheData（无视任何缓存策略，无论是本地的还是远程的，总是从原地址重新下载）
+     NSURLRequestReloadRevalidatingCacheData（如果本地缓存是有效的则不下载，其他任何情况都从原地址重新下载）*/
     //第三步，连接服务器
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:received options:kNilOptions error:nil];
-
+    
     NSString *pass = @"abc1234568";
     NSString *dataString = [dict valueForKey:@"openid"];
-    HomeViewController *hvc = [[HomeViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
-    [self presentViewController:nav animated:YES completion:^{
-        // 保存到本地
-        [[shareObjectModel shareObject] setAccount:dataString Password:pass];
-        [UserDataModel defaultDataModel].userID = dataString;
-    }];
-
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+        [self presentViewController:nav animated:YES completion:^{
+            // 保存到本地
+            [[shareObjectModel shareObject] setAccount:dataString Password:pass];
+            [UserDataModel defaultDataModel].userID = dataString;
+        }];
+    });
 }
 
 #pragma TencentSessionDelegate
@@ -392,21 +393,23 @@
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"WeiXin_Login",@"Params":dict}];
     // 网络请求
     [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
-
+    
     //回调函数获取数据
     [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         NSLog(@"-----%@",json);
         NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Page_Current_Index"];
-        HomeViewController *hvc = [[HomeViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
-        [self presentViewController:nav animated:YES completion:^{
-            // 保存到本地
-            [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
-            [UserDataModel defaultDataModel].userID = dataString;
-            
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            HomeViewController *hvc = [[HomeViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+            [self presentViewController:nav animated:YES completion:^{
+                // 保存到本地
+                [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
+                [UserDataModel defaultDataModel].userID = dataString;
+                
+            }];
+        });
     }];
-
+    
     /** Access Token凭证，用于后续访问各开放接口 */
     if (_tencentOAuth.accessToken) {
         //获取用户信息。 调用这个方法后，qq的sdk会自动调用
@@ -424,7 +427,7 @@
 - (void)getUserInfoResponse:(APIResponse*)response{
     NSLog(@"*********");
     NSLog(@" response %@",response.message);
-//    NSLog(@"*********%@",response.jsonResponse[@"figureurl_qq_2"]);
+    //    NSLog(@"*********%@",response.jsonResponse[@"figureurl_qq_2"]);
 }
 
 -(void)tencentDidNotLogin:(BOOL)cancelled{
