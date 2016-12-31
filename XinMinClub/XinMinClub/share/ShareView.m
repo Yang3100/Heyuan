@@ -166,15 +166,16 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 
 //分享图片
 - (void)kj_shareImageTowhere:(ShareToWhere)where{
-    NSURL *urlString = [NSURL URLWithString:self.imageUrl];
-    NSData *daa = [NSData dataWithContentsOfURL:urlString];
+    NSURL *urlString = [NSURL URLWithString:self.thumbImage];
+    NSData *data = [NSData dataWithContentsOfURL:urlString];
+    NSData *daa = [self compressOriginalImage:[UIImage imageWithData:data] toMaxDataSizeKBytes:31.0];
     // 微信
     if (where==WeChat||where==FriendsCircle) {
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = self.title;  // 标题
         [message setThumbImage:[UIImage imageWithData:daa]];  // 缩略图
         WXImageObject *imageObject = [[WXImageObject alloc] init];
-        imageObject.imageData = daa;
+        imageObject.imageData = data;
         message.mediaObject = imageObject;
         SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
         req.bText = NO;
@@ -203,7 +204,8 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 //分享网页
 - (void)kj_shareWebTowhere:(ShareToWhere)where{
     NSURL *urlString = [NSURL URLWithString:self.thumbImage];
-    NSData *daa = [NSData dataWithContentsOfURL:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:urlString];
+    NSData *daa = [self compressOriginalImage:[UIImage imageWithData:data] toMaxDataSizeKBytes:31.0];
     // 微信
     if (where==WeChat||where==FriendsCircle) {
         WXMediaMessage *message = [WXMediaMessage message];
@@ -239,7 +241,8 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 //分享音乐
 - (void)kj_shareMusicTowhere:(ShareToWhere)where{
     NSURL *urlString = [NSURL URLWithString:self.thumbImage];
-    NSData *daa = [NSData dataWithContentsOfURL:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:urlString];
+    NSData *daa = [self compressOriginalImage:[UIImage imageWithData:data] toMaxDataSizeKBytes:3];
     // 微信
     if (where==WeChat||where==FriendsCircle) {
         WXMediaMessage *message = [WXMediaMessage message];
@@ -249,8 +252,8 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
         WXMusicObject *music = [WXMusicObject object];
         music.musicUrl = self.musicUrl;
         music.musicLowBandUrl = music.musicUrl;  // 网页音乐
-//        music.musicDataUrl = self.musicUrl;
-//        music.musicLowBandDataUrl = music.musicDataUrl;  // 音乐lowband数据url地址
+        music.musicDataUrl = self.musicUrl;
+        music.musicLowBandDataUrl = music.musicDataUrl;  // 音乐lowband数据url地址
         message.mediaObject = music;
         
         SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
@@ -279,7 +282,8 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 //分享视频
 - (void)kj_shareVideoTowhere:(ShareToWhere)where{
     NSURL *urlString = [NSURL URLWithString:self.thumbImage];
-    NSData *daa = [NSData dataWithContentsOfURL:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:urlString];
+    NSData *daa = [self compressOriginalImage:[UIImage imageWithData:data] toMaxDataSizeKBytes:31.0];
     // 微信
     if (where==WeChat||where==FriendsCircle) {
         WXMediaMessage *message = [WXMediaMessage message];
@@ -313,7 +317,47 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
     }
 }
 
+/**
+ *  压缩图片到指定尺寸大小
+ *
+ *  @param image 原始图片
+ *  @param size  目标大小
+ *
+ *  @return 生成图片
+ */
+- (UIImage *)compressOriginalImage:(UIImage *)image toSize:(CGSize)size{
+    UIImage * resultImage = image;
+    UIGraphicsBeginImageContext(size);
+    [resultImage drawInRect:CGRectMake(00, 0, size.width, size.height)];
+    UIGraphicsEndImageContext();
+    return image;
+}
 
-
+/**
+ *  压缩图片到指定文件大小
+ *
+ *  @param image 目标图片
+ *  @param size  目标大小（最大值）
+ *
+ *  @return 返回的图片文件
+ */
+- (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size{
+    NSData * data = UIImageJPEGRepresentation(image, 1.0);
+    CGFloat dataKBytes = data.length/1000.0;
+    CGFloat maxQuality = 0.9f;
+    CGFloat lastData = dataKBytes;
+    while (dataKBytes > size && maxQuality > 0.01f) {
+        maxQuality = maxQuality - 0.01f;
+        data = UIImageJPEGRepresentation(image, maxQuality);
+        dataKBytes = data.length / 1000.0;
+        if (lastData == dataKBytes) {
+            break;
+        }else{
+            lastData = dataKBytes;
+        }
+    }
+    return data;
+}
 
 @end
+
