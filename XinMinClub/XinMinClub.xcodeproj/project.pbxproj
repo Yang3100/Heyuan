@@ -2381,11 +2381,8 @@
 				68BCF3A21E00EF02008AB490 /* 1.png in Resources */,
 				68BCF39D1E00EF02008AB490 /* navigation2@2x.png in Resources */,
 				688271A91E13542800014AAD /* 詩禮.jpg in Resources */,
-<<<<<<< HEAD
-=======
 				1A91BE9A1CB360D500689AE0 /* FirstTableViewCell.xib in Resources */,
 				68342F551E179AB00019CCCE /* fanhui1@2x.png in Resources */,
->>>>>>> yangKJ/master
 				68BCF3AB1E00EF02008AB490 /* 22.jpeg in Resources */,
 				68BCF3951E00EF02008AB490 /* fenxiang@2x.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu-.png in Resources */,
