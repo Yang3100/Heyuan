@@ -137,14 +137,16 @@ static NSString *bookCell = @"bookCell";
     NSLog(@"下載全部");
     ManageCell *cell = (ManageCell *)[self.view viewWithTag:10010];
     if (dataModel_.isDownloading) {
-        [cell.playImage setImage:[UIImage imageNamed:@"mymusic_icon_download_normal"] forState:UIControlStateNormal];
+        [cell.playImage setImage:[UIImage imageNamed:@"playDownload"] forState:UIControlStateNormal];
         [cell.playLabel setTitle:@"下载全部" forState:UIControlStateNormal];
         dataModel_.isDownloading = NO;
+        [downloadModule pauseDownload];
     }
     else {
-        [cell.playImage setImage:[UIImage imageNamed:@"Suspend_personal"] forState:UIControlStateNormal];
+        [cell.playImage setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
         [cell.playLabel setTitle:@"暂停全部" forState:UIControlStateNormal];
         dataModel_.isDownloading = YES;
+        [downloadModule resumeDownload];
     }
 }
 
@@ -210,22 +212,24 @@ static NSString *bookCell = @"bookCell";
         [self.tableView registerNib:nib_ forCellReuseIdentifier:manageCell];
         cell = [tableView dequeueReusableCellWithIdentifier:manageCell forIndexPath:indexPath];
         if (dataModel_.isDownloading) {
-            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"Suspend_personal"] forState:UIControlStateNormal];
+            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
             [((ManageCell *)cell).playLabel setTitle:@"暂停全部" forState:UIControlStateNormal];
         }
         else {
-            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"mymusic_icon_download_normal"] forState:UIControlStateNormal];
+            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"playDownload"] forState:UIControlStateNormal];
             [((ManageCell *)cell).playLabel setTitle:@"下载全部" forState:UIControlStateNormal];
         }
+        ((ManageCell *)cell).playLabel.enabled = YES;
+        ((ManageCell *)cell).playImage.hidden = NO;
         ((ManageCell *)cell).manageDelegate = self;
         cell.tag = 10010;
     } else {
         nib_ = [UINib nibWithNibName:@"BookCell" bundle:nil];
         [self.tableView registerNib:nib_ forCellReuseIdentifier:bookCell];
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).clickTitle;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).sectionName;
         
-        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).clickAuthor;
+        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).author;
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).delegate = self;
         ((BookCell *) cell).accessoryButton.tag = indexPath.row - 1 + 14000;

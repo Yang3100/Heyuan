@@ -35,6 +35,7 @@
 #import "ShareView.h"
 #import "playerViewController.h"
 #import "SectionViewController.h"
+#import "HomeNavController.h"
 
 // 模型转换
 #import "NSObject+YYModel.h"

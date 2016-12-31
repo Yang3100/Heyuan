@@ -195,6 +195,7 @@
             }
             continue;
         }
+        NSLog(@"%@",data.dic);
         [array addObject:data];
     }
 }
@@ -346,9 +347,8 @@
 - (void)addRecentPlay:(NSDictionary *)dic {
     
     NSString *sectionID = [dic valueForKey:@"GJ_ID"];
+    SectionData * a = ((SectionData *)_recentPlayAndID[sectionID]);
     if ([[_recentPlayAndID allKeys] containsObject:sectionID]) {
-        ((SectionData *)_recentPlayAndID[sectionID]).playCount = [NSString stringWithFormat:@"%d",
-        [((SectionData *)_recentPlayAndID[sectionID]).playCount integerValue] + 1];
         return;
     }
     
@@ -357,7 +357,7 @@
     NSString *type = [dic valueForKey:@"GJ_TYP1"];
     NSString *details = [dic valueForKey:@"GJ_CONTENT_CN"];
     NSString *image = [dic valueForKey:@"image"];
-    NSString *mp3 = [dic valueForKey:@"GJ_MP3"];
+    NSString *mp3 = [NSString stringWithFormat:@"%@%@", IP ,[dic valueForKey:@"GJ_MP3"]];
     
     NSString *playCount = @"0";
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -372,9 +372,11 @@
                           image, @"image",
                          nil];
     SectionData *data = [[SectionData alloc] initWithDic:dict];
-    [_recentPlayAndID setObject:[NSNull null] forKey:data.sectionID];
+    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
     _addAllBook = YES;
+    ((SectionData *)_recentPlayAndID[_recentPlayAndID[sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
+                                                                                [((SectionData *)_recentPlayAndID[_recentPlayAndID[sectionID]]).playCount integerValue] + 1];
     NSLog(@"____%@+++++",_allBookAndID);
     
     DATA_MODEL.playingSection = data;

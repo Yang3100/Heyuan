@@ -108,7 +108,7 @@
     if (istrue==1) {
         dispatch_async(dispatch_get_main_queue(), ^{
             HomeViewController *hvc = [[HomeViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+            HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
             [self presentViewController:nav animated:YES completion:^{
                 
             }];

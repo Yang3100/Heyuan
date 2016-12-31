@@ -51,7 +51,7 @@ static NSString *bookCell = @"bookCell";
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     
     leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    leftButton.frame = CGRectMake(0, 0, 60, 30);
+    leftButton.frame = CGRectMake(0, 0, 70, 30);
     [leftButton setTitle:@"全选" forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(selectAll) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem
@@ -257,6 +257,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                     if (![dataModel.downloadingSections containsObject:s]) {
                         if (!s.isDownload) {                            
                             // 数组设置便于监听
+                            NSLog(@"%@",s);
                             [[DownloadModule defaultDataModel].urlArr addObject:s.clickMp3];
                             [[dataModel mutableArrayValueForKey:@"downloadingSections"] addObject:s];
 //                            NSLog(@"%@",[DownloadModule defaultDataModel].urlArr);
@@ -343,12 +344,12 @@ static NSString *toolCellIdentifier = @"toolCell";
     
     BookCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-    
-    cell.sectionsName.text = ((SectionData *)_deleteArr[indexPath.row]).clickTitle;
-    if ([((SectionData *)_deleteArr[indexPath.row]).clickAuthor isEqualToString:@""]) {
+    SectionData *s = (SectionData *)_deleteArr[indexPath.row];
+    cell.sectionsName.text = ((SectionData *)_deleteArr[indexPath.row]).sectionName;
+    if ([((SectionData *)_deleteArr[indexPath.row]).author isEqualToString:@""]) {
         cell.authorName.text = @"無名";
     } else {
-        cell.authorName.text = ((SectionData *)_deleteArr[indexPath.row]).clickAuthor;
+        cell.authorName.text = ((SectionData *)_deleteArr[indexPath.row]).author;
     }
     
     if ([willDeleteArr_ containsObject:((SectionData *)_deleteArr[indexPath.row])]) {

@@ -212,7 +212,7 @@ static NSString *bookCell = @"bookCell";
         ((ManageCell *)cell).manageDelegate = self;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).bookName;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).sectionName;
         
         ((BookCell *) cell).authorName.text = [NSString stringWithFormat:@"%@  播放次數:%d",((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author, [((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).playCount intValue]];
         if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author isEqualToString:@""]) {
