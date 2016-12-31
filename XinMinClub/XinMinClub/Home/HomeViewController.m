@@ -19,7 +19,6 @@
     UIImageView *image22;
     UILabel *label2;
     UILabel *label1;
-    UIImage *im1;
     UIImageView *image1;
     playerViewController *p;
 }
@@ -85,13 +84,13 @@
 // 设置按钮
 - (void)setBarButtonItems {
     // 左侧消息按钮
-    UIImage *rightImage = [[UIImage imageNamed:@"Set_individual"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *rightImage = [[UIImage imageNamed:@"shezhi"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:rightImage scaleToSize:CGSizeMake(25, 25)] style:UIBarButtonItemStylePlain target:self action:@selector(SetAction:)];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:@selector(SetAction:)];
     self.navigationItem.leftBarButtonItem = rightButtonItem;
     
     // 右侧消息按钮
-    UIImage *leftImage = [[UIImage imageNamed:@"player"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *leftImage = [[UIImage imageNamed:@"shangcheng"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:leftImage scaleToSize:CGSizeMake(25, 25)] style:UIBarButtonItemStylePlain target:self action:@selector(PlayAction:)];
     self.navigationItem.rightBarButtonItem = leftButtonItem;
     
@@ -122,10 +121,9 @@
     [button3 addTarget:self action:@selector(button3Action:) forControlEvents:UIControlEventTouchUpInside];
     
     image1 = [[UIImageView alloc]initWithFrame:CGRectMake(-10, 2.5, th-5, th-5)];
-    im1 = [UIImage imageNamed:@"IMG_1960.JPG"];
     image1.layer.masksToBounds = YES;
     image1.layer.cornerRadius =  (th-5)/2.0;
-    image1.image = im1;
+    image1.image = cachePicture;
     label1 = [[UILabel alloc]initWithFrame:CGRectMake(th-8, 0, tw-tw/4-th-2, th/2)];
     label2 = [[UILabel alloc]initWithFrame:CGRectMake(th-4, th/2, tw-tw/4-th-6, th/2)];
     label1.font = [UIFont systemFontOfSize:13];
@@ -133,19 +131,19 @@
     label2.textColor = [UIColor colorWithWhite:0.573 alpha:0.800];
     label1.text = @"未播放";
     label2.text = @"未播放";
-    UIImage *im2 = [UIImage imageNamed:@"Play_personal"];
-    UIImage *im22 = [UIImage imageNamed:@"Play_personal"];
+    UIImage *im2 = [UIImage imageNamed:@"bofang"];
+    UIImage *im22 = [UIImage imageNamed:@"bofang"];
     image2 = [[UIImageView alloc]initWithImage:im2 highlightedImage:im22];
     image2.frame = CGRectMake(-5, 0, th-5, th-5);
     image2.center = CGPointMake(button2.frame.size.width/2, button2.frame.size.height/2);
     
-    UIImage *im2222 = [UIImage imageNamed:@"Suspend_personal"];
-    UIImage *im222 = [UIImage imageNamed:@"Suspend_personal"];
+    UIImage *im2222 = [UIImage imageNamed:@"zanting"];
+    UIImage *im222 = [UIImage imageNamed:@"zanting"];
     image22 = [[UIImageView alloc]initWithImage:im2222 highlightedImage:im222];
     image22.frame = CGRectMake(-5, 0, th-5, th-5);
     image22.center = CGPointMake(button2.frame.size.width/2, button2.frame.size.height/2);
     
-    UIImage *im3 = [UIImage imageNamed:@"Song_single_person"];
+    UIImage *im3 = [UIImage imageNamed:@"bofangliebiao"];
     UIImageView *image3 = [[UIImageView alloc]initWithImage:im3];
     image3.frame = CGRectMake(5, 0, th-5, th-5);
     image3.center = CGPointMake(button3.frame.size.width/2, button3.frame.size.height/2);
@@ -167,8 +165,8 @@
     self.toolbarItems = barButtonItemArray;
 }
 
-
--(UIImage*) OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
+#pragma mark 改变图片尺寸
+-(UIImage*)OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
     UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
     [image drawInRect:CGRectMake(0,0, size.width, size.height)];
     UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
@@ -176,6 +174,7 @@
     return scaledImage;
     
 }
+
 
 #pragma mark SetViewDelegate
 

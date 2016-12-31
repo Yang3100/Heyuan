@@ -116,8 +116,8 @@
 #pragma mark 视图区
 - (void)initView{
     // 右侧消息按钮
-    UIImage *rightImage = [[UIImage imageNamed:@"Join_the_corpus"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
+    UIImage *rightImage = [[UIImage imageNamed:@"jiarushuji"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:rightImage scaleToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     // 左侧按钮
@@ -125,6 +125,15 @@
     leftButtonItem.image = [UIImage imageNamed:@"daididefanhui"];
     //    leftButtonItem.imageInsets = UIEdgeInsetsMake(10, 10, 10, -15);
     self.navigationItem.leftBarButtonItem = leftButtonItem;
+}
+
+#pragma mark 改变图片尺寸
+-(UIImage*)OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
+    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
+    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
 }
 
 - (UIImageView*)bookImageView{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,18 +12,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="manageCell" rowHeight="167" id="KGk-i7-Jjw" customClass="ManageCell">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="167"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="manageCell" rowHeight="140" id="KGk-i7-Jjw" customClass="ManageCell">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="166"/>
+                <rect key="frame" x="0.0" y="0.0" width="280" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-pK-asZ">
-                        <rect key="frame" x="350" y="10" width="30" height="146"/>
+                        <rect key="frame" x="240" y="10" width="30" height="119.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-y4-Ypy">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="146"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="119.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="管理">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,14 +35,14 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dME-WG-Bk2">
-                        <rect key="frame" x="15" y="68" width="30" height="30"/>
+                        <rect key="frame" x="15" y="22.5" width="95" height="95"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLU-LT-eoY">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BLU-LT-eoY" secondAttribute="height" multiplier="1:1" id="haF-9B-xat"/>
                                 </constraints>
-                                <state key="normal" image="Play_personal.png"/>
+                                <state key="normal" backgroundImage="bofang.png"/>
                                 <connections>
                                     <action selector="playAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RBq-VA-nXD"/>
                                 </connections>
@@ -50,17 +50,17 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtR-Ve-9Mt">
-                        <rect key="frame" x="320" y="68" width="30" height="30"/>
+                        <rect key="frame" x="194" y="47" width="46" height="46"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="XtR-Ve-9Mt" secondAttribute="height" multiplier="1:1" id="nMd-zO-BGX"/>
                         </constraints>
-                        <state key="normal" backgroundImage="Song_single_person.png"/>
+                        <state key="normal" backgroundImage="bofangliebiao.png"/>
                         <connections>
                             <action selector="manageAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SdW-PJ-obj"/>
                         </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xA2-Le-bqX">
-                        <rect key="frame" x="50" y="68" width="60" height="30"/>
+                        <rect key="frame" x="115" y="55" width="60" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utl-IL-OlU">
                                 <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
@@ -93,11 +93,11 @@
                 <outlet property="playImage" destination="BLU-LT-eoY" id="0h5-os-HRi"/>
                 <outlet property="playLabel" destination="Utl-IL-OlU" id="QUt-FR-VOM"/>
             </connections>
-            <point key="canvasLocation" x="-64" y="314.5"/>
+            <point key="canvasLocation" x="-275" y="408"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Play_personal.png" width="30" height="30"/>
-        <image name="Song_single_person.png" width="30" height="30"/>
+        <image name="bofang.png" width="95" height="95"/>
+        <image name="bofangliebiao.png" width="46" height="46"/>
     </resources>
 </document>

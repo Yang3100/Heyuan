@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,41 +16,48 @@
             <rect key="frame" x="0.0" y="0.0" width="452" height="137"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="452" height="136"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuL-Ee-XzM">
+                        <rect key="frame" x="0.0" y="0.0" width="452" height="136.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-Dn-c6V">
+                                <rect key="frame" x="139.5" y="135.5" width="332.5" height="1"/>
                                 <color key="backgroundColor" red="0.89314736038394416" green="0.89314736038394416" blue="0.89314736038394416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="oQU-j5-ZId"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5Bl-JQ-s8t">
+                                <rect key="frame" x="139.5" y="20" width="35" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="论语" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1J2-EE-OJi">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_1917.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="XjW-rr-RPO">
+                                <rect key="frame" x="15" y="10" width="116.5" height="116.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XjW-rr-RPO" secondAttribute="height" multiplier="1:1" id="Vb1-cr-lmI"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-b0-Qsd">
-                                <frame key="frameInset" minX="155" minY="104" width="93" height="16"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-b0-Qsd">
+                                <rect key="frame" x="155" y="104" width="92.5" height="16"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11章，10章下载" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiC-is-e81">
+                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.65826115131916652" green="0.65826115131916652" blue="0.65826115131916652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCs-fu-9mz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCs-fu-9mz">
+                                <rect key="frame" x="139.5" y="104" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qCs-fu-9mz" secondAttribute="height" multiplier="1:1" id="7ft-5t-T9U"/>
                                     <constraint firstAttribute="width" constant="16" id="eNa-2v-Y76"/>
@@ -76,10 +86,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="cjz-AC-d0s"/>
-                                <exclude reference="dAJ-RH-LY5"/>
                                 <exclude reference="RqM-Lg-0XG"/>
                                 <exclude reference="dZ9-DX-TcU"/>
+                                <exclude reference="cjz-AC-d0s"/>
+                                <exclude reference="dAJ-RH-LY5"/>
                             </mask>
                         </variation>
                     </view>
@@ -101,7 +111,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Check_personal.png" width="45" height="45"/>
+        <image name="DWDCheck_personal.png" width="30" height="30"/>
         <image name="IMG_1917.JPG" width="1041" height="1629"/>
     </resources>
 </document>

@@ -30,16 +30,16 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func setNavigationBar() {
         // 自定义navigationBar
         let btn1=UIButton()
-        btn1.frame = CGRect(x:screenWidth-40, y:25, width:30, height:30)
-        btn1.setImage(UIImage(named:"a"), for:.normal)
+        btn1.frame = CGRect(x:screenWidth-40, y:27, width:25, height:25)
+        btn1.setImage(UIImage(named:"gerenjianjie"), for:.normal)
         btn1.addTarget(self, action:#selector(buttonAction1(sender:)), for: UIControlEvents.touchUpInside)
 //        let item2 = UIBarButtonItem(customView:btn1)
 //        self.navigationItem.rightBarButtonItem = item2
         self.view.addSubview(btn1)
         
         let btn2=UIButton()
-        btn2.frame = CGRect(x:10, y:25, width:30, height:30)
-        btn2.setImage(UIImage(named:"a"), for:.normal)
+        btn2.frame = CGRect(x:10, y:27, width:20, height:25)
+        btn2.setImage(UIImage(named:"goback"), for:.normal)
         btn2.addTarget(self, action:#selector(buttonAction2(sender:)), for: UIControlEvents.touchUpInside)
         //        let item2 = UIBarButtonItem(customView:btn1)
         //        self.navigationItem.rightBarButtonItem = item2
