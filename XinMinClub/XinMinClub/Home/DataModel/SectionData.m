@@ -13,6 +13,7 @@
 - (id)initWithDic:(NSDictionary *)dic {
     
     SectionData *sectionData = [[SectionData alloc] init];
+    _dic = [NSDictionary dictionary];
     if (!dic) {
         return sectionData;
     }
@@ -21,6 +22,8 @@
     sectionData.bookName = dic[@"bookName"];
     sectionData.playCount = dic[@"playCount"];
     sectionData.sectionID = dic[@"sectionID"];
+    sectionData.dic = dic[@"dic"];
+    sectionData.libraryImageUrl = dic[@"image"];
     return sectionData;
 }
 

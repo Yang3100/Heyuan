@@ -332,7 +332,7 @@ static NSString * defaultIdentifier = @"cell";
 //            [cell.textLabel setTextColor:[UIColor whiteColor]];
             [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
             int num = (dataModel_.myBookAndID.count / 2) > 4 ? 4 : (dataModel_.myBookAndID.count / 2);
-            ((MyBookTableViewCell *)cell).label.text = [NSString stringWithFormat:@"%d", num];
+            ((MyBookTableViewCell *)cell).label.text = [NSString stringWithFormat:@"%d", dataModel_.myBookAndID.count/2];
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:thirdIdentifier forIndexPath:indexPath];
             BookData *book = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row - 1]];

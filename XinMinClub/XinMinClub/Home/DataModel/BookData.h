@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *language;
 @property (nonatomic, strong) NSString *details;
+@property (nonatomic, strong) NSString *isMyBook;
 
 // 以字典初始化
 - (id)initWithDic: (NSDictionary *)dic;
