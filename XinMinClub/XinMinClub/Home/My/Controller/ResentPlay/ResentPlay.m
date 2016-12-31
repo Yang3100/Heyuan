@@ -46,13 +46,30 @@
     self.title = @"最近播放";
     isPlayAll = NO;
     
+    [DATA_MODEL addObserver:self forKeyPath:@"addRecent" options:NSKeyValueObservingOptionNew context:nil];
+    
     [self initViews];
+}
+
+- (void)didReceiveMemoryWarning {
+    [DATA_MODEL removeObserver:self forKeyPath:@"addRecent"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [self smBackTap];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"addRecent"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [DATA_MODEL removeObserver:self forKeyPath:@"addRecent"];
+            DATA_MODEL.addRecent = NO;
+            [DATA_MODEL addObserver:self forKeyPath:@"addRecent" options:NSKeyValueObservingOptionNew context:nil];
+        });
+    }
 }
 
 static NSString *manageCell = @"manageCell";
@@ -195,7 +212,7 @@ static NSString *bookCell = @"bookCell";
         ((ManageCell *)cell).manageDelegate = self;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).bookName;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).sectionName;
         
         ((BookCell *) cell).authorName.text = [NSString stringWithFormat:@"%@  播放次數:%d",((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author, [((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).playCount intValue]];
         if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author isEqualToString:@""]) {

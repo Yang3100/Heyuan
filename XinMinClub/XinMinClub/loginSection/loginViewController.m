@@ -358,7 +358,7 @@
     NSString *dataString = [dict valueForKey:@"openid"];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         HomeViewController *hvc = [[HomeViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
         [self presentViewController:nav animated:YES completion:^{
             // 保存到本地
             [[shareObjectModel shareObject] setAccount:dataString Password:pass];
@@ -400,7 +400,7 @@
         NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Page_Current_Index"];
         dispatch_async(dispatch_get_main_queue(), ^(void){
             HomeViewController *hvc = [[HomeViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+            HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
             [self presentViewController:nav animated:YES completion:^{
                 // 保存到本地
                 [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
@@ -462,7 +462,7 @@
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 HomeViewController *hvc = [[HomeViewController alloc] init];
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+                HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
                 [self presentViewController:nav animated:YES completion:^{
                     // 保存到本地
                     [[shareObjectModel shareObject] setAccount:userField_.text Password:keyField_.text];

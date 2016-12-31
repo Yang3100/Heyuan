@@ -552,11 +552,6 @@
         [sender setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];
     }
 
-    
-#pragma mark TODO
-//    DATA_MODEL.playingSection = DATA_MODEL.playingArray[_touchNum];
-//    SectionData *da = DATA_MODEL.playingArray[_touchNum];
-//    [SAVE_MODEL saveRecentPlaySection:da withSectionID:da.clickSectionID];
     [self setNowPlayingInfo];
 
 }

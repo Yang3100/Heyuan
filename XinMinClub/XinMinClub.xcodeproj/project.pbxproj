@@ -24,6 +24,9 @@
 		1A1B13C61CBB7B2B00BCE619 /* SetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B13C21CBB7B2B00BCE619 /* SetCell.xib */; };
 		1A1B13C91CBB8B6600BCE619 /* AboutApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13C81CBB8B6600BCE619 /* AboutApp.m */; };
 		1A1B13CC1CBB95E200BCE619 /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13CB1CBB95E200BCE619 /* Help.m */; };
+		1A36F7861E1786D400C6744F /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A36F7851E1786D400C6744F /* FirstTableViewCell.xib */; };
+		1A36F78C1E17914700C6744F /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A36F7891E17914600C6744F /* NSObject+YYModel.m */; };
+		1A36F78D1E17914700C6744F /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A36F78B1E17914600C6744F /* YYClassInfo.m */; };
 		1A4033501E0908A80006613F /* +.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331B1E0908A80006613F /* +.png */; };
 		1A4033511E0908A80006613F /* -.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331C1E0908A80006613F /* -.png */; };
 		1A4033521E0908A80006613F /* bangzhu-.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331D1E0908A80006613F /* bangzhu-.png */; };
@@ -109,7 +112,6 @@
 		1A91BE971CB360D500689AE0 /* EssayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE6C1CB360D500689AE0 /* EssayCell.m */; };
 		1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE6D1CB360D500689AE0 /* EssayCell.xib */; };
 		1A91BE991CB360D500689AE0 /* FirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */; };
-		1A91BE9A1CB360D500689AE0 /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */; };
 		1A91BE9B1CB360D500689AE0 /* ManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE721CB360D500689AE0 /* ManageCell.m */; };
 		1A91BE9C1CB360D500689AE0 /* ManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE731CB360D500689AE0 /* ManageCell.xib */; };
 		1A91BE9D1CB360D500689AE0 /* MyBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE751CB360D500689AE0 /* MyBookTableViewCell.m */; };
@@ -414,6 +416,11 @@
 		1A1B13C81CBB8B6600BCE619 /* AboutApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutApp.m; sourceTree = "<group>"; };
 		1A1B13CA1CBB95E200BCE619 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
 		1A1B13CB1CBB95E200BCE619 /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
+		1A36F7851E1786D400C6744F /* FirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
+		1A36F7881E17914600C6744F /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		1A36F7891E17914600C6744F /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		1A36F78A1E17914600C6744F /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		1A36F78B1E17914600C6744F /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		1A40331B1E0908A80006613F /* +.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+.png"; sourceTree = "<group>"; };
 		1A40331C1E0908A80006613F /* -.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "-.png"; sourceTree = "<group>"; };
 		1A40331D1E0908A80006613F /* bangzhu-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bangzhu-.png"; sourceTree = "<group>"; };
@@ -544,7 +551,6 @@
 		1A91BE6D1CB360D500689AE0 /* EssayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EssayCell.xib; sourceTree = "<group>"; };
 		1A91BE6E1CB360D500689AE0 /* FirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableViewCell.h; sourceTree = "<group>"; };
 		1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableViewCell.m; sourceTree = "<group>"; };
-		1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
 		1A91BE711CB360D500689AE0 /* ManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageCell.h; sourceTree = "<group>"; };
 		1A91BE721CB360D500689AE0 /* ManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageCell.m; sourceTree = "<group>"; };
 		1A91BE731CB360D500689AE0 /* ManageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageCell.xib; sourceTree = "<group>"; };
@@ -1044,6 +1050,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1A36F7871E17914600C6744F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A36F7881E17914600C6744F /* NSObject+YYModel.h */,
+				1A36F7891E17914600C6744F /* NSObject+YYModel.m */,
+				1A36F78A1E17914600C6744F /* YYClassInfo.h */,
+				1A36F78B1E17914600C6744F /* YYClassInfo.m */,
+			);
+			name = Model;
+			path = Lib/Model;
+			sourceTree = "<group>";
+		};
 		1A40331A1E0908A80006613F /* tubiao */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,7 +1358,7 @@
 				1A91BE6D1CB360D500689AE0 /* EssayCell.xib */,
 				1A91BE6E1CB360D500689AE0 /* FirstTableViewCell.h */,
 				1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */,
-				1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */,
+				1A36F7851E1786D400C6744F /* FirstTableViewCell.xib */,
 				1A91BE711CB360D500689AE0 /* ManageCell.h */,
 				1A91BE721CB360D500689AE0 /* ManageCell.m */,
 				1A91BE731CB360D500689AE0 /* ManageCell.xib */,
@@ -1762,6 +1780,7 @@
 		6841B0BC1C9BACAD003D1056 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				1A36F7871E17914600C6744F /* Model */,
 				68EB89D01E0E9BFC00611357 /* ChangeCode */,
 				6849BFE81E09407900C9A5D2 /* SDWebImage */,
 				6849BF621E0937C000C9A5D2 /* FBKVOController */,
@@ -2275,6 +2294,7 @@
 				688271B51E13542800014AAD /* 静笃.jpg in Resources */,
 				792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */,
 				682F42A71E1213E7004B3651 /* 255.png in Resources */,
+				1A36F7861E1786D400C6744F /* FirstTableViewCell.xib in Resources */,
 				1A40336A1E0908A80006613F /* quanbu.png in Resources */,
 				688271AA1E13542800014AAD /* 逸經.jpg in Resources */,
 				6865F12D1E10AFB00099D6F3 /* login@3x.jpg in Resources */,
@@ -2361,8 +2381,11 @@
 				68BCF3A21E00EF02008AB490 /* 1.png in Resources */,
 				68BCF39D1E00EF02008AB490 /* navigation2@2x.png in Resources */,
 				688271A91E13542800014AAD /* 詩禮.jpg in Resources */,
+<<<<<<< HEAD
+=======
 				1A91BE9A1CB360D500689AE0 /* FirstTableViewCell.xib in Resources */,
 				68342F551E179AB00019CCCE /* fanhui1@2x.png in Resources */,
+>>>>>>> yangKJ/master
 				68BCF3AB1E00EF02008AB490 /* 22.jpeg in Resources */,
 				68BCF3951E00EF02008AB490 /* fenxiang@2x.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu-.png in Resources */,
@@ -2530,6 +2553,7 @@
 				68E8B7391E0000B1000CB44A /* SwiftyJSON.swift in Sources */,
 				6814F0901C9FE86C000FD40B /* MJRefreshNormalHeader.m in Sources */,
 				6814F0851C9FE86C000FD40B /* MJRefreshBackFooter.m in Sources */,
+				1A36F78C1E17914700C6744F /* NSObject+YYModel.m in Sources */,
 				680682CB1C9D7D3700C2E3C3 /* WMFooldView.m in Sources */,
 				68ABD2D51DC99F0C00794ADF /* smallNineNine.m in Sources */,
 				1A91BE871CB360D500689AE0 /* EssayTableViewController.m in Sources */,
@@ -2625,6 +2649,7 @@
 				792CB8A21CE36355001933E4 /* subcatalogCell.m in Sources */,
 				1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */,
 				1A4EB8F21CCDCF27008A4564 /* BookData.m in Sources */,
+				1A36F78D1E17914700C6744F /* YYClassInfo.m in Sources */,
 				1A0EBF341CF6EB9600E910AD /* RefreshLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -434,7 +434,7 @@
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
             HomeViewController *hvc = [[HomeViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hvc];
+            HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
             [self presentViewController:nav animated:YES completion:^{
                 // 保存到本地
                 [[shareObjectModel shareObject] setAccount:self.iphoneNum Password:_password.text];

@@ -114,14 +114,14 @@
         DataModel *dataModel = [DataModel defaultDataModel];
         dataModel.isDownloading = NO;
         _sectionData.isDownload = YES;
-        if (![dataModel.downloadSectionList containsObject:_sectionData.clickSectionID]) {
-            [dataModel.downloadSectionList addObject:_sectionData.clickSectionID];
+        if (![dataModel.downloadSectionList containsObject:_sectionData.sectionID]) {
+            [dataModel.downloadSectionList addObject:_sectionData.sectionID];
             [dataModel.downloadSection addObject:_sectionData];
         } else {
             
         }
-        if (![dataModel.allSectionID containsObject:_sectionData.clickSectionID]) {
-            [dataModel.allSectionID addObject:_sectionData.clickSectionID];
+        if (![dataModel.allSectionID containsObject:_sectionData.sectionID]) {
+            [dataModel.allSectionID addObject:_sectionData.sectionID];
             [dataModel.allSection insertObject:_sectionData atIndex:0];
         }
         timer.fireDate = [NSDate distantFuture];
@@ -141,7 +141,7 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     
     _sectionData.progress = totalBytesWritten / 1.0 / totalBytesExpectedToWrite;
-//    NSLog(@"%f",_sectionData.progress);
+    NSLog(@"%f",_sectionData.progress);
 }
 
 // 暂停下载

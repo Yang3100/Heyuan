@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 @property (nonatomic, strong) NSMutableArray <SectionData *> * deleteSection;
 
 // 最近播放章节
+@property (nonatomic, assign) BOOL addRecent;
 @property (nonatomic, strong) NSMutableArray <SectionData *> * recentPlay;
 @property (nonatomic, strong) NSMutableDictionary *recentPlayAndID;
 // 最近播放章节数目

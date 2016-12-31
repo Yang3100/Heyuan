@@ -97,15 +97,15 @@
     NSString *filePath1 = [NSString stringWithFormat:@"%@/Library/Caches/recentPlaySection/%@.plist", NSHomeDirectory(), sectionID];
 
     data.isAddRecent = YES;
-//    data.playCount++;
+    data.playCount = [NSString stringWithFormat:@"%d", [data.playCount integerValue] + 1];
     
     if ([self createSectionFile:filePath1]) {
         [[DataModel defaultDataModel].recentPlay addObject:data];
+        DATA_MODEL.addRecent = YES;
     }
-#warning aa 写入文件
-//    NSDictionary *json = [data modelToJSONObject];
+    NSDictionary *json = [data modelToJSONObject];
     //写入文件
-//    [json writeToFile:filePath1 atomically:YES];
+    [json writeToFile:filePath1 atomically:YES];
 }
 
 - (void)saveSectionDataWithSectionID:(NSString *)sectionID sectionData:(SectionData *)data {
