@@ -51,7 +51,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     func secondGetData(json:NSDictionary){  // 第2种
         let dictttt:NSArray =  ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
         kj_dict = dictttt[thouchNum] as! NSDictionary
-        total = (json["RET"] as! [String: Any])["Record_Count"] as! Int
+//        total = (json["RET"] as! [String: Any])["Record_Count"] as! Int
         self.loadDataToView()
     }
     
