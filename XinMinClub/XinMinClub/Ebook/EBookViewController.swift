@@ -34,16 +34,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var setView = UIView()
     var touchView = UIView()
     var backImageView = UIImageView()
-//    
-//        init() {
-//            super.init(nibName: nil, bundle: nil)
-//        }
-//    
-//        required convenience init?(coder aDecoder: NSCoder) {
-//    //        fatalError("init(coder:) has not been implemented")
-//            self.init();
-//        }
+
     var thouchNum:Int = 0   // 接到点击的第几个 自用
+    var total:Int = 0  // 章节总数
     var kj_dict:NSDictionary = [:]  // 接到数据
     var kj_title:String = ""
     func thouchNumber(num:Int){
@@ -56,11 +49,27 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         print(dict);
     }
     func secondGetData(json:NSDictionary){  // 第2种
-        print("qqqqqqqqqqqqq")
-        print(json);
-//        NSString *ss = [[[self.jsonData valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row] valueForKey:@"GJ_MP3"];
-//        kj_dict = ((json.value(forKey: "RET") as! NSDictionary).value(forKey:"Sys_GX_ZJ") as! NSDictionary)[thouchNum] as! NSDictionary
-//        print(kj_dict)
+        let dictttt:NSArray =  ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
+        kj_dict = dictttt[thouchNum] as! NSDictionary
+        total = (json["RET"] as! [String: Any])["Record_Count"] as! Int
+        self.loadDataToView()
+    }
+    
+    // MARK:加载数据
+    func loadDataToView(){
+        
+        // 显示文字
+        self.loadText(title:kj_dict["GJ_NAME"] as! String, text:kj_dict["GJ_CONTENT_CN"] as! String)
+    }
+    
+    func loadText(title:String,text:String){
+        let attributedTextString = NSMutableAttributedString(string:text, attributes: [NSForegroundColorAttributeName: UIColor.black, NSKernAttributeName: (textFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: textFont)])
+        let attributedTitleString = NSMutableAttributedString(string:title + "\n", attributes:[NSKernAttributeName: (titleFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: titleFont)])
+        textView.showsVerticalScrollIndicator = false
+        textView.isEditable = false
+        textView.isSelectable = false
+        attributedTitleString.append(attributedTextString)
+        textView.attributedText = attributedTitleString
     }
     
     override func viewDidLoad() {
@@ -98,7 +107,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         lastPage.backgroundColor = UIColor.white
         lastPage.titleLabel?.lineBreakMode = NSLineBreakMode(rawValue: 0)!
         self.view!.addSubview(lastPage)
-        nextPage = UIButton.init(type: .system)
+        nextPage = UIButton.init(type:.system)
         nextPage.frame = CGRect(x:0,y:0,width:SCREEN_WIDTH / 9,height:SCREEN_HEIGHT/10)
         nextPage.center = CGPoint(x:SCREEN_WIDTH-nextPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
         nextPage.setTitle("  下  \n  一  \n  章  ", for: .normal)
@@ -128,15 +137,6 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         dataView.addSubview(backImageView)
 
         textView.frame = CGRect(x:MARGIN+MARGIN/7, y:MARGIN, width:SCREEN_WIDTH-2*MARGIN, height:SCREEN_HEIGHT-2.5*MARGIN)
-        
-        let s = "放假萨哈票搜嘎是个安徽安徽省\n\n       啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看\n      来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了\n\n       阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给\n      拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦\n      哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快\n\n       拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国\n      看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海\n      赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈\n\n       啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶\n      算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀\n\n       省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗\n      杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给\n      拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来\n\n       哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦\n\n       好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大\n\n       海赶快拉杆噶算了哈根暗杀省 啊给拉黑来噶哈哈过来了阿里缓过来哈拉哈拉黑过啦好啦哈拉哈啦还拉黑过了哈噶不敢打韩国看来是大海赶快拉杆噶算了哈根暗杀"
-        let attributedTextString = NSMutableAttributedString(string: s, attributes: [NSForegroundColorAttributeName: UIColor.black, NSKernAttributeName: (textFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: textFont)])
-        let attributedTitleString = NSMutableAttributedString(string: "这里是标题\n", attributes:[NSKernAttributeName: (titleFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: titleFont)])
-        textView.showsVerticalScrollIndicator = false
-        textView.isEditable = false
-        textView.isSelectable = false
-        attributedTitleString.append(attributedTextString)
-        textView.attributedText = attributedTitleString
         textView.backgroundColor = UIColor.clear
         dataView.addSubview(textView)
         
@@ -155,7 +155,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
 //        let lightImage = UIImage(named: "rijian")!.withRenderingMode(.alwaysOriginal)
         let likeImage = UIImage(named: "shoucang")!.withRenderingMode(.alwaysOriginal)
         let listImage = UIImage(named: "mulu")!.withRenderingMode(.alwaysOriginal)
-        let brightImage = UIImage(named: "jindu")!.withRenderingMode(.alwaysOriginal)
+        let brightImage = UIImage(named:"jindu")!.withRenderingMode(.alwaysOriginal)
         
         
         let view = UIView.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:0.8))
@@ -166,16 +166,16 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0,green:0,blue:0,alpha:1)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0.6,green:0.6,blue:0.6,alpha:1)], for: .selected)
         // MARK:tabBarItem's tag ,from 800 to 804
-        let firb = UITabBarItem.init(title: "第一个", image: listImage, selectedImage: listImage)
+        let firb = UITabBarItem.init(title:"目录", image: listImage, selectedImage: listImage)
         firb.tag = 800;
-        let secb = UITabBarItem.init(title: "第二个", image: likeImage, selectedImage: likeImage)
+        let secb = UITabBarItem.init(title:"喜欢", image: likeImage, selectedImage: likeImage)
         secb.tag = 801;
-        let thib = UITabBarItem.init(title: "第三个", image: brightImage, selectedImage: brightImage)
+        let thib = UITabBarItem.init(title:"亮度", image: brightImage, selectedImage: brightImage)
         thib.tag = 802;
         let img = UIImage(named: "rijian")
-        let forb = UITabBarItem.init(title: "第四个", image: darkImage, selectedImage: img)
+        let forb = UITabBarItem.init(title:"夜间", image: darkImage, selectedImage: img)
         forb.tag = 803;
-        let fifb = UITabBarItem.init(title: "第五个", image: setImage, selectedImage: setImage)
+        let fifb = UITabBarItem.init(title:"设置", image: setImage, selectedImage: setImage)
         fifb.tag = 804;
         selfTabBar.setItems([firb,secb,thib,forb,fifb], animated: false)
         selfTabBar.delegate = self;
