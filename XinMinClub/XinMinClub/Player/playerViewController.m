@@ -20,19 +20,20 @@
     NSDictionary *jsonDict;
     int total; // 总歌曲数
     NSMutableArray *timeArry;
-    NSString *lastPlayName;  // 保存上一次播放的音频的名字
+    NSString *lastPlayGJID;  // 保存上一次播放的音频的章节ID
     bool isRound; // 是否循环
     NSDictionary *kj_dict;
+    bool getDataWay;  // 获取数据的方式  yes代表第1种，no第2种
 }
 
 @property (nonatomic, strong) CABasicAnimation *rotationAnimation; /**< 歌手图片旋转动画 */
 @property (nonatomic, assign) CGFloat songTimes; /**< 歌曲总时间 */
 
 // 界面布局
-@property (nonatomic, strong) UILabel *songTimeLabel; // 显示歌曲时间
-@property (nonatomic, strong) UILabel *currentTime; // 显示当前时间
-@property (nonatomic, strong) UIImageView *autorImageView; /**< 歌手图片 */
-@property(nonatomic, copy) UIImageView *backImageView; /**< 背景图片 */
+@property(nonatomic, strong) UILabel *songTimeLabel; // 显示歌曲时间
+@property(nonatomic, strong) UILabel *currentTime; // 显示当前时间
+@property(nonatomic, strong) UIImageView *autorImageView; /**< 歌手图片 */
+@property(nonatomic, strong) UIImageView *backImageView; /**< 背景图片 */
 @property(nonatomic, strong) UIView *backView; /**< 最下面的半黑色背景 */
 @property(nonatomic, strong) UILabel *authorNameLabel; /**< 作者名字 */
 @property(nonatomic, copy) UIProgressView *pro; /**< 进度条背景 */
@@ -72,17 +73,29 @@
         _kj_player = [[player alloc] init];
         _kj_player.isPlayComplete = YES;
         self.isPrepare = NO;
-//        self.isSingleComplete = NO;
         self.currentLyricNum = 0;
-        lastPlayName = @"ykj_luandayixieshuju";
+        lastPlayGJID = @"ykj_luandayixieshuju";
         self.lrcArray = [NSMutableArray array];
         timeArry = [NSMutableArray array];
+        // 开启防呆模式
+        [self preventSBPattern:NO];
     }
     return self;
 }
+//第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
+- (void)getDict:(NSDictionary*)dict{
+    NSLog(@"第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式%@",dict);
+    getDataWay = NO;
+    total=1;
+    [self.menuTable reloadData];
+    kj_dict = dict;
+    self.touchNum=0;
+}
+
 #pragma mark 获取到数据json
 - (void)getJson:(NSDictionary *)json{
     jsonDict = json;
+    getDataWay = YES;
     NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
     total = num.intValue;
@@ -91,29 +104,32 @@
 
 - (void)setTouchNum:(int)touchNum{
     // 关闭防呆模式
-    [self preventSBPattern:NO];
+    [self preventSBPattern:YES];
     _touchNum = touchNum;
-    kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
-    if ([lastPlayName isEqualToString:[kj_dict valueForKey:@"GJ_NAME"]]) {
+    if (getDataWay) {
+        kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    }
+    if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
         NSLog(@"继续播放!!!");
-    }else if([lastPlayName isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
-        lastPlayName = [kj_dict valueForKey:@"GJ_NAME"];
+    }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+        lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
         [self play:nil];
     }else{
         // 播放准备
         [self startPlayBefore];
-        lastPlayName = [kj_dict valueForKey:@"GJ_NAME"];
+        lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
     }
 }
 
+#pragma mark 防呆模式
 - (void)preventSBPattern:(BOOL)yes{
-    self.likeButton.selected = yes;
-    self.downloadButton.selected = yes;
-    self.shareButton.selected = yes;
-    self.progress.selected = yes;
-    self.upButton.selected = yes;
-    self.playButton.selected = yes;
-    self.nextButton.selected = yes;
+    self.likeButton.enabled = yes;
+    self.downloadButton.enabled = yes;
+    self.shareButton.enabled = yes;
+    self.progress.enabled = yes;
+    self.upButton.enabled = yes;
+    self.playButton.enabled = yes;
+    self.nextButton.enabled = yes;
 }
 
 - (void)viewDidLoad {
@@ -159,9 +175,6 @@
     
     [self.view addSubview:self.menuBack];
     [_menuBack addSubview:self.menuTable];
-    
-    // 开启防呆模式
-    [self preventSBPattern:YES];
 }
 
 - (lyricView*)lyricTableView{
@@ -439,7 +452,7 @@
 
 - (IBAction)share:(UIButton *)sender {
     NSLog(@"点击了分享!!!");
-    if ([lastPlayName isEqualToString:@"ykj_luandayixieshuju"]){ // 第一次进入播放器
+    if ([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 第一次进入播放器
         NSLog(@"无数据分享!!!");
         return;
     }
@@ -587,11 +600,11 @@
         if (!((self.songTimes - _kj_player.songTime) <= 0.0001) || (self.songTimes - _kj_player.songTime) < -0.01) {
             self.songTimes = _kj_player.songTime; // 获取到媒体的总时长
         }
-        //        self.songTimes = _kj_player.songTime;
         self.songTimeLabel.text = [self convertStringWithTime:_kj_player.songTime];
-        self.pro.progress = _kj_player.cacheValue; // 缓存进度条
-    } else if ([keyPath isEqualToString:@"currentTime"]) {
-//        [[DataModel defaultDataModel].recentPlay addObject:nil];
+    }else if ([keyPath isEqualToString:@"cacheValue"]) {
+        NSNumber *number = [change valueForKey:@"new"];
+        self.pro.progress = number.floatValue; // 缓存进度条
+    }else if ([keyPath isEqualToString:@"currentTime"]) {
         if (!_dic[@"image"]) {
             [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
         }
@@ -602,9 +615,6 @@
         NSNumber *number = [change valueForKey:@"new"];
         if (number.intValue==1) {
             [self next:nil];
-//            self.isSingleComplete = YES;
-        }else {
-            NSLog(@"正在播放!!!");
         }
     }
 }
@@ -697,9 +707,10 @@ bool isObserve = YES;
     [_kj_player addObserver]; // 添加新的观察者
     // 三个KVO观察播放属性
     [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
+    [_kj_player addObserver:self forKeyPath:@"cacheValue" options:NSKeyValueObservingOptionNew context:nil];
     [_kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
     [_kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
-   
+    
     [_kj_player play]; // 播放
     self.isPrepare = YES;
     [self imageViewRotate]; // 旋转歌手图片
@@ -742,18 +753,18 @@ bool isObserve = YES;
     ////        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songDict];
     //        return;
     //    }
-    NSMutableArray *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+//    NSMutableArray *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
     //歌名
-    if (![dict valueForKey:@"GJ_NAME"]) {
+    if (![kj_dict valueForKey:@"GJ_NAME"]) {
         return;
     }
     NSString *authorName;
-    if ([[dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
+    if ([[kj_dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
          authorName = @"和源";
     }else{
-        authorName = [dict valueForKey:@"GJ_USER"];
+        authorName = [kj_dict valueForKey:@"GJ_USER"];
     }
-    [songDict setObject:[dict valueForKey:@"GJ_NAME"] forKey:MPMediaItemPropertyTitle];
+    [songDict setObject:[kj_dict valueForKey:@"GJ_NAME"] forKey:MPMediaItemPropertyTitle];
     //作者
     [songDict setObject:authorName forKey:MPMediaItemPropertyArtist];
     //歌曲的总时间

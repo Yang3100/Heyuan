@@ -8,23 +8,11 @@
 
 import UIKit
 
-let STATUS_HEIGHT:CGFloat = 20
-let NAV_HEIGHT:CGFloat = 44
-let TABBAR_HEIGHT:CGFloat = 49
-let SCREEN_WIDTH = (UIScreen.main.bounds.size.width)
-let SCREEN_HEIGHT = (UIScreen.main.bounds.size.height)
-let CONTENT_VIEW_HEIGHT = SCREEN_HEIGHT-STATUS_HEIGHT-NAV_HEIGHT-TABBAR_HEIGHT
-let MARGIN:CGFloat = 20
-let TEXT_BACK_COLOR = (UIColor.white)
-let DARK = (UIColor.black)
-let LIGHT = (UIColor.white)
-let GRAY = (UIColor.gray)
-
 func MY_CGRECT(x:CGFloat,y:CGFloat,width:CGFloat,height:CGFloat)->(CGRect) {
     return CGRect(x:x,y:y,width:width,height:height)
 }
 
-class BookViewController: UIViewController ,UITabBarDelegate {
+class EBookViewController: UIViewController ,UITabBarDelegate {
     
     var brightness = CGFloat()
     var dataView = UIScrollView()
@@ -55,6 +43,14 @@ class BookViewController: UIViewController ,UITabBarDelegate {
 //    //        fatalError("init(coder:) has not been implemented")
 //            self.init();
 //        }
+    
+    //MARK:获取到数据的方法
+    func fristGetData(dict:NSDictionary){  // 第1种
+    
+    }
+    func secondGetData(json:NSDictionary){  // 第2种
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +111,7 @@ class BookViewController: UIViewController ,UITabBarDelegate {
         dataView.backgroundColor = LIGHT
         self.view!.addSubview(dataView)
         
-        let backImage = UIImage(named: "cc")!
+        let backImage = UIImage(named:"yellowBackground")!
         backImageView.image = backImage
         backImageView.frame = CGRect(x:0, y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
         dataView.addSubview(backImageView)
@@ -218,11 +214,9 @@ class BookViewController: UIViewController ,UITabBarDelegate {
         let backImage = UIImage(named: "fanhui")!.withRenderingMode(.alwaysOriginal)
         let shareImage = UIImage(named: "fenxiang")!.withRenderingMode(.alwaysOriginal)
         navBar = UINavigationBar.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT))
-        let lb = UIBarButtonItem.init(title: "左边", style: .plain, target: self, action: #selector(self.clickLeftButton))
-        lb.image = backImage
-        let rb = UIBarButtonItem.init(title: "右边", style: .plain, target: self, action: #selector(self.clickRightButton))
-        rb.image = shareImage
-        let bbi = UINavigationItem(title:"张飞吃粑粑")
+        let lb = UIBarButtonItem.init(image:backImage, style:.plain, target:self, action:#selector(self.clickLeftButton))
+        let rb = UIBarButtonItem.init(image:shareImage, style:.plain, target:self, action:#selector(self.clickRightButton))
+        let bbi = UINavigationItem(title:"书名")
         bbi.leftBarButtonItem = lb
         bbi.rightBarButtonItem = rb
         navBar.pushItem(bbi, animated: true)
@@ -287,10 +281,18 @@ class BookViewController: UIViewController ,UITabBarDelegate {
     
     func clickLeftButton() {
         print("woshis")
+        self.dismiss(animated:true, completion:nil)
     }
     
     func clickRightButton() {
         print("nisagho")
+        let shareBut = ShareView()
+        shareBut.setShareContent = .ShareMusic
+        shareBut.title = "title"
+        shareBut.describe = "这是一段简单的描述"
+        shareBut.thumbImage = networkPictureUrl_swift
+        shareBut.musicUrl = "http://mp3.haoduoge.com/s/2016-05-03/1462273909.mp3"
+        self.view.addSubview(shareBut)
     }
     
     func clickFirb() {
