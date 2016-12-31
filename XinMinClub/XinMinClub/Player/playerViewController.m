@@ -341,7 +341,7 @@
     if (_playButton == nil) {
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _playButton.frame = CGRectMake(7*X, self.roundButton.frame.origin.y-X/2, 2*X, 2*X);
-        UIImage *image = [[UIImage imageNamed:@"play"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"kjplay"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [_playButton setImage:image forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
         self.isPlay=NO;
@@ -530,13 +530,13 @@
         }else{
             [_kj_player play]; // 播放
             [self imageViewRotate]; // 旋转歌手图片
-            [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+            [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
         }
     }else{
         self.isPlay=NO;
         [_kj_player pause]; // 暂停
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
-        [sender setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];
     }
 
     
@@ -685,7 +685,7 @@ bool isObserve = YES;
     NSURL *url = [NSURL URLWithString:DATA_MODEL.bookImageUrl];
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
-    [self.playButton setImage:[UIImage imageNamed:@"001_0000s_0008_组-5-副本"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
     
     // 解析歌词
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 传入歌词

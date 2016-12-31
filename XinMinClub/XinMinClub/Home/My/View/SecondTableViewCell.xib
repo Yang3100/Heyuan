@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,14 +21,14 @@
                 <subviews>
                     <button opaque="NO" tag="1011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heS-Ky-Nx2">
                         <rect key="frame" x="128" y="20" width="37" height="37"/>
-                        <state key="normal" backgroundImage="12345.png"/>
+                        <state key="normal" backgroundImage="xiazaiwenzhang.png"/>
                         <connections>
                             <action selector="buttonAction:" destination="w8c-aR-KCy" eventType="touchUpInside" id="Mn9-W7-kt7"/>
                         </connections>
                     </button>
                     <button opaque="NO" tag="1012" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDw-vk-IYM">
                         <rect key="frame" x="210" y="20" width="37" height="37"/>
-                        <state key="normal" backgroundImage="123.png"/>
+                        <state key="normal" backgroundImage="zuijinbofang.png"/>
                         <connections>
                             <action selector="buttonAction:" destination="w8c-aR-KCy" eventType="touchUpInside" id="Ujw-F5-YJd"/>
                         </connections>
@@ -39,7 +39,7 @@
                             <constraint firstAttribute="width" secondItem="fKW-it-nXZ" secondAttribute="height" multiplier="1:1" id="KdD-fa-l13"/>
                             <constraint firstAttribute="width" constant="37" id="i9q-uK-HUc"/>
                         </constraints>
-                        <state key="normal" backgroundImage="1234.png"/>
+                        <state key="normal" backgroundImage="wenzhang.png"/>
                         <connections>
                             <action selector="buttonAction:" destination="w8c-aR-KCy" eventType="touchUpInside" id="rl8-rd-JLZ"/>
                         </connections>
@@ -151,7 +151,7 @@
                     </stackView>
                     <button opaque="NO" tag="1013" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpf-B1-3Qg">
                         <rect key="frame" x="292.5" y="20" width="37" height="37"/>
-                        <state key="normal" backgroundImage="11123123.png"/>
+                        <state key="normal" backgroundImage="woxihaun.png"/>
                         <connections>
                             <action selector="buttonAction:" destination="w8c-aR-KCy" eventType="touchUpInside" id="rC9-MR-uyM"/>
                         </connections>
@@ -231,9 +231,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="11123123.png" width="100" height="100"/>
-        <image name="123.png" width="100" height="100"/>
-        <image name="1234.png" width="100" height="100"/>
-        <image name="12345.png" width="100" height="100"/>
+        <image name="wenzhang.png" width="57" height="71"/>
+        <image name="woxihaun.png" width="75" height="70"/>
+        <image name="xiazaiwenzhang.png" width="68" height="66"/>
+        <image name="zuijinbofang.png" width="69" height="70"/>
     </resources>
 </document>
