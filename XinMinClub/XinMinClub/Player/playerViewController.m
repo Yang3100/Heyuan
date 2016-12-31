@@ -592,6 +592,9 @@
         self.pro.progress = _kj_player.cacheValue; // 缓存进度条
     } else if ([keyPath isEqualToString:@"currentTime"]) {
 //        [[DataModel defaultDataModel].recentPlay addObject:nil];
+        if (!_dic[@"image"]) {
+            [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
+        }
         [DATA_MODEL addRecentPlay:_dic];
         [self progressValueChage:YES];
         [self setNowPlayingInfo];  // 锁屏播放
@@ -672,13 +675,14 @@ bool isObserve = YES;
 - (void)startPlayBefore {
 //    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
     _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
+    
     // 重置显示的数据
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
     self.progress.value = 0;
     self.currentLyricNum = 0; // 歌词位置清零
     self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
-    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
+    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookImageUrl];
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     [self.playButton setImage:[UIImage imageNamed:@"001_0000s_0008_组-5-副本"] forState:UIControlStateNormal];

@@ -54,9 +54,9 @@
     sectionsNum = dataModel_.allSection.count;
     authorNum = dataModel_.allSection.count;
     bookNum = dataModel_.allSection.count;
-    NSString *section = [NSString stringWithFormat:@"%@",@"章节"];//%@",[NSNumber numberWithInteger:sectionsNum]];
+    NSString *section = [NSString stringWithFormat:@"%@",@"文章"];//%@",[NSNumber numberWithInteger:sectionsNum]];
     NSString *author = nil;//[NSString stringWithFormat:@"作者"];//%@",[NSNumber numberWithInteger:authorNum]];
-    NSString *book = [NSString stringWithFormat:@"%@", @"文章"];//%@",[NSNumber numberWithInteger:bookNum]];
+    NSString *book = [NSString stringWithFormat:@"%@", @"文集"];//%@",[NSNumber numberWithInteger:bookNum]];
     titleArr_ = @[book,section];
     if (author) {
         titleArr_ = @[section,author,book];

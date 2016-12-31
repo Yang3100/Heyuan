@@ -75,7 +75,7 @@
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = data.bookName; // 书集名字
     
-    [DataModel defaultDataModel].bookImageUrl = [NSURL URLWithString:data.imagePath]; // 书集封面Url
+    [DataModel defaultDataModel].bookImageUrl = data.imagePath; // 书集封面Url
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
     [dic setObject:data.imagePath forKey:@"WJ_IMG"];
     [dic setObject:data.bookName forKey:@"WJ_NAME"];
@@ -84,6 +84,7 @@
     [dic setObject:data.details forKey:@"WJ_CONTENT"];
     [dic setObject:data.language forKey:@"WJ_LANGUAGE"];
     [dic setObject:data.bookID forKey:@"WJ_ID"];
+    [dic setObject:data.imagePath forKey:@"WJ_IMG"];
     [svc getJsonData:[[NSMutableDictionary alloc] initWithDictionary:dic]];
     
     return svc;
@@ -237,14 +238,16 @@
 //                    }else
 //                        [self kj_pushIsPlayerOrEBook:2];
 //                }];
-                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:100];
-//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
-                SectionViewController *svc = [[SectionViewController alloc] init];
-                svc.title = data.libraryTitle; // 书集名字
-                [DataModel defaultDataModel].bookImageUrl = [NSURL URLWithString:aUrl]; // 书集封面Url
-                [svc getJsonData:dic];
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
+//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>];
+//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>];
+                playerViewController *svc = [playerViewController defaultDataModel];
+                svc.title = data.bookName; // 书集名字
+                [DataModel defaultDataModel].bookImageUrl = data.libraryImageUrl; // 书集封面Url
+                [svc getDict:data.dic];
+                [controller.navigationController pushViewController:svc animated:YES];
             } else {
-                [self kj_pushIsPlayerOrEBook:1];
+//                [self kj_pushIsPlayerOrEBook:1];
             }
         }
     }

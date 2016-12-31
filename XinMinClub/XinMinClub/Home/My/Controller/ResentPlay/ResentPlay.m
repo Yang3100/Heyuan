@@ -195,10 +195,10 @@ static NSString *bookCell = @"bookCell";
         ((ManageCell *)cell).manageDelegate = self;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).clickTitle;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).bookName;
         
-        ((BookCell *) cell).authorName.text = [NSString stringWithFormat:@"%@  播放次數:%d",((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).clickAuthor, [((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).playCount intValue]];
-        if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).clickAuthor isEqualToString:@""]) {
+        ((BookCell *) cell).authorName.text = [NSString stringWithFormat:@"%@  播放次數:%d",((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author, [((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).playCount intValue]];
+        if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).author isEqualToString:@""]) {
             ((BookCell *) cell).authorName.text = [NSString stringWithFormat:@"無名  播放次數:%d", [((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).playCount intValue]];
         }
         ((BookCell *) cell).statusView.hidden = YES;
