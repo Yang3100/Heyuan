@@ -155,6 +155,10 @@
 		6814F0951C9FE86C000FD40B /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 6814F0811C9FE86C000FD40B /* UIScrollView+MJRefresh.m */; };
 		6814F0961C9FE86C000FD40B /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6814F0831C9FE86C000FD40B /* UIView+MJExtension.m */; };
 		6816515F1E00F0A60034FE46 /* WMLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6816515E1E00F0A60034FE46 /* WMLoopView.m */; };
+		6820D7321E1779BF0068D172 /* Play_personal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820D72E1E1779BF0068D172 /* Play_personal@2x.png */; };
+		6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820D72F1E1779BF0068D172 /* Play_personal@3x.png */; };
+		6820D7341E1779BF0068D172 /* Song_single_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820D7301E1779BF0068D172 /* Song_single_person@2x.png */; };
+		6820D7351E1779BF0068D172 /* Song_single_person@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6820D7311E1779BF0068D172 /* Song_single_person@3x.png */; };
 		682411601CAA7D6100EAB545 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6824115F1CAA7D6100EAB545 /* main.m */; };
 		682563511E02C0B500A5F7CC /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682563501E02C0B500A5F7CC /* BookViewController.m */; };
 		682ECC841DC6F00900A8156F /* NineNine.m in Sources */ = {isa = PBXBuildFile; fileRef = 682ECC831DC6F00900A8156F /* NineNine.m */; };
@@ -614,6 +618,10 @@
 		6814F0831C9FE86C000FD40B /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		6816515D1E00F0A60034FE46 /* WMLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoopView.h; sourceTree = "<group>"; };
 		6816515E1E00F0A60034FE46 /* WMLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoopView.m; sourceTree = "<group>"; };
+		6820D72E1E1779BF0068D172 /* Play_personal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play_personal@2x.png"; sourceTree = "<group>"; };
+		6820D72F1E1779BF0068D172 /* Play_personal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play_personal@3x.png"; sourceTree = "<group>"; };
+		6820D7301E1779BF0068D172 /* Song_single_person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Song_single_person@2x.png"; sourceTree = "<group>"; };
+		6820D7311E1779BF0068D172 /* Song_single_person@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Song_single_person@3x.png"; sourceTree = "<group>"; };
 		6824115F1CAA7D6100EAB545 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6825634F1E02C0B500A5F7CC /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		682563501E02C0B500A5F7CC /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
@@ -1010,6 +1018,10 @@
 		1A40331A1E0908A80006613F /* tubiao */ = {
 			isa = PBXGroup;
 			children = (
+				6820D72E1E1779BF0068D172 /* Play_personal@2x.png */,
+				6820D72F1E1779BF0068D172 /* Play_personal@3x.png */,
+				6820D7301E1779BF0068D172 /* Song_single_person@2x.png */,
+				6820D7311E1779BF0068D172 /* Song_single_person@3x.png */,
 				1A40331B1E0908A80006613F /* +.png */,
 				1A40331C1E0908A80006613F /* -.png */,
 				1A40331D1E0908A80006613F /* bangzhu-.png */,
@@ -2193,6 +2205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68BCF3B61E00EF02008AB490 /* 6.jpg in Resources */,
+				6820D7351E1779BF0068D172 /* Song_single_person@3x.png in Resources */,
 				688271A51E13542800014AAD /* 宿儒.jpg in Resources */,
 				68BCF3B91E00EF02008AB490 /* wang.png in Resources */,
 				1A4033831E0908A80006613F /* zuijinbofang.png in Resources */,
@@ -2226,6 +2239,7 @@
 				68BCF3981E00EF02008AB490 /* mulu@2x.png in Resources */,
 				1A1B13C61CBB7B2B00BCE619 /* SetCell.xib in Resources */,
 				1A4033731E0908A80006613F /* wenzhang.png in Resources */,
+				6820D7321E1779BF0068D172 /* Play_personal@2x.png in Resources */,
 				1A4033511E0908A80006613F /* -.png in Resources */,
 				68BCF3AA1E00EF02008AB490 /* 20.png in Resources */,
 				682F42A61E1213E7004B3651 /* 244.png in Resources */,
@@ -2300,6 +2314,7 @@
 				688271B61E13542800014AAD /* 定慧.jpg in Resources */,
 				1A4033761E0908A80006613F /* xiayiqu.png in Resources */,
 				68BCF3971E00EF02008AB490 /* jindu@2x.png in Resources */,
+				6820D7341E1779BF0068D172 /* Song_single_person@2x.png in Resources */,
 				68BCF39E1E00EF02008AB490 /* rijian@2x.png in Resources */,
 				1A4EBA1D1CCE0917008A4564 /* ForthTableViewCell.xib in Resources */,
 				1A6711211CBB485C0028529C /* cityData.sqlite in Resources */,
@@ -2310,6 +2325,7 @@
 				6843BD001E16E2BE00D63FD7 /* pro.png in Resources */,
 				68E8B7421E0000B1000CB44A /* yin.png in Resources */,
 				1A91BE921CB360D500689AE0 /* UserFirstCell.xib in Resources */,
+				6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */,
 				6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */,
 				68E8B7401E0000B1000CB44A /* quanhei.png in Resources */,
 				1A4033571E0908A80006613F /* daididefanhui.png in Resources */,
