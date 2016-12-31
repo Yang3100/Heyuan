@@ -46,13 +46,30 @@
     self.title = @"最近播放";
     isPlayAll = NO;
     
+    [DATA_MODEL addObserver:self forKeyPath:@"addRecent" options:NSKeyValueObservingOptionNew context:nil];
+    
     [self initViews];
+}
+
+- (void)didReceiveMemoryWarning {
+    [DATA_MODEL removeObserver:self forKeyPath:@"addRecent"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [self smBackTap];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"addRecent"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [DATA_MODEL removeObserver:self forKeyPath:@"addRecent"];
+            DATA_MODEL.addRecent = NO;
+            [DATA_MODEL addObserver:self forKeyPath:@"addRecent" options:NSKeyValueObservingOptionNew context:nil];
+        });
+    }
 }
 
 static NSString *manageCell = @"manageCell";
