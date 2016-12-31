@@ -230,7 +230,7 @@
         listDic = [[[NSMutableDictionary alloc]initWithContentsOfFile:filePath] objectForKey:@"list"];
         
         NSMutableDictionary *bookDic;
-        bookDic = [[[NSMutableDictionary alloc]initWithContentsOfFile:filePath] objectForKey:@"book"];
+        bookDic = [usersDic objectForKey:@"book"];
         
         NSArray *sArr = [s componentsSeparatedByString:@"."];
         
@@ -251,19 +251,21 @@
                              bookDic[@"bookName"],@"bookName",
                              bookDic[@"authorName"],@"authorName",
                              bookDic[@"imagePath"],@"imagePath",
-                             listDic[sArr[0]],@"firstLevelList",
-                             secondLevelList,@"firstLevelListWithSecondLevelList",
-                             sArr[0],@"bookID",
                              bookDic[@"libraryDetails"], @"libraryDetails",
                              bookDic[@"libraryLanguage"], @"libraryLanguage",
                              bookDic[@"libraryType"], @"libraryType",
+                             sArr[0],@"bookID",
+                             bookDic[@"isMyBook"], @"isMyBook",
+                             listDic[sArr[0]],@"firstLevelList",
+                             secondLevelList,@"firstLevelListWithSecondLevelList",
                              nil];
         BookData *bookData = [[BookData alloc] initWithDic:dic];
         [_allBook addObject:bookData];
         [_allBookAndID setObject:bookData forKey:[NSString stringWithFormat:@"%d",_allBookAndID.count / 2]];
         [_allBookAndID setObject:[NSNull null] forKey:sArr[0]];
-        
-        if (bookDic[@"isMyBook"]) {
+        NSLog(@"%@",bookDic);
+        //        NSLog(@"%d",bookDic[@"isMyBook"]);
+        if ([bookDic[@"isMyBook"] doubleValue] != 0.0) {
             [_myBook addObject:bookData];
             [_myBookAndID setObject:bookData forKey:[NSString stringWithFormat:@"%d",_myBookAndID.count / 2]];
             [_myBookAndID setObject:[NSNull null] forKey:sArr[0]];
@@ -335,35 +337,40 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *urlString = [NSURL URLWithString:url];
     
+    UIImage *defaultImage = [UIImage imageNamed:@"19"];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 libraryID,@"bookID",
+                                 bookName, @"bookName",
+                                 url, @"imagePath",
+                                 authorName, @"authorName",
+                                 type, @"libraryType",
+                                 language, @"libraryLanguage",
+                                 details, @"libraryDetails",
+                                 defaultImage, @"bookImage",
+                                 nil];
+    BookData *data = [[BookData alloc] initWithDic:dict];
+    [_allBookAndID setObject:[NSNull null] forKey:data.bookID];
+    [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%d",_allBookAndID.count / 2]];
+    _addAllBook = YES;
+    
     [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                             libraryID,@"bookID",
-                             image, @"bookImage",
-                             bookName, @"bookName",
-                             url, @"imagePath",
-                             authorName, @"authorName",
-                             type, @"libraryType",
-                             language, @"libraryLanguage",
-                             details, @"libraryDetails",
-                             nil];
-        BookData *data = [[BookData alloc] initWithDic:dic];
-        [_allBookAndID setObject:[NSNull null] forKey:data.bookID];
-        [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%d",_allBookAndID.count / 2]];
-        _addAllBook = YES;
-        NSLog(@"____%@+++++",_allBookAndID);
-        
+        [dict setObject:image forKey:@"bookImage"];
     }];
     return YES;
 }
 
 - (void)addRecentPlay:(NSDictionary *)dic {
+    
+    NSString *sectionID = [dic valueForKey:@"GJ_ID"];
+    if ([[_recentPlayAndID allKeys] containsObject:sectionID]) {
+        return;
+    }
+    
     NSString *sectionName = [dic valueForKey:@"GJ_NAME"];
     NSString *authorName = [dic valueForKey:@"GJ_ZJ"];
     NSString *type = [dic valueForKey:@"GJ_TYP1"];
     NSString *details = [dic valueForKey:@"GJ_CONTENT_CN"];
-//    NSString *language = [dic valueForKey:@"WJ_LANGUAGE"];
-    NSString *sectionID = [dic valueForKey:@"GJ_ID"];
+    NSString *image = [dic valueForKey:@"image"];
     NSString *mp3 = [dic valueForKey:@"GJ_MP3"];
     //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
 //    NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
@@ -388,10 +395,13 @@
                              details, @"libraryDetails",
                              mp3, @"mp3",
                               playCount, @"playCount",
+                              dic, @"dic",
+                              image, @"image",
                              nil];
         SectionData *data = [[SectionData alloc] initWithDic:dict];
         [_recentPlayAndID setObject:[NSNull null] forKey:data.sectionID];
         [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%d",_recentPlayAndID.count / 2]];
+        [_recentPlay addObject:data];
         _addAllBook = YES;
         NSLog(@"____%@+++++",_allBookAndID);
         

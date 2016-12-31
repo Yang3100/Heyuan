@@ -28,6 +28,8 @@
 @property (nonatomic, assign) BOOL isDownload;
 // 下载进度
 @property (nonatomic, assign) CGFloat progress;
+// 播放器传入字典
+@property (nonatomic, strong) NSDictionary *dic;
 
 - (id)initWithDic: (NSDictionary *)dic;
 + (id)sectionWithDic: (NSDictionary *)dic;
