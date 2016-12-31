@@ -24,6 +24,7 @@
 		1A1B13C61CBB7B2B00BCE619 /* SetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B13C21CBB7B2B00BCE619 /* SetCell.xib */; };
 		1A1B13C91CBB8B6600BCE619 /* AboutApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13C81CBB8B6600BCE619 /* AboutApp.m */; };
 		1A1B13CC1CBB95E200BCE619 /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B13CB1CBB95E200BCE619 /* Help.m */; };
+		1A36F7841E17863400C6744F /* ForthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A36F7831E17863400C6744F /* ForthTableViewCell.xib */; };
 		1A4033501E0908A80006613F /* +.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331B1E0908A80006613F /* +.png */; };
 		1A4033511E0908A80006613F /* -.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331C1E0908A80006613F /* -.png */; };
 		1A4033521E0908A80006613F /* bangzhu-.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40331D1E0908A80006613F /* bangzhu-.png */; };
@@ -109,7 +110,6 @@
 		1A91BE971CB360D500689AE0 /* EssayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE6C1CB360D500689AE0 /* EssayCell.m */; };
 		1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE6D1CB360D500689AE0 /* EssayCell.xib */; };
 		1A91BE991CB360D500689AE0 /* FirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */; };
-		1A91BE9A1CB360D500689AE0 /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */; };
 		1A91BE9B1CB360D500689AE0 /* ManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE721CB360D500689AE0 /* ManageCell.m */; };
 		1A91BE9C1CB360D500689AE0 /* ManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A91BE731CB360D500689AE0 /* ManageCell.xib */; };
 		1A91BE9D1CB360D500689AE0 /* MyBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A91BE751CB360D500689AE0 /* MyBookTableViewCell.m */; };
@@ -396,6 +396,7 @@
 		1A1B13C81CBB8B6600BCE619 /* AboutApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutApp.m; sourceTree = "<group>"; };
 		1A1B13CA1CBB95E200BCE619 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
 		1A1B13CB1CBB95E200BCE619 /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
+		1A36F7831E17863400C6744F /* ForthTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForthTableViewCell.xib; sourceTree = "<group>"; };
 		1A40331B1E0908A80006613F /* +.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+.png"; sourceTree = "<group>"; };
 		1A40331C1E0908A80006613F /* -.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "-.png"; sourceTree = "<group>"; };
 		1A40331D1E0908A80006613F /* bangzhu-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bangzhu-.png"; sourceTree = "<group>"; };
@@ -526,7 +527,6 @@
 		1A91BE6D1CB360D500689AE0 /* EssayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EssayCell.xib; sourceTree = "<group>"; };
 		1A91BE6E1CB360D500689AE0 /* FirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableViewCell.h; sourceTree = "<group>"; };
 		1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableViewCell.m; sourceTree = "<group>"; };
-		1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
 		1A91BE711CB360D500689AE0 /* ManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageCell.h; sourceTree = "<group>"; };
 		1A91BE721CB360D500689AE0 /* ManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageCell.m; sourceTree = "<group>"; };
 		1A91BE731CB360D500689AE0 /* ManageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageCell.xib; sourceTree = "<group>"; };
@@ -1299,7 +1299,7 @@
 				1A91BE6D1CB360D500689AE0 /* EssayCell.xib */,
 				1A91BE6E1CB360D500689AE0 /* FirstTableViewCell.h */,
 				1A91BE6F1CB360D500689AE0 /* FirstTableViewCell.m */,
-				1A91BE701CB360D500689AE0 /* FirstTableViewCell.xib */,
+				1A36F7831E17863400C6744F /* ForthTableViewCell.xib */,
 				1A91BE711CB360D500689AE0 /* ManageCell.h */,
 				1A91BE721CB360D500689AE0 /* ManageCell.m */,
 				1A91BE731CB360D500689AE0 /* ManageCell.xib */,
@@ -2269,6 +2269,7 @@
 				688271A71E13542800014AAD /* 慎独.jpg in Resources */,
 				68BCF38E1E00EF02008AB490 /* a.png in Resources */,
 				688271B11E13542800014AAD /* 无为.jpg in Resources */,
+				1A36F7841E17863400C6744F /* ForthTableViewCell.xib in Resources */,
 				1A49AB131CAD162F003DA6DB /* DetailsCell1.xib in Resources */,
 				688271AD1E13542800014AAD /* 一炁.jpg in Resources */,
 				68BCF3B51E00EF02008AB490 /* 5.jpg in Resources */,
@@ -2281,7 +2282,6 @@
 				68BCF3A21E00EF02008AB490 /* 1.png in Resources */,
 				68BCF39D1E00EF02008AB490 /* navigation2@2x.png in Resources */,
 				688271A91E13542800014AAD /* 詩禮.jpg in Resources */,
-				1A91BE9A1CB360D500689AE0 /* FirstTableViewCell.xib in Resources */,
 				68BCF3AB1E00EF02008AB490 /* 22.jpeg in Resources */,
 				68BCF3951E00EF02008AB490 /* fenxiang@2x.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu-.png in Resources */,
