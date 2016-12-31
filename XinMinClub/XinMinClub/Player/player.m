@@ -103,7 +103,7 @@
         float durationSeconds = CMTimeGetSeconds(timeRange.duration);
         NSTimeInterval totalBuffer = startSeconds + durationSeconds;//缓冲总长度
         NSLog(@"共缓冲：%.2f, %lf",totalBuffer, CMTimeGetSeconds(songItem.duration));
-        _cacheValue = totalBuffer/CMTimeGetSeconds(songItem.duration);
+        self.cacheValue = totalBuffer/CMTimeGetSeconds(songItem.duration);
     }
 }
 

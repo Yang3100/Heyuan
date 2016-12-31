@@ -91,7 +91,7 @@
         if (self.isloopNetwork) {
             //初始化网络图片
             NSURL *url = [NSURL URLWithString:self.currentImages[i]];
-            [imageView sd_setImageWithURL:url placeholderImage:cachePicture];
+            [imageView sd_setImageWithURL:url placeholderImage:cachePicturechang];
         }else {
             //初始化本地图片
             imageView.image = [UIImage imageNamed:self.currentImages[i]];
@@ -121,7 +121,7 @@
         if (self.isloopNetwork) {
             //初始化网络图片
             NSURL *url = [NSURL URLWithString:self.currentImages[i]];
-            [imageView sd_setImageWithURL:url placeholderImage:cachePicture];
+            [imageView sd_setImageWithURL:url placeholderImage:cachePicturechang];
         }else {
             //初始化本地图片
             imageView.image = [UIImage imageNamed:self.currentImages[i]];

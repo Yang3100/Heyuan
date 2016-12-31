@@ -10,6 +10,8 @@
 #import "MyViewController.h"
 #import "HeyuanViewController.h"
 
+
+
 @interface HomeViewController () <SetViewDelegate, MyDelegate> {
     SetViewController *setVC;
     MyViewController *myViewController;
@@ -272,6 +274,7 @@
 - (void)button3Action:(UIButton *)button {
     NSLog(@"点击了歌曲列表");
 //    [self.navigationController pushViewController:[PalyerViewController shareObject]  animated:YES];
+    
 }
 
 #pragma mark - WMPageController DataSource

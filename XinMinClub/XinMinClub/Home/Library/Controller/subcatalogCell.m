@@ -72,11 +72,20 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[playerViewController defaultDataModel] getJson:self.jsonData];
-    [playerViewController defaultDataModel].touchNum = indexPath.row;
-    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
-    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
-
+    NSString *ss = [[[self.jsonData valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row] valueForKey:@"GJ_MP3"];
+    if (![ss isEqualToString:@""]) {
+        [[playerViewController defaultDataModel] getJson:self.jsonData];
+        [playerViewController defaultDataModel].touchNum = indexPath.row;
+        [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
+        [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
+    }else{
+        EBookViewController *evc = [[EBookViewController alloc] init];
+        [evc thouchNumberWithNum:indexPath.row];
+        [[self viewController] presentViewController:evc animated:YES completion:^{
+            evc.kj_title = [DataModel defaultDataModel].bookName;
+            [evc secondGetDataWithJson:self.jsonData];
+        }];
+    }
 }
 
 
