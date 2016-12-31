@@ -45,6 +45,7 @@
 
 // 占位图
 #define cachePicture ([UIImage imageNamed:@"b"])
+#define cachePicturechang ([UIImage imageNamed:@"taoci.jpg"])   // 广告占位图
 // 网络占位图网站
 #define networkPictureUrl (@"http://pic.qiantucdn.com/00/95/71/01bOOOPICc3.jpg")
 //(@"http://pic.qiantucdn.com/58pic/21/44/18/09h58PICwRf_1024.jpg")

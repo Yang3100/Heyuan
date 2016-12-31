@@ -279,6 +279,7 @@
 		688271BE1E13542800014AAD /* 菩提.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271A31E13542800014AAD /* 菩提.jpg */; };
 		6885497C1E00E9A900FD545D /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497B1E00E9A900FD545D /* libc++abi.tbd */; };
 		6885497E1E00EA8300FD545D /* libobjc.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497D1E00EA8300FD545D /* libobjc.A.tbd */; };
+		688E36361E17A35200388E46 /* taoci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688E36351E17A35200388E46 /* taoci.jpg */; };
 		68987BB11CB5FAD50007303A /* SaveClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 68987BB01CB5FAD50007303A /* SaveClass.m */; };
 		68987BB41CB604130007303A /* SaveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 68987BB31CB604130007303A /* SaveData.m */; };
 		68ABD2D51DC99F0C00794ADF /* smallNineNine.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ABD2D41DC99F0C00794ADF /* smallNineNine.m */; };
@@ -813,6 +814,7 @@
 		688271A31E13542800014AAD /* 菩提.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "菩提.jpg"; sourceTree = "<group>"; };
 		6885497B1E00E9A900FD545D /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		6885497D1E00EA8300FD545D /* libobjc.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libobjc.A.tbd; path = usr/lib/libobjc.A.tbd; sourceTree = SDKROOT; };
+		688E36351E17A35200388E46 /* taoci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = taoci.jpg; sourceTree = "<group>"; };
 		68987BAF1CB5FAD50007303A /* SaveClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveClass.h; path = Home/Save/SaveClass.h; sourceTree = "<group>"; };
 		68987BB01CB5FAD50007303A /* SaveClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaveClass.m; path = Home/Save/SaveClass.m; sourceTree = "<group>"; };
 		68987BB21CB604130007303A /* SaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveData.h; path = Home/Save/SaveData.h; sourceTree = "<group>"; };
@@ -1001,6 +1003,7 @@
 				688271851E13542800014AAD /* 印章原版 */,
 				1A40331A1E0908A80006613F /* tubiao */,
 				682F429D1E120CA8004B3651 /* header.png */,
+				688E36351E17A35200388E46 /* taoci.jpg */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -2267,6 +2270,7 @@
 				1A4033831E0908A80006613F /* zuijinbofang.png in Resources */,
 				6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */,
 				6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */,
+				688E36361E17A35200388E46 /* taoci.jpg in Resources */,
 				68342F5D1E179AB00019CCCE /* shoucang@2x.png in Resources */,
 				688271B51E13542800014AAD /* 静笃.jpg in Resources */,
 				792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */,

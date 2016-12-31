@@ -43,13 +43,24 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
 //    //        fatalError("init(coder:) has not been implemented")
 //            self.init();
 //        }
-    
+    var thouchNum:Int = 0   // 接到点击的第几个 自用
+    var kj_dict:NSDictionary = [:]  // 接到数据
+    var kj_title:String = ""
+    func thouchNumber(num:Int){
+        thouchNum = num;
+        
+    }
     //MARK:获取到数据的方法
     func fristGetData(dict:NSDictionary){  // 第1种
-    
+        print("qqqqqqqqqqqqq")
+        print(dict);
     }
     func secondGetData(json:NSDictionary){  // 第2种
-        
+        print("qqqqqqqqqqqqq")
+        print(json);
+//        NSString *ss = [[[self.jsonData valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row] valueForKey:@"GJ_MP3"];
+//        kj_dict = ((json.value(forKey: "RET") as! NSDictionary).value(forKey:"Sys_GX_ZJ") as! NSDictionary)[thouchNum] as! NSDictionary
+//        print(kj_dict)
     }
     
     override func viewDidLoad() {
@@ -216,10 +227,10 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         navBar = UINavigationBar.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT))
         let lb = UIBarButtonItem.init(image:backImage, style:.plain, target:self, action:#selector(self.clickLeftButton))
         let rb = UIBarButtonItem.init(image:shareImage, style:.plain, target:self, action:#selector(self.clickRightButton))
-        let bbi = UINavigationItem(title:"书名")
+        let bbi = UINavigationItem(title:kj_title)
         bbi.leftBarButtonItem = lb
         bbi.rightBarButtonItem = rb
-        navBar.pushItem(bbi, animated: true)
+        navBar.pushItem(bbi, animated:true)
         
         //        navView.addSubview(navBar)
         self.view!.addSubview(navBar)

@@ -28,7 +28,7 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     func initButton() {
         backBtn = UIButton.init(type: .system)
         backBtn.frame = CGRect(x:SCREEN_WIDTH*9/10,y:SCREEN_HEIGHT-TABBAR_HEIGHT/2 - SCREEN_WIDTH/20,width:SCREEN_WIDTH/10,height:SCREEN_WIDTH/10)
-        let backImage = UIImage(named: "fanhui1")!.withRenderingMode(.alwaysOriginal)
+        let backImage = UIImage(named:"fanhui1")!.withRenderingMode(.alwaysOriginal)
         backBtn.setImage(backImage, for: .normal)
         backBtn.addTarget(self, action: #selector(self.back), for: .touchUpInside)
         self.view!.addSubview(backBtn)

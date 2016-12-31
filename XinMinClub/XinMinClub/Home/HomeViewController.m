@@ -274,11 +274,7 @@
 - (void)button3Action:(UIButton *)button {
     NSLog(@"点击了歌曲列表");
 //    [self.navigationController pushViewController:[PalyerViewController shareObject]  animated:YES];
-    EBookViewController *evc = [[EBookViewController alloc] init];
-//    [self.navigationController pushViewController:evc animated:YES];
-    [self presentViewController:evc animated:YES completion:^{
-        
-    }];
+    
 }
 
 #pragma mark - WMPageController DataSource
