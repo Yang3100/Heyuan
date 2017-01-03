@@ -26,7 +26,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var isTap:Bool = false
     var isDark:Bool = false
     var textView = UITextView()
-    var listView = ListViewController()
+//    var listView = ListViewController()
     var nextPage = UIButton()
     var lastPage = UIButton()
     var lightSlider = UISlider()
@@ -35,34 +35,34 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var touchView = UIView()
     var backImageView = UIImageView()
 
-    var thouchNum:Int = 0   // 接到点击的第几个 自用
-    var total:Int = 0  // 章节总数
-    var kj_dict:NSDictionary = [:]  // 接到数据
+    private var total:Int = 0  // 章节总数
+    private var kj_dict:NSDictionary = [:]  // 接到数据
+    private var dictArray:NSArray = []  // 接到数据
+    
+    //MARK:需要传入的数据
     var kj_title:String = ""
-    func thouchNumber(num:Int){
-        thouchNum = num;
-        
-    }
     //MARK:获取到数据的方法
     func fristGetData(dict:NSDictionary){  // 第1种
         print("qqqqqqqqqqqqq")
         print(dict);
+        let arr = NSArray()
+        arr.adding(dict)
+        self.loadDataToView(array:arr, Num:0)
     }
-    func secondGetData(json:NSDictionary){  // 第2种
-        let dictttt:NSArray =  ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
-        kj_dict = dictttt[thouchNum] as! NSDictionary
-//        total = (json["RET"] as! [String: Any])["Record_Count"] as! Int
-        self.loadDataToView()
+    func secondGetData(json:NSDictionary, thouchNum:Int = 0){  // 第2种
+        dictArray = ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
+        self.loadDataToView(array:dictArray, Num:thouchNum)
     }
     
     // MARK:加载数据
-    func loadDataToView(){
-        
+    func loadDataToView(array:NSArray, Num:Int){
+        kj_dict = array[Num] as! NSDictionary
+        total = array.count
         // 显示文字
         self.loadText(title:kj_dict["GJ_NAME"] as! String, text:kj_dict["GJ_CONTENT_CN"] as! String)
     }
     
-    func loadText(title:String,text:String){
+    private func loadText(title:String,text:String){
         let attributedTextString = NSMutableAttributedString(string:text, attributes: [NSForegroundColorAttributeName: UIColor.black, NSKernAttributeName: (textFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: textFont)])
         let attributedTitleString = NSMutableAttributedString(string:title + "\n", attributes:[NSKernAttributeName: (titleFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: titleFont)])
         textView.showsVerticalScrollIndicator = false
@@ -95,7 +95,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         self.initNavBar()
         self.initPageButton()
         self.initTabBar()
-        self.initListView()
+//        self.initListView()
     }
     
     func initPageButton() {
@@ -117,13 +117,13 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         self.view!.addSubview(nextPage)
     }
     
-    func initListView() {
-        listView = ListViewController.init()
-        listView.view!.frame = CGRect(x:-SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-        listView.view!.backgroundColor = UIColor.red
-        self.addChildViewController(listView)
-        self.view.addSubview(listView.view)
-    }
+//    func initListView() {
+//        listView = ListViewController.init()
+//        listView.view!.frame = CGRect(x:-SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
+//        listView.view!.backgroundColor = UIColor.red
+//        self.addChildViewController(listView)
+//        self.view.addSubview(listView.view)
+//    }
     
     func initDataView() {
         
@@ -314,14 +314,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         if tabBar == selfTabBar {
             if Item.tag == 800 {
 
-                DispatchQueue.main.async(execute: {() -> Void in
-                    
-                    UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-                        self.listView.view!.frame = CGRect(x:-SCREEN_WIDTH/3,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-                        self.view!.frame = CGRect(x:SCREEN_WIDTH/3,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-                        }, completion: { (true) in
-                            
-                    })
+                let list = ListViewController()
+                self.present(list, animated:true, completion:{ (true) in
+                    list.dataArray = self.dictArray
                 })
             }
             else if Item.tag == 801 {

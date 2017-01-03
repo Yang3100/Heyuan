@@ -369,6 +369,9 @@
                 NSDictionary *dic = [dict objectForKey:@"RET"];
                 NSDictionary *retDic = [dic objectForKey:@"Sys_GX_User"];
                 
+                if ([retDic isKindOfClass:[NSNull class]]) {
+                    return;
+                }
                 _userUID = [retDic objectForKey:@"USER_UID"];
                 _userID = [retDic objectForKey:@"USER_UID"];
                 if (![[retDic objectForKey:@"USER_SEX"] isEqualToString:@""]) {

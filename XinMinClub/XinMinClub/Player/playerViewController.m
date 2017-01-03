@@ -77,6 +77,7 @@
         lastPlayGJID = @"ykj_luandayixieshuju";
         self.lrcArray = [NSMutableArray array];
         timeArry = [NSMutableArray array];
+        self.currentSongs = [NSMutableArray array];
         // 开启防呆模式
         [self preventSBPattern:NO];
     }
@@ -90,6 +91,7 @@
     [self.menuTable reloadData];
     kj_dict = dict;
     self.touchNum=0;
+    [_currentSongs addObject:dict];
 }
 
 #pragma mark 获取到数据json
@@ -99,6 +101,8 @@
     NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
     total = num.intValue;
+    NSArray *arr = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"];
+    [_currentSongs addObjectsFromArray:arr];
     [self.menuTable reloadData];
 }
 
