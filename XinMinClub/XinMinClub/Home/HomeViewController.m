@@ -23,6 +23,7 @@
     UILabel *label1;
     UIImageView *image1;
     playerViewController *p;
+    NSArray *songsMenu;  // 歌单
 }
 
 @end
@@ -50,8 +51,8 @@
     }
     p = [playerViewController defaultDataModel];
     [p addObserver:self forKeyPath:@"songTimes" options:NSKeyValueObservingOptionNew context:nil];
-    [p addObserver:self forKeyPath:@"currentLyricNum" options:NSKeyValueObservingOptionNew context:nil];
     [p addObserver:self forKeyPath:@"isPlay" options:NSKeyValueObservingOptionNew context:nil];
+    [p addObserver:self forKeyPath:@"currentSongs" options:NSKeyValueObservingOptionNew context:nil];
     
     return self;
 }
@@ -66,7 +67,7 @@
 - (void)didReceiveMemoryWarning {
     p = [playerViewController defaultDataModel];
     [p removeObserver:self forKeyPath:@"songTimes"];
-    [p removeObserver:self forKeyPath:@"currentLyricNum"];
+    [p removeObserver:self forKeyPath:@"currentSongs"];
     [p removeObserver:self forKeyPath:@"isPlay"];
 }
 
@@ -174,7 +175,6 @@
     UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
-    
 }
 
 
@@ -207,15 +207,15 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
-    ShareView *ocsv = [[ShareView alloc]init];
-    ocsv.setShareContent = ShareMusic;
-    //    ocsv.text = @"abc";
-    ocsv.title = @"image";
-    ocsv.describe = @"这是一段简单的描述";
-    ocsv.thumbImage = networkPictureUrl;
-    ocsv.musicUrl = @"http://mp3.haoduoge.com/s/2016-05-03/1462273909.mp3";
-    ocsv.webUrl = @"http://mp.weixin.qq.com/s?__biz=MzA3MTY2MjYyNA==&mid=2652302861&idx=1&sn=dbe62da8617b8f35e5f8c2b574348dc6&chksm=84c86342b3bfea54a977c1960f9e9117d6a64a5c66cb18846691da5a8e3b50d8c8070862dbc2&mpshare=1&scene=23&srcid=1013r0uIfgCD7RrZ9Fw4kg7w#rd";
-    [self.view addSubview:ocsv];
+//    ShareView *ocsv = [[ShareView alloc]init];
+//    ocsv.setShareContent = ShareMusic;
+//    //    ocsv.text = @"abc";
+//    ocsv.title = @"image";
+//    ocsv.describe = @"这是一段简单的描述";
+//    ocsv.thumbImage = networkPictureUrl;
+//    ocsv.musicUrl = @"http://mp3.haoduoge.com/s/2016-05-03/1462273909.mp3";
+//    ocsv.webUrl = @"http://mp.weixin.qq.com/s?__biz=MzA3MTY2MjYyNA==&mid=2652302861&idx=1&sn=dbe62da8617b8f35e5f8c2b574348dc6&chksm=84c86342b3bfea54a977c1960f9e9117d6a64a5c66cb18846691da5a8e3b50d8c8070862dbc2&mpshare=1&scene=23&srcid=1013r0uIfgCD7RrZ9Fw4kg7w#rd";
+//    [self.view addSubview:ocsv];
     // 弹出新的视图控制器
 //    if ([DataModel defaultDataModel].activityPlayer==0) {
 //        [self.navigationController pushViewController:[PalyerViewController shareObject]  animated:YES];
@@ -238,7 +238,6 @@
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     //监听,发生变化调用
-    
     p = [playerViewController defaultDataModel];
 
     if ([[p.dic valueForKey:@"GJ_USER"] isEqualToString:@""]) {
@@ -268,6 +267,10 @@
             image2.alpha=1;
             image22.alpha=0;
         }
+    }
+    
+    if ([keyPath isEqualToString:@"currentSongs"]) {
+       NSLog(@"歌单:%@", [change valueForKey:@"new"]  );
     }
 }
 
