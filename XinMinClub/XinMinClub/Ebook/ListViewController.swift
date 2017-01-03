@@ -125,7 +125,6 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ebook = EBookViewController()
         self.dismiss(animated:true, completion:{ (true) in
-//            ebook.thouchNum = indexPath.row
             ebook.loadDataToView(array:self.dataArray, Num:indexPath.row)
         })
     }

@@ -20,18 +20,6 @@
 
 @implementation subcatalogCell
 
-//  获取当前view所处的viewController重写读方法
-- (UIViewController *)viewController{
-    for (UIView *next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            // 上面if判断是否为UIViewController的子类
-            return (UIViewController*)nextResponder;
-        }
-    }
-    return nil;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -72,20 +60,19 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *ss = [[[self.jsonData valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row] valueForKey:@"GJ_MP3"];
-    if (![ss isEqualToString:@""]) {
-        [[playerViewController defaultDataModel] getJson:self.jsonData];
-        [playerViewController defaultDataModel].touchNum = indexPath.row;
-        [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
-        [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
-    }else{
-        EBookViewController *evc = [[EBookViewController alloc] init];
-//        evc.thouchNum = indexPath.row;
-        [[self viewController] presentViewController:evc animated:YES completion:^{
-            evc.kj_title = [DataModel defaultDataModel].bookName;
-            [evc secondGetDataWithJson:self.jsonData thouchNum:indexPath.row];
-        }];
+    [[DataModel defaultDataModel] pushWhereWithJson:self.jsonData ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2];
+}
+
+//  获取当前view所处的viewController重写读方法
+- (UIViewController *)viewController{
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            // 上面if判断是否为UIViewController的子类
+            return (UIViewController*)nextResponder;
+        }
     }
+    return nil;
 }
 
 

@@ -90,7 +90,7 @@
     total=1;
     [self.menuTable reloadData];
     kj_dict = dict;
-    self.touchNum=0;
+//    self.touchNum=0;
     [_currentSongs addObject:dict];
 }
 
@@ -285,10 +285,9 @@
 - (UISlider *)progress{
     if (_progress == nil) {
         _progress = [[UISlider alloc]initWithFrame:CGRectMake(70, SCREEN_HEIGHT-4*X+X/2, SCREEN_WIDTH-140, 20)];
-        UIImage *thumbImage = [UIImage imageNamed:@"Player_progress_bar"];
-        UIImage *thumbImage1 = [UIImage imageNamed:@"pro"];
-        [_progress setMaximumTrackImage:thumbImage1 forState:UIControlStateNormal];
+        UIImage *thumbImage = [UIImage imageNamed:@"Player_progress_bar"];  // 圆形小球
         [_progress setThumbImage:thumbImage forState:UIControlStateNormal];
+        _progress.maximumTrackTintColor = [UIColor clearColor];
         _progress.value=0;
         _progress.minimumValue=0;
         // 监听进度条的手动改变
@@ -306,7 +305,8 @@
         CGFloat h = 20;
         _pro = [[UIProgressView alloc]initWithFrame:CGRectMake(x, y, w, h)];
         _pro.progress=0;
-        _pro.progressTintColor=[UIColor colorWithRed:0.000 green:0.003 blue:0.621 alpha:1.000];
+        _pro.trackTintColor = [UIColor colorWithRed:255.0/255.0 green:240.0/255.0 blue:211.0/255.0 alpha:0.900];
+        _pro.progressTintColor=[UIColor colorWithRed:251.0/255.0 green:218.0/255.0 blue:157.0/255.0 alpha:1.000];
     }
     return _pro;
 }
