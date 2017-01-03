@@ -21,14 +21,6 @@
 @property (nonatomic, strong) NSMutableArray *lrcArray;
 @property(nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
 
-////第一种数据传输方式
-//// 书集数据
-//- (void)getDataBookName:(NSString*)bookName BookID:(NSString*)bookID BookImageUrl:(NSString*)imageUrl AutorImaeUrl:(NSString*)autorImageUrl;
-//// 章节数据
-//- (void)getDataSectionNameArray:(NSArray*)nameArr SectionID:(NSArray*)IDArr;
-//// 传递的数据(小节数据)
-//- (void)getDataMp3NameArray:(NSArray*)nameArr Mp3UrlArray:(NSArray*)mp3Arr LyricArray:(NSArray*)lyricArr AutorNameArray:(NSArray*)autoNameArr Mp3IDArray:(NSArray*)IDArr;
-
 + (instancetype)defaultDataModel;
 
 //第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式

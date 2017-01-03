@@ -94,7 +94,7 @@
     
     // 右侧消息按钮
     UIImage *leftImage = [[UIImage imageNamed:@"shangcheng"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:leftImage scaleToSize:CGSizeMake(25, 25)] style:UIBarButtonItemStylePlain target:self action:@selector(PlayAction:)];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(PlayAction:)];
     self.navigationItem.rightBarButtonItem = leftButtonItem;
     
     // 设置最下面的toolBar
@@ -167,16 +167,6 @@
     NSArray *barButtonItemArray = [[NSArray alloc]initWithObjects:barButtonItem, nil];
     self.toolbarItems = barButtonItemArray;
 }
-
-#pragma mark 改变图片尺寸
--(UIImage*)OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
-    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
-    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
-}
-
 
 #pragma mark SetViewDelegate
 

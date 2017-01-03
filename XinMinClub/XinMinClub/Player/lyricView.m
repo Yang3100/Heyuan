@@ -8,9 +8,7 @@
 
 #import "lyricView.h"
 
-@interface lyricView ()<UITableViewDelegate,UITableViewDataSource>{
-    NSArray *lrcArry;
-}
+@interface lyricView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, copy) UITableView *lyricTableView; /**< 歌词 */
 
@@ -22,20 +20,16 @@
     [self addSubview:self.lyricTableView];
 }
 
-- (void)getLyric:(NSArray*)lyricArr{
-    lrcArry = lyricArr;
-    [self.lyricTableView reloadData];
-//    self.lyricTableView.scrollEnabled = NO;
-    self.lyricTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (void)setLyricArray:(NSArray *)lyricArray{
+    _lyricArray = lyricArray;
+    self.lyricLocation = 0;
 }
 
 -(void)setLyricLocation:(NSInteger)lyricLocation{
+    _lyricLocation = lyricLocation;
     // 使被选中的行移到中间
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lyricLocation inSection:0];
-    if (lrcArry.count) {
-        [self.lyricTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    }
-    _lyricLocation = lyricLocation;
+    [self.lyricTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self.lyricTableView reloadData];
 }
 
@@ -45,6 +39,7 @@
         _lyricTableView.delegate = self;
         _lyricTableView.dataSource = self;
         _lyricTableView.backgroundColor = [UIColor clearColor];
+        _lyricTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _lyricTableView;
 }
@@ -53,10 +48,13 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return lrcArry.count;
+    return _lyricArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger lyricLength = (((foo1q([lrcArry[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44)+20;
+    NSLog(@"******************************************");
+    NSLog(@"%luxxxx%d", (unsigned long)[_lyricArray[indexPath.row] length],foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding]));
+    NSLog(@"******************************************");
+    NSInteger lyricLength = (((foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44);
     return lyricLength;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -73,9 +71,13 @@
     cell.textLabel.numberOfLines = 0;
    
     if (indexPath.row == self.lyricLocation) {
-        cell.textLabel.textColor = [UIColor redColor];
+        cell.textLabel.textColor = RGB255_COLOR(116, 79, 0, 1);
+    }else{
+        cell.textLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
-    cell.textLabel.text = lrcArry[indexPath.row];
+//    if (indexPath.row<_lyricArray.count) {
+        cell.textLabel.text = _lyricArray[indexPath.row];
+//    }
     return cell;
 }
 // 判断字符串长度

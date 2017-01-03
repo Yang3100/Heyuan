@@ -21,7 +21,7 @@ class WebViewController: UINavigationController {
 
     func setNavigationBar() {
         let btn2=UIButton()
-        btn2.frame = CGRect(x:10, y:27, width:20, height:25)
+        btn2.frame = CGRect(x:10, y:27, width:30, height:30)
         btn2.setImage(UIImage(named:"goback"), for:.normal)
         btn2.addTarget(self, action:#selector(buttonAction2(sender:)), for: UIControlEvents.touchUpInside)
         //        let item2 = UIBarButtonItem(customView:btn1)
