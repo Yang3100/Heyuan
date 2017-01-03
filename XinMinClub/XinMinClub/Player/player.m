@@ -35,6 +35,29 @@
     self.player = [AVPlayer playerWithPlayerItem:_songItem];
 }
 
+- (void)setNewPlayerWithLocalUrl:(NSString *)url {
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
+//    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+//    [session setActive:YES error:nil];
+    NSURL *audioUrl = [NSURL fileURLWithPath:url];
+    
+    self.songItem = [AVPlayerItem playerItemWithURL:audioUrl];
+    _player = [[AVPlayer alloc] initWithURL:audioUrl];
+    if (_player == NULL)
+    {
+        NSLog(@"fail to play audio :( ");
+        return;
+    }
+    [_player setVolume:1];
+    
+    if (!((self.songTime - CMTimeGetSeconds(self.songItem.asset.duration)) <= 0.0001) || (self.songTime - CMTimeGetSeconds(self.songItem.asset.duration)) < -0.01) {
+       
+        
+        NSLog(@"%f",self.songItem.asset.duration);
+        self.songTime = CMTimeGetSeconds(self.songItem.asset.duration); // 获取到媒体的总时长
+    }
+}
+
 /**
  *  添加观察者
  */

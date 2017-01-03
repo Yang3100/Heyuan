@@ -55,7 +55,8 @@ static NSString *EssayIdentifier = @"essay";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    BookData *data = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row * 2]];
+    BookData *data = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+//    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
     [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
 }
 

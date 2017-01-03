@@ -81,6 +81,7 @@
     NSString *date = [dateFormater stringFromDate:[NSDate date]];
     _userBornDate = date;
     
+    [self loadLocalData];
 }
 
 - (void)keepSession {
@@ -288,8 +289,8 @@
     NSInteger count = self.userLikeSectionID.count;
     NSMutableArray *arr = [NSMutableArray array];
     for (SectionData *sd in [DataModel defaultDataModel].userLikeSection) {
-        if ([self.userLikeSectionID containsObject:sd.clickSectionID]) {
-            [arr addObject:sd.clickSectionID];
+        if ([self.userLikeSectionID containsObject:sd.sectionID]) {
+            [arr addObject:sd.sectionID];
         }
     }
     if (count != self.userLikeSectionID.count) {
@@ -307,6 +308,7 @@
 - (void)setData {
     _playTime = [NSString stringWithFormat:@"%d",[DataModel defaultDataModel].playTime];
     _userLikeBook = [DataModel defaultDataModel].userLikeBook;
+    _userLikeSectionID = DATA_MODEL.userLikeSectionID;
 }
 
 // 保存为本地数据

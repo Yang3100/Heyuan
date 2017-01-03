@@ -111,10 +111,10 @@
 - (void)saveSectionDataWithSectionID:(NSString *)sectionID sectionData:(SectionData *)data {
     filePath = [NSString stringWithFormat:@"%@/Library/Caches/sectionFile/%@.plist", NSHomeDirectory(), sectionID];
     if ([self createSectionFile:filePath]) {
-//        NSDictionary *json = [data modelToJSONObject];
-        //写入文件
-//        [json writeToFile:filePath atomically:YES];
     }
+    NSDictionary *json = [data modelToJSONObject];
+    //        写入文件
+    [json writeToFile:filePath atomically:YES];
 }
 
 - (void)saveBookDataWithBookID:(NSString *)bookID bookData:(BookData *)book isMyBook:(BOOL)value{

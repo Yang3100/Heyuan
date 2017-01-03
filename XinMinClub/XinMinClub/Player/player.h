@@ -25,6 +25,8 @@
  */
 - (void)setNewPlayerWithUrl:(NSString*)url;
 
+- (void)setNewPlayerWithLocalUrl:(NSString *)url;
+
 /**
  *  播放音乐
  */

@@ -184,7 +184,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                     if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.allSection]]]) {
                         if (data.isLike) {
                             data.isLike = NO;
-                            [dataModel.userLikeSectionID removeObject:data.clickSectionID];
+                            [dataModel.userLikeSectionID removeObject:data.sectionID];
                             [dataModel.userLikeSection removeObject:data];
                         }
                         if (data.isAddRecent) {
@@ -196,7 +196,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                         }
                         if (data.isDownload) {
                             data.isDownload = NO;
-                            [dataModel.downloadSectionList removeObject:data.clickSectionID];
+                            [dataModel.downloadSectionList removeObject:data.sectionID];
                             [dataModel.downloadSection removeObject:data];
                         }
 
@@ -204,7 +204,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                     if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.userLikeSection]]]) {
                         if (data.isLike) {
                             data.isLike = NO;
-                            [dataModel.userLikeSectionID removeObject:data.clickSectionID];
+                            [dataModel.userLikeSectionID removeObject:data.sectionID];
                             [dataModel.userLikeSection removeObject:data];
                         }
                     }
@@ -217,15 +217,15 @@ static NSString *toolCellIdentifier = @"toolCell";
                     if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.downloadSection]]]) {
                         if (data.isDownload) {
                             data.isDownload = NO;
-                            [dataModel.downloadSectionList removeObject:data.clickSectionID];
+                            [dataModel.downloadSectionList removeObject:data.sectionID];
                             [dataModel.downloadSection removeObject:data];
                         }
                     }
                     if ([dataModel.downloadingSections containsObject:data]) {
                         [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
                     }
-                    [[SaveModule defaultObject] deleteFile:data.clickSectionID inDirectory:_deleteDirectoryName];
-                    [[SaveModule defaultObject] deleteFile:data.clickSectionID inDirectory:@"mp3"];
+                    [[SaveModule defaultObject] deleteFile:data.sectionID inDirectory:_deleteDirectoryName];
+                    [[SaveModule defaultObject] deleteFile:data.sectionID inDirectory:@"mp3"];
                     [_deleteArr removeObject:data];
                 }
                 [[UserDataModel defaultDataModel] saveLocalData];

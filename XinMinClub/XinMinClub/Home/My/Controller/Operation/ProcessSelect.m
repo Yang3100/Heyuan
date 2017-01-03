@@ -99,7 +99,7 @@
     SectionData *da = arr[num];
 //    _libraryName = da.libraryTitle;
     
-    [[SaveModule defaultObject] saveRecentPlaySection:da withSectionID:da.clickSectionID];
+    [[SaveModule defaultObject] saveRecentPlaySection:da withSectionID:da.sectionID];
     [DataModel defaultDataModel].playingSection = da;
     
     // 保存点击的是哪个cell
@@ -151,7 +151,7 @@
     for (NSInteger k = 0; k < data.count; k++) {
         SectionData *da = data[k];
         [detailsListArray addObject:da.clickTitle];
-        [detailsListIDArray addObject:da.clickSectionID];
+        [detailsListIDArray addObject:da.sectionID];
         [detailsMp3Array addObject:da.clickMp3];
         [detailsCNArray addObject:da.clickSectionCNText];
         [detailsANArray addObject:da.clickSectionANText];
@@ -231,10 +231,9 @@
                 }else {
                     aUrl = @"";
                 }
-                
                 [DataModel defaultDataModel].bookName = data.bookName;
                 [DataModel defaultDataModel].bookImageUrl = data.libraryImageUrl; // 书集封面Url
-                [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1];
+                [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1 Data:data];
             } else {
 //                [self kj_pushIsPlayerOrEBook:1];
             }

@@ -43,8 +43,14 @@
  *  第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
  *  第2种数据传输方式 -  从文集点入的方式
  */
-- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer{
+- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data{
     NSString *ss = [[[json valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][num] valueForKey:@"GJ_MP3"];
+    if (data) {        
+        if (![data.clickMp3 isEqualToString:@""]) {
+            ss = data.clickMp3;
+            [playerViewController defaultDataModel].mp3Url = ss;
+        }
+    }
     if (![ss isEqualToString:@""]) {
         if (transfer==1) {
             [[playerViewController defaultDataModel] getDict:json];
@@ -119,7 +125,7 @@
     //        _playTime = [[UserDataModel defaultDataModel].playTime intValue];
     //    }
     
-    [UserDataModel defaultDataModel].userLikeSection = _userLikeSection;
+//    [UserDataModel defaultDataModel].userLikeSection = _userLikeSection;
     
     [self getAllLocalBook];
     [self getLocalMP3List];
@@ -182,9 +188,26 @@
     }
 }
 
+- (BOOL)judgeLocalPath:(NSString *)path withUrl:(NSString *)url {
+    
+    // 判断是否为本地
+    NSString *head = [[path componentsSeparatedByString:@"/"] firstObject];
+    if ([head isEqualToString:@"http:"]) {
+        return NO;
+    }
+    
+    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    
+    if ([localLastPath isEqualToString:lastPath]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)getAllLocalSection {
     
-    [self getSection:@"sectionFile" into:_allSection];
+//    [self getSection:@"sectionFile" into:_allSection];
 }
 
 - (void)getAllRecentPlaySection {
@@ -212,20 +235,20 @@
         }
         
         // 判断章节是否喜欢
-        if ([[UserDataModel defaultDataModel].userLikeSectionID containsObject:sArr[0]]) {
-            if (![_userLikeSectionID containsObject:data.clickSectionID]) {
-                [_userLikeSectionID addObject:data.clickSectionID];
+        if (data.isLike) {
+            if (![DATA_MODEL.userLikeSectionID containsObject:sArr[0]]) {
+                [_userLikeSectionID addObject:data.sectionID];
                 [_userLikeSection addObject:data];
             }
         }
         
         // 判断是否本地章节
-        if ([directory isEqualToString:@"sectionFile"]) {
-            if ([_downloadSectionList containsObject:sArr[0]]) {
-                data.isDownload = YES;
-                [_downloadSection addObject:data];
-            }
+        if ([_downloadSectionList containsObject:sArr[0]]) {
+            data.isDownload = YES;
+            data.clickMp3 = [NSString stringWithFormat:@"%@/Library/Caches/mp3/%@.mp3", NSHomeDirectory(), sArr[0]];
+            [_downloadSection addObject:data];
         }
+        
         NSLog(@"%@   /n%@", [NSString stringWithFormat:@"%p",array] ,[NSString stringWithFormat:@"%p;",_allSection]);
         if ([[NSString stringWithFormat:@"%p",array] isEqualToString:[NSString stringWithFormat:@"%p",_allSection]]) {
             if (![_allSectionID containsObject:data.sectionID]) {

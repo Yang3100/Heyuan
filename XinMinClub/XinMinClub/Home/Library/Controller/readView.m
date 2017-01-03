@@ -134,7 +134,7 @@
     NSLog(@"%@",jsonArrayDict[indexPath.section]);
     NSLog(@"************************************************");
     NSLog(@"%ld--%ld",(long)indexPath.section,(long)indexPath.row);
-    [[DataModel defaultDataModel] pushWhereWithJson:jsonArrayDict[indexPath.section] ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2];
+    [[DataModel defaultDataModel] pushWhereWithJson:jsonArrayDict[indexPath.section] ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2 Data:nil];
 //    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
 //    [playerViewController defaultDataModel].touchNum = indexPath.row;
 //    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;

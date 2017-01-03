@@ -221,7 +221,7 @@ static NSString *bookCell = @"bookCell";
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).delegate = self;
         ((BookCell *) cell).accessoryButton.tag = indexPath.row - 1 + 15000;
-        if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).clickSectionID isEqual:dataModel_.playingSection.clickSectionID]) {
+        if ([((SectionData *)dataModel_.recentPlay[indexPath.row - 1]).sectionID isEqual:dataModel_.playingSection.sectionID]) {
             ((BookCell *) cell).statusView.hidden = NO;
         }
     }

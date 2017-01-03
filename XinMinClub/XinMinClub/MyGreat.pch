@@ -66,7 +66,7 @@
 #define IPZUrl @"http://192.168.3.153/App/App.ashx"
 
 #define DATA_MODEL [DataModel defaultDataModel]
-//#define USER_DATA_MODEL 
+#define USER_DATA_MODEL [UserDataModel defaultDataModel] 
 #define SAVE_MODEL [SaveModule defaultObject]
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

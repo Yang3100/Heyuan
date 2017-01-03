@@ -637,8 +637,8 @@ bool isObserve = YES;
 - (void)progressValueChage:(BOOL)notDrag{
     if (notDrag) {
         self.currentTime.text = [self convertStringWithTime:_kj_player.currentTime];
+        self.songTimeLabel.text = [self convertStringWithTime:_kj_player.songTime];
         self.progress.value = (1.0/_kj_player.songTime) * _kj_player.currentTime;
-        
         NSString *s = [self convertStringWithTime:_kj_player.currentTime];
         if ([timeArry containsObject:s]) {
             self.currentLyricNum = (int)[timeArry indexOfObject:s];
@@ -710,6 +710,12 @@ bool isObserve = YES;
     _kj_player.isPlayComplete = NO; // 播放状态
     NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[kj_dict valueForKey:@"GJ_MP3"]];
     [_kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
+    if (![_mp3Url isEqualToString:@""]) {
+        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {            
+            urlString = _mp3Url;
+            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
+        }
+    }
     [_kj_player addObserver]; // 添加新的观察者
     // 三个KVO观察播放属性
     [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];

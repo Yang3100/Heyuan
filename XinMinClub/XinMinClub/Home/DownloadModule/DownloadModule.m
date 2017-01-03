@@ -104,7 +104,7 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
     
     // 将下载的文件拷贝到/Cache目录中
-    NSString *mp3URLString = [NSString stringWithFormat:@"%@/%@.mp3",mp3Dir,_sectionData.clickSectionID];
+    NSString *mp3URLString = [NSString stringWithFormat:@"%@/%@.mp3",mp3Dir,_sectionData.sectionID];
     NSURL *desURL = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",mp3URLString]];
     
     [fileManager removeItemAtURL:desURL error:nil];// 删除同名文件

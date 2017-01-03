@@ -196,13 +196,13 @@ void like (){
         ((ManageCell *)cell).manageDelegate = self;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).clickTitle;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).sectionName;
         
-        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).clickAuthor;
+        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).author;
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).delegate = self;
         ((BookCell *) cell).accessoryButton.tag = indexPath.row - 1 + 16000;
-        if ([((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).clickSectionID isEqual:dataModel_.playingSection.clickSectionID]) {
+        if ([((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).sectionID isEqual:dataModel_.playingSection.sectionID]) {
             ((BookCell *) cell).statusView.hidden = NO;
         }
     }

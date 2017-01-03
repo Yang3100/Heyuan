@@ -48,6 +48,9 @@
 - (void)setData:(SectionData *)data {
     _data = data;
     self.titleLabel.text = data.sectionName;
+    _likeButton.enabled = YES;
+    _downloadButton.enabled = YES;
+    _downloadButton.enabled = YES;
     if (_data.isLike) {
         _likeButton.enabled = NO;
     }
@@ -171,12 +174,13 @@
     if (!_data.isLike) {
         _data.isLike = YES;
         _likeButton.enabled = NO;
-        [userModel_.userLikeSectionID insertObject:self.data.clickSectionID atIndex:0];
-        NSLog(@"id:%@ %@ %p %@",self.data.sectionID,userModel_.userLikeSectionID[0],userModel_.userLikeSectionID,dataModel_.allSection[0]);
+        [userModel_.userLikeSectionID insertObject:self.data.sectionID atIndex:0];
+//        NSLog(@"id:%@ %@ %p %@",self.data.sectionID,userModel_.userLikeSectionID[0],userModel_.userLikeSectionID,dataModel_.allSection[0]);
 //        [userModel_.userLikeSectionID removeAllObjects];
         [dataModel_.userLikeSection insertObject:self.data atIndex:0];
         userModel_.isChange = YES;
-        [[UserDataModel defaultDataModel] saveLocalData];
+//        [[UserDataModel defaultDataModel] saveLocalData];
+        [SAVE_MODEL saveRecentPlaySection:_data withSectionID:_data.sectionID];
     }
 }
 
