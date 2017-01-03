@@ -231,25 +231,9 @@
                 }else {
                     aUrl = @"";
                 }
-<<<<<<< HEAD
-                #warning aa aaaaaaaaaaaa
-//                [transfer_ IncomingDataLibraryName:data.libraryTitle  ImageUrl:aUrl  AuthorName:@[data.clickAuthor] ClickCellNum:1 SectionName:@[data.clickTitle] SectionMp3:@[data.clickMp3] SectionID:@[data.sectionID] SectionText:@[data.clickSectionCNText] data:arr block:^(BOOL successful) {
-//                    if (successful) {
-//                        [self kj_pushIsPlayerOrEBook:1];
-//                    }else
-//                        [self kj_pushIsPlayerOrEBook:2];
-//                }];
-                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
-//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>];
-//                [dic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>];
-                playerViewController *svc = [playerViewController defaultDataModel];
-                svc.title = data.bookName; // 书集名字
-=======
-                
                 [DataModel defaultDataModel].bookName = data.bookName;
->>>>>>> yangKJ/master
                 [DataModel defaultDataModel].bookImageUrl = data.libraryImageUrl; // 书集封面Url
-                [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1];
+                [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1 Data:data];
             } else {
 //                [self kj_pushIsPlayerOrEBook:1];
             }

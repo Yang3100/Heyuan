@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
  *  第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
  *  第2种数据传输方式 -  从文集点入的方式
  */
-- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer;
+- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data;
 
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;
@@ -142,5 +142,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 取得二级章节
 - (NSArray *)getBookSecondLevelWithFirstLevel:(NSString *)firtLevelString andBookID:(NSString *)bookID;
 
+// 判断是否为本地且为当前播放章节
+- (BOOL)judgeLocalPath:(NSString *)path withUrl:(NSString *)url;
 
 @end

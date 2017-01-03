@@ -60,7 +60,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[DataModel defaultDataModel] pushWhereWithJson:self.jsonData ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2];
+    [[DataModel defaultDataModel] pushWhereWithJson:self.jsonData ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2 Data:nil];
 }
 
 //  获取当前view所处的viewController重写读方法

@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSMutableDictionary *dic;
 @property (nonatomic, strong) NSMutableArray *lrcArray;
 @property(nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
+@property (nonatomic, strong) NSString *mp3Url;
 
 ////第一种数据传输方式
 //// 书集数据

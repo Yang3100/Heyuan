@@ -43,8 +43,14 @@
  *  第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
  *  第2种数据传输方式 -  从文集点入的方式
  */
-- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer{
+- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data{
     NSString *ss = [[[json valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][num] valueForKey:@"GJ_MP3"];
+    if (data) {        
+        if (![data.clickMp3 isEqualToString:@""]) {
+            ss = data.clickMp3;
+            [playerViewController defaultDataModel].mp3Url = ss;
+        }
+    }
     if (![ss isEqualToString:@""]) {
         if (transfer==1) {
             [[playerViewController defaultDataModel] getDict:json];
@@ -180,6 +186,23 @@
             [_downloadSectionList addObject:sArr[0]];
         }
     }
+}
+
+- (BOOL)judgeLocalPath:(NSString *)path withUrl:(NSString *)url {
+    
+    // 判断是否为本地
+    NSString *head = [[path componentsSeparatedByString:@"/"] firstObject];
+    if ([head isEqualToString:@"http:"]) {
+        return NO;
+    }
+    
+    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    
+    if ([localLastPath isEqualToString:lastPath]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)getAllLocalSection {
