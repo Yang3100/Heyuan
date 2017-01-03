@@ -9,6 +9,7 @@
 #import "DataModel.h"
 #import "DownloadModule.h"
 #import "SaveModule.h"
+#import "playerViewController.h"
 
 @interface DataModel() {
     DownloadModule *download;
@@ -30,6 +31,44 @@
     }
     
     return dataModel;
+}
+
+/**
+ *  跳转到播放器或者电子书
+ *
+ *  json   传入数据
+ *  num    点击的是哪个
+ *  vc     视图控制器
+ *  transfer   传输数据的方式，
+ *  第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
+ *  第2种数据传输方式 -  从文集点入的方式
+ */
+- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer{
+    NSString *ss = [[[json valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][num] valueForKey:@"GJ_MP3"];
+    if (![ss isEqualToString:@""]) {
+        if (transfer==1) {
+            [[playerViewController defaultDataModel] getDict:json];
+        }else if (transfer==2){
+            [[playerViewController defaultDataModel] getJson:json];
+        }else{
+            return;
+        }
+        [playerViewController defaultDataModel].touchNum = num;
+        [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
+        [vc.navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
+    }else{
+        EBookViewController *evc = [[EBookViewController alloc] init];
+        if (transfer==1) {
+            [evc fristGetDataWithDict:json thouchNum:num];
+        }else if (transfer==2){
+            [evc secondGetDataWithJson:json thouchNum:num];
+        }else{
+            return;
+        }
+        [vc presentViewController:evc animated:YES completion:^{
+            evc.kj_title = [DataModel defaultDataModel].bookName;
+        }];
+    }
 }
 
 - (void)initData {
@@ -73,12 +112,12 @@
     
     _userLikeSection = [NSMutableArray array];
     _userLikeSectionID = [NSMutableArray array];
-//    _userLikeSectionID = [UserDataModel defaultDataModel].userLikeSectionID;
+    //    _userLikeSectionID = [UserDataModel defaultDataModel].userLikeSectionID;
     
-//    _playTime = 60;
-//    if ([UserDataModel defaultDataModel].playTime) {
-//        _playTime = [[UserDataModel defaultDataModel].playTime intValue];
-//    }
+    //    _playTime = 60;
+    //    if ([UserDataModel defaultDataModel].playTime) {
+    //        _playTime = [[UserDataModel defaultDataModel].playTime intValue];
+    //    }
     
     [UserDataModel defaultDataModel].userLikeSection = _userLikeSection;
     
@@ -165,7 +204,7 @@
         if ([sArr[0] isEqualToString:@""]) {
             continue;
         }
-//        
+        //
         NSDictionary *json = [[NSDictionary alloc] initWithContentsOfFile:filePath];
         SectionData *data = [SectionData modelWithJSON:json];
         if ([data.author isEqualToString:@""]) {
@@ -204,8 +243,8 @@
     
     filePath = [NSString stringWithFormat:@"%@/Library/Caches/bookFile", NSHomeDirectory()];
     NSMutableArray *arr = (NSMutableArray *)[[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePath error:nil];
-//    if (arr.count) [arr removeObjectAtIndex:0];
- 
+    //    if (arr.count) [arr removeObjectAtIndex:0];
+    
     for (NSString *s in arr) {
         filePath = [NSString stringWithFormat:@"%@/Library/Caches/bookFile/%@", NSHomeDirectory(), s];
         NSMutableDictionary *usersDic;
@@ -309,7 +348,7 @@
     NSString *details = [dic valueForKey:@"WJ_CONTENT"];
     NSString *language = [dic valueForKey:@"WJ_LANGUAGE"];
     NSString *libraryID = [dic valueForKey:@"WJ_ID"];
-//        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
+    //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
     NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
     
     if ([[_allBookAndID allKeys] containsObject:libraryID]) {
@@ -361,16 +400,16 @@
     
     NSString *playCount = @"0";
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                         sectionID,@"sectionID",
-                         sectionName, @"sectionName",
-                         authorName, @"author",
-                         type, @"bookName",
-                         details, @"libraryDetails",
-                         mp3, @"mp3",
+                          sectionID,@"sectionID",
+                          sectionName, @"sectionName",
+                          authorName, @"author",
+                          type, @"bookName",
+                          details, @"libraryDetails",
+                          mp3, @"mp3",
                           playCount, @"playCount",
                           dic, @"dic",
                           image, @"image",
-                         nil];
+                          nil];
     SectionData *data = [[SectionData alloc] initWithDic:dict];
     [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];

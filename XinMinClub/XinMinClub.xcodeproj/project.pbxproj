@@ -189,7 +189,6 @@
 		68342F5D1E179AB00019CCCE /* shoucang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F521E179AB00019CCCE /* shoucang@2x.png */; };
 		68342F5E1E179AB00019CCCE /* yejian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F531E179AB00019CCCE /* yejian@2x.png */; };
 		6843BCFF1E16E2BE00D63FD7 /* yellowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */; };
-		6843BD001E16E2BE00D63FD7 /* pro.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF21E16E2BE00D63FD7 /* pro.png */; };
 		6843BD011E16E2BE00D63FD7 /* playShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF31E16E2BE00D63FD7 /* playShare.png */; };
 		6843BD021E16E2BE00D63FD7 /* playDownload.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF41E16E2BE00D63FD7 /* playDownload.png */; };
 		6843BD031E16E2BE00D63FD7 /* playLiked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF51E16E2BE00D63FD7 /* playLiked.png */; };
@@ -330,7 +329,7 @@
 		68C79A381E176A8000AB642F /* setbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A371E176A8000AB642F /* setbutton@2x.png */; };
 		68C79A3B1E176B8900AB642F /* DWDCheck_personal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A391E176B8900AB642F /* DWDCheck_personal@2x.png */; };
 		68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */; };
-		68C79A401E176C3900AB642F /* add_user_icon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3F1E176C3900AB642F /* add_user_icon@2x.jpg */; };
+		68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */; };
 		68C79A431E176F0800AB642F /* kjpause.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A411E176F0800AB642F /* kjpause.png */; };
 		68C79A441E176F0800AB642F /* kjplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A421E176F0800AB642F /* kjplay.png */; };
 		68E4F1601C9BACDB00839E2C /* ICETutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E4F14E1C9BACDB00839E2C /* ICETutorialController.m */; };
@@ -689,7 +688,6 @@
 		68342F531E179AB00019CCCE /* yejian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yejian@2x.png"; sourceTree = "<group>"; };
 		6841B0A11C9BAC5D003D1056 /* XinMinClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XinMinClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBackground.png; sourceTree = "<group>"; };
-		6843BCF21E16E2BE00D63FD7 /* pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pro.png; sourceTree = "<group>"; };
 		6843BCF31E16E2BE00D63FD7 /* playShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playShare.png; sourceTree = "<group>"; };
 		6843BCF41E16E2BE00D63FD7 /* playDownload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playDownload.png; sourceTree = "<group>"; };
 		6843BCF51E16E2BE00D63FD7 /* playLiked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playLiked.png; sourceTree = "<group>"; };
@@ -863,7 +861,7 @@
 		68C79A371E176A8000AB642F /* setbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setbutton@2x.png"; sourceTree = "<group>"; };
 		68C79A391E176B8900AB642F /* DWDCheck_personal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DWDCheck_personal@2x.png"; sourceTree = "<group>"; };
 		68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionbutton@2x.png"; sourceTree = "<group>"; };
-		68C79A3F1E176C3900AB642F /* add_user_icon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add_user_icon@2x.jpg"; sourceTree = "<group>"; };
+		68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_user_icon@2x.png"; sourceTree = "<group>"; };
 		68C79A411E176F0800AB642F /* kjpause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kjpause.png; sourceTree = "<group>"; };
 		68C79A421E176F0800AB642F /* kjplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kjplay.png; sourceTree = "<group>"; };
 		68E4F14D1C9BACDB00839E2C /* ICETutorialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICETutorialController.h; sourceTree = "<group>"; };
@@ -1065,7 +1063,7 @@
 				68C79A371E176A8000AB642F /* setbutton@2x.png */,
 				68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */,
 				68C79A391E176B8900AB642F /* DWDCheck_personal@2x.png */,
-				68C79A3F1E176C3900AB642F /* add_user_icon@2x.jpg */,
+				68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */,
 				1A4033481E0908A80006613F /* zanting.png */,
 				1A40334E1E0908A80006613F /* zuijinbofang.png */,
 			);
@@ -1860,7 +1858,6 @@
 			isa = PBXGroup;
 			children = (
 				6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */,
-				6843BCF21E16E2BE00D63FD7 /* pro.png */,
 				6843BCF31E16E2BE00D63FD7 /* playShare.png */,
 				6843BCF41E16E2BE00D63FD7 /* playDownload.png */,
 				6843BCF51E16E2BE00D63FD7 /* playLiked.png */,
@@ -2295,7 +2292,7 @@
 				6820D7321E1779BF0068D172 /* Play_personal@2x.png in Resources */,
 				68BCF3AA1E00EF02008AB490 /* 20.png in Resources */,
 				682F42A61E1213E7004B3651 /* 244.png in Resources */,
-				68C79A401E176C3900AB642F /* add_user_icon@2x.jpg in Resources */,
+				68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */,
 				68342F541E179AB00019CCCE /* down@2x.png in Resources */,
 				687618271E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				688271AB1E13542800014AAD /* 雅赏.jpg in Resources */,
@@ -2373,7 +2370,6 @@
 				68BCF39B1E00EF02008AB490 /* navigation1@2x.png in Resources */,
 				68BCF3A71E00EF02008AB490 /* 17.jpg in Resources */,
 				68BCF3A01E00EF02008AB490 /* shoucang@2x.png in Resources */,
-				6843BD001E16E2BE00D63FD7 /* pro.png in Resources */,
 				68E8B7421E0000B1000CB44A /* yin.png in Resources */,
 				1A91BE921CB360D500689AE0 /* UserFirstCell.xib in Resources */,
 				6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */,

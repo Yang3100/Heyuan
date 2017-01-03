@@ -30,6 +30,18 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 @interface DataModel : NSObject
 
+/**
+ *  跳转到播放器或者电子书
+ *
+ *  json   传入数据
+ *  num    点击的是哪个
+ *  vc     视图控制器
+ *  transfer   传输数据的方式，
+ *  第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
+ *  第2种数据传输方式 -  从文集点入的方式
+ */
+- (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer;
+
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;
 

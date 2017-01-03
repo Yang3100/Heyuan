@@ -73,7 +73,7 @@
     }
     
     if (!myData.userImage) {
-        _userImage = [UIImage imageNamed:@"add_user_icon.jpg"];
+        _userImage = [UIImage imageNamed:@"add_user_icon"];
     }
     
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];

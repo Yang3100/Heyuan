@@ -42,12 +42,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     //MARK:需要传入的数据
     var kj_title:String = ""
     //MARK:获取到数据的方法
-    func fristGetData(dict:NSDictionary){  // 第1种
-        print("qqqqqqqqqqqqq")
-        print(dict);
-        let arr = NSArray()
-        arr.adding(dict)
-        self.loadDataToView(array:arr, Num:0)
+    func fristGetData(dict:NSDictionary,thouchNum:Int = 0){  // 第1种
+        dictArray = [dict]
+        self.loadDataToView(array:dictArray, Num:thouchNum)
     }
     func secondGetData(json:NSDictionary, thouchNum:Int = 0){  // 第2种
         dictArray = ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
