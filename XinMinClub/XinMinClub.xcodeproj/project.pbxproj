@@ -552,8 +552,8 @@
 		1AEF59641CDADB000028651A /* DownloadModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadModule.h; sourceTree = "<group>"; };
 		1AEF59681CDAFBF70028651A /* HomeNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeNavController.h; path = Home/HomeNavController.h; sourceTree = "<group>"; };
 		1AEF59691CDAFBF70028651A /* HomeNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeNavController.m; path = Home/HomeNavController.m; sourceTree = "<group>"; };
-		1AF1AFD11CBFF0B500001233 /* SectionManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionManageView.h; sourceTree = "<group>"; };
-		1AF1AFD21CBFF0B500001233 /* SectionManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionManageView.m; sourceTree = "<group>"; };
+		1AF1AFD11CBFF0B500001233 /* SectionManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionManageView.h; path = ../../View/SectionManageView.h; sourceTree = "<group>"; };
+		1AF1AFD21CBFF0B500001233 /* SectionManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionManageView.m; path = ../../View/SectionManageView.m; sourceTree = "<group>"; };
 		1AF93BD71CD2069400574CBC /* SectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionOperation.h; sourceTree = "<group>"; };
 		1AF93BD81CD2069400574CBC /* SectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionOperation.m; sourceTree = "<group>"; };
 		1AF93BD91CD2069400574CBC /* ProcessSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessSelect.m; sourceTree = "<group>"; };
@@ -1340,8 +1340,6 @@
 				1A974C271CBE2E5300A92CA4 /* ToolCell.h */,
 				1A974C281CBE2E5300A92CA4 /* ToolCell.m */,
 				1A974C291CBE2E5300A92CA4 /* ToolCell.xib */,
-				1AF1AFD11CBFF0B500001233 /* SectionManageView.h */,
-				1AF1AFD21CBFF0B500001233 /* SectionManageView.m */,
 				1A0EBF291CF6EA7E00E910AD /* TableHeaderRefreshView.h */,
 				1A0EBF2A1CF6EA7E00E910AD /* TableHeaderRefreshView.m */,
 				1A91BE611CB360D500689AE0 /* UserFirstCell.h */,
@@ -1386,6 +1384,8 @@
 		1AF93BD61CD2067200574CBC /* Operation */ = {
 			isa = PBXGroup;
 			children = (
+				1AF1AFD11CBFF0B500001233 /* SectionManageView.h */,
+				1AF1AFD21CBFF0B500001233 /* SectionManageView.m */,
 				1AF93BD71CD2069400574CBC /* SectionOperation.h */,
 				1AF93BD81CD2069400574CBC /* SectionOperation.m */,
 				1AF93BDA1CD2069400574CBC /* ProcessSelect.h */,

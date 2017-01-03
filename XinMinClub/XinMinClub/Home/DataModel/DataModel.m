@@ -80,7 +80,7 @@
 //        _playTime = [[UserDataModel defaultDataModel].playTime intValue];
 //    }
     
-    [UserDataModel defaultDataModel].userLikeSection = _userLikeSection;
+//    [UserDataModel defaultDataModel].userLikeSection = _userLikeSection;
     
     [self getAllLocalBook];
     [self getLocalMP3List];
@@ -145,7 +145,7 @@
 
 - (void)getAllLocalSection {
     
-    [self getSection:@"sectionFile" into:_allSection];
+//    [self getSection:@"sectionFile" into:_allSection];
 }
 
 - (void)getAllRecentPlaySection {
@@ -173,20 +173,20 @@
         }
         
         // 判断章节是否喜欢
-        if ([[UserDataModel defaultDataModel].userLikeSectionID containsObject:sArr[0]]) {
-            if (![_userLikeSectionID containsObject:data.clickSectionID]) {
-                [_userLikeSectionID addObject:data.clickSectionID];
+        if (data.isLike) {
+            if (![DATA_MODEL.userLikeSectionID containsObject:sArr[0]]) {
+                [_userLikeSectionID addObject:data.sectionID];
                 [_userLikeSection addObject:data];
             }
         }
         
         // 判断是否本地章节
-        if ([directory isEqualToString:@"sectionFile"]) {
-            if ([_downloadSectionList containsObject:sArr[0]]) {
-                data.isDownload = YES;
-                [_downloadSection addObject:data];
-            }
+        if ([_downloadSectionList containsObject:sArr[0]]) {
+            data.isDownload = YES;
+            data.clickMp3 = [NSString stringWithFormat:@"%@/Library/Caches/mp3/%@.mp3", NSHomeDirectory(), sArr[0]];
+            [_downloadSection addObject:data];
         }
+        
         NSLog(@"%@   /n%@", [NSString stringWithFormat:@"%p",array] ,[NSString stringWithFormat:@"%p;",_allSection]);
         if ([[NSString stringWithFormat:@"%p",array] isEqualToString:[NSString stringWithFormat:@"%p",_allSection]]) {
             if (![_allSectionID containsObject:data.sectionID]) {

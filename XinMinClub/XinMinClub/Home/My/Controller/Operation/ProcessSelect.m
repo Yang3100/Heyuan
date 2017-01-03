@@ -99,7 +99,7 @@
     SectionData *da = arr[num];
 //    _libraryName = da.libraryTitle;
     
-    [[SaveModule defaultObject] saveRecentPlaySection:da withSectionID:da.clickSectionID];
+    [[SaveModule defaultObject] saveRecentPlaySection:da withSectionID:da.sectionID];
     [DataModel defaultDataModel].playingSection = da;
     
     // 保存点击的是哪个cell
@@ -151,7 +151,7 @@
     for (NSInteger k = 0; k < data.count; k++) {
         SectionData *da = data[k];
         [detailsListArray addObject:da.clickTitle];
-        [detailsListIDArray addObject:da.clickSectionID];
+        [detailsListIDArray addObject:da.sectionID];
         [detailsMp3Array addObject:da.clickMp3];
         [detailsCNArray addObject:da.clickSectionCNText];
         [detailsANArray addObject:da.clickSectionANText];
@@ -232,7 +232,7 @@
                     aUrl = @"";
                 }
                 #warning aa aaaaaaaaaaaa
-//                [transfer_ IncomingDataLibraryName:data.libraryTitle  ImageUrl:aUrl  AuthorName:@[data.clickAuthor] ClickCellNum:1 SectionName:@[data.clickTitle] SectionMp3:@[data.clickMp3] SectionID:@[data.clickSectionID] SectionText:@[data.clickSectionCNText] data:arr block:^(BOOL successful) {
+//                [transfer_ IncomingDataLibraryName:data.libraryTitle  ImageUrl:aUrl  AuthorName:@[data.clickAuthor] ClickCellNum:1 SectionName:@[data.clickTitle] SectionMp3:@[data.clickMp3] SectionID:@[data.sectionID] SectionText:@[data.clickSectionCNText] data:arr block:^(BOOL successful) {
 //                    if (successful) {
 //                        [self kj_pushIsPlayerOrEBook:1];
 //                    }else

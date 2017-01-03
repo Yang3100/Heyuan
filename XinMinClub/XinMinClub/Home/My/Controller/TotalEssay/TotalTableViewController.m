@@ -178,13 +178,13 @@ static NSString *bookCell = @"bookCell";
         ((ManageCell *)cell).manageDelegate = self;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
-        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.allSection[indexPath.row - 1]).clickTitle;
+        ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.allSection[indexPath.row - 1]).sectionName;
         
-        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.allSection[indexPath.row - 1]).clickAuthor;
+        ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.allSection[indexPath.row - 1]).author;
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).accessoryButton.tag = indexPath.row - 1 + 11000;
         ((BookCell *) cell).delegate = self;
-        if ([((SectionData *)dataModel_.allSection[indexPath.row - 1]).clickSectionID isEqual:dataModel_.playingSection.clickSectionID]) {
+        if ([((SectionData *)dataModel_.allSection[indexPath.row - 1]).sectionID isEqual:dataModel_.playingSection.sectionID]) {
             ((BookCell *) cell).statusView.hidden = NO;
         }
     }
