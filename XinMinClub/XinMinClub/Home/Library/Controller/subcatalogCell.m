@@ -80,10 +80,10 @@
         [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
     }else{
         EBookViewController *evc = [[EBookViewController alloc] init];
-        [evc thouchNumberWithNum:indexPath.row];
+//        evc.thouchNum = indexPath.row;
         [[self viewController] presentViewController:evc animated:YES completion:^{
             evc.kj_title = [DataModel defaultDataModel].bookName;
-            [evc secondGetDataWithJson:self.jsonData];
+            [evc secondGetDataWithJson:self.jsonData thouchNum:indexPath.row];
         }];
     }
 }

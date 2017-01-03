@@ -24,11 +24,14 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
         self.initScrollView()
         self.initButton()
     }
-    var total:Int = 0
-    var dict:NSDictionary = [:]
-    func getData(total:Int=0,dict1:NSDictionary){
-        self.total = total;
-        self.dict = dict1
+    
+    var dataArray: NSArray = [] {
+        willSet {
+            
+        }
+        didSet {
+            self.kj_table.reloadData()
+        }    
     }
     
     func initButton() {
@@ -61,7 +64,7 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
 //        
     }
     
-    func initScrollView() {
+    private func initScrollView() {
         
         scroll = UIScrollView.init()
         scroll.frame = CGRect(x:0,y:STATUS_HEIGHT+NAV_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT)
@@ -72,33 +75,33 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
         scroll.showsHorizontalScrollIndicator = false
         self.view!.addSubview(scroll)
         
-        var table = UITableView()
-        table = UITableView.init(frame: CGRect(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT), style: .plain)
-        table.backgroundColor = UIColor.blue
-        table.delegate = self
-        table.dataSource = self
-        //        self.view!.addSubview(table)
-        scroll.addSubview(table)
+        scroll.addSubview(self.kj_table)
+        
         let view = UIView()
         view.frame = CGRect(x:SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT)
         view.backgroundColor = UIColor.yellow
         scroll.addSubview(view)
     }
+    
+    
+    //MARK: - UI界面
+    public lazy var kj_table : UITableView = {
+        var kj_table = UITableView.init(frame: CGRect(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT), style: .plain)
+        kj_table.backgroundColor = UIColor.green
+        kj_table.delegate = self
+        kj_table.dataSource = self
+        return kj_table
+    }()
+
+    
 
     func back() {
-        DispatchQueue.main.async(execute: {() -> Void in
+        self.dismiss(animated:true, completion:{ (true) in
             
-            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-                self.parent?.view!.frame = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-                self.view!.frame = CGRect(x:-SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-                }, completion: { (true) in
-                    
-            })
         })
     }
     
     // MARK:Actions
-    
     func dir() {
         scroll.scrollRectToVisible(CGRect(x:0,y:STATUS_HEIGHT+NAV_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT), animated: true)
     }
@@ -109,13 +112,21 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     
     // MARK:tableViewDelegate & dataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return total
+        return dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "今天好玩"
+        cell.textLabel?.text = (dataArray[indexPath.row] as! NSDictionary)["GJ_NAME"] as? String
         cell.backgroundColor = UIColor.gray
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ebook = EBookViewController()
+        self.dismiss(animated:true, completion:{ (true) in
+//            ebook.thouchNum = indexPath.row
+            ebook.loadDataToView(array:self.dataArray, Num:indexPath.row)
+        })
     }
 }

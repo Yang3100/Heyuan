@@ -184,7 +184,6 @@
 		68342F571E179AB00019CCCE /* fenxiang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4C1E179AB00019CCCE /* fenxiang@2x.png */; };
 		68342F581E179AB00019CCCE /* jindu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4D1E179AB00019CCCE /* jindu@2x.png */; };
 		68342F591E179AB00019CCCE /* mulu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4E1E179AB00019CCCE /* mulu@2x.png */; };
-		68342F5A1E179AB00019CCCE /* mulus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4F1E179AB00019CCCE /* mulus@2x.png */; };
 		68342F5B1E179AB00019CCCE /* rijian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F501E179AB00019CCCE /* rijian@2x.png */; };
 		68342F5C1E179AB00019CCCE /* shezhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F511E179AB00019CCCE /* shezhi@2x.png */; };
 		68342F5D1E179AB00019CCCE /* shoucang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F521E179AB00019CCCE /* shoucang@2x.png */; };
@@ -684,7 +683,6 @@
 		68342F4C1E179AB00019CCCE /* fenxiang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenxiang@2x.png"; sourceTree = "<group>"; };
 		68342F4D1E179AB00019CCCE /* jindu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jindu@2x.png"; sourceTree = "<group>"; };
 		68342F4E1E179AB00019CCCE /* mulu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mulu@2x.png"; sourceTree = "<group>"; };
-		68342F4F1E179AB00019CCCE /* mulus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mulus@2x.png"; sourceTree = "<group>"; };
 		68342F501E179AB00019CCCE /* rijian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rijian@2x.png"; sourceTree = "<group>"; };
 		68342F511E179AB00019CCCE /* shezhi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shezhi@2x.png"; sourceTree = "<group>"; };
 		68342F521E179AB00019CCCE /* shoucang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoucang@2x.png"; sourceTree = "<group>"; };
@@ -1691,7 +1689,6 @@
 				68342F4C1E179AB00019CCCE /* fenxiang@2x.png */,
 				68342F4D1E179AB00019CCCE /* jindu@2x.png */,
 				68342F4E1E179AB00019CCCE /* mulu@2x.png */,
-				68342F4F1E179AB00019CCCE /* mulus@2x.png */,
 				68342F501E179AB00019CCCE /* rijian@2x.png */,
 				68342F511E179AB00019CCCE /* shezhi@2x.png */,
 				68342F521E179AB00019CCCE /* shoucang@2x.png */,
@@ -2430,7 +2427,6 @@
 				682F42B41E1256D3004B3651 /* 引导页2.png in Resources */,
 				6843BD051E16E2BE00D63FD7 /* playRound.png in Resources */,
 				682F42981E1200B6004B3651 /* courseListCell.xib in Resources */,
-				68342F5A1E179AB00019CCCE /* mulus@2x.png in Resources */,
 				6843BD041E16E2BE00D63FD7 /* playLike.png in Resources */,
 				68342F5B1E179AB00019CCCE /* rijian@2x.png in Resources */,
 				688271AE1E13542800014AAD /* 岐黃.jpg in Resources */,
