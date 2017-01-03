@@ -24,6 +24,12 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
         self.initScrollView()
         self.initButton()
     }
+    var total:Int = 0
+    var dict:NSDictionary = [:]
+    func getData(total:Int=0,dict1:NSDictionary){
+        self.total = total;
+        self.dict = dict1
+    }
     
     func initButton() {
         backBtn = UIButton.init(type: .system)
@@ -103,7 +109,7 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     
     // MARK:tableViewDelegate & dataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return total
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
