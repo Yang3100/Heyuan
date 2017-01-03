@@ -115,7 +115,7 @@
     for (int i = 0; i<3; i++) {
         button = [UIButton buttonWithType:UIButtonTypeCustom];
         CGFloat bx = Nwidth*i;
-        button.frame = CGRectMake(bx, kj_y, Nwidth, Nwidth/4);
+        button.frame = CGRectMake(bx, kj_y, Nwidth, Nwidth/3.5);
         [button setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
         if (i==1) {
             [button setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];

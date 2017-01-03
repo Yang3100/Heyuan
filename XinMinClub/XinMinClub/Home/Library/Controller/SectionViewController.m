@@ -117,23 +117,13 @@
 - (void)initView{
     // 右侧消息按钮
     UIImage *rightImage = [[UIImage imageNamed:@"jiarushuji"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:rightImage scaleToSize:CGSizeMake(30, 30)] style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     
     // 左侧按钮
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(leftAction)];
-    leftButtonItem.image = [UIImage imageNamed:@"daididefanhui"];
-    //    leftButtonItem.imageInsets = UIEdgeInsetsMake(10, 10, 10, -15);
+    UIImage *leftImage = [UIImage imageNamed:@"daididefanhui"];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(leftAction)];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-}
-
-#pragma mark 改变图片尺寸
--(UIImage*)OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
-    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
-    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
 }
 
 - (UIImageView*)bookImageView{
@@ -146,7 +136,6 @@
 - (UIView*)backButtonView{
     if (!_backButtonView) {
         _backButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, lastFrame_y, SCREEN_WIDTH, backButtonViewHeight)];
-        _backButtonView.backgroundColor = [UIColor redColor];
         NSArray *rushidaoArr = @[@"章节",@"详情",@"阅读"];
         but_dict2 = [NSMutableDictionary dictionary]; // 初始化存储button的字典
         for (int a = 0; a<3; a++) {

@@ -88,10 +88,9 @@
     NSLog(@"第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式%@",dict);
     getDataWay = NO;
     total=1;
-    [self.menuTable reloadData];
     kj_dict = dict;
-//    self.touchNum=0;
     [_currentSongs addObject:dict];
+    [self.menuTable reloadData];
 }
 
 #pragma mark 获取到数据json
@@ -110,18 +109,35 @@
     // 关闭防呆模式
     [self preventSBPattern:YES];
     _touchNum = touchNum;
-    if (getDataWay) {
-        kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    if (!getDataWay) {  // 第1种获取数据方式
+        if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
+            return;
+        }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+            [self play:nil];
+        }else{
+            // 播放准备
+            [self startPlayBefore];
+            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+            return;
+        }
+        if (isRound) {
+            return;
+        }
+        [self round:nil];
     }
-    if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
-        NSLog(@"继续播放!!!");
-    }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
-        lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
-        [self play:nil];
-    }else{
-        // 播放准备
-        [self startPlayBefore];
-        lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+    else{   // 第2种获取数据方式
+        kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+        if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
+            NSLog(@"继续播放!!!");
+        }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+            [self play:nil];
+        }else{
+            // 播放准备
+            [self startPlayBefore];
+            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+        }
     }
 }
 
@@ -184,7 +200,7 @@
 - (lyricView*)lyricTableView{
     if (!_lyricTableView) {
         _lyricTableView = [[lyricView alloc] init];
-        _lyricTableView.frame = CGRectMake(30, 120, SCREEN_WIDTH-60, SCREEN_WIDTH-50);
+        _lyricTableView.frame = CGRectMake(25, 120, SCREEN_WIDTH-50, SCREEN_WIDTH-50);
         [_lyricTableView initView];
     }
     return _lyricTableView;
@@ -437,7 +453,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self next:indexPath];
+    //    [self next:indexPath];
     self.touchNum = indexPath.row;
     _menuBack.hidden = YES;
 }
@@ -472,7 +488,7 @@
     ocsv.thumbImage = networkPictureUrl;
     NSLog(@"%@",[DataModel defaultDataModel].bookImageUrl);
     ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
-
+    
     [self.view addSubview:ocsv];
 }
 - (IBAction)like:(UIButton *)sender {
@@ -487,45 +503,42 @@
 #pragma mark 循环状态
 - (IBAction)round:(UIButton*)sender {
     //状态1：随机播放 状态2：单曲循环
+    isRound = !isRound;
     if (isRound) {
-        isRound = NO;
         [_roundButton setImage:[UIImage imageNamed:@"xuanhuan"] forState:UIControlStateNormal];
-    }else{
-        isRound = YES;
-        [_roundButton setImage:[UIImage imageNamed:@"playRound"] forState:UIControlStateNormal];
+        return;
     }
+    [_roundButton setImage:[UIImage imageNamed:@"playRound"] forState:UIControlStateNormal];
 }
 #pragma mark 上一首
 - (IBAction)on:(UIButton *)sender {
+    if (isRound) {
+        [self startPlayBefore];
+        return;
+    }
     if (_touchNum > 0 && _touchNum < total-1) {
-        _touchNum--;
-        [self startPlayBefore];
+        self.touchNum = _touchNum - 1;
     }else {
-        NSLog(@"第一首!!!");
-        _touchNum = 0;
-        [self startPlayBefore];
+        self.touchNum = 0;
     }
 }
 #pragma mark 下一首
 - (IBAction)next:(id)sender {
     if ([sender isKindOfClass:[NSIndexPath class]]) {
         if (((NSIndexPath *)sender).row >= 0) {
-            _touchNum = (int)((NSIndexPath *)sender).row;
-            [self startPlayBefore];
+            self.touchNum = (int)((NSIndexPath *)sender).row;
             return;
         }
     }
-    if (isRound) {
+    if (isRound) { // 处于单曲循环
         [self startPlayBefore];
         return;
     }
     if (_touchNum < total-1) {
-        _touchNum++;
-        [self startPlayBefore];
+        self.touchNum = _touchNum + 1;
     }else{
         if (!isRound) {
-            _touchNum = 0;
-            [self startPlayBefore];
+            self.touchNum = 0;
             return;
         }
         NSLog(@"最后一首也播放结束!!!");
@@ -538,12 +551,12 @@
  *  播放 与 暂停
  */
 - (IBAction)play:(UIButton *)sender {
-//    self.isSingleComplete = NO;
     if (!self.isPlay) {
         self.isPlay=YES;
         if (_kj_player.isPlayComplete) {
+//            [self next:nil];
             [self startPlayBefore];
-            
+            return;
         }else{
             [_kj_player play]; // 播放
             [self imageViewRotate]; // 旋转歌手图片
@@ -555,9 +568,7 @@
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];
     }
-
     [self setNowPlayingInfo];
-
 }
 
 
@@ -624,8 +635,6 @@
  */
 bool isObserve = YES;
 - (void)progressValueChage:(BOOL)notDrag{
-    //    [NSThread sleepForTimeInterval:0.1];
-    
     if (notDrag) {
         self.currentTime.text = [self convertStringWithTime:_kj_player.currentTime];
         self.songTimeLabel.text = [self convertStringWithTime:_kj_player.songTime];
@@ -636,11 +645,12 @@ bool isObserve = YES;
             if (_lrcArray.count-1>self.currentLyricNum) {
                 self.lyricTableView.lyricLocation = self.currentLyricNum;
             }
+            else if (_lrcArray.count-1==self.currentLyricNum){
+                self.lyricTableView.lyricLocation = _lrcArray.count-1;
+            }
         }else if(self.currentLyricNum==0){
             self.lyricTableView.lyricLocation = 0;
         }
-        //    CGFloat pro = _kj_player.currentTime / self.songTimes; /**< 播放进度 */
-        //    self.progress.value = pro;
         return;
     }
     [self pack];
@@ -654,7 +664,7 @@ bool isObserve = YES;
     });
 }
 
-- (void)pack{
+- (void)pack{   // 拖动小球是调用
     if (isObserve) {
         [_kj_player removeObserver:self forKeyPath:@"currentTime"]; // 移除观察者
         isObserve = NO;
@@ -668,7 +678,8 @@ bool isObserve = YES;
         if (_lrcArray.count-1>self.currentLyricNum) {
             self.currentLyricNum = (int)[timeArry indexOfObject:s];
             self.lyricTableView.lyricLocation = self.currentLyricNum;
-        } else if (_lrcArray.count-1==self.currentLyricNum){
+        }
+        else if (_lrcArray.count-1==self.currentLyricNum){
             self.lyricTableView.lyricLocation = self.currentLyricNum;
         }
     }else if(self.currentLyricNum==0){
@@ -682,10 +693,9 @@ bool isObserve = YES;
  *  播放之前的准备
  */
 - (void)startPlayBefore {
-//    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
     _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
-    
     // 重置显示的数据
+    [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
     self.progress.value = 0;
@@ -695,9 +705,6 @@ bool isObserve = YES;
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
-    
-    // 解析歌词
-    [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 传入歌词
     
     [_kj_player removeObserver]; // 移除观察者
     _kj_player.isPlayComplete = NO; // 播放状态
@@ -746,26 +753,20 @@ bool isObserve = YES;
             }
         }
     }
-    [self.lyricTableView getLyric:_lrcArray];  // 传入歌词到歌词table当中
+    self.lyricTableView.lyricArray = _lrcArray;  // 传入歌词到歌词table当中
 }
 
 #pragma mark - 设置控制中心正在播放的信息
 -(void)setNowPlayingInfo{
-    
     NSDictionary *info=[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
     NSMutableDictionary *songDict=[NSMutableDictionary dictionaryWithDictionary:info];
-    //    if ([[songDict objectForKey:@"playbackDuration"] doubleValue]) {
-    ////        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songDict];
-    //        return;
-    //    }
-//    NSMutableArray *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
     //歌名
     if (![kj_dict valueForKey:@"GJ_NAME"]) {
         return;
     }
     NSString *authorName;
     if ([[kj_dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
-         authorName = @"和源";
+        authorName = @"和源";
     }else{
         authorName = [kj_dict valueForKey:@"GJ_USER"];
     }

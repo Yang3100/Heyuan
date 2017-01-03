@@ -58,10 +58,10 @@
 
 - (UIImageView*)smallBackImage{
     if (!_smallBackImage) {
-        UIImage *im = cachePicture;
+        UIImage *im = [UIImage imageNamed:@"xiaojiugongge"];
         _smallBackImage = [[UIImageView alloc] initWithImage:im];
         _smallBackImage.userInteractionEnabled = YES;
-        _smallBackImage.frame = CGRectMake((SCREEN_WIDTH-Nwidth)/2, 0, Nwidth, Nheight);
+        _smallBackImage.frame = CGRectMake(SCREEN_WIDTH-Nwidth, 0, Nwidth, Nheight);
     }
     return _smallBackImage;
 }
@@ -70,7 +70,7 @@
     if (!_backbutton) {
         _backbutton = [UIButton buttonWithType:UIButtonTypeCustom];
         _backbutton.frame = self.bounds;
-        _backbutton.backgroundColor = [UIColor grayColor];
+        _backbutton.backgroundColor = [UIColor whiteColor];
 //        [_backbutton setImage:[UIImage imageNamed:@"maoboli.jpg"] forState:UIControlStateNormal];
         _backbutton.alpha = 0.5;
         [_backbutton addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,7 +95,9 @@
             [button setTitle:typeAr[k-1] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(butNineClick:) forControlEvents:UIControlEventTouchUpInside];
             if (k-1==touchNum) {
-                [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor colorWithRed:231.0/255.0 green:178.0/255.0 blue:102.0/255.0 alpha:1.000] forState:UIControlStateNormal];
+            }else{
+                [button setTitleColor:[UIColor colorWithRed:254.0/255.0 green:240.0/255.0 blue:220.0/255.0 alpha:1.000] forState:UIControlStateNormal];
             }
             [self.smallBackImage addSubview:button];
         }

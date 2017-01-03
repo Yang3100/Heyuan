@@ -11,8 +11,8 @@
 @interface lyricView : UIView
 
 - (void)initView;
-- (void)getLyric:(NSArray*)lyricArr;
 
+@property(nonatomic,strong) NSArray *lyricArray;    //歌词数组
 @property(nonatomic,assign) NSInteger lyricLocation;//当前歌词滚动位子
 
 @end

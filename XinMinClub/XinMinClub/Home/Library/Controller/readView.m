@@ -128,6 +128,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 #warning mark - 阅读传输数据
+    NSLog(@"************************************************");
+    NSLog(@"xxxxxx%@",jsonArrayDict);
+    NSLog(@"************************************************");
+    NSLog(@"%@",jsonArrayDict[indexPath.section]);
+    NSLog(@"************************************************");
+    NSLog(@"%ld--%ld",(long)indexPath.section,(long)indexPath.row);
+    [[DataModel defaultDataModel] pushWhereWithJson:jsonArrayDict[indexPath.section] ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2];
 //    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
 //    [playerViewController defaultDataModel].touchNum = indexPath.row;
 //    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;

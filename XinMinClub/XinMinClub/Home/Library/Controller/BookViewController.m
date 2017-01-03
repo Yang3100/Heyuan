@@ -47,7 +47,7 @@
     
     // 右侧消息按钮
     UIImage *leftImage = [UIImage imageNamed:@"quanbu"];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:[self OriginImage:leftImage scaleToSize:CGSizeMake(28, 28)] style:UIBarButtonItemStylePlain target:self action:@selector(smallNineNineAction:)];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(smallNineNineAction:)];
     self.navigationItem.rightBarButtonItem = leftButtonItem;
     
     // 注册类
@@ -55,21 +55,12 @@
     [self.view addSubview:self.libraryCollectionView];
 }
 
-#pragma mark 改变图片尺寸
--(UIImage*)OriginImage:(UIImage*)image scaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
-    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
-    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
-}
-
 // 点击播放按钮
 - (void)smallNineNineAction:(UIButton *)button {
     if ([DataModel defaultDataModel].kaiguannnn==0) {
         [DataModel defaultDataModel].kaiguannnn=1;
         // 弹出新的视图控制器
-        CGRect frame = CGRectMake(0, 0, 200, 200);
+        CGRect frame = CGRectMake(0, 0, 220, 150);
         snn = [[smallNineNine alloc]initWithSize:frame rushidaoName:_rushidaoName smallNineArray:_typeArray TouchNum:touchN];
         
         [self.view addSubview:snn];
