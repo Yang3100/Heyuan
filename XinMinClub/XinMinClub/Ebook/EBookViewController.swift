@@ -20,7 +20,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var navView = UIView()
     var selfTabBar = UIView()
     var textFont:CGFloat = 18
-    var titleFont:CGFloat = 26
+    var titleFont:CGFloat = 30
     var isTap:Bool = false
     var isDark:Bool = false
     var textView = UITextView()
@@ -39,6 +39,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     private var dictArray:NSArray = []  // 接到数据
     private var isFrist:Bool = true // 判断是第几种获取数据的方式
     
+    //单例
+    static let shareSingleOne = EBookViewController()
+
     //MARK:需要传入的数据
     var kj_title:String = ""
     //MARK:获取到数据的方法
@@ -78,7 +81,17 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         paragraphStyle.firstLineHeadIndent = 4;
         // 字体的行间距
         let attributes = [NSFontAttributeName:UIFont.systemFont(ofSize:18.0), NSParagraphStyleAttributeName: paragraphStyle]
-        textView.attributedText = NSAttributedString(string:title+"\n\n"+text, attributes:attributes)
+        let attributedTextString = NSMutableAttributedString(string:text, attributes:attributes)
+        // 标题
+        let titleAttributes = [NSKernAttributeName:(titleFont/6), NSFontAttributeName:UIFont.systemFont(ofSize:titleFont)] as [String : Any]
+        let attributedTitleString = NSMutableAttributedString(string:title + "\n", attributes:titleAttributes)
+        attributedTitleString.append(attributedTextString)
+        textView.attributedText = attributedTitleString
+        if isLightStyle {
+            textView.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
+        }else{
+            textView.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
+        }
     }
     
     override func viewDidLoad() {

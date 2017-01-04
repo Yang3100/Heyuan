@@ -63,7 +63,8 @@
         [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
         [vc.navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
     }else{
-        EBookViewController *evc = [[EBookViewController alloc] init];
+        EBookViewController *evc = [EBookViewController shareSingleOne];
+//        [[EBookViewController alloc] init];
         if (transfer==1) {
             [evc fristGetDataWithDict:json thouchNum:num];
         }else if (transfer==2){

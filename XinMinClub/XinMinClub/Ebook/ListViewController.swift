@@ -123,7 +123,7 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         kj_cell = UITableViewCell()
-        kj_cell?.textLabel?.text = (dataArray[indexPath.row] as! NSDictionary)["GJ_NAME"] as? String
+        kj_cell?.textLabel?.text = "  " + ((dataArray[indexPath.row] as! NSDictionary)["GJ_NAME"] as? String)!
         kj_cell?.backgroundColor = UIColor.clear
         if kj_isLightStyle {
             kj_cell?.textLabel?.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
@@ -134,7 +134,7 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ebook = EBookViewController()
+        let ebook = EBookViewController.shareSingleOne
         self.dismiss(animated:true, completion:{ (true) in
             ebook.loadDataToView(array:self.dataArray, Num:indexPath.row)
         })
