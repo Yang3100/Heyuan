@@ -13,9 +13,6 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("courseViewController创建成功!!!")
-        
         self.view.addSubview(self.backTableView)
     }
     
@@ -110,12 +107,12 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //MARK:滚动事件
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if Float(scrollView.bounds.origin.y)>Float(screenHeight/3-64) {
+//        if Float(scrollView.bounds.origin.y)>Float(screenHeight/3-64) {
             NotificationCenter.default.post(name:NSNotification.Name(rawValue: "scrollIsLock"), object:nil, userInfo:["scrollY":Float(scrollView.bounds.origin.y)])
-        }
-        else {
-            NotificationCenter.default.post(name:NSNotification.Name(rawValue: "scrollIsLock"), object:nil, userInfo:["scrollY":Float(scrollView.bounds.origin.y)])
-        }
+//        }
+//        else {
+//            NotificationCenter.default.post(name:NSNotification.Name(rawValue: "scrollIsLock"), object:nil, userInfo:["scrollY":Float(scrollView.bounds.origin.y)])
+//        }
     }
 }
 

@@ -200,7 +200,9 @@
 - (lyricView*)lyricTableView{
     if (!_lyricTableView) {
         _lyricTableView = [[lyricView alloc] init];
-        _lyricTableView.frame = CGRectMake(25, 120, SCREEN_WIDTH-50, SCREEN_WIDTH-50);
+        CGFloat width = 325.0;
+        CGFloat height = SCREEN_HEIGHT - (6*X-X/2) - 150;
+        _lyricTableView.frame = CGRectMake((SCREEN_WIDTH-width)/2, 94, width, height);
         [_lyricTableView initView];
     }
     return _lyricTableView;
@@ -642,12 +644,12 @@ bool isObserve = YES;
         NSString *s = [self convertStringWithTime:_kj_player.currentTime];
         if ([timeArry containsObject:s]) {
             self.currentLyricNum = (int)[timeArry indexOfObject:s];
-            if (_lrcArray.count-1>self.currentLyricNum) {
+            if (_lrcArray.count-1>=self.currentLyricNum) {
                 self.lyricTableView.lyricLocation = self.currentLyricNum;
             }
-            else if (_lrcArray.count-1==self.currentLyricNum){
-                self.lyricTableView.lyricLocation = _lrcArray.count-1;
-            }
+//            else if (_lrcArray.count-1==self.currentLyricNum){
+//                self.lyricTableView.lyricLocation = _lrcArray.count-1;
+//            }
         }else if(self.currentLyricNum==0){
             self.lyricTableView.lyricLocation = 0;
         }
@@ -698,26 +700,12 @@ bool isObserve = YES;
     NSLog(@"%@",kj_dict);
     
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
-    self.currentTime.text = @"00:00";
-    self.pro.progress = 0; // 缓存进度条
-    self.progress.value = 0;
-    self.currentLyricNum = 0; // 歌词位置清零
-    self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
-    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookImageUrl];
-    [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
-    
-    [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
     
     [_kj_player removeObserver]; // 移除观察者
     _kj_player.isPlayComplete = NO; // 播放状态
     NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[kj_dict valueForKey:@"GJ_MP3"]];
     [_kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
-    if (![_mp3Url isEqualToString:@""]) {
-        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {            
-            urlString = _mp3Url;
-            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
-        }
-    }
+    
     [_kj_player addObserver]; // 添加新的观察者
     // 三个KVO观察播放属性
     [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
@@ -725,7 +713,22 @@ bool isObserve = YES;
     [_kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
     [_kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
     
-    [_kj_player play]; // 播放
+    self.currentTime.text = @"00:00";
+    self.pro.progress = 0; // 缓存进度条
+    self.progress.value = 0;
+    self.currentLyricNum = 0; // 歌词位置清零
+    self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
+    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookImageUrl];
+    [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
+    
+    if (![_mp3Url isEqualToString:@""]) {
+        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {
+            urlString = _mp3Url;
+            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
+        }
+    }
+    
     self.isPrepare = YES;
     [self imageViewRotate]; // 旋转歌手图片
     

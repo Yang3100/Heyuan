@@ -22,7 +22,7 @@
 
 - (void)setLyricArray:(NSArray *)lyricArray{
     _lyricArray = lyricArray;
-    self.lyricLocation = 0;
+    self.lyricLocation = 0;  // 滚动位置清零
 }
 
 -(void)setLyricLocation:(NSInteger)lyricLocation{
@@ -51,6 +51,7 @@
     return _lyricArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+<<<<<<< HEAD
     NSLog(@"******************************************");
     NSLog(@"%@",_lyricArray);
     if (indexPath.row >= _lyricArray.count) {
@@ -64,34 +65,35 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
+=======
+    //    NSLog(@"******************************************");
+    int line  = [_lyricArray[indexPath.row] length] / 16;
+    int remainder = [_lyricArray[indexPath.row] length] % 16;
+    if (remainder) {
+        line += 1;
+    }
+    if (indexPath.row==0) {
+        return line*40;
+    }
+    return line*22;
+>>>>>>> yangKJ/master
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithWhite:0.603 alpha:0];
+    cell.backgroundColor = [UIColor clearColor];
     //创建完字体格式之后就告诉cell
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.textLabel.font = [UIFont systemFontOfSize:18];
-    cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
-   
+    
     if (indexPath.row == self.lyricLocation) {
         cell.textLabel.textColor = RGB255_COLOR(116, 79, 0, 1);
     }else{
         cell.textLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
-//    if (indexPath.row<_lyricArray.count) {
-        cell.textLabel.text = _lyricArray[indexPath.row];
-//    }
+    cell.textLabel.text = _lyricArray[indexPath.row];
     return cell;
 }
-// 判断字符串长度
-int foo1q(const char *p){
-    if (*p == '\0')
-        return 0;
-    else
-        return foo1q(p + 1) + 1;
-}
-
 
 @end

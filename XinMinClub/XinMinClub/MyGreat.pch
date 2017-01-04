@@ -57,6 +57,9 @@
 #define RGB_MAX 255.0
 #define RGB255_COLOR(r,g,b,a) [UIColor colorWithRed:((r)/RGB_MAX) green:((g)/RGB_MAX) blue:((b)/RGB_MAX) alpha:a]
 
+//字符串是否为空
+#define kStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
+
 //IP地址（北京）
 //http://218.240.52.135  // 北京ip
 //http://192.168.3.153   // 成都ip
