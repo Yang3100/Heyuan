@@ -110,6 +110,7 @@
                 break;
             case AVPlayerStatusReadyToPlay:
                 NSLog(@"KVO:准备完毕，可以播放");
+                [_player play];
                 break;
             case AVPlayerStatusUnknown:
                 NSLog(@"KVO:未知状态");
