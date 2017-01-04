@@ -24,7 +24,7 @@
     sectionData.sectionID = dic[@"sectionID"];
     sectionData.dic = dic[@"dic"];
     sectionData.libraryImageUrl = dic[@"image"];
-    sectionData.clickMp3 = dic[@"mp3"];
+//    sectionData.clickMp3 = dic[@"mp3"];
     return sectionData;
 }
 

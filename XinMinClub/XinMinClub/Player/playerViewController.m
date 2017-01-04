@@ -695,6 +695,8 @@ bool isObserve = YES;
 - (void)startPlayBefore {
     _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
     // 重置显示的数据
+    NSLog(@"%@",kj_dict);
+    
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条

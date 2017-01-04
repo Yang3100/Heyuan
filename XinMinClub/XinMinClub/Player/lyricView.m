@@ -52,6 +52,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"******************************************");
+    NSLog(@"%@",_lyricArray);
+    if (indexPath.row >= _lyricArray.count) {
+        return 20;
+    }
+    NSLog(@"%d",indexPath.row);
     NSLog(@"%luxxxx%d", (unsigned long)[_lyricArray[indexPath.row] length],foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding]));
     NSLog(@"******************************************");
     NSInteger lyricLength = (((foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44);
