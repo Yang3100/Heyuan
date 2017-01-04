@@ -51,21 +51,19 @@
     return _lyricArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-<<<<<<< HEAD
-    NSLog(@"******************************************");
-    NSLog(@"%@",_lyricArray);
+//    NSLog(@"******************************************");
+//    NSLog(@"%@",_lyricArray);
     if (indexPath.row >= _lyricArray.count) {
         return 20;
     }
-    NSLog(@"%d",indexPath.row);
-    NSLog(@"%luxxxx%d", (unsigned long)[_lyricArray[indexPath.row] length],foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding]));
-    NSLog(@"******************************************");
-    NSInteger lyricLength = (((foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44);
-    return lyricLength;
-}
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"%d",indexPath.row);
+//    NSLog(@"%luxxxx%d", (unsigned long)[_lyricArray[indexPath.row] length],foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding]));
+//    NSLog(@"******************************************");
+//    NSInteger lyricLength = (((foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44);
+//    return lyricLength;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
-=======
     //    NSLog(@"******************************************");
     int line  = [_lyricArray[indexPath.row] length] / 16;
     int remainder = [_lyricArray[indexPath.row] length] % 16;
@@ -76,7 +74,6 @@
         return line*40;
     }
     return line*22;
->>>>>>> yangKJ/master
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
