@@ -51,25 +51,16 @@
     return _lyricArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"******************************************");
-//    NSLog(@"%@",_lyricArray);
     if (indexPath.row >= _lyricArray.count) {
         return 20;
     }
-//    NSLog(@"%d",indexPath.row);
-//    NSLog(@"%luxxxx%d", (unsigned long)[_lyricArray[indexPath.row] length],foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding]));
-//    NSLog(@"******************************************");
-//    NSInteger lyricLength = (((foo1q([_lyricArray[indexPath.row] cStringUsingEncoding:NSUTF8StringEncoding])*6)/self.lyricTableView.bounds.size.width)*44);
-//    return lyricLength;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
-    //    NSLog(@"******************************************");
     int line  = [_lyricArray[indexPath.row] length] / 16;
     int remainder = [_lyricArray[indexPath.row] length] % 16;
     if (remainder) {
         line += 1;
     }
+//    NSLog(@"******************************************");
+//    NSLog(@"%d-----%d",line,remainder);
     if (indexPath.row==0) {
         return line*40;
     }
