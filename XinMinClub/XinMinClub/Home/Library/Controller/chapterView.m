@@ -187,7 +187,7 @@
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"%f",scrollView.bounds.origin.y);
-    NSLog(@"tag:%d,%f,%f", scrollView.tag,scrollView.bounds.origin.y,_chapterTable.frame.origin.y);
+//    NSLog(@"tag:%d,%f,%f", scrollView.tag,scrollView.bounds.origin.y,_chapterTable.frame.origin.y);
     self.chapterScroll = scrollView.bounds.origin.y;
 //    if (_chapterScroll>=SCREEN_HEIGHT/3-64) {
 //        NSLog(@"菜单到顶了!!!");
