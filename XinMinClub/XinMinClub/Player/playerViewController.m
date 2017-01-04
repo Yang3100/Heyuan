@@ -494,7 +494,7 @@
     [self.view addSubview:ocsv];
 }
 - (IBAction)like:(UIButton *)sender {
-    
+    [USER_DATA_MODEL addLikeSection:self.dic];
 }
 - (IBAction)download:(UIButton *)sender {
     

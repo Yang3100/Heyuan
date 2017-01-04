@@ -138,11 +138,16 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (void)addRecentPlay:(NSDictionary *)dic;
 // 取得所有章节
 - (void)getAllLocalSection;
+// 章节放入所有章节
+- (void)addSectionToAll:(SectionData *)data;
 
 // 取得二级章节
 - (NSArray *)getBookSecondLevelWithFirstLevel:(NSString *)firtLevelString andBookID:(NSString *)bookID;
 
 // 判断是否为本地且为当前播放章节
 - (BOOL)judgeLocalPath:(NSString *)path withUrl:(NSString *)url;
+
+// 根据dic取得section
+- (SectionData *)getSectionWithDic:(NSDictionary *)dic;
 
 @end

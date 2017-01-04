@@ -82,7 +82,7 @@
     
     _sectionData = sectionData;
 //    timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(addProgressValue) userInfo:nil repeats:YES];
-//    // 将timer加入到当前的run loop中,并将run loop mode设置为UITrackingRunLoopMode或NSRunLoopCommonModes,这样,即使用户触摸了屏幕,也不会导致timer暂停界面刷新.
+//    // 将timer加入到当前的run loop中,并将run loop mode设置为UITrackingRunLoopMode或N.SRunLoopCommonModes,这样,即使用户触摸了屏幕,也不会导致timer暂停界面刷新.
 //    [[NSRunLoop currentRunLoop] addTimer:timer forMode:UITrackingRunLoopMode];
 
     // 创建请求对象
@@ -156,6 +156,10 @@
 // 继续下载
 - (void)resumeDownload {
     NSLog(@"AB%ld",(unsigned long)resumeData_.length);
+    if (!resumeData_) {
+        [self startDownload:_sectionData];
+        return;
+    }
     task_ = [session_ downloadTaskWithResumeData:resumeData_];
     [task_ resume];
 }

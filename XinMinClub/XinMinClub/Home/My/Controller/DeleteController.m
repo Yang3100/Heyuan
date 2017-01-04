@@ -181,49 +181,62 @@ static NSString *toolCellIdentifier = @"toolCell";
                 for (SectionData *data in willDeleteArr_) {
                     DataModel *dataModel = [DataModel defaultDataModel];
                     NSString *s = [NSString stringWithFormat:@"%@",_deleteArr];
-                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.allSection]]]) {
-                        if (data.isLike) {
-                            data.isLike = NO;
-                            [dataModel.userLikeSectionID removeObject:data.sectionID];
-                            [dataModel.userLikeSection removeObject:data];
-                        }
-                        if (data.isAddRecent) {
+//                    if ([s containsString:[NSString stringWithFormat:@  "%@",dataModel.allSection]]) {
+                    
+                        if (_deleteArr == dataModel.recentPlay) {
                             data.isAddRecent = NO;
                             [dataModel.recentPlay removeObject:data];
+                            [dataModel.recentPlayAndID removeObjectForKey:dataModel.recentPlayAndID[data.sectionID]];
+                            [dataModel.recentPlayAndID removeObjectForKey:data.sectionID];
                         }
-                        if ([dataModel.downloadingSections containsObject:data]) {
+                        
+                        if (_deleteArr == dataModel.allSection) {
+                            [dataModel.allSection removeObject:data];
+                            [dataModel.allSectionID removeObject:data.sectionID];
+                            [dataModel.allSectionAndID removeObjectForKey: dataModel.allSectionAndID[data.sectionID]];
+                            [dataModel.allSectionAndID removeObjectForKey:data.sectionID];
+                        }
+                        
+                        if (_deleteArr == dataModel.downloadSection) {
+                            data.isDownload = NO;
+                            [dataModel.downloadSectionList removeObject:data.sectionID];
+                            [dataModel.downloadSection removeObject:data];
+                        }
+                        
+                        if (_deleteArr == dataModel.downloadingSections) {
                             [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
                         }
-                        if (data.isDownload) {
-                            data.isDownload = NO;
-                            [dataModel.downloadSectionList removeObject:data.sectionID];
-                            [dataModel.downloadSection removeObject:data];
-                        }
-
-                    }
-                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.userLikeSection]]]) {
-                        if (data.isLike) {
+                        
+                        if (_deleteArr == dataModel.userLikeSection) {
                             data.isLike = NO;
                             [dataModel.userLikeSectionID removeObject:data.sectionID];
                             [dataModel.userLikeSection removeObject:data];
                         }
-                    }
-                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.recentPlay]]]) {
-                        if (data.isAddRecent) {
-                            data.isAddRecent = NO;
-                            [dataModel.recentPlay removeObject:data];
-                        }
-                    }
-                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.downloadSection]]]) {
-                        if (data.isDownload) {
-                            data.isDownload = NO;
-                            [dataModel.downloadSectionList removeObject:data.sectionID];
-                            [dataModel.downloadSection removeObject:data];
-                        }
-                    }
-                    if ([dataModel.downloadingSections containsObject:data]) {
-                        [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
-                    }
+
+//                    }
+//                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.userLikeSection]]]) {
+//                        if (data.isLike) {
+//                            data.isLike = NO;
+//                            [dataModel.userLikeSectionID removeObject:data.sectionID];
+//                            [dataModel.userLikeSection removeObject:data];
+//                        }
+//                    }
+//                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.recentPlay]]]) {
+//                        if (data.isAddRecent) {
+//                            data.isAddRecent = NO;
+//                            [dataModel.recentPlay removeObject:data];
+//                        }
+//                    }
+//                    if ([s containsString:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dataModel.downloadSection]]]) {
+//                        if (data.isDownload) {
+//                            data.isDownload = NO;
+//                            [dataModel.downloadSectionList removeObject:data.sectionID];
+//                            [dataModel.downloadSection removeObject:data];
+//                        }
+//                    }
+//                    if ([dataModel.downloadingSections containsObject:data]) {
+//                        [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+//                    }
                     [[SaveModule defaultObject] deleteFile:data.sectionID inDirectory:_deleteDirectoryName];
                     [[SaveModule defaultObject] deleteFile:data.sectionID inDirectory:@"mp3"];
                     [_deleteArr removeObject:data];
@@ -288,12 +301,12 @@ static NSString *toolCellIdentifier = @"toolCell";
     
     ToolCell *toolCell = [collectionView dequeueReusableCellWithReuseIdentifier:toolCellIdentifier forIndexPath:indexPath];
     [toolCell.toolCellButton setTintColor:DEFAULT_COLOR];
-    [toolCell.toolCellButton setImage:[UIImage imageNamed:@"Remove_personal"] forState:UIControlStateNormal];
+    [toolCell.toolCellButton setImage:[UIImage imageNamed:@"shangcheng"] forState:UIControlStateNormal];
     toolCell.delegate = self;
     toolCell.toolCellButton.tag = 10040 + indexPath.row;
     if (indexPath.row == 1) {
         toolCell.toolCellLabel.text = @"下载";
-        [toolCell.toolCellButton setImage:[UIImage imageNamed:@"mymusic_icon_download_normal"] forState:UIControlStateNormal];
+        [toolCell.toolCellButton setImage:[UIImage imageNamed:@"xiazaiwenzhang"] forState:UIControlStateNormal];
     }
     toolCell.backgroundColor = [UIColor whiteColor];
     return toolCell;

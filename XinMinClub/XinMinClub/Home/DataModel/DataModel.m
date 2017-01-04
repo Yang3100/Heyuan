@@ -210,6 +210,15 @@
 //    [self getSection:@"sectionFile" into:_allSection];
 }
 
+- (void)addSectionToAll:(SectionData *)data {
+    if (![_allSectionID containsObject:data.sectionID]) {
+        [_allSection insertObject:data atIndex:0];
+        [_allSectionID insertObject:data.sectionID atIndex:0];
+        [_allSectionAndID setObject:[NSString stringWithFormat:@"%d",_allSectionAndID.count/2] forKey:data.sectionID];
+        [_allSectionAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allSectionAndID.count / 2]];
+    }
+}
+
 - (void)getAllRecentPlaySection {
     
     [self getSection:@"recentPlaySection" into:_recentPlay];
@@ -239,6 +248,8 @@
             if (![DATA_MODEL.userLikeSectionID containsObject:sArr[0]]) {
                 [_userLikeSectionID addObject:data.sectionID];
                 [_userLikeSection addObject:data];
+                USER_DATA_MODEL.userLikeSectionID = DATA_MODEL.userLikeSectionID;
+                USER_DATA_MODEL.userLikeSection = DATA_MODEL.userLikeSection;
             }
         }
         
@@ -249,15 +260,8 @@
             [_downloadSection addObject:data];
         }
         
-        NSLog(@"%@   /n%@", [NSString stringWithFormat:@"%p",array] ,[NSString stringWithFormat:@"%p;",_allSection]);
-        if ([[NSString stringWithFormat:@"%p",array] isEqualToString:[NSString stringWithFormat:@"%p",_allSection]]) {
-            if (![_allSectionID containsObject:data.sectionID]) {
-                [_allSectionID addObject:data.sectionID];
-                [array addObject:data];
-            }
-            continue;
-        }
-        NSLog(@"%@",data.dic);
+        [self addSectionToAll:data];
+//        NSLog(@"%@",data.dic);
         [array addObject:data];
     }
 }
@@ -408,12 +412,24 @@
 
 - (void)addRecentPlay:(NSDictionary *)dic {
     
-    NSString *sectionID = [dic valueForKey:@"GJ_ID"];
-    SectionData * a = ((SectionData *)_recentPlayAndID[sectionID]);
-    if ([[_recentPlayAndID allKeys] containsObject:sectionID]) {
+    SectionData *data = [self getSectionWithDic:dic];
+    
+    if ([[_recentPlayAndID allKeys] containsObject:data.sectionID]) {
         return;
     }
     
+    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
+    [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
+    _addAllBook = YES;
+    ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
+                                                                                [((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount integerValue] + 1];
+    DATA_MODEL.playingSection = data;
+    [SAVE_MODEL saveRecentPlaySection:data withSectionID:data.sectionID];
+}
+
+- (SectionData *)getSectionWithDic:(NSDictionary *)dic {
+    
+    NSString *sectionID = [dic valueForKey:@"GJ_ID"];
     NSString *sectionName = [dic valueForKey:@"GJ_NAME"];
     NSString *authorName = [dic valueForKey:@"GJ_ZJ"];
     NSString *type = [dic valueForKey:@"GJ_TYP1"];
@@ -434,15 +450,7 @@
                           image, @"image",
                           nil];
     SectionData *data = [[SectionData alloc] initWithDic:dict];
-    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
-    [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
-    _addAllBook = YES;
-    ((SectionData *)_recentPlayAndID[_recentPlayAndID[sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
-                                                                                [((SectionData *)_recentPlayAndID[_recentPlayAndID[sectionID]]).playCount integerValue] + 1];
-    NSLog(@"____%@+++++",_allBookAndID);
-    
-    DATA_MODEL.playingSection = data;
-    [SAVE_MODEL saveRecentPlaySection:data withSectionID:data.sectionID];
+    return data;
 }
 
 @end

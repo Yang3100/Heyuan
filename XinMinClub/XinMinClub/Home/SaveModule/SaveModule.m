@@ -108,6 +108,15 @@
     [json writeToFile:filePath1 atomically:YES];
 }
 
+- (void)saveLikeSection:(SectionData *)data {
+    
+    NSString *filePath1 = [NSString stringWithFormat:@"%@/Library/Caches/recentPlaySection/%@.plist", NSHomeDirectory(), data.sectionID];
+    
+    NSDictionary *json = [data modelToJSONObject];
+    //写入文件
+    [json writeToFile:filePath1 atomically:YES];
+}
+
 - (void)saveSectionDataWithSectionID:(NSString *)sectionID sectionData:(SectionData *)data {
     filePath = [NSString stringWithFormat:@"%@/Library/Caches/sectionFile/%@.plist", NSHomeDirectory(), sectionID];
     if ([self createSectionFile:filePath]) {

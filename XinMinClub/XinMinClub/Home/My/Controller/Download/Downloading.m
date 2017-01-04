@@ -56,9 +56,6 @@ static NSString *bookCell = @"bookCell";
     downloadModule = [DownloadModule defaultDataModel];
     downloadModule.delegate = self;
     
-    // 添加 下载总章节进度 和 下载中章节进度 的监听
-    [dataModel_ addObserver:self forKeyPath:@"downloadingSections" options:NSKeyValueObservingOptionNew context:nil];
-    [downloadModule.sectionData addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionNew context:nil];
     self.tableView.backgroundColor = DEFAULT_BACKGROUNDCOLOR;
 }
 
@@ -66,6 +63,11 @@ static NSString *bookCell = @"bookCell";
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+    
+    
+    // 添加 下载总章节进度 和 下载中章节进度 的监听
+    [dataModel_ addObserver:self forKeyPath:@"downloadingSections" options:NSKeyValueObservingOptionNew context:nil];
+    [downloadModule.sectionData addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionNew context:nil];
     // 滚动到第二行为首行
     //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
     //    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -75,6 +77,8 @@ static NSString *bookCell = @"bookCell";
     [super viewWillDisappear:animated];
     
     [self smBackTap];
+    [dataModel_ removeObserver:self forKeyPath:@"downloadingSections"];
+    [downloadModule.sectionData removeObserver:self forKeyPath:@"progress"];
 }
 
 - (id)init {
@@ -143,7 +147,7 @@ static NSString *bookCell = @"bookCell";
         [downloadModule pauseDownload];
     }
     else {
-        [cell.playImage setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
+        [cell.playImage setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
         [cell.playLabel setTitle:@"暂停全部" forState:UIControlStateNormal];
         dataModel_.isDownloading = YES;
         [downloadModule resumeDownload];
@@ -212,7 +216,7 @@ static NSString *bookCell = @"bookCell";
         [self.tableView registerNib:nib_ forCellReuseIdentifier:manageCell];
         cell = [tableView dequeueReusableCellWithIdentifier:manageCell forIndexPath:indexPath];
         if (dataModel_.isDownloading) {
-            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
+            [((ManageCell *)cell).playImage setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
             [((ManageCell *)cell).playLabel setTitle:@"暂停全部" forState:UIControlStateNormal];
         }
         else {

@@ -30,6 +30,8 @@
 @property (nonatomic, assign) CGFloat progress;
 // 播放器传入字典
 @property (nonatomic, strong) NSDictionary *dic;
+// 本地mp3地址
+@property (nonatomic, strong) NSString *localMp3;
 
 - (id)initWithDic: (NSDictionary *)dic;
 + (id)sectionWithDic: (NSDictionary *)dic;
