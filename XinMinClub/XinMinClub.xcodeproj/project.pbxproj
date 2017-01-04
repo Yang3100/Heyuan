@@ -186,7 +186,6 @@
 		68342F581E179AB00019CCCE /* jindu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4D1E179AB00019CCCE /* jindu@2x.png */; };
 		68342F591E179AB00019CCCE /* mulu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4E1E179AB00019CCCE /* mulu@2x.png */; };
 		68342F5B1E179AB00019CCCE /* rijian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F501E179AB00019CCCE /* rijian@2x.png */; };
-		68342F5C1E179AB00019CCCE /* shezhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F511E179AB00019CCCE /* shezhi@2x.png */; };
 		68342F5D1E179AB00019CCCE /* shoucang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F521E179AB00019CCCE /* shoucang@2x.png */; };
 		68342F5E1E179AB00019CCCE /* yejian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F531E179AB00019CCCE /* yejian@2x.png */; };
 		6843BCFF1E16E2BE00D63FD7 /* yellowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */; };
@@ -290,7 +289,6 @@
 		68BCF39C1E00EF02008AB490 /* navigation2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF36D1E00EF02008AB490 /* navigation2.png */; };
 		68BCF39D1E00EF02008AB490 /* navigation2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF36E1E00EF02008AB490 /* navigation2@2x.png */; };
 		68BCF39E1E00EF02008AB490 /* rijian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF36F1E00EF02008AB490 /* rijian@2x.png */; };
-		68BCF39F1E00EF02008AB490 /* shezhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF3701E00EF02008AB490 /* shezhi@2x.png */; };
 		68BCF3A01E00EF02008AB490 /* shoucang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF3711E00EF02008AB490 /* shoucang@2x.png */; };
 		68BCF3A11E00EF02008AB490 /* taoci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF3721E00EF02008AB490 /* taoci.jpg */; };
 		68BCF3A21E00EF02008AB490 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCF3741E00EF02008AB490 /* 1.png */; };
@@ -2168,7 +2166,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				68BCF3B61E00EF02008AB490 /* 6.jpg in Resources */,
-				68342F5C1E179AB00019CCCE /* shezhi@2x.png in Resources */,
 				6820D7351E1779BF0068D172 /* Song_single_person@3x.png in Resources */,
 				688271A51E13542800014AAD /* 宿儒.jpg in Resources */,
 				68BCF3B91E00EF02008AB490 /* wang.png in Resources */,
@@ -2193,7 +2190,6 @@
 				68EE61E21E13CFB1001E34AD /* WeChat.png in Resources */,
 				6843BCFF1E16E2BE00D63FD7 /* yellowBackground.png in Resources */,
 				68C79A431E176F0800AB642F /* kjpause.png in Resources */,
-				68BCF39F1E00EF02008AB490 /* shezhi@2x.png in Resources */,
 				6814F0921C9FE86C000FD40B /* MJRefresh.bundle in Resources */,
 				688271A61E13542800014AAD /* 弘毅.jpg in Resources */,
 				68E8B73E1E0000B1000CB44A /* qiangua.png in Resources */,

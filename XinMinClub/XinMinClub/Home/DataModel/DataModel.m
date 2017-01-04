@@ -191,8 +191,8 @@
 - (BOOL)judgeLocalPath:(NSString *)path withUrl:(NSString *)url {
     
     // 判断是否为本地
-    NSString *head = [[path componentsSeparatedByString:@"/"] firstObject];
-    if ([head isEqualToString:@"http:"]) {
+    NSString *head = [[path componentsSeparatedByString:@"p"] firstObject];
+    if ([head isEqualToString:@"htt"]) {
         return NO;
     }
     
