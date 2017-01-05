@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="359" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-N6-SkB">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-N6-SkB">
                         <rect key="frame" x="13" y="49" width="11" height="11"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="xqZ-N6-SkB" secondAttribute="height" multiplier="1:1" id="IXR-bU-Bjy"/>
@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-Bf-0gh">
-                        <rect key="frame" x="13" y="24" width="30" height="18"/>
+                        <rect key="frame" x="13" y="24.5" width="30" height="18"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点亮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-xh-1wa">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="18"/>
@@ -45,10 +45,10 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="btf-U6-qNy">
-                        <rect key="frame" x="29" y="47" width="112" height="15"/>
+                        <rect key="frame" x="29" y="47.5" width="111.5" height="14.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李行亮□点亮 第三期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-Fc-Tbe">
-                                <rect key="frame" x="0.0" y="0.0" width="112" height="15"/>
+                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="14.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -98,7 +98,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Check_personal.png" width="45" height="45"/>
+        <image name="DWDCheck_personal.png" width="30" height="30"/>
         <image name="actionbutton.png" width="40" height="40"/>
     </resources>
 </document>

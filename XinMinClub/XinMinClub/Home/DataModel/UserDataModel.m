@@ -280,6 +280,28 @@
     
 }
 
+- (BOOL)addLikeSection:(NSDictionary *)dic {
+    
+    SectionData *data = DATA_MODEL.playingSection;
+    if (!DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[data.sectionID]]) {
+        [DATA_MODEL addSectionToAll:data];
+    }
+    if (_userLikeSectionID && [_userLikeSectionID containsObject:data.sectionID]) {
+        return NO;
+    }
+    DATA_MODEL.addAllBook = YES;
+    data.isLike = YES;
+    [_userLikeSectionID insertObject:data.sectionID atIndex:0];
+    [_userLikeSection insertObject:data atIndex:0];
+    [DATA_MODEL.userLikeSection insertObject:data atIndex:0];
+    [DATA_MODEL.userLikeSectionID insertObject:data.sectionID atIndex:0];
+    
+    USER_DATA_MODEL.isChange = YES;
+    //        [[UserDataModel defaultDataModel] saveLocalData];
+    [SAVE_MODEL saveLikeSection:data];
+    return YES;
+}
+
 - (void)deleteLikeSectionID:(NSString *)sectionID {
     
 }

@@ -58,7 +58,8 @@
 - (void)judgeIsDelete;// 判断收藏是否删改
 - (void)addLikeBookID:(NSString *)libraryNum; // 添加喜欢的文集ID
 - (void)deleteLikeBookID:(NSString *)libraryNum; // 删除喜欢的文集ID
-- (void)addLikeSectionID:(NSString *)sectionID; // 添加喜欢章节
+- (void)addLikeSectionID:(NSString *)sectionID; // 添加喜欢章节ID
 - (void)deleteLikeSectionID:(NSString *)sectionID; // 删除喜欢章节
+- (BOOL)addLikeSection:(NSDictionary *)dic;// 添加喜欢的章节
 
 @end

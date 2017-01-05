@@ -494,10 +494,10 @@
     [self.view addSubview:ocsv];
 }
 - (IBAction)like:(UIButton *)sender {
-    
+    [USER_DATA_MODEL addLikeSection:self.dic];
 }
 - (IBAction)download:(UIButton *)sender {
-    
+    [DATA_MODEL downloadSection:[kj_dict valueForKey:@"GJ_ID"]];
 }
 -(IBAction)menuButton:(UIButton*)sender {
     _menuBack.hidden = NO;
@@ -617,10 +617,6 @@
         NSNumber *number = [change valueForKey:@"new"];
         self.pro.progress = number.floatValue; // 缓存进度条
     }else if ([keyPath isEqualToString:@"currentTime"]) {
-        if (!_dic[@"image"]) {
-            [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
-        }
-        [DATA_MODEL addRecentPlay:_dic];
         [self progressValueChage:YES];
         [self setNowPlayingInfo];  // 锁屏播放
     } else if ([keyPath isEqualToString:@"isPlayComplete"]) {
@@ -733,6 +729,11 @@ bool isObserve = YES;
     [self imageViewRotate]; // 旋转歌手图片
     
     [self setNowPlayingInfo];  // 设置锁屏播放
+    
+    if (!_dic[@"image"]) {
+        [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
+    }
+    [DATA_MODEL addRecentPlay:_dic];
 }
 
 

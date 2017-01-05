@@ -29,7 +29,8 @@
 
 // 保存最近播放章节
 - (void)saveRecentPlaySection:(SectionData *)data withSectionID:(NSString *)sectionID;
-
+// 保存喜欢章节
+- (void)saveLikeSection:(SectionData *)data;
 // 创建文件
 - (BOOL)createBookFile:(NSString *)path;
 
