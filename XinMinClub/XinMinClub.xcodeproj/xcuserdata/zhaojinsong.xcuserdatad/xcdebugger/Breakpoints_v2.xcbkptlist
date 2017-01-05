@@ -32,38 +32,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DownloadModule/DownloadModule.m"
-            timestampString = "505219115.779116"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "-resumeDownload"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DownloadModule/DownloadModule.m"
-            timestampString = "505214345.698695"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-resumeDownload"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -100,7 +68,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222344.165239"
+                  timestampString = "505275182.594488"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "178"
@@ -115,7 +83,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222344.169523"
+                  timestampString = "505275182.634845"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "178"
@@ -164,7 +132,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222380.430031"
+                  timestampString = "505275182.63961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "181"
@@ -179,7 +147,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222380.434544"
+                  timestampString = "505275182.644404"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "181"
@@ -452,7 +420,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222608.045674"
+                  timestampString = "505275182.704743"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "247"
@@ -467,7 +435,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222608.049541"
+                  timestampString = "505275182.706511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "247"
@@ -482,7 +450,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222608.053344"
+                  timestampString = "505275182.708207"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "247"
@@ -515,7 +483,7 @@
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222612.56173"
+                  timestampString = "505275182.713441"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "249"
@@ -526,11 +494,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__34-[DeleteController manageSection:]_block_invoke.217"
+                  symbolName = "__34-[DeleteController manageSection:]_block_invoke.207"
                   moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/My/Controller/DeleteController.m"
-                  timestampString = "505222612.564999"
+                  timestampString = "505275182.715863"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "250"
@@ -538,6 +506,102 @@
                   offsetFromSymbolStart = "56">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Player/playerViewController.m"
+            timestampString = "505273088.151909"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "-download:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Home/DataModel/DataModel.m"
+            timestampString = "505275182.111957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "-downloadSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Home/DataModel/DataModel.m"
+            timestampString = "505275182.111957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "-downloadSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Home/DataModel/DataModel.m"
+            timestampString = "505275182.111957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
+            landmarkName = "-downloadSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Player/playerViewController.m"
+            timestampString = "505275083.475653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
+            landmarkName = "-startPlayBefore"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/Player/playerViewController.m"
+            timestampString = "505275093.398902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
+            landmarkName = "-startPlayBefore"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

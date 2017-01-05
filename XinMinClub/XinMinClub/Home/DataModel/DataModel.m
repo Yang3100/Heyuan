@@ -425,6 +425,7 @@
                                                                                 [((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount integerValue] + 1];
     DATA_MODEL.playingSection = data;
     [SAVE_MODEL saveRecentPlaySection:data withSectionID:data.sectionID];
+    [self addSectionToAll:data];
 }
 
 - (SectionData *)getSectionWithDic:(NSDictionary *)dic {
@@ -451,6 +452,20 @@
                           nil];
     SectionData *data = [[SectionData alloc] initWithDic:dict];
     return data;
+}
+
+- (void)downloadSection:(NSString *)sectionID {
+    
+    if (![DATA_MODEL.allSectionAndID objectForKey:sectionID]) {
+        return;
+    }
+    
+    SectionData * data = [DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]];
+    
+    // 数组变化
+    [[DATA_MODEL mutableArrayValueForKey:@"downloadingSections"] addObject:data];
+    DATA_MODEL.isDownloading = YES;
+    [DownloadModule defaultDataModel];
 }
 
 @end

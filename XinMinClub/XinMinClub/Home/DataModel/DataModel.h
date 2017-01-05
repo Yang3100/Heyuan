@@ -150,4 +150,6 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 根据dic取得section
 - (SectionData *)getSectionWithDic:(NSDictionary *)dic;
 
+- (void)downloadSection:(NSString *)sectionID;
+
 @end
