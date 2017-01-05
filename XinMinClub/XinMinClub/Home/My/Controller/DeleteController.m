@@ -225,7 +225,8 @@ static NSString *toolCellIdentifier = @"toolCell";
                         }
                         
                         if (_deleteArr == dataModel.downloadingSections) {
-                            [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+//                            [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+                            [[DownloadModule defaultDataModel] nextDownload:data];
                         }
                         
                         if (_deleteArr == dataModel.userLikeSection) {

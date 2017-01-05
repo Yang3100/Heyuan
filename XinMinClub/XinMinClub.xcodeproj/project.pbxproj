@@ -2184,10 +2184,7 @@
 				68BCF3B61E00EF02008AB490 /* 6.jpg in Resources */,
 				6820D7351E1779BF0068D172 /* Song_single_person@3x.png in Resources */,
 				1A36F7971E1D140700C6744F /* woxihaun@2x.png in Resources */,
-<<<<<<< HEAD
 				688271A51E13542800014AAD /* 宿儒.jpg in Resources */,
-=======
->>>>>>> yangKJ/master
 				68BCF3B91E00EF02008AB490 /* wang.png in Resources */,
 				1A4033831E0908A80006613F /* zuijinbofang.png in Resources */,
 				6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */,
@@ -2200,10 +2197,7 @@
 				1A40336A1E0908A80006613F /* quanbu@2x.png in Resources */,
 				6865F12D1E10AFB00099D6F3 /* login@3x.jpg in Resources */,
 				1A36F7911E1D128800C6744F /* kjpause.png in Resources */,
-<<<<<<< HEAD
 				688271BE1E13542800014AAD /* 菩提.jpg in Resources */,
-=======
->>>>>>> yangKJ/master
 				6843BD081E16E2BE00D63FD7 /* playNext.png in Resources */,
 				68FAB8E81E1CC918008D77DC /* 亮度@2x.png in Resources */,
 				1A91BE9F1CB360D500689AE0 /* SecondTableViewCell.xib in Resources */,

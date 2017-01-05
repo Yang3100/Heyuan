@@ -22,6 +22,9 @@
 - (void)startDownload:(SectionData *)sectionData;
 - (void)pauseDownload;
 
+// 下个下载
+- (void)nextDownload:(SectionData *)data;
+
 // 下载中章节
 @property (nonatomic, strong) SectionData *sectionData;
 

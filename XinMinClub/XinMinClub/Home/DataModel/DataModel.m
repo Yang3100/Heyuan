@@ -196,14 +196,13 @@
     if ([head isEqualToString:@"htt"]) {
         return NO;
     }
-    return YES;
-//    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
-//    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
-//    
-//    if ([localLastPath isEqualToString:lastPath]) {
-//        return YES;
-//    }
-//    return NO;
+    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+    
+    if ([localLastPath isEqualToString:lastPath]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)getAllLocalSection {
@@ -422,7 +421,7 @@
         return;
     }
     
-    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
+    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%lu",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
     _addAllBook = YES;
     ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
@@ -464,8 +463,6 @@
         return;
     }
     
-<<<<<<< HEAD
-    
     if ([DATA_MODEL.downloadingSections containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
         return;
     }
@@ -474,8 +471,6 @@
         return;
     }
     
-=======
->>>>>>> yangKJ/master
     SectionData * data = [DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]];
     
     // 数组变化

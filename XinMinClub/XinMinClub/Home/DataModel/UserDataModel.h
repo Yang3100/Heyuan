@@ -61,5 +61,6 @@
 - (void)addLikeSectionID:(NSString *)sectionID; // 添加喜欢章节ID
 - (void)deleteLikeSectionID:(NSString *)sectionID; // 删除喜欢章节
 - (BOOL)addLikeSection:(NSDictionary *)dic;// 添加喜欢的章节
+- (BOOL)judgeIsLike:(NSString *)sectionID;// 判断是否喜欢
 
 @end

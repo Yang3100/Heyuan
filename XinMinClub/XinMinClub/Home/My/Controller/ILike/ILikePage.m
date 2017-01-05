@@ -52,10 +52,10 @@
     bookNum = 15;
     NSString *section = [NSString stringWithFormat:@"%@", @"章节"];///%@",[NSNumber numberWithInteger:sectionsNum]];
     NSString *author = nil;//[NSString stringWithFormat:@"作者"];///%@",[NSNumber numberWithInteger:authorNum]];
-    NSString *book = [NSString stringWithFormat:@"%@", @"文集"];///%@",[NSNumber numberWithInteger:bookNum]];
-    titleArr_ = @[book,section];
+//    NSString *book = [NSString stringWithFormat:@"%@", @"文集"];///%@",[NSNumber numberWithInteger:bookNum]];
+    titleArr_ = @[section];
     if (author) {
-        titleArr_ = @[book,author,section];
+//        titleArr_ = @[book,author,section];
     }
     if (self = [super init]) {
         [self initView];
@@ -72,7 +72,7 @@
     
     self.title = @"我喜欢";
     
-    self.menuItemWidth = SCREEN_WIDTH / 3;
+    self.menuItemWidth = SCREEN_WIDTH;
     if (titleArr_.count == 2) {
         self.menuItemWidth = LINE_WIDTH;
     }
@@ -121,14 +121,14 @@
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     
-    if (index == 1) {
+    if (index == 0) {
         //
         if (!iLikeSection_) {
             iLikeSection_ = [[ILikeSection alloc] initWithStyle:UITableViewStyleGrouped];
             iLikeSection_.sectionNum = sectionsNum;
         }
         return iLikeSection_;
-    } else if (index == 0) {
+    } else if (index == 8) {
         if (titleArr_.count == 2) {
             if (!iLikeBook_) {
                 iLikeBook_ = [[ILikeBook alloc] initWithStyle:UITableViewStyleGrouped];

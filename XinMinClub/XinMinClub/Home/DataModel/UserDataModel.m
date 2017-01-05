@@ -281,20 +281,25 @@
 }
 
 - (BOOL)addLikeSection:(NSDictionary *)dic {
-    
-    SectionData *data = DATA_MODEL.playingSection;
+    SectionData *data;
+    if (DATA_MODEL.playingSection && [DATA_MODEL.playingSection.sectionID isEqualToString:dic[@"GJ_ID"]]) {
+        data = DATA_MODEL.playingSection;
+    } else {
+        data = [DATA_MODEL getSectionWithDic:dic];
+    }
     if (!DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[data.sectionID]]) {
         [DATA_MODEL addSectionToAll:data];
     }
     if (_userLikeSectionID && [_userLikeSectionID containsObject:data.sectionID]) {
         return NO;
     }
+    
     DATA_MODEL.addAllBook = YES;
     data.isLike = YES;
     [_userLikeSectionID insertObject:data.sectionID atIndex:0];
     [_userLikeSection insertObject:data atIndex:0];
-    [DATA_MODEL.userLikeSection insertObject:data atIndex:0];
-    [DATA_MODEL.userLikeSectionID insertObject:data.sectionID atIndex:0];
+//    [DATA_MODEL.userLikeSection insertObject:data atIndex:0];
+//    [DATA_MODEL.userLikeSectionID insertObject:data.sectionID atIndex:0];
     
     USER_DATA_MODEL.isChange = YES;
     //        [[UserDataModel defaultDataModel] saveLocalData];
@@ -303,7 +308,20 @@
 }
 
 - (void)deleteLikeSectionID:(NSString *)sectionID {
-    
+    SectionData *data = DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[sectionID]];
+    DATA_MODEL.addAllBook = YES;
+    data.isLike = NO;
+    [_userLikeSectionID removeObject:data.sectionID];
+    [_userLikeSection removeObject:data];
+    USER_DATA_MODEL.isChange = YES;
+    [SAVE_MODEL saveLikeSection:data];
+}
+
+- (BOOL)judgeIsLike:(NSString *)sectionID {
+    if ([_userLikeSectionID containsObject:sectionID]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)judgeIsDelete {

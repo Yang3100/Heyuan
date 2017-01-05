@@ -114,6 +114,7 @@
         DataModel *dataModel = [DataModel defaultDataModel];
         dataModel.isDownloading = NO;
         _sectionData.isDownload = YES;
+        _sectionData.clickMp3 = mp3URLString;
         if (![dataModel.downloadSectionList containsObject:_sectionData.sectionID]) {
             [dataModel.downloadSectionList addObject:_sectionData.sectionID];
             [dataModel.downloadSection addObject:_sectionData];
@@ -162,6 +163,20 @@
     }
     task_ = [session_ downloadTaskWithResumeData:resumeData_];
     [task_ resume];
+}
+
+- (void)nextDownload:(SectionData *)data {
+    [task_ cancel];
+    task_ = nil;
+    DATA_MODEL.isDownloading = NO;
+    timer.fireDate = [NSDate distantFuture];
+    if (DATA_MODEL.downloadingSections.count > 0) {
+        [[DATA_MODEL mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+        if (DATA_MODEL.downloadingSections.count > 1) {
+            DATA_MODEL.downloadingSection = [DATA_MODEL.downloadingSections objectAtIndex:0];
+        }
+    }
+    [_delegate finishDownloadSection];
 }
 
 @end
