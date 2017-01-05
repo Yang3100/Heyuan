@@ -74,37 +74,37 @@
     shiName = @[@"禅悦",@"菩提",@"般若",@"自在",@"缘觉",@"悬壶",@"定慧",@"梵行",@"止观"];
     daoName = @[@"心斋",@"轩箓",@"无为",@"抱朴",@"静笃",@"岐黄",@"玉虚",@"一炁",@"玄霄"];
     
-    ruArr = @[[UIImage imageNamed:@"雅赏.jpg"],
-              [UIImage imageNamed:@"逸經.jpg"],
-              [UIImage imageNamed:@"宿儒.jpg"],
-              [UIImage imageNamed:@"弘毅.jpg"],
-              [UIImage imageNamed:@"至诚.jpg"],
-              [UIImage imageNamed:@"青囊.JPG"],
-              [UIImage imageNamed:@"慎独.jpg"],
-              [UIImage imageNamed:@"乐水.jpg"],
-              [UIImage imageNamed:@"詩禮.jpg"]
+    ruArr = @[[UIImage imageNamed:@"雅赏"],
+              [UIImage imageNamed:@"逸经"],
+              [UIImage imageNamed:@"宿儒"],
+              [UIImage imageNamed:@"弘毅"],
+              [UIImage imageNamed:@"至诚"],
+              [UIImage imageNamed:@"青囊"],
+              [UIImage imageNamed:@"慎独"],
+              [UIImage imageNamed:@"乐水"],
+              [UIImage imageNamed:@"诗礼"]
               ];
     
-    shiArr = @[[UIImage imageNamed:@"禪悅.jpg"],
-               [UIImage imageNamed:@"菩提.jpg"],
-               [UIImage imageNamed:@"般若.jpg"],
-               [UIImage imageNamed:@"自在.jpg"],
-               [UIImage imageNamed:@"緣覺.jpg"],
-               [UIImage imageNamed:@"悬壶.jpg"],
-               [UIImage imageNamed:@"定慧.jpg"],
-               [UIImage imageNamed:@"梵行.jpg"],
-               [UIImage imageNamed:@"止觀.jpg"]
+    shiArr = @[[UIImage imageNamed:@"禅悦"],
+               [UIImage imageNamed:@"菩提"],
+               [UIImage imageNamed:@"般若"],
+               [UIImage imageNamed:@"自在"],
+               [UIImage imageNamed:@"缘觉"],
+               [UIImage imageNamed:@"悬壶"],
+               [UIImage imageNamed:@"定慧"],
+               [UIImage imageNamed:@"梵行"],
+               [UIImage imageNamed:@"止观"]
                ];
     
-    daoArr = @[[UIImage imageNamed:@"心斋.jpg"],
-               [UIImage imageNamed:@"轩箓.JPG"],
-               [UIImage imageNamed:@"无为.jpg"],
-               [UIImage imageNamed:@"抱朴.jpg"],
-               [UIImage imageNamed:@"静笃.jpg"],
-               [UIImage imageNamed:@"岐黃.jpg"],
-               [UIImage imageNamed:@"玉虛.jpg"],
-               [UIImage imageNamed:@"一炁.jpg"],
-               [UIImage imageNamed:@"玄霄.jpg"]
+    daoArr = @[[UIImage imageNamed:@"心斋"],
+               [UIImage imageNamed:@"轩箓"],
+               [UIImage imageNamed:@"无为"],
+               [UIImage imageNamed:@"抱朴"],
+               [UIImage imageNamed:@"静笃"],
+               [UIImage imageNamed:@"岐黄"],
+               [UIImage imageNamed:@"玉虛"],
+               [UIImage imageNamed:@"一炁"],
+               [UIImage imageNamed:@"玄霄"]
                ];
 }
 
@@ -172,7 +172,7 @@
             CGFloat bx = (space+Nwidth)*y+space;
             CGFloat by = (space_height+Nwidth)*x+space_height+kj_y+(int)kj_width/12;
             button.frame = CGRectMake(bx, by, Nwidth, Nwidth);
-            button.backgroundColor = [UIColor greenColor];
+            button.backgroundColor = [UIColor clearColor];
             [button setImage:shiArr[k-1] forState:UIControlStateNormal];
             button.tag = k-1;
             

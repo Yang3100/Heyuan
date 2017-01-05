@@ -234,33 +234,6 @@
 		687F66321E0BDCE10000D000 /* lyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687F661E1E0BDCE10000D000 /* lyricView.m */; };
 		687F66331E0BDCE10000D000 /* player.m in Sources */ = {isa = PBXBuildFile; fileRef = 687F66201E0BDCE10000D000 /* player.m */; };
 		687F66341E0BDCE10000D000 /* playerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687F66221E0BDCE10000D000 /* playerViewController.m */; };
-		688271A41E13542800014AAD /* 乐水.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271871E13542800014AAD /* 乐水.jpg */; };
-		688271A51E13542800014AAD /* 宿儒.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271881E13542800014AAD /* 宿儒.jpg */; };
-		688271A61E13542800014AAD /* 弘毅.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271891E13542800014AAD /* 弘毅.jpg */; };
-		688271A71E13542800014AAD /* 慎独.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882718A1E13542800014AAD /* 慎独.jpg */; };
-		688271A81E13542800014AAD /* 至诚.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882718B1E13542800014AAD /* 至诚.jpg */; };
-		688271A91E13542800014AAD /* 詩禮.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882718C1E13542800014AAD /* 詩禮.jpg */; };
-		688271AA1E13542800014AAD /* 逸經.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882718D1E13542800014AAD /* 逸經.jpg */; };
-		688271AB1E13542800014AAD /* 雅赏.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882718E1E13542800014AAD /* 雅赏.jpg */; };
-		688271AC1E13542800014AAD /* 青囊.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 6882718F1E13542800014AAD /* 青囊.JPG */; };
-		688271AD1E13542800014AAD /* 一炁.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271911E13542800014AAD /* 一炁.jpg */; };
-		688271AE1E13542800014AAD /* 岐黃.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271921E13542800014AAD /* 岐黃.jpg */; };
-		688271AF1E13542800014AAD /* 心斋.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271931E13542800014AAD /* 心斋.jpg */; };
-		688271B01E13542800014AAD /* 抱朴.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271941E13542800014AAD /* 抱朴.jpg */; };
-		688271B11E13542800014AAD /* 无为.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271951E13542800014AAD /* 无为.jpg */; };
-		688271B21E13542800014AAD /* 玄霄.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271961E13542800014AAD /* 玄霄.jpg */; };
-		688271B31E13542800014AAD /* 玉虛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271971E13542800014AAD /* 玉虛.jpg */; };
-		688271B41E13542800014AAD /* 轩箓.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 688271981E13542800014AAD /* 轩箓.JPG */; };
-		688271B51E13542800014AAD /* 静笃.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271991E13542800014AAD /* 静笃.jpg */; };
-		688271B61E13542800014AAD /* 定慧.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882719B1E13542800014AAD /* 定慧.jpg */; };
-		688271B71E13542800014AAD /* 悬壶.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882719C1E13542800014AAD /* 悬壶.jpg */; };
-		688271B81E13542800014AAD /* 梵行.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882719D1E13542800014AAD /* 梵行.jpg */; };
-		688271B91E13542800014AAD /* 止觀.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882719E1E13542800014AAD /* 止觀.jpg */; };
-		688271BA1E13542800014AAD /* 禪悅.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6882719F1E13542800014AAD /* 禪悅.jpg */; };
-		688271BB1E13542800014AAD /* 緣覺.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271A01E13542800014AAD /* 緣覺.jpg */; };
-		688271BC1E13542800014AAD /* 自在.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271A11E13542800014AAD /* 自在.jpg */; };
-		688271BD1E13542800014AAD /* 般若.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271A21E13542800014AAD /* 般若.jpg */; };
-		688271BE1E13542800014AAD /* 菩提.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688271A31E13542800014AAD /* 菩提.jpg */; };
 		6885497C1E00E9A900FD545D /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497B1E00E9A900FD545D /* libc++abi.tbd */; };
 		6885497E1E00EA8300FD545D /* libobjc.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497D1E00EA8300FD545D /* libobjc.A.tbd */; };
 		688E36361E17A35200388E46 /* taoci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688E36351E17A35200388E46 /* taoci.jpg */; };
@@ -326,6 +299,33 @@
 		68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */; };
 		68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */; };
 		68C79A441E176F0800AB642F /* kjplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A421E176F0800AB642F /* kjplay.png */; };
+		68DB36661E1DF3C400DD53D3 /* 乐水.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36491E1DF3C400DD53D3 /* 乐水.png */; };
+		68DB36671E1DF3C400DD53D3 /* 宿儒.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364A1E1DF3C400DD53D3 /* 宿儒.png */; };
+		68DB36681E1DF3C400DD53D3 /* 弘毅.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364B1E1DF3C400DD53D3 /* 弘毅.png */; };
+		68DB36691E1DF3C400DD53D3 /* 慎独.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364C1E1DF3C400DD53D3 /* 慎独.png */; };
+		68DB366A1E1DF3C400DD53D3 /* 至诚.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364D1E1DF3C400DD53D3 /* 至诚.png */; };
+		68DB366B1E1DF3C400DD53D3 /* 诗礼.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364E1E1DF3C400DD53D3 /* 诗礼.png */; };
+		68DB366C1E1DF3C400DD53D3 /* 逸经.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB364F1E1DF3C400DD53D3 /* 逸经.png */; };
+		68DB366D1E1DF3C400DD53D3 /* 雅赏.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36501E1DF3C400DD53D3 /* 雅赏.png */; };
+		68DB366E1E1DF3C400DD53D3 /* 青囊.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36511E1DF3C400DD53D3 /* 青囊.png */; };
+		68DB36781E1DF3C400DD53D3 /* 定慧.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB365D1E1DF3C400DD53D3 /* 定慧.png */; };
+		68DB36791E1DF3C400DD53D3 /* 悬壶.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB365E1E1DF3C400DD53D3 /* 悬壶.png */; };
+		68DB367A1E1DF3C400DD53D3 /* 梵行.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB365F1E1DF3C400DD53D3 /* 梵行.png */; };
+		68DB367B1E1DF3C400DD53D3 /* 止观.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36601E1DF3C400DD53D3 /* 止观.png */; };
+		68DB367C1E1DF3C400DD53D3 /* 禅悦.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36611E1DF3C400DD53D3 /* 禅悦.png */; };
+		68DB367D1E1DF3C400DD53D3 /* 缘觉.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36621E1DF3C400DD53D3 /* 缘觉.png */; };
+		68DB367E1E1DF3C400DD53D3 /* 自在.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36631E1DF3C400DD53D3 /* 自在.png */; };
+		68DB367F1E1DF3C400DD53D3 /* 般若.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36641E1DF3C400DD53D3 /* 般若.png */; };
+		68DB36801E1DF3C400DD53D3 /* 菩提.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36651E1DF3C400DD53D3 /* 菩提.png */; };
+		68DB369E1E1DF93000DD53D3 /* 一炁.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36951E1DF93000DD53D3 /* 一炁.png */; };
+		68DB369F1E1DF93000DD53D3 /* 岐黄.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36961E1DF93000DD53D3 /* 岐黄.png */; };
+		68DB36A01E1DF93000DD53D3 /* 心斋.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36971E1DF93000DD53D3 /* 心斋.png */; };
+		68DB36A11E1DF93000DD53D3 /* 抱朴.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36981E1DF93000DD53D3 /* 抱朴.png */; };
+		68DB36A21E1DF93000DD53D3 /* 无为.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36991E1DF93000DD53D3 /* 无为.png */; };
+		68DB36A31E1DF93000DD53D3 /* 玄霄.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB369A1E1DF93000DD53D3 /* 玄霄.png */; };
+		68DB36A41E1DF93000DD53D3 /* 玉虛.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB369B1E1DF93000DD53D3 /* 玉虛.png */; };
+		68DB36A51E1DF93000DD53D3 /* 轩箓.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB369C1E1DF93000DD53D3 /* 轩箓.png */; };
+		68DB36A61E1DF93000DD53D3 /* 静笃.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB369D1E1DF93000DD53D3 /* 静笃.png */; };
 		68E4F1601C9BACDB00839E2C /* ICETutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E4F14E1C9BACDB00839E2C /* ICETutorialController.m */; };
 		68E4F1611C9BACDB00839E2C /* ICETutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E4F1501C9BACDB00839E2C /* ICETutorialPage.m */; };
 		68E4F1621C9BACDB00839E2C /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E4F1521C9BACDB00839E2C /* ICETutorialStyle.m */; };
@@ -738,33 +738,6 @@
 		687F66201E0BDCE10000D000 /* player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = player.m; sourceTree = "<group>"; };
 		687F66211E0BDCE10000D000 /* playerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerViewController.h; sourceTree = "<group>"; };
 		687F66221E0BDCE10000D000 /* playerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerViewController.m; sourceTree = "<group>"; };
-		688271871E13542800014AAD /* 乐水.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "乐水.jpg"; sourceTree = "<group>"; };
-		688271881E13542800014AAD /* 宿儒.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "宿儒.jpg"; sourceTree = "<group>"; };
-		688271891E13542800014AAD /* 弘毅.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "弘毅.jpg"; sourceTree = "<group>"; };
-		6882718A1E13542800014AAD /* 慎独.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "慎独.jpg"; sourceTree = "<group>"; };
-		6882718B1E13542800014AAD /* 至诚.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "至诚.jpg"; sourceTree = "<group>"; };
-		6882718C1E13542800014AAD /* 詩禮.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "詩禮.jpg"; sourceTree = "<group>"; };
-		6882718D1E13542800014AAD /* 逸經.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "逸經.jpg"; sourceTree = "<group>"; };
-		6882718E1E13542800014AAD /* 雅赏.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "雅赏.jpg"; sourceTree = "<group>"; };
-		6882718F1E13542800014AAD /* 青囊.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "青囊.JPG"; sourceTree = "<group>"; };
-		688271911E13542800014AAD /* 一炁.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "一炁.jpg"; sourceTree = "<group>"; };
-		688271921E13542800014AAD /* 岐黃.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "岐黃.jpg"; sourceTree = "<group>"; };
-		688271931E13542800014AAD /* 心斋.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "心斋.jpg"; sourceTree = "<group>"; };
-		688271941E13542800014AAD /* 抱朴.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "抱朴.jpg"; sourceTree = "<group>"; };
-		688271951E13542800014AAD /* 无为.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "无为.jpg"; sourceTree = "<group>"; };
-		688271961E13542800014AAD /* 玄霄.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "玄霄.jpg"; sourceTree = "<group>"; };
-		688271971E13542800014AAD /* 玉虛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "玉虛.jpg"; sourceTree = "<group>"; };
-		688271981E13542800014AAD /* 轩箓.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "轩箓.JPG"; sourceTree = "<group>"; };
-		688271991E13542800014AAD /* 静笃.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "静笃.jpg"; sourceTree = "<group>"; };
-		6882719B1E13542800014AAD /* 定慧.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "定慧.jpg"; sourceTree = "<group>"; };
-		6882719C1E13542800014AAD /* 悬壶.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "悬壶.jpg"; sourceTree = "<group>"; };
-		6882719D1E13542800014AAD /* 梵行.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "梵行.jpg"; sourceTree = "<group>"; };
-		6882719E1E13542800014AAD /* 止觀.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "止觀.jpg"; sourceTree = "<group>"; };
-		6882719F1E13542800014AAD /* 禪悅.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "禪悅.jpg"; sourceTree = "<group>"; };
-		688271A01E13542800014AAD /* 緣覺.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "緣覺.jpg"; sourceTree = "<group>"; };
-		688271A11E13542800014AAD /* 自在.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "自在.jpg"; sourceTree = "<group>"; };
-		688271A21E13542800014AAD /* 般若.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "般若.jpg"; sourceTree = "<group>"; };
-		688271A31E13542800014AAD /* 菩提.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "菩提.jpg"; sourceTree = "<group>"; };
 		6885497B1E00E9A900FD545D /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		6885497D1E00EA8300FD545D /* libobjc.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libobjc.A.tbd; path = usr/lib/libobjc.A.tbd; sourceTree = SDKROOT; };
 		688E36351E17A35200388E46 /* taoci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = taoci.jpg; sourceTree = "<group>"; };
@@ -837,6 +810,33 @@
 		68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionbutton@2x.png"; sourceTree = "<group>"; };
 		68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_user_icon@2x.png"; sourceTree = "<group>"; };
 		68C79A421E176F0800AB642F /* kjplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kjplay.png; sourceTree = "<group>"; };
+		68DB36491E1DF3C400DD53D3 /* 乐水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "乐水.png"; sourceTree = "<group>"; };
+		68DB364A1E1DF3C400DD53D3 /* 宿儒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "宿儒.png"; sourceTree = "<group>"; };
+		68DB364B1E1DF3C400DD53D3 /* 弘毅.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "弘毅.png"; sourceTree = "<group>"; };
+		68DB364C1E1DF3C400DD53D3 /* 慎独.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "慎独.png"; sourceTree = "<group>"; };
+		68DB364D1E1DF3C400DD53D3 /* 至诚.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "至诚.png"; sourceTree = "<group>"; };
+		68DB364E1E1DF3C400DD53D3 /* 诗礼.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "诗礼.png"; sourceTree = "<group>"; };
+		68DB364F1E1DF3C400DD53D3 /* 逸经.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "逸经.png"; sourceTree = "<group>"; };
+		68DB36501E1DF3C400DD53D3 /* 雅赏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雅赏.png"; sourceTree = "<group>"; };
+		68DB36511E1DF3C400DD53D3 /* 青囊.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "青囊.png"; sourceTree = "<group>"; };
+		68DB365D1E1DF3C400DD53D3 /* 定慧.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定慧.png"; sourceTree = "<group>"; };
+		68DB365E1E1DF3C400DD53D3 /* 悬壶.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "悬壶.png"; sourceTree = "<group>"; };
+		68DB365F1E1DF3C400DD53D3 /* 梵行.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "梵行.png"; sourceTree = "<group>"; };
+		68DB36601E1DF3C400DD53D3 /* 止观.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "止观.png"; sourceTree = "<group>"; };
+		68DB36611E1DF3C400DD53D3 /* 禅悦.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "禅悦.png"; sourceTree = "<group>"; };
+		68DB36621E1DF3C400DD53D3 /* 缘觉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "缘觉.png"; sourceTree = "<group>"; };
+		68DB36631E1DF3C400DD53D3 /* 自在.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自在.png"; sourceTree = "<group>"; };
+		68DB36641E1DF3C400DD53D3 /* 般若.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "般若.png"; sourceTree = "<group>"; };
+		68DB36651E1DF3C400DD53D3 /* 菩提.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "菩提.png"; sourceTree = "<group>"; };
+		68DB36951E1DF93000DD53D3 /* 一炁.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "一炁.png"; sourceTree = "<group>"; };
+		68DB36961E1DF93000DD53D3 /* 岐黄.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "岐黄.png"; sourceTree = "<group>"; };
+		68DB36971E1DF93000DD53D3 /* 心斋.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "心斋.png"; sourceTree = "<group>"; };
+		68DB36981E1DF93000DD53D3 /* 抱朴.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "抱朴.png"; sourceTree = "<group>"; };
+		68DB36991E1DF93000DD53D3 /* 无为.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无为.png"; sourceTree = "<group>"; };
+		68DB369A1E1DF93000DD53D3 /* 玄霄.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "玄霄.png"; sourceTree = "<group>"; };
+		68DB369B1E1DF93000DD53D3 /* 玉虛.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "玉虛.png"; sourceTree = "<group>"; };
+		68DB369C1E1DF93000DD53D3 /* 轩箓.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "轩箓.png"; sourceTree = "<group>"; };
+		68DB369D1E1DF93000DD53D3 /* 静笃.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "静笃.png"; sourceTree = "<group>"; };
 		68E4F14D1C9BACDB00839E2C /* ICETutorialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICETutorialController.h; sourceTree = "<group>"; };
 		68E4F14E1C9BACDB00839E2C /* ICETutorialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICETutorialController.m; sourceTree = "<group>"; };
 		68E4F14F1C9BACDB00839E2C /* ICETutorialPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICETutorialPage.h; sourceTree = "<group>"; };
@@ -964,7 +964,7 @@
 		1A07BE961CB658D300E327DA /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				688271851E13542800014AAD /* 印章原版 */,
+				68DB36471E1DF3C400DD53D3 /* 印章原版 */,
 				1A40331A1E0908A80006613F /* tubiao */,
 				682F429D1E120CA8004B3651 /* header.png */,
 				688E36351E17A35200388E46 /* taoci.jpg */,
@@ -1806,64 +1806,6 @@
 			path = "播放器图片";
 			sourceTree = "<group>";
 		};
-		688271851E13542800014AAD /* 印章原版 */ = {
-			isa = PBXGroup;
-			children = (
-				688271861E13542800014AAD /* 儒 */,
-				688271901E13542800014AAD /* 道 */,
-				6882719A1E13542800014AAD /* 釋 */,
-			);
-			path = "印章原版";
-			sourceTree = "<group>";
-		};
-		688271861E13542800014AAD /* 儒 */ = {
-			isa = PBXGroup;
-			children = (
-				688271871E13542800014AAD /* 乐水.jpg */,
-				688271881E13542800014AAD /* 宿儒.jpg */,
-				688271891E13542800014AAD /* 弘毅.jpg */,
-				6882718A1E13542800014AAD /* 慎独.jpg */,
-				6882718B1E13542800014AAD /* 至诚.jpg */,
-				6882718C1E13542800014AAD /* 詩禮.jpg */,
-				6882718D1E13542800014AAD /* 逸經.jpg */,
-				6882718E1E13542800014AAD /* 雅赏.jpg */,
-				6882718F1E13542800014AAD /* 青囊.JPG */,
-			);
-			path = "儒";
-			sourceTree = "<group>";
-		};
-		688271901E13542800014AAD /* 道 */ = {
-			isa = PBXGroup;
-			children = (
-				688271911E13542800014AAD /* 一炁.jpg */,
-				688271921E13542800014AAD /* 岐黃.jpg */,
-				688271931E13542800014AAD /* 心斋.jpg */,
-				688271941E13542800014AAD /* 抱朴.jpg */,
-				688271951E13542800014AAD /* 无为.jpg */,
-				688271961E13542800014AAD /* 玄霄.jpg */,
-				688271971E13542800014AAD /* 玉虛.jpg */,
-				688271981E13542800014AAD /* 轩箓.JPG */,
-				688271991E13542800014AAD /* 静笃.jpg */,
-			);
-			path = "道";
-			sourceTree = "<group>";
-		};
-		6882719A1E13542800014AAD /* 釋 */ = {
-			isa = PBXGroup;
-			children = (
-				6882719B1E13542800014AAD /* 定慧.jpg */,
-				6882719C1E13542800014AAD /* 悬壶.jpg */,
-				6882719D1E13542800014AAD /* 梵行.jpg */,
-				6882719E1E13542800014AAD /* 止觀.jpg */,
-				6882719F1E13542800014AAD /* 禪悅.jpg */,
-				688271A01E13542800014AAD /* 緣覺.jpg */,
-				688271A11E13542800014AAD /* 自在.jpg */,
-				688271A21E13542800014AAD /* 般若.jpg */,
-				688271A31E13542800014AAD /* 菩提.jpg */,
-			);
-			path = "釋";
-			sourceTree = "<group>";
-		};
 		68987BAE1CB5FA400007303A /* Save */ = {
 			isa = PBXGroup;
 			children = (
@@ -1965,6 +1907,64 @@
 			);
 			name = "New 10-31";
 			path = Home/Library;
+			sourceTree = "<group>";
+		};
+		68DB36471E1DF3C400DD53D3 /* 印章原版 */ = {
+			isa = PBXGroup;
+			children = (
+				68DB36941E1DF93000DD53D3 /* 道 */,
+				68DB36481E1DF3C400DD53D3 /* 儒 */,
+				68DB365C1E1DF3C400DD53D3 /* 释 */,
+			);
+			path = "印章原版";
+			sourceTree = "<group>";
+		};
+		68DB36481E1DF3C400DD53D3 /* 儒 */ = {
+			isa = PBXGroup;
+			children = (
+				68DB36491E1DF3C400DD53D3 /* 乐水.png */,
+				68DB364A1E1DF3C400DD53D3 /* 宿儒.png */,
+				68DB364B1E1DF3C400DD53D3 /* 弘毅.png */,
+				68DB364C1E1DF3C400DD53D3 /* 慎独.png */,
+				68DB364D1E1DF3C400DD53D3 /* 至诚.png */,
+				68DB364E1E1DF3C400DD53D3 /* 诗礼.png */,
+				68DB364F1E1DF3C400DD53D3 /* 逸经.png */,
+				68DB36501E1DF3C400DD53D3 /* 雅赏.png */,
+				68DB36511E1DF3C400DD53D3 /* 青囊.png */,
+			);
+			path = "儒";
+			sourceTree = "<group>";
+		};
+		68DB365C1E1DF3C400DD53D3 /* 释 */ = {
+			isa = PBXGroup;
+			children = (
+				68DB365D1E1DF3C400DD53D3 /* 定慧.png */,
+				68DB365E1E1DF3C400DD53D3 /* 悬壶.png */,
+				68DB365F1E1DF3C400DD53D3 /* 梵行.png */,
+				68DB36601E1DF3C400DD53D3 /* 止观.png */,
+				68DB36611E1DF3C400DD53D3 /* 禅悦.png */,
+				68DB36621E1DF3C400DD53D3 /* 缘觉.png */,
+				68DB36631E1DF3C400DD53D3 /* 自在.png */,
+				68DB36641E1DF3C400DD53D3 /* 般若.png */,
+				68DB36651E1DF3C400DD53D3 /* 菩提.png */,
+			);
+			path = "释";
+			sourceTree = "<group>";
+		};
+		68DB36941E1DF93000DD53D3 /* 道 */ = {
+			isa = PBXGroup;
+			children = (
+				68DB36951E1DF93000DD53D3 /* 一炁.png */,
+				68DB36961E1DF93000DD53D3 /* 岐黄.png */,
+				68DB36971E1DF93000DD53D3 /* 心斋.png */,
+				68DB36981E1DF93000DD53D3 /* 抱朴.png */,
+				68DB36991E1DF93000DD53D3 /* 无为.png */,
+				68DB369A1E1DF93000DD53D3 /* 玄霄.png */,
+				68DB369B1E1DF93000DD53D3 /* 玉虛.png */,
+				68DB369C1E1DF93000DD53D3 /* 轩箓.png */,
+				68DB369D1E1DF93000DD53D3 /* 静笃.png */,
+			);
+			path = "道";
 			sourceTree = "<group>";
 		};
 		68E4F14B1C9BACDB00839E2C /* ICETutorial */ = {
@@ -2184,21 +2184,26 @@
 				68BCF3B61E00EF02008AB490 /* 6.jpg in Resources */,
 				6820D7351E1779BF0068D172 /* Song_single_person@3x.png in Resources */,
 				1A36F7971E1D140700C6744F /* woxihaun@2x.png in Resources */,
+<<<<<<< HEAD
 				688271A51E13542800014AAD /* 宿儒.jpg in Resources */,
+=======
+>>>>>>> yangKJ/master
 				68BCF3B91E00EF02008AB490 /* wang.png in Resources */,
 				1A4033831E0908A80006613F /* zuijinbofang.png in Resources */,
 				6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */,
+				68DB369E1E1DF93000DD53D3 /* 一炁.png in Resources */,
 				6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */,
 				688E36361E17A35200388E46 /* taoci.jpg in Resources */,
-				688271B51E13542800014AAD /* 静笃.jpg in Resources */,
 				792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */,
 				682F42A71E1213E7004B3651 /* 255.png in Resources */,
 				1A36F7861E1786D400C6744F /* FirstTableViewCell.xib in Resources */,
 				1A40336A1E0908A80006613F /* quanbu@2x.png in Resources */,
-				688271AA1E13542800014AAD /* 逸經.jpg in Resources */,
 				6865F12D1E10AFB00099D6F3 /* login@3x.jpg in Resources */,
 				1A36F7911E1D128800C6744F /* kjpause.png in Resources */,
+<<<<<<< HEAD
 				688271BE1E13542800014AAD /* 菩提.jpg in Resources */,
+=======
+>>>>>>> yangKJ/master
 				6843BD081E16E2BE00D63FD7 /* playNext.png in Resources */,
 				68FAB8E81E1CC918008D77DC /* 亮度@2x.png in Resources */,
 				1A91BE9F1CB360D500689AE0 /* SecondTableViewCell.xib in Resources */,
@@ -2206,17 +2211,20 @@
 				68BCF3991E00EF02008AB490 /* mulus@2x.png in Resources */,
 				1A974C2B1CBE2E5300A92CA4 /* ToolCell.xib in Resources */,
 				6843BD071E16E2BE00D63FD7 /* playOn.png in Resources */,
+				68DB36671E1DF3C400DD53D3 /* 宿儒.png in Resources */,
 				68EE61E21E13CFB1001E34AD /* WeChat.png in Resources */,
+				68DB366E1E1DF3C400DD53D3 /* 青囊.png in Resources */,
 				6843BCFF1E16E2BE00D63FD7 /* yellowBackground.png in Resources */,
 				6814F0921C9FE86C000FD40B /* MJRefresh.bundle in Resources */,
-				688271A61E13542800014AAD /* 弘毅.jpg in Resources */,
 				68E8B73E1E0000B1000CB44A /* qiangua.png in Resources */,
 				1A91BEA11CB360D500689AE0 /* ThirdTableViewCell.xib in Resources */,
 				68BCF3B31E00EF02008AB490 /* 34.png in Resources */,
-				688271B71E13542800014AAD /* 悬壶.jpg in Resources */,
 				6843BD011E16E2BE00D63FD7 /* playShare.png in Resources */,
+				68DB36A01E1DF93000DD53D3 /* 心斋.png in Resources */,
 				68BCF3981E00EF02008AB490 /* mulu@2x.png in Resources */,
 				1A1B13C61CBB7B2B00BCE619 /* SetCell.xib in Resources */,
+				68DB367F1E1DF3C400DD53D3 /* 般若.png in Resources */,
+				68DB367A1E1DF3C400DD53D3 /* 梵行.png in Resources */,
 				1A4033731E0908A80006613F /* wenzhang.png in Resources */,
 				6820D7321E1779BF0068D172 /* Play_personal@2x.png in Resources */,
 				68BCF3AA1E00EF02008AB490 /* 20.png in Resources */,
@@ -2224,17 +2232,21 @@
 				68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */,
 				687618271E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				68FAB8F01E1CC918008D77DC /* 日间模式.png in Resources */,
+				68DB36781E1DF3C400DD53D3 /* 定慧.png in Resources */,
 				68FAB8EF1E1CC918008D77DC /* 夜间@2x.png in Resources */,
 				68FAB8F81E1CDA1E008D77DC /* 夜间背景.png in Resources */,
-				688271AB1E13542800014AAD /* 雅赏.jpg in Resources */,
 				68FAB8E61E1CC918008D77DC /* 返回@2x.png in Resources */,
 				6843BD061E16E2BE00D63FD7 /* playMenu.png in Resources */,
 				68BCF3A91E00EF02008AB490 /* 19.png in Resources */,
+				68DB36A61E1DF93000DD53D3 /* 静笃.png in Resources */,
+				68DB367B1E1DF3C400DD53D3 /* 止观.png in Resources */,
 				1A40336C1E0908A80006613F /* shangcheng@2x.png in Resources */,
 				682F429E1E120CA8004B3651 /* header.png in Resources */,
 				682F42AE1E12561B004B3651 /* 登录.png in Resources */,
 				1A40335B1E0908A80006613F /* fasong.png in Resources */,
 				68FAB8E91E1CC918008D77DC /* 目录@2x.png in Resources */,
+				68DB36A21E1DF93000DD53D3 /* 无为.png in Resources */,
+				68DB366A1E1DF3C400DD53D3 /* 至诚.png in Resources */,
 				68BCF3BB1E00EF02008AB490 /* yejian@2x.png in Resources */,
 				68EA9B281CC7687500A41AC2 /* DetailsCell2.xib in Resources */,
 				68C79A381E176A8000AB642F /* setbutton@2x.png in Resources */,
@@ -2246,107 +2258,100 @@
 				6865F12E1E10AFB00099D6F3 /* QQloog.png in Resources */,
 				1A4329B51DF7B838005A1BE2 /* LaunchScreen.storyboard in Resources */,
 				682F42B61E1256D3004B3651 /* 引导页4.png in Resources */,
-				688271B31E13542800014AAD /* 玉虛.jpg in Resources */,
 				680E1BE81E1B936F000B2BA3 /* xiaojiugongge.png in Resources */,
 				68EE61E01E13CFB1001E34AD /* QZone.png in Resources */,
 				682F42B31E1256D3004B3651 /* 引导页1.png in Resources */,
+				68DB36661E1DF3C400DD53D3 /* 乐水.png in Resources */,
 				1A4033741E0908A80006613F /* woxihaun.png in Resources */,
 				1A40336F1E0908A80006613F /* shoucang.png in Resources */,
+				68DB369F1E1DF93000DD53D3 /* 岐黄.png in Resources */,
 				1A4033781E0908A80006613F /* xiazaiwenzhang.png in Resources */,
 				68BCF3B21E00EF02008AB490 /* 33.png in Resources */,
 				68BCF3A61E00EF02008AB490 /* 15.jpg in Resources */,
-				688271A41E13542800014AAD /* 乐水.jpg in Resources */,
 				1A4033601E0908A80006613F /* goin.png in Resources */,
 				68BCF38F1E00EF02008AB490 /* b.png in Resources */,
 				1A36F7931E1D130300C6744F /* pause@2x.png in Resources */,
 				68BCF3A81E00EF02008AB490 /* 18.jpg in Resources */,
 				1A40335F1E0908A80006613F /* goback@2x.png in Resources */,
 				1A05832C1CBC8B2400AD762C /* SVProgressHUD.bundle in Resources */,
-				688271A71E13542800014AAD /* 慎独.jpg in Resources */,
 				68BCF38E1E00EF02008AB490 /* a.png in Resources */,
-				688271B11E13542800014AAD /* 无为.jpg in Resources */,
 				1A49AB131CAD162F003DA6DB /* DetailsCell1.xib in Resources */,
-				688271AD1E13542800014AAD /* 一炁.jpg in Resources */,
 				68BCF3B51E00EF02008AB490 /* 5.jpg in Resources */,
-				688271B01E13542800014AAD /* 抱朴.jpg in Resources */,
 				682F42B51E1256D3004B3651 /* 引导页3.png in Resources */,
 				682F42AD1E12561B004B3651 /* 注册.png in Resources */,
 				68BCF3901E00EF02008AB490 /* dianjihou.png in Resources */,
-				688271BA1E13542800014AAD /* 禪悅.jpg in Resources */,
 				68E8B73C1E0000B1000CB44A /* heile.png in Resources */,
 				68BCF3A21E00EF02008AB490 /* 1.png in Resources */,
 				68BCF39D1E00EF02008AB490 /* navigation2@2x.png in Resources */,
 				68FAB8EC1E1CC918008D77DC /* 喜欢@2x.png in Resources */,
-				688271A91E13542800014AAD /* 詩禮.jpg in Resources */,
 				68342F551E179AB00019CCCE /* fanhui1@2x.png in Resources */,
 				68BCF3AB1E00EF02008AB490 /* 22.jpeg in Resources */,
 				68BCF3951E00EF02008AB490 /* fenxiang@2x.png in Resources */,
 				68B251151E1B50D300608CB7 /* gerenjianjiediban.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu-.png in Resources */,
 				68FAB8EB1E1CC918008D77DC /* 设置@2x.png in Resources */,
+				68DB367C1E1DF3C400DD53D3 /* 禅悦.png in Resources */,
 				68BCF3B41E00EF02008AB490 /* 4.jpg in Resources */,
 				682F42BA1E125D36004B3651 /* 欢迎.png in Resources */,
 				6843BD0B1E16E2BE00D63FD7 /* Player_progress_bar@2x.png in Resources */,
 				68BCF3AF1E00EF02008AB490 /* 27.jpg in Resources */,
 				68BCF3B81E00EF02008AB490 /* 8.jpg in Resources */,
-				688271BD1E13542800014AAD /* 般若.jpg in Resources */,
 				68BCF3A41E00EF02008AB490 /* 13.jpg in Resources */,
-				688271AF1E13542800014AAD /* 心斋.jpg in Resources */,
 				68E8B73F1E0000B1000CB44A /* quanbai.png in Resources */,
 				1A91BE9C1CB360D500689AE0 /* ManageCell.xib in Resources */,
-				688271BC1E13542800014AAD /* 自在.jpg in Resources */,
-				688271B61E13542800014AAD /* 定慧.jpg in Resources */,
 				68BCF3971E00EF02008AB490 /* jindu@2x.png in Resources */,
 				6820D7341E1779BF0068D172 /* Song_single_person@2x.png in Resources */,
 				68BCF39E1E00EF02008AB490 /* rijian@2x.png in Resources */,
 				1A4EBA1D1CCE0917008A4564 /* ForthTableViewCell.xib in Resources */,
 				1A6711211CBB485C0028529C /* cityData.sqlite in Resources */,
-				688271B41E13542800014AAD /* 轩箓.JPG in Resources */,
 				68BCF39B1E00EF02008AB490 /* navigation1@2x.png in Resources */,
 				68BCF3A71E00EF02008AB490 /* 17.jpg in Resources */,
 				68BCF3A01E00EF02008AB490 /* shoucang@2x.png in Resources */,
 				68E8B7421E0000B1000CB44A /* yin.png in Resources */,
 				1A91BE921CB360D500689AE0 /* UserFirstCell.xib in Resources */,
+				68DB36801E1DF3C400DD53D3 /* 菩提.png in Resources */,
 				6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */,
 				6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */,
 				68E8B7401E0000B1000CB44A /* quanhei.png in Resources */,
 				1A4033571E0908A80006613F /* daididefanhui.png in Resources */,
 				68BCF3961E00EF02008AB490 /* header.png in Resources */,
 				6865F12C1E10AFB00099D6F3 /* login@2x.jpg in Resources */,
+				68DB366D1E1DF3C400DD53D3 /* 雅赏.png in Resources */,
 				6843BD021E16E2BE00D63FD7 /* playDownload.png in Resources */,
 				1A36F7951E1D13D300C6744F /* xiazaiwenzhang@2x.png in Resources */,
 				1A4033541E0908A80006613F /* bofang.png in Resources */,
 				1A40335D1E0908A80006613F /* gerenjianjie@2x.png in Resources */,
 				68FAB8F51E1CDA1E008D77DC /* 日间@2x.png in Resources */,
+				68DB36A31E1DF93000DD53D3 /* 玄霄.png in Resources */,
 				1A40337D1E0908A80006613F /* zanting.png in Resources */,
+				68DB366B1E1DF3C400DD53D3 /* 诗礼.png in Resources */,
 				68BCF3A31E00EF02008AB490 /* 12.jpg in Resources */,
 				682F42BB1E125D36004B3651 /* 跳过广告.png in Resources */,
 				1A91BE961CB360D500689AE0 /* BookCell.xib in Resources */,
-				688271B21E13542800014AAD /* 玄霄.jpg in Resources */,
 				6806A7BF1E16C3ED00C7F2E3 /* whitebackground.png in Resources */,
 				68BCF3921E00EF02008AB490 /* down@2x.png in Resources */,
-				688271A81E13542800014AAD /* 至诚.jpg in Resources */,
 				682F42A51E1213E7004B3651 /* 233.png in Resources */,
-				688271B91E13542800014AAD /* 止觀.jpg in Resources */,
 				6843BD031E16E2BE00D63FD7 /* playLiked.png in Resources */,
+				68DB367E1E1DF3C400DD53D3 /* 自在.png in Resources */,
+				68DB36A41E1DF93000DD53D3 /* 玉虛.png in Resources */,
 				68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */,
 				68EE61DF1E13CFB1001E34AD /* QQ.png in Resources */,
 				68BCF39C1E00EF02008AB490 /* navigation2.png in Resources */,
 				1A4033551E0908A80006613F /* bofangliebiao.png in Resources */,
 				68BCF3B01E00EF02008AB490 /* 3.jpg in Resources */,
 				68E8B7411E0000B1000CB44A /* yang.png in Resources */,
-				688271B81E13542800014AAD /* 梵行.jpg in Resources */,
 				68FAB8E71E1CC918008D77DC /* 分享@2x.png in Resources */,
-				688271AC1E13542800014AAD /* 青囊.JPG in Resources */,
 				68BCF3AE1E00EF02008AB490 /* 26.jpg in Resources */,
 				68BCF3931E00EF02008AB490 /* fanhui1@2x.png in Resources */,
 				68E8B73A1E0000B1000CB44A /* banhei.png in Resources */,
+				68DB367D1E1DF3C400DD53D3 /* 缘觉.png in Resources */,
 				68BCF3A11E00EF02008AB490 /* taoci.jpg in Resources */,
 				68BCF39A1E00EF02008AB490 /* navigation1.png in Resources */,
 				1A49AB1C1CAD162F003DA6DB /* ReadCell.xib in Resources */,
 				68BCF3AD1E00EF02008AB490 /* 25.jpg in Resources */,
 				1A91BE941CB360D500689AE0 /* AuthorCell.xib in Resources */,
 				68E8B73D1E0000B1000CB44A /* kungua.png in Resources */,
+				68DB36A51E1DF93000DD53D3 /* 轩箓.png in Resources */,
 				68BCF3BA1E00EF02008AB490 /* xian1@2x.png in Resources */,
 				1A011D5D1D3E03100040EA23 /* Assets.xcassets in Resources */,
 				6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */,
@@ -2354,6 +2359,7 @@
 				68BCF3941E00EF02008AB490 /* fanhui@2x.png in Resources */,
 				682F42A91E124B0C004B3651 /* 211.png in Resources */,
 				1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */,
+				68DB36681E1DF3C400DD53D3 /* 弘毅.png in Resources */,
 				1A40336E1E0908A80006613F /* shezhi@2x.png in Resources */,
 				1A4033641E0908A80006613F /* jiarushuji@2x.png in Resources */,
 				68C79A441E176F0800AB642F /* kjplay.png in Resources */,
@@ -2361,10 +2367,12 @@
 				6843BD051E16E2BE00D63FD7 /* playRound.png in Resources */,
 				682F42981E1200B6004B3651 /* courseListCell.xib in Resources */,
 				6843BD041E16E2BE00D63FD7 /* playLike.png in Resources */,
-				688271AE1E13542800014AAD /* 岐黃.jpg in Resources */,
+				68DB36A11E1DF93000DD53D3 /* 抱朴.png in Resources */,
+				68DB366C1E1DF3C400DD53D3 /* 逸经.png in Resources */,
+				68DB36791E1DF3C400DD53D3 /* 悬壶.png in Resources */,
+				68DB36691E1DF3C400DD53D3 /* 慎独.png in Resources */,
 				68BCF3B71E00EF02008AB490 /* 7.jpeg in Resources */,
 				68BCF3B11E00EF02008AB490 /* 32.png in Resources */,
-				688271BB1E13542800014AAD /* 緣覺.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

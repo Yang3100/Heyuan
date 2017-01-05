@@ -464,6 +464,7 @@
         return;
     }
     
+<<<<<<< HEAD
     
     if ([DATA_MODEL.downloadingSections containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
         return;
@@ -473,6 +474,8 @@
         return;
     }
     
+=======
+>>>>>>> yangKJ/master
     SectionData * data = [DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]];
     
     // 数组变化
