@@ -42,9 +42,14 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
  */
 - (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data;
 
+/**
+ *  发现版块的课程列表数据
+ *
+ */
+@property(nonatomic, strong) NSDictionary *findJson;
+
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;
-
 @property(nonatomic, strong) NSString *bookImageUrl; // 书集封面Url
 @property(nonatomic, strong) NSString *bookName;  // 书集名字
 
