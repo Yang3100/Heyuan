@@ -17,9 +17,29 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     var bookMarkBtn = UIButton()
     var scroll = UIScrollView()
     var backBtn = UIButton()
+    var kj_cell:UITableViewCell?
+    
+    var kj_isLightStyle:Bool = true {  // 是否为日间模式
+        willSet {
+            
+        }
+        didSet {
+            if kj_isLightStyle {  // 日间模式
+                self.view.backgroundColor = UIColor(white:0.0, alpha:0.7)
+                directoryBtn.setTitleColor(DARK, for: .normal)
+                self.kj_table.backgroundView = UIImageView(image:UIImage(named:"日间模式"))
+            }else{   // 夜间模式
+                self.view.backgroundColor = UIColor(white:0.0, alpha:1.0)
+                directoryBtn.setTitleColor(.white, for: .normal)
+                self.kj_table.backgroundView = UIImageView(image:UIImage(named:"夜间背景"))
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(white:0.0, alpha:0.7)
         
         self.initScrollView()
         self.initButton()
@@ -44,31 +64,17 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
         
         directoryBtn = UIButton.init(type: .system)
         directoryBtn.frame = MY_CGRECT(x:(SCREEN_WIDTH-BTN_WIDTH)/2, y: NAV_HEIGHT+STATUS_HEIGHT-BTN_HEIGHT-MARGIN/2, width: BTN_WIDTH, height: BTN_HEIGHT)
-//        let backImage = UIImage(named: "fanhui1")!.withRenderingMode(.alwaysOriginal)
-//        directoryBtn.setImage(backImage, for: .normal)
         directoryBtn.setTitle("目录", for: .normal)
         directoryBtn.setTitleColor(DARK, for: .normal)
         directoryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         directoryBtn.addTarget(self, action: #selector(self.dir), for: .touchUpInside)
         self.view!.addSubview(directoryBtn)
-        
-//        bookMarkBtn = UIButton.init(type: .system)
-//        bookMarkBtn.frame = MY_CGRECT(x: SCREEN_WIDTH/2, y: NAV_HEIGHT+STATUS_HEIGHT-BTN_HEIGHT-MARGIN/2, width: BTN_WIDTH, height: BTN_HEIGHT)
-//        let backImage = UIImage(named: "fanhui1")!.withRenderingMode(.alwaysOriginal)
-//        bookMarkBtn.setImage(backImage, for: .normal)
-//        bookMarkBtn.setTitle("书签", for: .normal)
-//        bookMarkBtn.setTitleColor(DARK, for: .normal)
-//        bookMarkBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-//        bookMarkBtn.addTarget(self, action: #selector(self.mark), for: .touchUpInside)
-//        self.view!.addSubview(bookMarkBtn)
-//        
     }
     
     private func initScrollView() {
-        
         scroll = UIScrollView.init()
         scroll.frame = CGRect(x:0,y:STATUS_HEIGHT+NAV_HEIGHT,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT)
-        scroll.backgroundColor = UIColor.white
+        scroll.backgroundColor = .clear
         scroll.contentSize = CGSize(width:SCREEN_WIDTH*2, height:scroll.frame.size.height);
         //        scroll.isPagingEnabled = false
         scroll.isScrollEnabled = false
@@ -77,17 +83,17 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
         
         scroll.addSubview(self.kj_table)
         
-        let view = UIView()
-        view.frame = CGRect(x:SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT)
-        view.backgroundColor = UIColor.yellow
-        scroll.addSubview(view)
+//        let view = UIView()
+//        view.frame = CGRect(x:SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT)
+//        view.backgroundColor = UIColor.yellow
+//        scroll.addSubview(view)
     }
     
     
     //MARK: - UI界面
     public lazy var kj_table : UITableView = {
         var kj_table = UITableView.init(frame: CGRect(x:0,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT-TABBAR_HEIGHT-NAV_HEIGHT-STATUS_HEIGHT), style: .plain)
-        kj_table.backgroundColor = UIColor.green
+        kj_table.backgroundView = UIImageView(image:UIImage(named:"日间模式"))
         kj_table.delegate = self
         kj_table.dataSource = self
         return kj_table
@@ -116,14 +122,19 @@ class ListViewController: UIViewController ,UITableViewDataSource ,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = (dataArray[indexPath.row] as! NSDictionary)["GJ_NAME"] as? String
-        cell.backgroundColor = UIColor.gray
-        return cell
+        kj_cell = UITableViewCell()
+        kj_cell?.textLabel?.text = "  " + ((dataArray[indexPath.row] as! NSDictionary)["GJ_NAME"] as? String)!
+        kj_cell?.backgroundColor = UIColor.clear
+        if kj_isLightStyle {
+            kj_cell?.textLabel?.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
+        }else{
+            kj_cell?.textLabel?.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
+        }
+        return kj_cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ebook = EBookViewController()
+        let ebook = EBookViewController.shareSingleOne
         self.dismiss(animated:true, completion:{ (true) in
             ebook.loadDataToView(array:self.dataArray, Num:indexPath.row)
         })

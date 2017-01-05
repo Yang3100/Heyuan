@@ -106,6 +106,9 @@
     r_cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section<listNumArray.count) {
         NSDictionary *r_dict = [[dataArray[indexPath.section] valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
+        if (kStringIsEmpty([r_dict valueForKey:@"GJ_MP3"])) {
+            r_cell.isMp3 = NO;
+        }
         r_cell.readTitle = [r_dict valueForKey:@"GJ_NAME"];
         r_cell.readText =  [r_dict valueForKey:@"GJ_CONTENT_CN"];
         return r_cell;
@@ -127,18 +130,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-#warning mark - 阅读传输数据
-    NSLog(@"************************************************");
-    NSLog(@"xxxxxx%@",jsonArrayDict);
-    NSLog(@"************************************************");
-    NSLog(@"%@",jsonArrayDict[indexPath.section]);
-    NSLog(@"************************************************");
-    NSLog(@"%ld--%ld",(long)indexPath.section,(long)indexPath.row);
     [[DataModel defaultDataModel] pushWhereWithJson:jsonArrayDict[indexPath.section] ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2 Data:nil];
-//    [[playerViewController defaultDataModel] getJson:jsonArrayDict[indexPath.section]];
-//    [playerViewController defaultDataModel].touchNum = indexPath.row;
-//    [playerViewController defaultDataModel].title = [DataModel defaultDataModel].bookName;
-//    [[self viewController].navigationController pushViewController:[playerViewController defaultDataModel] animated:YES];
 }
 //  获取当前view所处的viewController重写读方法
 - (UIViewController *)viewController{

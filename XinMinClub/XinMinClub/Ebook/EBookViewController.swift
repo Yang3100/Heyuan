@@ -17,16 +17,13 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var brightness = CGFloat()
     var dataView = UIScrollView()
     var buttonView = UIView()
-    var statusView = UIView()
     var navView = UIView()
-    var navBar = UINavigationBar()
-    var selfTabBar = UITabBar()
+    var selfTabBar = UIView()
     var textFont:CGFloat = 18
-    var titleFont:CGFloat = 26
+    var titleFont:CGFloat = 30
     var isTap:Bool = false
     var isDark:Bool = false
     var textView = UITextView()
-//    var listView = ListViewController()
     var nextPage = UIButton()
     var lastPage = UIButton()
     var lightSlider = UISlider()
@@ -34,39 +31,67 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var setView = UIView()
     var touchView = UIView()
     var backImageView = UIImageView()
-
-    private var total:Int = 0  // 章节总数
+    
+    var isLightStyle:Bool = true  // 是否为日间模式
+    
+    private var kj_total:Int = 0  // 章节总数
     private var kj_dict:NSDictionary = [:]  // 接到数据
     private var dictArray:NSArray = []  // 接到数据
+    private var isFrist:Bool = true // 判断是第几种获取数据的方式
     
+    //单例
+    static let shareSingleOne = EBookViewController()
+
     //MARK:需要传入的数据
     var kj_title:String = ""
     //MARK:获取到数据的方法
     func fristGetData(dict:NSDictionary,thouchNum:Int = 0){  // 第1种
+        isFrist = true
         dictArray = [dict]
-        self.loadDataToView(array:dictArray, Num:thouchNum)
+        kj_total = 1;
+        self.kj_num = 0
     }
     func secondGetData(json:NSDictionary, thouchNum:Int = 0){  // 第2种
+        isFrist = false
         dictArray = ((json["RET"] as! [String: Any])["Sys_GX_ZJ"] as! NSArray)
-        self.loadDataToView(array:dictArray, Num:thouchNum)
+        kj_total = dictArray.count
+        self.kj_num = thouchNum
     }
     
+    //MARK:显示内容之前调用
+    var kj_num:Int = 0 {
+        willSet {
+            
+        }
+        didSet {
+            self.loadDataToView(array:dictArray, Num:kj_num)
+        }
+    }
     // MARK:加载数据
     func loadDataToView(array:NSArray, Num:Int){
+        print(Num)
         kj_dict = array[Num] as! NSDictionary
-        total = array.count
         // 显示文字
         self.loadText(title:kj_dict["GJ_NAME"] as! String, text:kj_dict["GJ_CONTENT_CN"] as! String)
     }
     
     private func loadText(title:String,text:String){
-        let attributedTextString = NSMutableAttributedString(string:text, attributes: [NSForegroundColorAttributeName: UIColor.black, NSKernAttributeName: (textFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: textFont)])
-        let attributedTitleString = NSMutableAttributedString(string:title + "\n", attributes:[NSKernAttributeName: (titleFont/6), NSFontAttributeName: UIFont.systemFont(ofSize: titleFont)])
-        textView.showsVerticalScrollIndicator = false
-        textView.isEditable = false
-        textView.isSelectable = false
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        paragraphStyle.firstLineHeadIndent = 4;
+        // 字体的行间距
+        let attributes = [NSFontAttributeName:UIFont.systemFont(ofSize:18.0), NSParagraphStyleAttributeName: paragraphStyle]
+        let attributedTextString = NSMutableAttributedString(string:text, attributes:attributes)
+        // 标题
+        let titleAttributes = [NSKernAttributeName:(titleFont/6), NSFontAttributeName:UIFont.systemFont(ofSize:titleFont)] as [String : Any]
+        let attributedTitleString = NSMutableAttributedString(string:title + "\n", attributes:titleAttributes)
         attributedTitleString.append(attributedTextString)
         textView.attributedText = attributedTitleString
+        if isLightStyle {
+            textView.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
+        }else{
+            textView.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
+        }
     }
     
     override func viewDidLoad() {
@@ -74,25 +99,23 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-
+        
         self.initView()
     }
     
     func applicationWillResignActive() {
         UIScreen.main.brightness = brightness
     }
-
+    
     func applicationDidBecomeActive() {
         brightness = UIScreen.main.brightness
     }
     
     func initView() {
-        
         self.initDataView()
         self.initNavBar()
         self.initPageButton()
         self.initTabBar()
-//        self.initListView()
     }
     
     func initPageButton() {
@@ -100,41 +123,44 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         lastPage.frame = CGRect(x:0,y:0,width:SCREEN_WIDTH / 9,height:SCREEN_HEIGHT/10)
         lastPage.center = CGPoint(x:lastPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
         lastPage.setTitle("  上  \n  一  \n  章  ", for: .normal)
-        lastPage.setTitleColor(.black, for: .normal)
-        lastPage.backgroundColor = UIColor.white
+        lastPage.setTitleColor(.white, for: .normal)
+        lastPage.backgroundColor = UIColor.black
+        lastPage.alpha = 0.8
+        lastPage.tag = 0
         lastPage.titleLabel?.lineBreakMode = NSLineBreakMode(rawValue: 0)!
+        lastPage.addTarget(self, action:#selector(nextAndOn(sender:)), for:.touchUpInside)
         self.view!.addSubview(lastPage)
+        
         nextPage = UIButton.init(type:.system)
         nextPage.frame = CGRect(x:0,y:0,width:SCREEN_WIDTH / 9,height:SCREEN_HEIGHT/10)
         nextPage.center = CGPoint(x:SCREEN_WIDTH-nextPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
         nextPage.setTitle("  下  \n  一  \n  章  ", for: .normal)
-        nextPage.setTitleColor(.black, for: .normal)
-        nextPage.backgroundColor = UIColor.white
+        nextPage.setTitleColor(.white, for: .normal)
+        nextPage.backgroundColor = UIColor.black
+        nextPage.alpha = 0.8
+        nextPage.tag = 1
         nextPage.titleLabel?.lineBreakMode = NSLineBreakMode(rawValue: 0)!
+        nextPage.addTarget(self, action:#selector(nextAndOn(sender:)), for:.touchUpInside)
         self.view!.addSubview(nextPage)
     }
-    
-//    func initListView() {
-//        listView = ListViewController.init()
-//        listView.view!.frame = CGRect(x:-SCREEN_WIDTH,y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
-//        listView.view!.backgroundColor = UIColor.red
-//        self.addChildViewController(listView)
-//        self.view.addSubview(listView.view)
-//    }
     
     func initDataView() {
         
         dataView = UIScrollView.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:SCREEN_HEIGHT))
-        dataView.backgroundColor = LIGHT
+        dataView.backgroundColor = UIColor.clear
         self.view!.addSubview(dataView)
         
-        let backImage = UIImage(named:"yellowBackground")!
+        let backImage = UIImage(named:"日间模式")!
         backImageView.image = backImage
         backImageView.frame = CGRect(x:0, y:0,width:SCREEN_WIDTH,height:SCREEN_HEIGHT)
         dataView.addSubview(backImageView)
-
+        
         textView.frame = CGRect(x:MARGIN+MARGIN/7, y:MARGIN, width:SCREEN_WIDTH-2*MARGIN, height:SCREEN_HEIGHT-2.5*MARGIN)
+        textView.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
         textView.backgroundColor = UIColor.clear
+        textView.showsVerticalScrollIndicator = false
+        textView.isEditable = false
+        textView.isSelectable = false
         dataView.addSubview(textView)
         
         let tapRecongnizer = UITapGestureRecognizer(target: self, action: #selector(self.tapText))
@@ -144,39 +170,20 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     func initTabBar() {
-        selfTabBar = UITabBar.init(frame: CGRect(x:0, y:SCREEN_HEIGHT-TABBAR_HEIGHT, width:SCREEN_WIDTH, height:TABBAR_HEIGHT))
-//        selfTabBar.backgroundColor = UIColor.red
-        selfTabBar.tintColor = UIColor.blue
-        let setImage = UIImage(named: "shezhi")!.withRenderingMode(.alwaysOriginal)
-        let darkImage = UIImage(named: "yejian")!.withRenderingMode(.alwaysOriginal)
-//        let lightImage = UIImage(named: "rijian")!.withRenderingMode(.alwaysOriginal)
-        let likeImage = UIImage(named: "shoucang")!.withRenderingMode(.alwaysOriginal)
-        let listImage = UIImage(named: "mulu")!.withRenderingMode(.alwaysOriginal)
-        let brightImage = UIImage(named:"jindu")!.withRenderingMode(.alwaysOriginal)
-        
-        
-        let view = UIView.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:0.8))
-        view.backgroundColor = UIColor.lightGray
-        selfTabBar.addSubview(view)
-        
-//        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 10.0), NSForegroundColorAttributeName: UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0,green:0,blue:0,alpha:1)], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red:0.6,green:0.6,blue:0.6,alpha:1)], for: .selected)
-        // MARK:tabBarItem's tag ,from 800 to 804
-        let firb = UITabBarItem.init(title:"目录", image: listImage, selectedImage: listImage)
-        firb.tag = 800;
-        let secb = UITabBarItem.init(title:"喜欢", image: likeImage, selectedImage: likeImage)
-        secb.tag = 801;
-        let thib = UITabBarItem.init(title:"亮度", image: brightImage, selectedImage: brightImage)
-        thib.tag = 802;
-        let img = UIImage(named: "rijian")
-        let forb = UITabBarItem.init(title:"夜间", image: darkImage, selectedImage: img)
-        forb.tag = 803;
-        let fifb = UITabBarItem.init(title:"设置", image: setImage, selectedImage: setImage)
-        fifb.tag = 804;
-        selfTabBar.setItems([firb,secb,thib,forb,fifb], animated: false)
-        selfTabBar.delegate = self;
-        self.view!.addSubview(selfTabBar)
+        selfTabBar = UIView()
+        selfTabBar.frame = CGRect(x:0, y:SCREEN_HEIGHT-49, width:SCREEN_WIDTH, height:49)
+        selfTabBar.backgroundColor = UIColor(white:0.0, alpha:0.7)
+        self.view.addSubview(selfTabBar)
+        let nameA:NSArray = ["目录","喜欢","亮度","夜间","设置"]
+        for i in 0..<5{
+            let button = UIButton(type:.custom)
+            button.frame = CGRect(x:SCREEN_WIDTH/5*CGFloat(i), y:0, width:SCREEN_WIDTH/5, height:49)
+            let naImage = UIImage(named:nameA[i] as! String)
+            button.setImage(naImage, for:.normal)
+            button.tag = i
+            button.addTarget(self, action:#selector(buttonAction(sender:)), for:.touchUpInside)
+            selfTabBar.addSubview(button)
+        }
         
         touchView = UIView.init(frame: MY_CGRECT(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         let ges = UITapGestureRecognizer.init(target: self, action: #selector(self.touchLightBackground))
@@ -191,7 +198,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         //TODO: Slider.size修改
         lightSlider = UISlider.init(frame: MY_CGRECT(x: 0, y: 0, width: 200, height: 20))
         lightSlider.backgroundColor = UIColor.blue
-        lightSlider.setThumbImage(self.originImage(image: setImage, size: CGSize(width:20,height:20)), for: .normal)
+        lightSlider.setThumbImage(self.originImage(image:UIImage(named:"设置")!, size: CGSize(width:20,height:20)), for: .normal)
         lightSlider.addTarget(self, action: #selector(self.controlBright), for: .valueChanged)
         lightView.addSubview(lightSlider)
         self.view!.addSubview(lightView)
@@ -204,36 +211,70 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     
     func originImage(image:UIImage,size:CGSize)->(UIImage) {
         UIGraphicsBeginImageContext(size)
-        image.draw(in: MY_CGRECT(x: 0, y: 0, width: size.width, height: size
-    .height))
+        image.draw(in: MY_CGRECT(x: 0, y: 0, width: size.width, height:size.height))
         let img:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return img;
     }
     
     func initNavBar() {
-        statusView = UIView.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:STATUS_HEIGHT))
-        statusView.backgroundColor = UIColor.red
-        //        self.view!.addSubview(statusView)
-        navView = UIView.init(frame: CGRect(x:0, y:STATUS_HEIGHT, width:SCREEN_WIDTH, height:NAV_HEIGHT))
-        navView.backgroundColor = UIColor.red
-        //        self.view!.addSubview(navView)
+        navView = UIView.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:64))
+        navView.backgroundColor = UIColor(white:0.0, alpha:0.7)
+        self.view.addSubview(navView)
         
-        let backImage = UIImage(named: "fanhui")!.withRenderingMode(.alwaysOriginal)
-        let shareImage = UIImage(named: "fenxiang")!.withRenderingMode(.alwaysOriginal)
-        navBar = UINavigationBar.init(frame: CGRect(x:0, y:0, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT))
-        let lb = UIBarButtonItem.init(image:backImage, style:.plain, target:self, action:#selector(self.clickLeftButton))
-        let rb = UIBarButtonItem.init(image:shareImage, style:.plain, target:self, action:#selector(self.clickRightButton))
-        let bbi = UINavigationItem(title:kj_title)
-        bbi.leftBarButtonItem = lb
-        bbi.rightBarButtonItem = rb
-        navBar.pushItem(bbi, animated:true)
+        let backImage = UIImage(named:"返回")
+        let shareImage = UIImage(named:"分享")
+        let gobackNavBar = UIButton(type:.custom)
+        gobackNavBar.frame = CGRect(x:10,y:27,width:30,height:30)
+        gobackNavBar.setImage(backImage, for:.normal)
+        gobackNavBar.addTarget(self, action:#selector(self.clickLeftButton), for:.touchUpInside)
+        navView.addSubview(gobackNavBar)
         
-        //        navView.addSubview(navBar)
-        self.view!.addSubview(navBar)
+        let shareNavBar = UIButton(type:.custom)
+        shareNavBar.frame = CGRect(x:screenWidth-40,y:27,width:30,height:30)
+        shareNavBar.setImage(shareImage, for:.normal)
+        shareNavBar.addTarget(self, action:#selector(self.clickRightButton), for:.touchUpInside)
+        navView.addSubview(shareNavBar)
     }
     
     // MARK: Actions
+    func buttonAction(sender:UIButton){
+        if sender.tag==0 {
+            let list = ListViewController()
+            let animation = CATransition()
+            animation.duration = 0.3
+            animation.type = kCATransitionPush;
+            animation.subtype = kCATransitionFromLeft
+            self.view.window!.layer.add(animation, forKey: nil)
+            self.present(list, animated:false, completion:{ (true) in
+                list.dataArray = self.dictArray
+                list.kj_isLightStyle = self.isLightStyle
+            })
+        }
+        else if sender.tag==1 {
+            print("like!!!")
+        }
+        else if sender.tag==2 {
+            self.popSlider()
+        }
+        else if sender.tag==3 {
+            if isLightStyle {
+                let riImage = UIImage(named:"日间")
+                sender.setImage(riImage, for:.normal)
+                self.setReadStyle(style:"夜间")
+            }else{
+                let riImage = UIImage(named:"夜间")
+                sender.setImage(riImage, for:.normal)
+                self.setReadStyle(style:"日间")
+            }
+            isLightStyle = !isLightStyle
+        }
+        else if sender.tag==4 {
+            self.popSetView()
+        }
+    }
+    
+    
     func longPress() {
         
     }
@@ -251,39 +292,29 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     func tapText() {
         if isTap {
             isTap = false
-//            navBar.isHidden = false
-//            selfTabBar.isHidden = false
             DispatchQueue.main.async(execute: {() -> Void in
-                
                 UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-                    self.navBar.frame = CGRect(x:0, y:0, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT)
+                    self.navView.frame = CGRect(x:0, y:0, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT)
                     self.selfTabBar.frame = CGRect(x:0, y:SCREEN_HEIGHT-TABBAR_HEIGHT, width:SCREEN_WIDTH, height:TABBAR_HEIGHT)
                     self.nextPage.center = CGPoint(x:SCREEN_WIDTH-self.nextPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
                     self.lastPage.center = CGPoint(x:self.lastPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
-                    }, completion: { (true) in
-                        
+                }, completion: { (true) in
+                    
                 })
             })
         }
         else {
             self.isTap = true
-//            self.navBar.isHidden = true
-//            self.selfTabBar.isHidden = true
             DispatchQueue.main.async(execute: {() -> Void in
-                
                 UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
-                    self.navBar.frame = CGRect(x:0, y:-NAV_HEIGHT-STATUS_HEIGHT, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT)
+                    self.navView.frame = CGRect(x:0, y:-NAV_HEIGHT-STATUS_HEIGHT, width:SCREEN_WIDTH, height:NAV_HEIGHT+STATUS_HEIGHT)
                     self.selfTabBar.frame = CGRect(x:0, y:SCREEN_HEIGHT+TABBAR_HEIGHT, width:SCREEN_WIDTH, height:TABBAR_HEIGHT)
                     self.nextPage.center = CGPoint(x:SCREEN_WIDTH+self.nextPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
                     self.lastPage.center = CGPoint(x:-self.lastPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
-                    }, completion: { (true) in
-                        
+                }, completion: { (true) in
+                    
                 })
             })
-
-//            DispatchQueue.main.async(execute: {() -> Void in
-//                self.dataView.frame = CGRect(x:MARGIN, y:-NAV_HEIGHT-STATUS_HEIGHT, width:SCREEN_WIDTH-2*MARGIN, height:SCREEN_HEIGHT)
-//            })
         }
     }
     
@@ -306,80 +337,53 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     func clickFirb() {
         
     }
-    
-    func tabBar(_ tabBar: UITabBar, didSelect Item: UITabBarItem) {
-        if tabBar == selfTabBar {
-            if Item.tag == 800 {
-
-                let list = ListViewController()
-                self.present(list, animated:true, completion:{ (true) in
-                    list.dataArray = self.dictArray
-                })
-            }
-            else if Item.tag == 801 {
-                print("like")
-            }
-            else if Item.tag == 802 {
-                self.popSlider()
-            }
-            else if Item.tag == 803 {
-                self.lightOrDark(Item:Item)
-            }
-            else if Item.tag == 804 {
-                self.popSetView()
-            }
-        }
-    }
-    
     func popSlider() {
         lightView.alpha = 1
         self.touchView.isHidden = false
-    }
-
-    func lightOrDark(Item:UITabBarItem) {
-        if !isDark {
-            isDark = true
-            var image = UIImage(named: "rijian")!.withRenderingMode(.alwaysOriginal)
-            Item.image = image
-            image = UIImage(named: "rijian")!.withRenderingMode(.alwaysOriginal)
-            Item.selectedImage = image
-            self.setStyle(color: DARK)
-        } else {
-            isDark = false
-            var image = UIImage(named: "yejian")!.withRenderingMode(.alwaysOriginal)
-            Item.image = image
-            image = UIImage(named: "yejian")!.withRenderingMode(.alwaysOriginal)
-            Item.selectedImage = image
-            self.setStyle(color: LIGHT)
-        }
-    }
-    
-    func setStyle(color:UIColor) {
-        if color == UIColor.white {
-            backImageView.alpha = 1
-            textView.textColor = DARK
-            textView.backgroundColor = UIColor.clear
-            lastPage.titleLabel?.textColor = DARK
-            lastPage.backgroundColor = color
-            nextPage.titleLabel?.textColor = DARK
-            nextPage.backgroundColor = color
-        } else {
-            backImageView.alpha = 0
-            textView.textColor = LIGHT
-            textView.backgroundColor = color
-            lastPage.titleLabel?.textColor = LIGHT
-            lastPage.backgroundColor = GRAY
-            nextPage.titleLabel?.textColor = LIGHT
-            nextPage.backgroundColor = GRAY
-        }
-        dataView.backgroundColor = color
-        navBar.backgroundColor = color
-        selfTabBar.backgroundColor = color
     }
     
     func popSetView() {
         setView.alpha = 1
         self.touchView.isHidden = false
     }
+    
+    func setReadStyle(style:String="日间"){
+        if style=="夜间" {
+            backImageView.image = UIImage(named:"夜间背景")
+            textView.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
+            lastPage.alpha = 1.0
+            nextPage.alpha = 1.0
+            navView.backgroundColor = UIColor(white:0.0, alpha:1.0)
+            selfTabBar.backgroundColor = UIColor(white:0.0, alpha:1.0)
+        }
+        else{
+            backImageView.image = UIImage(named:"日间模式")
+            textView.textColor = UIColor(red:68/255.0, green:68/255.0, blue:68/255.0, alpha:1.0)
+            lastPage.alpha = 0.8
+            nextPage.alpha = 0.8
+            navView.backgroundColor = UIColor(white:0.0, alpha:0.7)
+            selfTabBar.backgroundColor = UIColor(white:0.0, alpha:0.7)
+        }
+        
+    }
+    
+    func nextAndOn(sender:UIButton){
+        if sender.tag==0 {
+            if !isFrist {
+                if kj_num>0 {
+                    self.kj_num -= 1
+                }
+            }
+        }
+        else{
+            if !isFrist {
+                if kj_num<kj_total-1{
+                    self.kj_num += 1
+                }
+            }
+        }
+    }
+
+    
 }
 

@@ -44,7 +44,11 @@
 
 - (void)setReadText:(NSString *)readText{
     self.readTextLabel.textAlignment = NSTextAlignmentCenter;
-    self.readTextLabel.text = [self getBook:readText];
+    if (self.isMp3) {
+        self.readTextLabel.text = [self getBook:readText];
+    }else{
+        self.readTextLabel.text = readText;
+    }
 }
 
 - (void)setReadNum:(NSInteger)readNum{
