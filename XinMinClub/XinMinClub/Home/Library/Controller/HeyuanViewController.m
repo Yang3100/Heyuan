@@ -28,6 +28,7 @@
 }
 
 - (void)getData{
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 后台对数据类型的需要
@@ -35,6 +36,7 @@
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_ADVERTISEMENT_DataList",@"Params":dict}];
         // 网络请求
         [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
+        
         
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
@@ -48,11 +50,11 @@
             }
             // 主线程执行
             dispatch_async(dispatch_get_main_queue(), ^{
+                [[LoadAnimation defaultDataModel] endLoadAnimation];
                 WMLoopView *wlv = [[WMLoopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4) images:imageUrlArray autoPlay:YES delay:2 isLoopNetwork:YES];
                 wlv.delegate = self;
                 [self.view addSubview:wlv];
             });
-            
         }];
         
     });

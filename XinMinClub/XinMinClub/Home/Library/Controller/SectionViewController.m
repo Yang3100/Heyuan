@@ -91,6 +91,7 @@
     NSURL *url = [NSURL URLWithString:imageUrlstring];
     [self.bookImageView sd_setImageWithURL:url placeholderImage:cachePicture];
 
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 获取章节列表
     NSDictionary *dict = @{@"GJ_WJ_ID":[json valueForKey:@"WJ_ID"]};
     NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WJ_ZJ_TYPE", @"Params":dict}];
@@ -99,6 +100,7 @@
         
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{
+            [[LoadAnimation defaultDataModel] endLoadAnimation];
             NSArray *typeArray = [[[jsonDict valueForKey:@"RET"] valueForKey:@"DATA"] componentsSeparatedByString:@","];//分割数组当中的内容
             NSString *bookid = [json valueForKey:@"WJ_ID"];
             // 传递数据
@@ -109,7 +111,6 @@
             self.readView.bookID = bookid;
             self.readView.typeArray = typeArray;
         });
-        
     }];
 }
 

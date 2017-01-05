@@ -197,6 +197,7 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
 //    ShareView *ocsv = [[ShareView alloc]init];
 //    ocsv.setShareContent = ShareMusic;
 //    //    ocsv.text = @"abc";
@@ -280,9 +281,6 @@
 }
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-//    UIImageView *_beijing=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-//    _beijing.image=[UIImage imageNamed:@"beijing"];
-
     if (index == 0) {
         myViewController = [[MyViewController alloc] init];
         myViewController.view.backgroundColor = [UIColor colorWithWhite:0.8777 alpha:1.0];
@@ -299,6 +297,25 @@
         return cvc;
     }
     
+}
+
+- (void)pageController:(WMPageController *)pageController lazyLoadViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info{
+    if ([viewController isKindOfClass:[courseViewController class] ]) {
+        [[LoadAnimation defaultDataModel] startLoadAnimation];
+        // 获取课程
+        NSDictionary *dict = @{@"Page_Index":@"1",@"Page_Count":@"10000"};
+        NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_KC_DataList", @"Params":dict}];
+        [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDict) {
+            NSLog(@"Get_KC_DataList:%@",jsonDict);
+            [[LoadAnimation defaultDataModel] endLoadAnimation];
+        }];
+    }
+}
+
+- (void)pageController:(WMPageController *)pageController willCachedViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info{
+    NSLog(@"******************************************");
+//    NSLog(@"******************************************");
+    NSLog(@"aaaaaaa%@,",info);
 }
 
 @end
