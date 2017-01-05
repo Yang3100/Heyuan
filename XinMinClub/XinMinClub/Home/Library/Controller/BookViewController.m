@@ -188,8 +188,6 @@
 
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    NSLog(@"collectionView.tag = %d,section = %d, row = %d", collectionView.tag,indexPath.section, indexPath.row);
-#warning mark传入数据到文集
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = [dica valueForKey:@"WJ_NAME"]; // 书集名字
@@ -197,8 +195,6 @@
     NSString *string = [IP stringByAppendingString:[dica valueForKey:@"WJ_IMG"]];
     [DataModel defaultDataModel].bookImageUrl = string; // 书集封面Url
     [svc getJsonData:dica];
-    
-#warning mark点击了文集，传入数据到全部文集当中
     
     [[DataModel defaultDataModel] addAllLibrary:dica];
     

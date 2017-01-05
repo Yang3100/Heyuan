@@ -284,17 +284,7 @@
         _likeButton.frame = CGRectMake(SCREEN_WIDTH-5*X-X/2, self.shareButton.frame.origin.y, X, X);
         
         UIImage *image = [[UIImage imageNamed:@"playLike"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //        UIImage *image2 = [[UIImage imageNamed:@"playLiked"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        //        // 是否添加到收藏(喜欢)里面
-        //        if ([[UserDataModel defaultDataModel].userLikeBookID containsObject:_kj_IDArray[SongTags]]) {
-        //            [_likeButton setImage:image2 forState:UIControlStateNormal];
-        //            likeButton = 1;
-        //        }
-        //        else{
         [_likeButton setImage:image forState:UIControlStateNormal];
-        //            likeButton = 0;
-        //        }
         [_likeButton addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _likeButton;
@@ -494,8 +484,33 @@
     [self.view addSubview:ocsv];
 }
 - (IBAction)like:(UIButton *)sender {
-    [USER_DATA_MODEL addLikeSection:self.dic];
+    bool islike = [USER_DATA_MODEL addLikeSection:self.dic];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
+    if (islike) {
+        [self performSelector:@selector(closeLikeSuccess) withObject:nil afterDelay:0.3f];
+    }else{
+        [self performSelector:@selector(likeSuccess) withObject:nil afterDelay:0.3f];
+    }
 }
+
+- (void)closeLikeSuccess {
+    [SVProgressHUD showSuccessWithStatus:@"取消喜欢!"];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
+    UIImage *image = [[UIImage imageNamed:@"playLike"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [_likeButton setImage:image forState:UIControlStateNormal];
+}
+- (void)likeSuccess {
+    [SVProgressHUD showSuccessWithStatus:@"加入我喜欢成功!"];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
+    UIImage *image = [[UIImage imageNamed:@"playLiked"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [_likeButton setImage:image forState:UIControlStateNormal];
+}
+
+- (void)dismiss {
+    [SVProgressHUD dismiss];
+}
+
 - (IBAction)download:(UIButton *)sender {
     [DATA_MODEL downloadSection:[kj_dict valueForKey:@"GJ_ID"]];
 }
@@ -726,6 +741,7 @@ bool isObserve = YES;
     }
     
     self.isPrepare = YES;
+    [_kj_player play];  // 开始播放
     [self imageViewRotate]; // 旋转歌手图片
     
     [self setNowPlayingInfo];  // 设置锁屏播放
