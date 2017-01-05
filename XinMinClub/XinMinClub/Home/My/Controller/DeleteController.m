@@ -195,6 +195,27 @@ static NSString *toolCellIdentifier = @"toolCell";
                             [dataModel.allSectionID removeObject:data.sectionID];
                             [dataModel.allSectionAndID removeObjectForKey: dataModel.allSectionAndID[data.sectionID]];
                             [dataModel.allSectionAndID removeObjectForKey:data.sectionID];
+                            
+                            if (data.isLike) {
+                                data.isLike = NO;
+                                [dataModel.userLikeSectionID removeObject:data.sectionID];
+                                [dataModel.userLikeSection removeObject:data];
+                                
+                                [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+                            }
+                            
+                            if (data.isDownload) {
+                                data.isDownload = NO;
+                                [dataModel.downloadSectionList removeObject:data.sectionID];
+                                [dataModel.downloadSection removeObject:data];
+                            }
+                            
+                            if (data.isAddRecent) {
+                                data.isAddRecent = NO;
+                                [dataModel.recentPlayAndID removeObjectForKey:dataModel.recentPlayAndID[data.sectionID]];
+                                [dataModel.recentPlayAndID removeObjectForKey:data.sectionID];
+                                [dataModel.recentPlay removeObject:data];
+                            }
                         }
                         
                         if (_deleteArr == dataModel.downloadSection) {
