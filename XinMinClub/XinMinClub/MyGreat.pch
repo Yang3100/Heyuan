@@ -36,6 +36,7 @@
 #import "playerViewController.h"
 #import "SectionViewController.h"
 #import "HomeNavController.h"
+#import "LoadAnimation.h"
 
 // 模型转换
 #import "NSObject+YYModel.h"

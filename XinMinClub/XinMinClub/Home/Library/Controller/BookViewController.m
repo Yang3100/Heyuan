@@ -82,12 +82,14 @@
         [libraryArray removeAllObjects];
     }
     
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 后台对数据类型的需要
         NSDictionary *dict = @{@"TYPE":type,@"Page_Index":@(iNum),@"Page_Count":@"9"};
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WenJi_DataList",@"Params":dict}];
         [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
+        
     });
     
     //回调函数获取数据
@@ -97,6 +99,7 @@
         libraryTotal = [mapXNum intValue];
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{
+            [[LoadAnimation defaultDataModel] endLoadAnimation];
             [libraryArray addObjectsFromArray:[[json valueForKey:@"RET"] valueForKey:@"Sys_GX_WenJI"]];
             [self.libraryCollectionView reloadData];
             if (off==YES) {
@@ -127,6 +130,7 @@
         else{
             iNum ++;
             // 后台执行
+            [[LoadAnimation defaultDataModel] startLoadAnimation];
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 // 后台对数据类型的需要
                 NSDictionary *dict = @{@"TYPE":type,@"Page_Index":@(iNum),@"Page_Count":@"9"};

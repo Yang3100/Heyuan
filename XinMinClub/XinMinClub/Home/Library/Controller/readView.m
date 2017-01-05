@@ -145,11 +145,12 @@
 }
 
 - (void)startNetwork{
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 获取小节列表
         NSDictionary *dict = @{@"GJ_WJ_ID":_bookID, @"GJ_WJ_ZY_TYPE":_typeArray[iNum],@"Page_Index":@"1",@"Page_Count":@"100000"};
-        NSString *paramString = [networkSection getParamStringWithParam:@{@"Right_ID": @"f8037fea-5240-448a-b39f-d79b3aff4fa9",@"FunName":@"Get_WJ_ZJ_TYPE_DataList", @"Params":dict}];
+        NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WJ_ZJ_TYPE_DataList", @"Params":dict}];
         [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
     });
     
@@ -161,6 +162,7 @@
         [jsonArrayDict addObject:json];
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{
+            [[LoadAnimation defaultDataModel] endLoadAnimation];
             [dataArray addObject:json];
             [self.readTableView reloadData];
             if (off==YES) {
@@ -185,11 +187,12 @@
         off=YES;
         if (iNum<_typeArray.count-1) {
             iNum ++;
+            [[LoadAnimation defaultDataModel] startLoadAnimation];
             // 后台执行
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 // 获取小节列表
                 NSDictionary *dict = @{@"GJ_WJ_ID":_bookID, @"GJ_WJ_ZY_TYPE":_typeArray[iNum],@"Page_Index":@"1",@"Page_Count":@"100000"};
-                NSString *paramString = [networkSection getParamStringWithParam:@{@"Right_ID": @"f8037fea-5240-448a-b39f-d79b3aff4fa9",@"FunName":@"Get_WJ_ZJ_TYPE_DataList", @"Params":dict}];
+                NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WJ_ZJ_TYPE_DataList", @"Params":dict}];
                 [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
             });
         }

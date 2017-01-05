@@ -197,6 +197,7 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
 //    ShareView *ocsv = [[ShareView alloc]init];
 //    ocsv.setShareContent = ShareMusic;
 //    //    ocsv.text = @"abc";
