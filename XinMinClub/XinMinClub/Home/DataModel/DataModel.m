@@ -196,14 +196,14 @@
     if ([head isEqualToString:@"htt"]) {
         return NO;
     }
-    
-    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
-    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
-    
-    if ([localLastPath isEqualToString:lastPath]) {
-        return YES;
-    }
-    return NO;
+    return YES;
+//    NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+//    NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
+//    
+//    if ([localLastPath isEqualToString:lastPath]) {
+//        return YES;
+//    }
+//    return NO;
 }
 
 - (void)getAllLocalSection {
@@ -461,6 +461,15 @@
 - (void)downloadSection:(NSString *)sectionID {
     
     if (![DATA_MODEL.allSectionAndID objectForKey:sectionID]) {
+        return;
+    }
+    
+    
+    if ([DATA_MODEL.downloadingSections containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
+        return;
+    }
+    
+    if ([DATA_MODEL.downloadSection containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
         return;
     }
     
