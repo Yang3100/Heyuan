@@ -111,7 +111,7 @@ import UIKit
         switch sender.state {
         case .changed:
             qianImageView.center = CGPoint(x:line1initalCenter.x+translation.x, y:line1initalCenter.y+translation.y)
-            if backVw.center.x-15<qianImageView.center.x && qianImageView.center.x<backVw.center.x+15 && backVw.center.y-15<qianImageView.center.y && qianImageView.center.y<backVw.center.y+15 {
+            if backVw.center.x-25<qianImageView.center.x && qianImageView.center.x<backVw.center.x+25 && backVw.center.y-25<qianImageView.center.y && qianImageView.center.y<backVw.center.y+25 {
                 UIView.animate(withDuration:0.5, animations: {() -> Void in
                     self.qianImageView.center = self.qianView.center
                     self.qianImageView.isUserInteractionEnabled = false
@@ -143,7 +143,7 @@ import UIKit
         switch sender.state {
         case .changed:
             kunImageView.center = CGPoint(x:line2initalCenter.x+translation.x, y:line2initalCenter.y+translation.y)
-            if backVw.center.x-15<kunImageView.center.x && kunImageView.center.x<backVw.center.x+15 && backVw.center.y-15<kunImageView.center.y && kunImageView.center.y<backVw.center.y+15 {
+            if backVw.center.x-25<kunImageView.center.x && kunImageView.center.x<backVw.center.x+25 && backVw.center.y-25<kunImageView.center.y && kunImageView.center.y<backVw.center.y+25 {
                 UIView.animate(withDuration:0.5, animations: {() -> Void in
                     self.kunImageView.center = self.qianView.center
                     self.kunImageView.isUserInteractionEnabled = false

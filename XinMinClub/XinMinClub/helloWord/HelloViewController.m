@@ -9,6 +9,7 @@
 #import "HelloViewController.h"
 #import "shareObjectModel.h"
 #import "HomeViewController.h"
+#import "loginViewController.h"
 
 @interface HelloViewController (){
     UIImage *adImage;
@@ -109,12 +110,22 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             HomeViewController *hvc = [[HomeViewController alloc] init];
             HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
-            [self presentViewController:nav animated:YES completion:^{
+            CATransition *animation = [CATransition animation];
+            animation.duration = 1.0;
+            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+            animation.type = kCATransitionFade;
+            [self.view.window.layer addAnimation:animation forKey:nil];
+            [self presentViewController:nav animated:NO completion:^{
                 
             }];
         });
     }else{
         NSLog(@"登录失败!!!");
+        [[shareObjectModel shareObject] deleteAccountAndPassword]; // 删除本地账号密码
+        [self dismissViewControllerAnimated:NO completion:^{
+            loginViewController *lvc = [[loginViewController alloc] init];
+            [self presentViewController:lvc animated:NO completion:nil];
+        }];
     }
 }
 
