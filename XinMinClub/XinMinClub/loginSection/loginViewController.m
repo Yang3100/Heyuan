@@ -22,6 +22,9 @@
     UIButton *registerBtn_;
     UIButton *forgetBtn_;
     
+    NSString *openID;
+    NSString *access_token;
+    
     TencentOAuth *_tencentOAuth;
 }
 
@@ -356,6 +359,10 @@
     
     NSString *pass = @"abc1234568";
     NSString *dataString = [dict valueForKey:@"openid"];
+    access_token = [dict valueForKey:@"access_token"];
+    openID = dataString;
+    
+    [self wechatLoginByRequestForUserInfo];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         HomeViewController *hvc = [[HomeViewController alloc] init];
         HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
@@ -365,6 +372,16 @@
             [UserDataModel defaultDataModel].userID = dataString;
         }];
     });
+}
+
+- (void)wechatLoginByRequestForUserInfo {
+    
+    NSString *userUrlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", access_token, openID];
+    // 请求用户数据
+    
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:userUrlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    [USER_DATA_MODEL saveThreePartData:[[NSString alloc] initWithData:received  encoding:NSUTF8StringEncoding]];
 }
 
 #pragma TencentSessionDelegate
@@ -431,6 +448,7 @@
 - (void)getUserInfoResponse:(APIResponse*)response{
     NSLog(@"*********");
     NSLog(@" response %@",response.message);
+    [USER_DATA_MODEL saveThreePartData:response.message];
     //    NSLog(@"*********%@",response.jsonResponse[@"figureurl_qq_2"]);
 }
 

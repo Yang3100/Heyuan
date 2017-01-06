@@ -62,6 +62,7 @@
     _userRecentPlayIDAndCount = [NSMutableDictionary dictionaryWithCapacity:10];
     _isChange = NO;
     _isReload = NO;
+    _threePartReload = NO;
     
     [self loadLocalData];
     if (!myData.userName) {
@@ -74,6 +75,17 @@
     
     if (!myData.userImage) {
         _userImage = [UIImage imageNamed:@"add_user_icon"];
+    }
+    
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"threeData"];
+    if (dic) {        
+        if (dic[@"is_yellow_vip"]) {
+            //为qq资料
+            [self setQQData];
+            return;
+        }
+        // 为微信资料
+        [self setWXData];
     }
     
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
@@ -102,7 +114,17 @@
     [self loginOutRemoveData];
 }
 
-- (void)getUserImage {
+- (void)getUserImage:(NSString *)url {
+    
+    if (url) {
+        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+        NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        if (received) {
+            _userImage = [UIImage imageWithData:received];
+        }
+        return;
+    }
+    
     // 参数
     NSString *Right_ID = self.userID;
     NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_User_Img\", \"Params\": {}}", Right_ID];
@@ -115,7 +137,7 @@
     NSURLSession *session = [NSURLSession sharedSession];
     // 设置请求路径
     NSURL *URL=[NSURL URLWithString:IPUrl];//不需要传递参数
-    
+
     // 创建请求对象
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:URL];//默认为get请求
     request.timeoutInterval=20.0;//设置请求超时为5秒
@@ -535,6 +557,56 @@
     }];
     // 执行任务
     [dataTask resume];
+}
+
+- (void)saveThreePartData:(NSString *)data {
+    
+    NSData *jsonData = [data dataUsingEncoding:NSUTF8StringEncoding];//转化为data
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];//转化为字典
+    
+    [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"threeData"];
+    if (dic[@"is_yellow_vip"]) {
+        //为qq资料
+        [self setQQData];
+        return;
+    }
+    // 为微信资料
+    [self setWXData];
+}
+
+- (void)setQQData {
+    NSDictionary *dic = [self getThreePartData];
+    
+//    _userID = dic[@""];
+    _userSex = dic[@"gender"];
+    _userName = dic[@"nickname"];
+    _userCity = dic[@"city"];
+//    _userIntroduction = dic[@""];
+    [self getUserImage:dic[@"figureurl_1"]];
+    _threePartReload = YES;
+}
+
+- (void)setWXData {
+    NSDictionary *dic = [self getThreePartData];
+    
+    //    _userID = dic[@""];
+    _userSex = dic[@"sex"];
+    int a = [dic[@"sex"] intValue];
+    if (a) {
+        _userSex = @"男";
+    } else {
+        _userSex = @"女";
+    }
+    _userName = dic[@"nickname"];
+    _userCity = dic[@"city"];
+    //    _userIntroduction = dic[@""];
+    [self getUserImage:dic[@"headimgurl"]];
+    _threePartReload = YES;
+}
+
+- (NSDictionary *)getThreePartData {
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"threeData"];
+    return dic;
 }
 
 #pragma mark NSCoding
