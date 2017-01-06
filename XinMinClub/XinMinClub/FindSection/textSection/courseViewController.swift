@@ -9,11 +9,16 @@
 import UIKit
 import Foundation
 
-let ipz:String = "http://192.168.137.1"
-//"http://218.240.52.135"
+let ipz:String = "http://218.240.52.135"
+//"http://192.168.137.1"
+//
 
-let ipzurl:String = "http://192.168.137.1/App/App.ashx"
-//"http://218.240.52.135/App/App.ashx"
+let ipzurl:String = "http://218.240.52.135/App/App.ashx"
+//"http://192.168.137.1/App/App.ashx"
+//
+
+let headerIm:UIImage = UIImage(named:"header")!
+let teacherIm:UIImage = UIImage(named:"taoci.jpg")!
 
 
 class courseViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {

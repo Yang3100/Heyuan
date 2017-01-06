@@ -32,6 +32,10 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
             let sss:String = findDict.value(forKey:"KC_ID") as! String
             let dicc:NSDictionary = ["KC_ID":sss,"Page_Index":"1","Page_Count":"10000"]
             self.getFindJsonn(dic:dicc)
+            let imageString:String = ipz + (findDict.value(forKey:"KC_TITLE_IMG") as? String)!
+            let url:URL = URL(string:imageString)!
+            self.headerImage.sd_setImage(with: url, placeholderImage:headerIm)
+            (self.headerView.subviews[1] as! UILabel).text = findDict.value(forKey:"KC_NAME") as? String
         }
     }
     
@@ -41,7 +45,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         let str:String = networkSection.getParamString(param:["FunName":"Get_ZKC_DataList","Params":dic])
         networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
             print("************************************")
-//                        print(json)
+                        print(json)
             DispatchQueue.main.async {
                 LoadAnimation.defaultDataModel().end()
                 self.findDataArray = (json["RET"] as! [String: Any])["Sys_KCXJ"] as! NSArray
@@ -116,7 +120,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         laa.font = UIFont(name:"Arial", size:20)
         vi.addSubview(laa)
         let la = UILabel(frame:CGRect(x:28,y:0,width:screenWidth-58,height:35))
-        la.text = self.title
+        la.text = "课程名"
         la.backgroundColor = UIColor.clear
         la.font = UIFont(name:"Arial", size:14)
         vi.addSubview(la)
