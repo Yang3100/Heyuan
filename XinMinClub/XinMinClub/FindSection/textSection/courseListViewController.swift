@@ -27,6 +27,29 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         courseListViewController.teacherIntroSwitch! = false
     }
     
+    var findDict:NSDictionary = [:] {
+        didSet {
+            let sss:String = findDict.value(forKey:"KC_ID") as! String
+            let dicc:NSDictionary = ["KC_ID":sss,"Page_Index":"1","Page_Count":"10000"]
+            self.getFindJsonn(dic:dicc)
+        }
+    }
+    
+    private var findDataArray:NSArray = []
+    func getFindJsonn(dic:NSDictionary){
+        LoadAnimation.defaultDataModel().start()
+        let str:String = networkSection.getParamString(param:["FunName":"Get_ZKC_DataList","Params":dic])
+        networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
+            print("************************************")
+//                        print(json)
+            DispatchQueue.main.async {
+                LoadAnimation.defaultDataModel().end()
+                self.findDataArray = (json["RET"] as! [String: Any])["Sys_KCXJ"] as! NSArray
+            self.backTableView.reloadData()
+            }
+        })
+    }
+    
     func setNavigationBar() {
         // 自定义navigationBar
         let btn1=UIButton()
@@ -57,7 +80,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     private var tIntro : teacherIntro!
     func buttonAction1(sender:UIButton) {
         if courseListViewController.teacherIntroSwitch!==false {
-            tIntro = teacherIntro(frame:CGRect(x:0, y:64, width:screenWidth, height:screenHeight-64),teacherID:"0003")
+            tIntro = teacherIntro(frame:CGRect(x:0, y:64, width:screenWidth, height:screenHeight-64),teacherData:findDict)
             self.view.addSubview(tIntro)
             courseListViewController.teacherIntroSwitch! = true
         }
@@ -117,7 +140,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 32
+        return findDataArray.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
@@ -126,6 +149,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         let cell = tableView.dequeueReusableCell(withIdentifier:"courseListCell") as! courseListCell
+        (cell ).name1 = (self.findDataArray[indexPath.row] as! NSDictionary).value(forKey:"KCXJ_NAME") as! String
         return cell
     }
     

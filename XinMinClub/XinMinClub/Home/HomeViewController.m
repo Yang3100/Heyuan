@@ -294,28 +294,32 @@
         return libraryViewController;
     }else{
         courseViewController *cvc = [[courseViewController alloc]init];
+//        [self getFindJson];
         return cvc;
     }
     
 }
 
+- (void)getFindJson{
+    // 获取课程
+    NSDictionary *dict = @{@"Page_Index":@"1",@"Page_Count":@"10000"};
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_KC_DataList", @"Params":dict}];
+    [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDict) {
+        NSLog(@"****************************%@",jsonDict);
+        [DataModel defaultDataModel].findJson = jsonDict;
+    }];
+}
+
 - (void)pageController:(WMPageController *)pageController lazyLoadViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info{
-    if ([viewController isKindOfClass:[courseViewController class] ]) {
-        [[LoadAnimation defaultDataModel] startLoadAnimation];
-        // 获取课程
-        NSDictionary *dict = @{@"Page_Index":@"1",@"Page_Count":@"10000"};
-        NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_KC_DataList", @"Params":dict}];
-        [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDict) {
-            NSLog(@"Get_KC_DataList:%@",jsonDict);
-            [[LoadAnimation defaultDataModel] endLoadAnimation];
-        }];
-    }
+//    if ([viewController isKindOfClass:[courseViewController class] ]) {
+//        
+//    }
 }
 
 - (void)pageController:(WMPageController *)pageController willCachedViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info{
-    NSLog(@"******************************************");
 //    NSLog(@"******************************************");
-    NSLog(@"aaaaaaa%@,",info);
+////    NSLog(@"******************************************");
+//    NSLog(@"aaaaaaa%@,",info);
 }
 
 @end

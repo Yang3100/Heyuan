@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     istrue = 0;
     isUnload = NO;
     
@@ -44,9 +44,9 @@
     // 测试button
     UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
     but.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-50, 30, 30, 30);
-//    but.layer.masksToBounds = YES;
-//    but.layer.cornerRadius = 20;
-//    but.layer.borderWidth = 1;
+    //    but.layer.masksToBounds = YES;
+    //    but.layer.cornerRadius = 20;
+    //    but.layer.borderWidth = 1;
     [but setImage:[UIImage imageNamed:@"跳过广告"] forState:UIControlStateNormal];
     [but addTarget:self action:@selector(butAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:but];
@@ -80,7 +80,7 @@
 // 定时器执行操作方法
 - (void)updateTimer {
     lab.text = [NSString stringWithFormat:@"%ld秒",(long)num];
-//    [but setTitle:[NSString stringWithFormat:@"%ld秒",(long)num] forState:UIControlStateNormal];
+    //    [but setTitle:[NSString stringWithFormat:@"%ld秒",(long)num] forState:UIControlStateNormal];
     num--;
     // 满足条件后，停止当前的运行循环
     if (num < 1) {
@@ -92,7 +92,7 @@
     // 关闭定时器，永久关闭定时器
     [timer invalidate];
     
-//    [self performSelectorOnMainThread:@selector(xxx) withObject:self waitUntilDone:YES];
+    //    [self performSelectorOnMainThread:@selector(xxx) withObject:self waitUntilDone:YES];
     if (istrue==1||istrue==2) {
         [self load];
     }else{
@@ -120,12 +120,13 @@
             }];
         });
     }else{
-        NSLog(@"登录失败!!!");
-        [[shareObjectModel shareObject] deleteAccountAndPassword]; // 删除本地账号密码
-        [self dismissViewControllerAnimated:NO completion:^{
-            loginViewController *lvc = [[loginViewController alloc] init];
-            [self presentViewController:lvc animated:NO completion:nil];
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[shareObjectModel shareObject] deleteAccountAndPassword]; // 删除本地账号密码
+            [self dismissViewControllerAnimated:NO completion:^{
+                loginViewController *lvc = [[loginViewController alloc] init];
+                [self presentViewController:lvc animated:NO completion:nil];
+            }];
+        });
     }
 }
 

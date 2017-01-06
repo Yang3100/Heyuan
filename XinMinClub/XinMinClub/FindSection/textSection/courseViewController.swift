@@ -9,11 +9,41 @@
 import UIKit
 import Foundation
 
+let ipz:String = "http://192.168.137.1"
+//"http://218.240.52.135"
+
+let ipzurl:String = "http://192.168.137.1/App/App.ashx"
+//"http://218.240.52.135/App/App.ashx"
+
+
 class courseViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getFindJsonn()
+        
         self.view.addSubview(self.backTableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+    }
+    
+    private var findDataArray:NSArray = []
+    func getFindJsonn(){
+        LoadAnimation.defaultDataModel().start()
+        let dic:NSDictionary = ["Page_Index":"1","Page_Count":"10000"]
+        let str:String = networkSection.getParamString(param:["FunName":"Get_KC_DataList","Params":dic])
+        networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
+            print("************************************")
+            DispatchQueue.main.async {
+                LoadAnimation.defaultDataModel().end()
+                self.findDataArray = (json["RET"] as! [String: Any])["Sys_KC"] as! NSArray
+                self.backTableView.reloadData()
+            }
+        })
     }
     
     func flasedata() ->(Array<UIImage>) {
@@ -68,6 +98,7 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier:"courseCell3") as! courseCell3
+            (cell as! courseCell3).dataArray3 = self.findDataArray
             return cell!
         }
         // 隐藏线条
