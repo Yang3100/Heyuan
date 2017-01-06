@@ -163,6 +163,18 @@
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.500]];
+    
+    [self setLikeButtonImage];
+}
+
+- (void)setLikeButtonImage {
+    if ([USER_DATA_MODEL judgeIsLike:_dic[@"GJ_ID"]]) {
+        UIImage *image = [[UIImage imageNamed:@"playLiked"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [_likeButton setImage:image forState:UIControlStateNormal];
+        return;
+    }
+    UIImage *image = [[UIImage imageNamed:@"playLike"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [_likeButton setImage:image forState:UIControlStateNormal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -483,14 +495,16 @@
     
     [self.view addSubview:ocsv];
 }
+
 - (IBAction)like:(UIButton *)sender {
     bool islike = [USER_DATA_MODEL addLikeSection:self.dic];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [SVProgressHUD show];
     if (islike) {
-        [self performSelector:@selector(closeLikeSuccess) withObject:nil afterDelay:0.3f];
-    }else{
         [self performSelector:@selector(likeSuccess) withObject:nil afterDelay:0.3f];
+    }else{
+        [self performSelector:@selector(closeLikeSuccess) withObject:nil afterDelay:0.3f];
+        [USER_DATA_MODEL deleteLikeSectionID:self.dic[@"GJ_ID"]];
     }
 }
 
@@ -733,12 +747,12 @@ bool isObserve = YES;
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
     
-    if (![_mp3Url isEqualToString:@""]) {
-        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {
-            urlString = _mp3Url;
-            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
-        }
-    }
+//    if (![_mp3Url isEqualToString:@""]) {
+//        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {
+//            urlString = _mp3Url;
+//            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
+//        }
+//    }
     
     self.isPrepare = YES;
     [_kj_player play];  // 开始播放
@@ -748,6 +762,9 @@ bool isObserve = YES;
     
     if (!_dic[@"image"]) {
         [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
+    }
+    if (!_dic[@"author"]) {
+        [_dic setObject:@"无名" forKey:@"author"];
     }
     [DATA_MODEL addRecentPlay:_dic];
 }

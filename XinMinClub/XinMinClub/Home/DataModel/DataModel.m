@@ -196,7 +196,6 @@
     if ([head isEqualToString:@"htt"]) {
         return NO;
     }
-    
     NSString *localLastPath = [[[path componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
     NSString *lastPath = [[[url componentsSeparatedByString:@"/"] lastObject] componentsSeparatedByString:@"."][0];
     
@@ -422,7 +421,7 @@
         return;
     }
     
-    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
+    [_recentPlayAndID setObject:[NSString stringWithFormat:@"%lu",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
     _addAllBook = YES;
     ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
@@ -461,6 +460,14 @@
 - (void)downloadSection:(NSString *)sectionID {
     
     if (![DATA_MODEL.allSectionAndID objectForKey:sectionID]) {
+        return;
+    }
+    
+    if ([DATA_MODEL.downloadingSections containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
+        return;
+    }
+    
+    if ([DATA_MODEL.downloadSection containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
         return;
     }
     

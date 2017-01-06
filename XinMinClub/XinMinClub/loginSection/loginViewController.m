@@ -465,6 +465,7 @@
             });
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
+                USER_DATA_MODEL.userID = dataString;
                 HomeViewController *hvc = [[HomeViewController alloc] init];
                 HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
                 CATransition *animation = [CATransition animation];
@@ -483,7 +484,7 @@
 }
 
 -(void)addAlertView{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"登录失败" message:@"请确认你的账户密码是否正确!!!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"登录失败" message:@"请确认你的账户密add码是否正确!!!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"账号密码错误");
     }];
