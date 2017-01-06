@@ -582,7 +582,7 @@
     _userName = dic[@"nickname"];
     _userCity = dic[@"city"];
 //    _userIntroduction = dic[@""];
-    _userImage = dic[@"figureurl_1"];
+    [self getUserImage:dic[@"figureurl_1"]];
     _threePartReload = YES;
 }
 
