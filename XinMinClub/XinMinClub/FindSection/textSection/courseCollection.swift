@@ -10,21 +10,19 @@ import UIKit
 import Foundation
 
 class courseCollection: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
-    
-    private var dictDataa:NSDictionary?
+    private var arrayDataa:NSArray = []  //
     private var lay:UICollectionViewFlowLayout?
     private var frm:CGRect?
     
-    init(frame:CGRect, layout:UICollectionViewFlowLayout, dictData:NSDictionary) {
+    init(frame:CGRect, layout:UICollectionViewFlowLayout, array:NSArray) {
         super.init(frame:frame, collectionViewLayout:layout)
         self.frm = frame
         self.lay = layout
-        self.dictDataa = dictData
+        self.arrayDataa = array
         self.addSubview(self.courseCollectionView)
         // 添加观察者（通知中心）
         NotificationCenter.default.addObserver(self, selector:#selector(notificationAction(fication:)), name: NSNotification.Name(rawValue:"scrollIsLock"), object:nil);
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,21 +61,22 @@ class courseCollection: UICollectionView,UICollectionViewDataSource,UICollection
     }()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 17
+        return arrayDataa.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"courseCollectionViewCell", for:indexPath) as! courseCollectionViewCell
-        cell.backgroundColor = UIColor(red:181/255, green:181/255, blue:181/255, alpha:0.3)
-        
+//        cell.backgroundColor = UIColor(red:181/255, green:181/255, blue:181/255, alpha:0.3)
+        cell.nameString = (arrayDataa[indexPath.row] as! NSDictionary).value(forKey:"KC_NAME") as! String
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("touchItem:" + String(indexPath.row))
+        print()
         let clvc = courseListViewController()
         clvc.view.backgroundColor = UIColor.white
-        
+        clvc.findDict = arrayDataa[indexPath.row] as! NSDictionary
         self.AppRootViewController()?.present(clvc, animated: true, completion: {
 //            clvc.navigationController?.isToolbarHidden = true;
         })

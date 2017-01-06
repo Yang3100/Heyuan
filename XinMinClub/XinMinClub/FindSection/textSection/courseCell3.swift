@@ -10,21 +10,33 @@ import UIKit
 
 class courseCell3: UITableViewCell {
     
-    override init(style:UITableViewCellStyle, reuseIdentifier:String?) {
-        super.init(style:style, reuseIdentifier:reuseIdentifier)
-        
-        self.addSubview(self.courseC)
+//    override init(style:UITableViewCellStyle, reuseIdentifier:String?) {
+//        super.init(style:style, reuseIdentifier:reuseIdentifier)
+//        
+////        self.addSubview(self.courseC)
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+
+    public var dataArray3:NSArray = [] {
+        didSet {
+//            self.courseImageView.addSubview(self.textNameLabel)
+//            self.textNameLabel.text = nameString
+            let lay = UICollectionViewFlowLayout()
+            let ccoll = courseCollection(frame:CGRect(x:0,y:0,width:screenWidth,height:screenHeight-108), layout:lay, array:dataArray3)
+            
+            self.addSubview(ccoll)
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var courseC : courseCollection = {
-        let dic = NSDictionary(objects: ["和氏var","001",UIImage(named:"a") as Any,"10","998.00","12","1"], forKeys: ["GoodsName" as NSCopying,"GoodsID" as NSCopying,"GoodsImage" as NSCopying,"GoodsStock" as NSCopying,"GoodsPrice" as NSCopying,"GoodsExpress" as NSCopying,"GoodsSelectCount" as NSCopying])
-        let lay = UICollectionViewFlowLayout()
-        let ccoll = courseCollection(frame:CGRect(x:0,y:0,width:screenWidth,height:screenHeight-108), layout:lay, dictData:dic)
-        
-        return ccoll
-    }()
+//    private var courseC : courseCollection = {
+////        let dic = NSDictionary(objects: ["和氏var","001",UIImage(named:"a") as Any,"10","998.00","12","1"], forKeys: ["GoodsName" as NSCopying,"GoodsID" as NSCopying,"GoodsImage" as NSCopying,"GoodsStock" as NSCopying,"GoodsPrice" as NSCopying,"GoodsExpress" as NSCopying,"GoodsSelectCount" as NSCopying])
+//        
+//        let lay = UICollectionViewFlowLayout()
+//        let ccoll = courseCollection(frame:CGRect(x:0,y:0,width:screenWidth,height:screenHeight-108), layout:lay)
+//        
+//        return ccoll
+//    }()
 }

@@ -10,6 +10,15 @@ import UIKit
 
 class courseListCell: UITableViewCell {
 
+    @IBOutlet weak var zjNameLabel: UILabel!
+    
+    var name1:String = "" {
+        didSet {
+           print(name1)
+            self.zjNameLabel.text = name1
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

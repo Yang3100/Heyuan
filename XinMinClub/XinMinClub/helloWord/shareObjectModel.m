@@ -44,21 +44,79 @@
 
 // 判断账号密码是否正确->userID(在回调函数Block当中返回userID)
 - (void)isTrueForAcctont:(NSString*)account Password:(NSString*)password Block:(void(^)(BOOL successful, NSString *userID))Block {
-    // 后台对数据类型的需要
-    NSDictionary *dict = @{@"PhoneNo":account, @"PassWord":password};
-    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Login",@"Params":dict}];
-    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
-    //回调函数获取数据
-    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
-        NSString *str = [[json valueForKey:@"RET"] valueForKey:@"DATA"];
-        if ([str isEqualToString:@"0"]) {
-            NSLog(@"账号密码错误!!!");
-            Block(false,str);
-        }else{
-            NSLog(@"账号密码正确!!!");
-            Block(true,str);
-        }
+    // 创建会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    // 设置请求路径
+    NSURL *URL=[NSURL URLWithString:IPUrl];//不需要传递参数
+    // 创建请求对象
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:URL];//默认为get请求
+    request.timeoutInterval=5.0;//设置请求超时为5秒
+    request.HTTPMethod=@"POST";//设置请求方法
+    // 参数..
+    NSString *param = [NSString stringWithFormat:@"{\"FunName\":\"Login\",\"Params\":{\"PhoneNo\":\"%@\",\"PassWord\":\"%@\"}}",account,password];
+    NSLog(@"%@",param);
+    request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        // 解析数据
+        if (data != nil) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if (dict!=nil) {
+                NSString *userid = [[dict valueForKey:@"RET"] valueForKey:@"DATA"];
+                if ([userid isEqualToString:@"0"]) {
+                    NSLog(@"账号密码错误!!!");
+                    Block(false,userid);
+                }else{
+                    NSLog(@"账号密码正确!!!");
+                    Block(true,userid);
+                }
+            }else
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    // 服务器无反应
+                    [self addAlertViewTitle:@"网络连接失败😔😔" Message:@"😥😥请稍后再试!!!"];
+                });
+        }else
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                // 无网络
+                [self addAlertViewTitle:@"网络连接失败😱😱" Message:@"😀😀请检查你的网络!!!"];
+            });
     }];
+    // 执行任务
+    [dataTask resume];
+    
+}
+#pragma mark 弹出AlertView
+-(void)addAlertViewTitle:(NSString*)title Message:(NSString*)message{
+    
+//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 100)];
+//    backView.center = [self appRootViewController].view.center;
+//    
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"无网络或者服务器无连接!!!");
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+        CATransition *animation = [CATransition animation];
+        animation.duration = 1.0;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = @"rippleEffect";
+        [[self appRootViewController].view.window.layer addAnimation:animation forKey:nil];
+        [[self appRootViewController] presentViewController:nav animated:YES completion:^{
+            [UserDataModel defaultDataModel].userID = nil;
+        }];
+
+    }];
+    [alertController addAction:action1];
+    [[self appRootViewController] presentViewController:alertController animated:YES completion:NULL];
+}
+
+- (UIViewController *)appRootViewController{
+    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController*topVC=appRootVC;
+    while(topVC.presentedViewController) {
+        topVC=topVC.presentedViewController;
+    }
+    return topVC;
 }
 
 // 获取本地账号和密码

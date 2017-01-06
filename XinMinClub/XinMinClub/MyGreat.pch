@@ -37,6 +37,8 @@
 #import "SectionViewController.h"
 #import "HomeNavController.h"
 #import "LoadAnimation.h"
+#import "HomeViewController.h"
+#import "HomeNavController.h"
 
 // 模型转换
 #import "NSObject+YYModel.h"
@@ -66,8 +68,8 @@
 //http://192.168.3.153   // 成都ip
 #define IP @"http://218.240.52.135"
 #define IPUrl @"http://218.240.52.135/App/App.ashx"
-#define IPZ @"http://192.168.3.153"
-#define IPZUrl @"http://192.168.3.153/App/App.ashx"
+#define IPZ @"http://192.168.137.1"
+#define IPZUrl @"http://192.168.137.1/App/App.ashx"
 
 #define DATA_MODEL [DataModel defaultDataModel]
 #define USER_DATA_MODEL [UserDataModel defaultDataModel] 

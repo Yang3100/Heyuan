@@ -30,13 +30,14 @@ import UIKit
         let Url = URL(string:urlString)
         let request = NSMutableURLRequest(url:Url!)
         // 设置请求超时时间
-        request.timeoutInterval = 30
+        request.timeoutInterval = 20
         request.httpMethod = "POST"
         request.httpBody = param.data(using:String.Encoding.utf8)
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
             if (error != nil) {
+                print(error!)
                 return
             }
             else {
@@ -69,7 +70,7 @@ import UIKit
         let Url = URL(string:urlString)
         let request = NSMutableURLRequest(url:Url!)
         // 设置请求超时时间
-        request.timeoutInterval = 30
+        request.timeoutInterval = 20
         request.httpMethod = "POST"
         request.httpBody = param.data(using:String.Encoding.utf8)
         
@@ -104,7 +105,7 @@ import UIKit
         let Url = URL(string:urlString)
         let request = NSMutableURLRequest(url:Url!)
         // 设置请求超时时间
-        request.timeoutInterval = 30
+        request.timeoutInterval = 20
         request.httpMethod = "POST"
         request.httpBody = param.data(using:String.Encoding.utf8)
         

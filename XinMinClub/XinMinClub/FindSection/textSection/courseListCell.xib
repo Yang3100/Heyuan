@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
+                <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 第一回：掌门说玉" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9i-ZK-Fwa">
@@ -50,10 +50,13 @@
                     <constraint firstItem="9KU-up-UVd" firstAttribute="top" secondItem="U6a-Xo-arO" secondAttribute="bottom" constant="8" id="uES-T5-Qft"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="zjNameLabel" destination="Q9i-ZK-Fwa" id="szm-Ai-AuL"/>
+            </connections>
             <point key="canvasLocation" x="34" y="53.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="fanhui1.png" width="13" height="24"/>
+        <image name="fanhui1.png" width="12" height="23"/>
     </resources>
 </document>

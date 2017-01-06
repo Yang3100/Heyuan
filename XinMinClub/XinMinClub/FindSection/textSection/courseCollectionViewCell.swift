@@ -13,19 +13,29 @@ class courseCollectionViewCell: UICollectionViewCell {
     override init(frame:CGRect) {
         super.init(frame:frame)
         
-        self.courseImageView.addSubview(self.textNameLabel)
         self.addSubview(self.courseImageView)
-        //        self.addSubview(self.courseLikeLabel)
-        //        self.addSubview(self.courseCountLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var imageUrl:String = "" {
+    didSet {
+    
+        }
+    }
+    
+    var nameString:String = "" {
+        didSet {
+            self.courseImageView.addSubview(self.textNameLabel)
+            self.textNameLabel.text = nameString
+        }
+    }
+    
     private lazy var courseImageView : UIImageView = {
         let libraryImageView = UIImageView(frame: CGRect(x:0, y:0, width:self.frame.size.width, height:self.frame.size.height))
-        libraryImageView.image = UIImage(named:"b")
+        libraryImageView.image = UIImage(named:"zhujian")
         
         return libraryImageView
     }()
@@ -37,7 +47,7 @@ class courseCollectionViewCell: UICollectionViewCell {
 //        cnl.backgroundColor = UIColor.white
         cnl.numberOfLines = 0
         cnl.textAlignment = .center
-        cnl.text = "杨老师水墨画课"
+        cnl.text = "和源"
         cnl.font = UIFont(name:"Arial", size:16)
         
         return cnl
