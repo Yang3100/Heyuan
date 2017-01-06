@@ -418,11 +418,15 @@
         dispatch_async(dispatch_get_main_queue(), ^(void){
             HomeViewController *hvc = [[HomeViewController alloc] init];
             HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+            CATransition *animation = [CATransition animation];
+            animation.duration = 1.0;
+            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+            animation.type = @"rippleEffect";
+            [self.view.window.layer addAnimation:animation forKey:nil];
             [self presentViewController:nav animated:YES completion:^{
                 // 保存到本地
                 [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
                 [UserDataModel defaultDataModel].userID = dataString;
-                
             }];
         });
     }];
@@ -482,6 +486,11 @@
                 USER_DATA_MODEL.userID = dataString;
                 HomeViewController *hvc = [[HomeViewController alloc] init];
                 HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+                CATransition *animation = [CATransition animation];
+                animation.duration = 1.0;
+                animation.timingFunction = UIViewAnimationCurveEaseInOut;
+                animation.type = @"rippleEffect";
+                [self.view.window.layer addAnimation:animation forKey:nil];
                 [self presentViewController:nav animated:YES completion:^{
                     // 保存到本地
                     [[shareObjectModel shareObject] setAccount:userField_.text Password:keyField_.text];

@@ -25,6 +25,8 @@
     
     NSMutableDictionary *but_dict;
     NSMutableDictionary *but_dict2;
+    
+    UIView *BaselineView;
 }
 
 @property(nonatomic) int touchTag;
@@ -128,6 +130,30 @@
         [button addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
     }
+    BaselineView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-Nwidth/4, Nwidth/3.5-2, Nwidth/2, 2)];
+    BaselineView.backgroundColor = RGB255_COLOR(219, 145, 39, 1);
+    [self addSubview:BaselineView];
+}
+
+- (void)moveBaselineToWhere:(int)where{
+    CGFloat Nwidth = (int)kj_width / 3;
+    CGFloat y = Nwidth/3.5-2;
+    CGFloat width = Nwidth/2;
+    CGFloat height = 2;
+    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        if (where==1) {
+            BaselineView.frame = CGRectMake(Nwidth/4, y, width, height);
+        }else if (where==2){
+            BaselineView.frame = CGRectMake(SCREEN_WIDTH/2-Nwidth/4, y, width, height);
+        }else{
+            BaselineView.frame = CGRectMake(SCREEN_WIDTH-Nwidth*3/4, y, width, height);
+        }
+    } completion:^(BOOL finished){
+        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+        anim.repeatCount = 0.7;
+        anim.values = @[@-5,@5,@-5];
+        [BaselineView.layer addAnimation:anim forKey:nil];
+    }];
 }
 
 - (void)aaa:(UIButton*)but butTag:(NSInteger)butag{
@@ -138,6 +164,7 @@
 - (IBAction)butClick:(UIButton*)sender{
     if (sender.tag==0) {
         self.touchTag=1;
+        [self moveBaselineToWhere:1];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",0]] setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",1]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",2]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
@@ -145,6 +172,7 @@
     }
     else if (sender.tag == 1){
         self.touchTag=2;
+        [self moveBaselineToWhere:2];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",0]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",1]] setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",2]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
@@ -152,6 +180,7 @@
     }
     else{
         self.touchTag=3;
+        [self moveBaselineToWhere:3];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",0]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",1]] setTitleColor:RGB255_COLOR(1, 0, 0, 1) forState:UIControlStateNormal];
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",2]] setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];
