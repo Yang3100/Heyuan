@@ -13,6 +13,7 @@
 
 @interface UserDataModel : NSObject
 
+@property (nonatomic, assign) BOOL threePartReload;// 三方资料重载
 @property (nonatomic, strong) UIImage *userImage;
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *userUID;
@@ -51,7 +52,9 @@
 - (void)loadLocalData;// 加载本地用户资料和数据
 - (void)getMyBook;// 取得"我的"文集
 - (void)saveUserImage;// 网络保存用户头像
-- (void)getUserImage; // 取得用户头像
+- (void)getUserImage:(NSString *)url; // 取得用户头像
+- (void)saveThreePartData:(NSString *)data;// 保存三方登录资料
+- (NSDictionary *)getThreePartData;// 取得三方登录资料
 
 // 本地部分
 //- (void)getMyLocalBook;// 取得本地我的文集

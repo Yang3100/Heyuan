@@ -31,7 +31,7 @@
     userDataModel = [UserDataModel defaultDataModel];
     [dataModel addObserver:self forKeyPath:@"downloadingSections" options:NSKeyValueObservingOptionNew context:nil];
     [userDataModel getUserData];
-    [userDataModel getUserImage];
+    [userDataModel getUserImage:nil];
 
 //    [[PalyerViewController shareObject ] viewDidLoad];
 //    [[ReaderTableViewController shareObject] viewDidLoad];
