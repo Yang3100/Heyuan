@@ -114,7 +114,7 @@
     button1.frame = CGRectMake(0, 0, tw*6/8, th);
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     //    button2.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
-    button2.frame = CGRectMake(tw*2/3, 0, tw/8, th);
+    button2.frame = CGRectMake(tw*4/5, 0, tw/8, th);
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
 //        button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button3.frame = CGRectMake(tw*4/5, 0, tw/8, th);
@@ -160,7 +160,7 @@
     [button3 addSubview:image3];
     [toolBarView addSubview:button1];
     [toolBarView addSubview:button2];
-    [toolBarView addSubview:button3];
+//    [toolBarView addSubview:button3];
     barButtonItem.customView = toolBarView;
     toolBarView.backgroundColor = RGB255_COLOR(255, 255, 255, 1);
     

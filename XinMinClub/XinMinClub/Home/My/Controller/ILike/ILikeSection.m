@@ -199,6 +199,9 @@ void like (){
         ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).sectionName;
         
         ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.userLikeSection[indexPath.row - 1]).author;
+        if ([((BookCell *) cell).authorName.text isEqualToString:@""]) {
+            ((BookCell *) cell).authorName.text = @"无名";
+        }
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).delegate = self;
         ((BookCell *) cell).accessoryButton.tag = indexPath.row - 1 + 16000;

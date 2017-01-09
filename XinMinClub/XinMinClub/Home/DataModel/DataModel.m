@@ -212,6 +212,7 @@
 
 - (void)addSectionToAll:(SectionData *)data {
     if (![_allSectionID containsObject:data.sectionID]) {
+        _addAllBook = YES;
         [_allSection insertObject:data atIndex:0];
         [_allSectionID insertObject:data.sectionID atIndex:0];
         [_allSectionAndID setObject:[NSString stringWithFormat:@"%d",_allSectionAndID.count/2] forKey:data.sectionID];
@@ -333,45 +334,75 @@
 }
 
 // 添加到我的文集
-- (BOOL)addMyLibrary:(NSString *)libraryID ImageUrl:(NSString *)url BookName:(NSString *)bookName AuthorName:(NSString *)authorName Type:(NSString *)type Language:(NSString *)language Detail:(NSString *)details{
+- (BOOL)addMyLibrary:(NSDictionary *)dic {
     
-    [saveModule saveBookDataWithBookID:libraryID bookData:nil isMyBook:YES];
+//    [saveModule saveBookDataWithBookID:libraryID bookData:nil isMyBook:YES];
+//    
+//    if ([[_myBookAndID allKeys] containsObject:libraryID]) {
+//        return NO;
+//    }
+//    
+//    NSLog(@"%@%@%@",url,authorName,libraryID);
+//    UIImageView *imageView = [[UIImageView alloc] init];
+//    NSURL *urlString = [NSURL URLWithString:url];
+//    
+//    [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        if (![[_myBookAndID allKeys] containsObject:libraryID]) {
+//            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 libraryID,@"bookID",
+//                                 image, @"bookImage",
+//                                 url, @"imagePath",
+//                                 authorName, @"authorName",
+//                                 bookName, @"bookName",
+//                                 type, @"libraryType",
+//                                 language, @"libraryLanguage",
+//                                 details, @"libraryDetails",
+//                                 nil];
+//            BookData *data = [[BookData alloc] initWithDic:dic];
+//            [_myBook addObject:data];
+//            [_myBookAndID setObject:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2] forKey:data.bookID];
+//            [_myBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2]];
+//            _addBook = YES;
+//            NSLog(@"____%@+++++",_myBookAndID);
+//        }
+//        
+//    }];
+//    return YES;
     
-    if ([[_myBookAndID allKeys] containsObject:libraryID]) {
+    
+    if ([[_myBookAndID allKeys] containsObject:[dic valueForKey:@"WJ_ID"]]) {
         return NO;
     }
     
-    NSLog(@"%@%@%@",url,authorName,libraryID);
-    UIImageView *imageView = [[UIImageView alloc] init];
-    NSURL *urlString = [NSURL URLWithString:url];
+    BookData *data = [self getBookDataWithDic:dic];
+    [_myBook addObject:data];
+    [_myBookAndID setObject:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2] forKey:data.bookID];
+    [_myBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2]];
+    _addBook = YES;
     
-    [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (![[_myBookAndID allKeys] containsObject:libraryID]) {
-            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 libraryID,@"bookID",
-                                 image, @"bookImage",
-                                 url, @"imagePath",
-                                 authorName, @"authorName",
-                                 bookName, @"bookName",
-                                 type, @"libraryType",
-                                 language, @"libraryLanguage",
-                                 details, @"libraryDetails",
-                                 nil];
-            BookData *data = [[BookData alloc] initWithDic:dic];
-            [_myBook addObject:data];
-            [_myBookAndID setObject:[NSNull null] forKey:data.bookID];
-            [_myBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2]];
-            _addBook = YES;
-            NSLog(@"____%@+++++",_myBookAndID);
-        }
-        
-    }];
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:YES];
+    
     return YES;
 }
 
 // 添加到全部文集
 - (BOOL)addAllLibrary:(NSDictionary *)dic {
     
+    if ([[_allBookAndID allKeys] containsObject:[dic valueForKey:@"WJ_ID"]]) {
+        return NO;
+    }
+    
+    BookData *data = [self getBookDataWithDic:dic];
+    [_allBookAndID setObject:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2] forKey:data.bookID];
+    [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2]];
+    _addAllBook = YES;
+    
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
+    
+    return YES;
+}
+
+- (BookData *)getBookDataWithDic:(NSDictionary *)dic {
     NSString *bookName = [dic valueForKey:@"WJ_NAME"];
     NSString *authorName = [dic valueForKey:@"WJ_USER"];
     NSString *type = [dic valueForKey:@"WJ_TYPE"];
@@ -381,15 +412,8 @@
     //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
     NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
     
-    if ([[_allBookAndID allKeys] containsObject:libraryID]) {
-        return NO;
-    }
-    
-    [saveModule saveBookDataWithBookID:libraryID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:bookName,@"bookName",authorName,@"authorName",url,@"imagePath", type, @"libraryType", language, @"libraryLanguage", details, @"libraryDetails", libraryID, @"WJ_ID",nil]] isMyBook:NO];
     
     NSLog(@"%@%@%@",url,authorName,libraryID);
-    UIImageView *imageView = [[UIImageView alloc] init];
-    NSURL *urlString = [NSURL URLWithString:url];
     
     UIImage *defaultImage = [UIImage imageNamed:@"19"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -402,32 +426,36 @@
                                  details, @"libraryDetails",
                                  defaultImage, @"bookImage",
                                  nil];
-    BookData *data = [[BookData alloc] initWithDic:dict];
-    [_allBookAndID setObject:[NSNull null] forKey:data.bookID];
-    [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2]];
-    _addAllBook = YES;
     
+    UIImageView *imageView = [[UIImageView alloc] init];
+    NSURL *urlString = [NSURL URLWithString:url];
     [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [dict setObject:image forKey:@"bookImage"];
     }];
-    return YES;
+    
+    BookData *data = [[BookData alloc] initWithDic:dict];
+    return data;
 }
 
 - (void)addRecentPlay:(NSDictionary *)dic {
     
     SectionData *data = [self getSectionWithDic:dic];
     
+    if ([[_allSectionAndID allKeys] containsObject:data.sectionID]) {
+        data = _allSectionAndID[_allSectionAndID[data.sectionID]];
+    }
+    
+    NSLog(@"%@",data.playCount);
+    [SAVE_MODEL saveRecentPlaySection:data withSectionID:data.sectionID];
+    NSLog(@"%@",data.playCount);
     if ([[_recentPlayAndID allKeys] containsObject:data.sectionID]) {
         return;
     }
     
     [_recentPlayAndID setObject:[NSString stringWithFormat:@"%lu",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
-    _addAllBook = YES;
-    ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",
-                                                                                [((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount integerValue] + 1];
+//    ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",[((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount integerValue] + 1];
     DATA_MODEL.playingSection = data;
-    [SAVE_MODEL saveRecentPlaySection:data withSectionID:data.sectionID];
     [self addSectionToAll:data];
 }
 
@@ -457,18 +485,18 @@
     return data;
 }
 
-- (void)downloadSection:(NSString *)sectionID {
+- (BOOL)downloadSection:(NSString *)sectionID {
     
     if (![DATA_MODEL.allSectionAndID objectForKey:sectionID]) {
-        return;
+        return NO;
     }
     
     if ([DATA_MODEL.downloadingSections containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
-        return;
+        return NO;
     }
     
     if ([DATA_MODEL.downloadSection containsObject:[DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]]]) {
-        return;
+        return NO;
     }
     
     SectionData * data = [DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]];
@@ -477,6 +505,7 @@
     [[DATA_MODEL mutableArrayValueForKey:@"downloadingSections"] addObject:data];
     DATA_MODEL.isDownloading = YES;
     [DownloadModule defaultDataModel];
+    return YES;
 }
 
 @end

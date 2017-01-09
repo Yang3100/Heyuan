@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 + (instancetype)defaultDataModel;
 
 // 加入我的文集
-- (BOOL)addMyLibrary:(NSString *)libraryID ImageUrl:(NSString *)url BookName:(NSString *)bookName AuthorName:(NSString *)authorName Type:(NSString *)type Language:(NSString *)language Detail:(NSString *)details;
+- (BOOL)addMyLibrary:(NSDictionary *)dic;
 // 加入全部文集
 - (BOOL)addAllLibrary:(NSDictionary *)dic;
 // 取得本地文集
@@ -155,6 +155,6 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 根据dic取得section
 - (SectionData *)getSectionWithDic:(NSDictionary *)dic;
 
-- (void)downloadSection:(NSString *)sectionID;
+- (BOOL)downloadSection:(NSString *)sectionID;
 
 @end

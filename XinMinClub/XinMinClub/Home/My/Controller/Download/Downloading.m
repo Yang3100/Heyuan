@@ -108,9 +108,9 @@ static NSString *bookCell = @"bookCell";
     });
 }
 
-- (void)dealloc {
-    [dataModel_.downloadingSection removeObserver:self forKeyPath:@"progress"];
-}
+//- (void)dealloc {
+//    [dataModel_.downloadingSection removeObserver:self forKeyPath:@"progress"];
+//}
 
 #pragma mark ObserveMethods
 
@@ -232,7 +232,9 @@ static NSString *bookCell = @"bookCell";
         [self.tableView registerNib:nib_ forCellReuseIdentifier:bookCell];
         cell = [tableView dequeueReusableCellWithIdentifier:bookCell forIndexPath:indexPath];
         ((BookCell *) cell).sectionsName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).sectionName;
-        
+        if ([((BookCell *) cell).sectionsName.text isEqualToString:@""]) {
+            ((BookCell *) cell).sectionsName.text = @"无名";
+        }
         ((BookCell *) cell).authorName.text = ((SectionData *)dataModel_.downloadingSections[indexPath.row - 1]).author;
         ((BookCell *) cell).statusView.hidden = YES;
         ((BookCell *) cell).delegate = self;

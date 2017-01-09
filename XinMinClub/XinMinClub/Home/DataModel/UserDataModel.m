@@ -155,7 +155,7 @@
                 NSString *s = [d objectForKey:@"DATA"];
                 
                 NSData *imageData   = [[NSData alloc] initWithBase64Encoding:s];
-                if (![s isEqualToString:@"(null)"]) {
+                if (![s isEqualToString:@""]) {
                     _userImage = [UIImage imageWithData:imageData];
                 }
                 [[UserDataModel defaultDataModel] saveLocalData];
@@ -568,10 +568,12 @@
     if (dic[@"is_yellow_vip"]) {
         //为qq资料
         [self setQQData];
+        [self saveUserInternetData];
         return;
     }
     // 为微信资料
     [self setWXData];
+    [self saveUserInternetData];
 }
 
 - (void)setQQData {
@@ -580,9 +582,9 @@
 //    _userID = dic[@""];
     _userSex = dic[@"gender"];
     _userName = dic[@"nickname"];
-    _userCity = [NSString stringWithFormat:@"%@--%@",dic[@"province"],dic[@"city"]];
+    _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
 //    _userIntroduction = dic[@""];
-    [self getUserImage:dic[@"figureurl_qq_1"]];
+    [self getUserImage:dic[@"figureurl_qq_2"]];
     _threePartReload = YES;
 }
 
@@ -598,7 +600,7 @@
         _userSex = @"女";
     }
     _userName = dic[@"nickname"];
-    _userCity = [NSString stringWithFormat:@"%@--%@",dic[@"province"],dic[@"city"]];
+    _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
     //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"headimgurl"]];
     _threePartReload = YES;

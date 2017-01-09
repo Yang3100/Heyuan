@@ -526,8 +526,29 @@
 }
 
 - (IBAction)download:(UIButton *)sender {
-    [DATA_MODEL downloadSection:[kj_dict valueForKey:@"GJ_ID"]];
+
+    if ([DATA_MODEL downloadSection:[kj_dict valueForKey:@"GJ_ID"]]) {
+        // 提示成功
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD show];
+        [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
+    }else{
+        // 提示已经有了
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD show];
+        [self performSelector:@selector(success11) withObject:nil afterDelay:0.2f];
+    }
 }
+
+- (void)success {
+    [SVProgressHUD showSuccessWithStatus:@"加入任务成功!"];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
+}
+- (void)success11 {
+    [SVProgressHUD showSuccessWithStatus:@"任务已存在!"];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
+}
+
 -(IBAction)menuButton:(UIButton*)sender {
     _menuBack.hidden = NO;
 }
