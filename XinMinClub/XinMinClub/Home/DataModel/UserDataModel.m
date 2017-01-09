@@ -580,15 +580,15 @@
 //    _userID = dic[@""];
     _userSex = dic[@"gender"];
     _userName = dic[@"nickname"];
-    _userCity = dic[@"city"];
+    _userCity = [NSString stringWithFormat:@"%@--%@",dic[@"province"],dic[@"city"]];
 //    _userIntroduction = dic[@""];
-    [self getUserImage:dic[@"figureurl_1"]];
+    [self getUserImage:dic[@"figureurl_qq_1"]];
     _threePartReload = YES;
 }
 
 - (void)setWXData {
     NSDictionary *dic = [self getThreePartData];
-    
+    NSLog(@"*********************%@",dic);
     //    _userID = dic[@""];
     _userSex = dic[@"sex"];
     int a = [dic[@"sex"] intValue];
@@ -598,7 +598,7 @@
         _userSex = @"女";
     }
     _userName = dic[@"nickname"];
-    _userCity = dic[@"city"];
+    _userCity = [NSString stringWithFormat:@"%@--%@",dic[@"province"],dic[@"city"]];
     //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"headimgurl"]];
     _threePartReload = YES;

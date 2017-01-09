@@ -122,10 +122,8 @@
     }else{
         dispatch_async(dispatch_get_main_queue(), ^{
             [[shareObjectModel shareObject] deleteAccountAndPassword]; // 删除本地账号密码
-            [self dismissViewControllerAnimated:NO completion:^{
-                loginViewController *lvc = [[loginViewController alloc] init];
-                [self presentViewController:lvc animated:NO completion:nil];
-            }];
+            loginViewController *lvc = [[loginViewController alloc] init];
+            [self presentViewController:lvc animated:NO completion:nil];
         });
     }
 }

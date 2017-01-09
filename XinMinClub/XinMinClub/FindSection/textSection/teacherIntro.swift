@@ -55,7 +55,10 @@ class teacherIntro: UIView {
         
         let imag = UIImageView()
         imag.frame = CGRect(x:10, y:laa.frame.origin.y+30, width:60, height:60)
-        imag.image = UIImage(named:"15.jpg")
+        let imageString:String = ipz + (self.dict.value(forKey:"KC_IMG") as? String)!
+        let url:URL = URL(string:imageString)!
+        imag.sd_setImage(with:url, placeholderImage:teacherIm)
+//        imag.image = UIImage(named:"15.jpg")
         tiv.addSubview(imag)
         
         let teTitle = UILabel()
