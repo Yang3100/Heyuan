@@ -110,7 +110,7 @@ static NSString * defaultIdentifier = @"cell";
     }
     
     if (userModel_.threePartReload) {
-        userModel_.threePartReload = NO;
+//        userModel_.threePartReload = NO;
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
         [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
