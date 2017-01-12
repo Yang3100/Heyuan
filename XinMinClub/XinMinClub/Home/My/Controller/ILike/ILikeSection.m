@@ -92,7 +92,7 @@ void like (){
         self.tableView.userInteractionEnabled = YES;
     }
     
-    [userModel_ judgeIsDelete];
+//    [userModel_ judgeIsDelete];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

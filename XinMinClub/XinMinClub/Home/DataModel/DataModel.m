@@ -245,12 +245,12 @@
         }
         
         // 判断章节是否喜欢
+        USER_DATA_MODEL.userLikeSectionID = DATA_MODEL.userLikeSectionID;
+        USER_DATA_MODEL.userLikeSection = DATA_MODEL.userLikeSection;
         if (data.isLike) {
             if (![DATA_MODEL.userLikeSectionID containsObject:sArr[0]]) {
                 [_userLikeSectionID addObject:data.sectionID];
                 [_userLikeSection addObject:data];
-                USER_DATA_MODEL.userLikeSectionID = DATA_MODEL.userLikeSectionID;
-                USER_DATA_MODEL.userLikeSection = DATA_MODEL.userLikeSection;
             }
         }
         
