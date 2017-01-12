@@ -93,7 +93,6 @@
     NSString *date = [dateFormater stringFromDate:[NSDate date]];
     _userBornDate = date;
     
-    [self loadLocalData];
 }
 
 - (void)keepSession {
