@@ -60,20 +60,9 @@ static NSString *EssayIdentifier = @"essay";
 #pragma mark - Table view data source & Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-#warning aa aaaaaaaaaaaa
-//    BookData *data = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row * 2]];
-//    KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
-//    kj_svc.libraryTitle = data.bookName;
-//    kj_svc.libraryAuthorName = data.authorName;
-//    kj_svc.libraryType = data.type;
-//    kj_svc.libraryDetails = data.details;
-//    kj_svc.libraryLanguage = data.language;
-//    kj_svc.libraryNum = data.bookID;
-//    kj_svc.libraryImageUrl = data.imagePath;
-//    
-//    [self.navigationController pushViewController:kj_svc animated:YES];
-    
-    //    [_delegate popEssayList];
+    BookData *data = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    //    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
+    [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -93,14 +82,14 @@ static NSString *EssayIdentifier = @"essay";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return dataModel_.allBookAndID.count / 2;
+    return dataModel_.myBookAndID.count / 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     EssayCell *cell = [tableView dequeueReusableCellWithIdentifier:EssayIdentifier    forIndexPath:indexPath];
-    NSLog(@"%@",dataModel_.allBookAndID);
-    BookData *book = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    NSLog(@"%@",dataModel_.myBookAndID);
+    BookData *book = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
     NSLog(@"%d",indexPath.row);
     cell.userName.text = book.bookName;//((SectionData *)dataModel_.allSection[indexPath.row]).bookName;
     //    cell.userDetail.text = ;//((SectionData *)dataModel_.allSection[indexPath.row]).author;

@@ -215,8 +215,8 @@
                 // 设置播放次数
                 NSInteger a = [data.playCount intValue];
                 a++;
-                NSLog(@"%@playCount:%d", data.sectionName, a);
-                data.playCount = [NSString stringWithFormat:@"%d",a];
+//                NSLog(@"%@playCount:%d", data.sectionName, a);
+//                data.playCount = [NSString stringWithFormat:@"%d",a];
 //                [dataModel_.recentPlayIDAndCount setObject:data.playCount forKey:data.sectionID];
                 
                 // 设置cell选中状态

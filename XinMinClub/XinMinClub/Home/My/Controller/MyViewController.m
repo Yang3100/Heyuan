@@ -243,10 +243,13 @@ static NSString * defaultIdentifier = @"cell";
 ////            kj_svc.libraryAuthorImageUrl = data.imagePath;
 //            kj_svc.libraryImageUrl = data.imagePath;
 //hhhhhhhhhhh
-            SectionViewController *svc = [[SectionViewController alloc] init];
-//            svc.title = [dica valueForKey:@"WJ_NAME"];
-//            [svc getJsonData:dica];
-            [self.navigationController pushViewController:svc animated:NO];
+//            SectionViewController *svc = [[SectionViewController alloc] init];
+////            svc.title = [dica valueForKey:@"WJ_NAME"];
+////            [svc getJsonData:dica];
+//            [self.navigationController pushViewController:svc animated:NO];
+            BookData *data = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row - 1]];
+            //    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
+            [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
         }
         else {
             MyBookListController *bookList = [[MyBookListController alloc] init];
@@ -315,7 +318,7 @@ static NSString * defaultIdentifier = @"cell";
         ((FirstTableViewCell *)cell).userDetail.text = userModel_.userIntroduction;
         ((FirstTableViewCell *)cell).delegate = self;
         if ([userModel_.userIntroduction isEqualToString:@""]) {
-            ((FirstTableViewCell *)cell).userDetail.text = @"还没有评价！";
+            ((FirstTableViewCell *)cell).userDetail.text = @"还没有简介！";
         }
         
     } else if (indexPath.section == 1) {

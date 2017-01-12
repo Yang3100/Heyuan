@@ -191,17 +191,17 @@
 }
 
 - (void)rightAction{
-//    if ([[DataModel defaultDataModel] addMyLibrary:_libraryNum ImageUrl:_libraryImageUrl BookName:_libraryTitle AuthorName:_libraryAuthorName Type:(NSString *)_libraryType Language:(NSString *)_libraryLanguage Detail:(NSString *)_libraryDetails]) {
-//        // 提示成功
-//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-//        [SVProgressHUD show];
-//        [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
-//    }else{
-//        // 提示已经有了
-//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-//        [SVProgressHUD show];
-//        [self performSelector:@selector(success11) withObject:nil afterDelay:0.6f];
-//    }
+    if ([DATA_MODEL addMyLibrary:bookJson]) {
+        // 提示成功
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD show];
+        [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
+    }else{
+        // 提示已经有了
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD show];
+        [self performSelector:@selector(success11) withObject:nil afterDelay:0.2f];
+    }
 }
 - (void)success {
     [SVProgressHUD showSuccessWithStatus:@"加入文集成功!"];
