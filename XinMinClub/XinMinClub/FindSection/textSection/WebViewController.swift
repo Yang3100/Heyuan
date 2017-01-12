@@ -18,7 +18,7 @@ class WebViewController: UINavigationController {
         
         self.view.backgroundColor = UIColor.white
         
-        self.setNavigationBar()
+        
 //        self.view.addSubview(self.webView)
         self.setWebView()
     }
@@ -31,12 +31,13 @@ class WebViewController: UINavigationController {
         let url = NSURL.init(string: urlHead+s)
         let request = NSURLRequest.init(url: url as! URL)
         workWebView.loadRequest(request as URLRequest)
+        
+        self.setNavigationBar()
     }
     
     func setWebView() {
         workWebView.frame = MY_CGRECT(x: 0, y: 64, w: SCREEN_WIDTH, h: SCREEN_HEIGHT)
         self.view!.addSubview(workWebView)
-        
     }
     
     func setNavigationBar() {
@@ -51,7 +52,7 @@ class WebViewController: UINavigationController {
         let lab = UILabel()
         lab.frame = CGRect(x:0, y:0, width:screenWidth-70, height:30)
         lab.center = CGPoint(x:screenWidth/2,y:42)
-        lab.text = "掌门说玉"
+        lab.text = dataDic.value(forKey:"KCXJ_NAME") as? String
         lab.textAlignment = .center
         self.view.addSubview(lab)
     }

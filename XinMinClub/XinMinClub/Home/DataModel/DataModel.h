@@ -43,10 +43,11 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data;
 
 /**
- *  发现版块的课程列表数据
+ *  发现版块的课程滚动广告
  *
  */
-@property(nonatomic, strong) NSDictionary *findJson;
+@property(nonatomic, strong) NSArray *findAD;
+@property(nonatomic, strong) NSArray *findADImage;
 
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;

@@ -27,15 +27,24 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         courseListViewController.teacherIntroSwitch! = false
     }
     
+    var adID:NSString = ""   // 滚动广告
     var findDict:NSDictionary = [:] {
         didSet {
-            let sss:String = findDict.value(forKey:"KC_ID") as! String
-            let dicc:NSDictionary = ["KC_ID":sss,"Page_Index":"1","Page_Count":"10000"]
-            self.getFindJsonn(dic:dicc)
+            var sss:String = ""
+            if adID.length != 0 {
+                sss = adID as String
+//                (self.headerView.subviews[1] as! UILabel).text = findDict.value(forKey:"ADV_TITLE") as? String
+            }else{
+                sss = findDict.value(forKey:"KC_ID") as! String
+            }
+            
             let imageString:String = ipz + (findDict.value(forKey:"KC_TITLE_IMG") as? String)!
             let url:URL = URL(string:imageString)!
             self.headerImage.sd_setImage(with: url, placeholderImage:headerIm)
             (self.headerView.subviews[1] as! UILabel).text = findDict.value(forKey:"KC_NAME") as? String
+            
+            let dicc:NSDictionary = ["KC_ID":sss,"Page_Index":"1","Page_Count":"10000"]
+            self.getFindJsonn(dic:dicc)
         }
     }
     
@@ -44,8 +53,8 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
         LoadAnimation.defaultDataModel().start()
         let str:String = networkSection.getParamString(param:["FunName":"Get_ZKC_DataList","Params":dic])
         networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
-            print("************************************")
-                        print(json)
+//            print("************************************")
+//                        print(json)
             DispatchQueue.main.async {
                 LoadAnimation.defaultDataModel().end()
                 self.findDataArray = (json["RET"] as! [String: Any])["Sys_KCXJ"] as! NSArray

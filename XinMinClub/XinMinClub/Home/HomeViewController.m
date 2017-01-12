@@ -197,7 +197,7 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
-    [[LoadAnimation defaultDataModel] startLoadAnimation];
+//    [[LoadAnimation defaultDataModel] startLoadAnimation];
 //    ShareView *ocsv = [[ShareView alloc]init];
 //    ocsv.setShareContent = ShareMusic;
 //    //    ocsv.text = @"abc";
@@ -249,7 +249,7 @@
     
     if ([keyPath isEqualToString:@"songTimes"]) {
         label1.text = [p.dic valueForKey:@"GJ_NAME"];
-        label2.text = p.lrcArray[p.currentLyricNum];
+//        label2.text = p.lrcArray[p.currentLyricNum];
         image1.image = p.authorImageView.image;
         if (p.isPlay) {
             image2.alpha=0;
@@ -294,20 +294,9 @@
         return libraryViewController;
     }else{
         courseViewController *cvc = [[courseViewController alloc]init];
-//        [self getFindJson];
         return cvc;
     }
     
-}
-
-- (void)getFindJson{
-    // 获取课程
-    NSDictionary *dict = @{@"Page_Index":@"1",@"Page_Count":@"10000"};
-    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_KC_DataList", @"Params":dict}];
-    [networkSection getRequestDataBlock:IPZUrl :paramString block:^(NSDictionary *jsonDict) {
-        NSLog(@"****************************%@",jsonDict);
-        [DataModel defaultDataModel].findJson = jsonDict;
-    }];
 }
 
 - (void)pageController:(WMPageController *)pageController lazyLoadViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info{
