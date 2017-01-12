@@ -320,8 +320,9 @@
     data.isLike = YES;
     [_userLikeSectionID insertObject:data.sectionID atIndex:0];
     [_userLikeSection insertObject:data atIndex:0];
-//    [DATA_MODEL.userLikeSection insertObject:data atIndex:0];
-//    [DATA_MODEL.userLikeSectionID insertObject:data.sectionID atIndex:0];
+//    DataModel *d = DATA_MODEL;
+//    UserDataModel *u = USER_DATA_MODEL;
+    DATA_MODEL.userLikeSection = _userLikeSection;
     
     USER_DATA_MODEL.isChange = YES;
     //        [[UserDataModel defaultDataModel] saveLocalData];
@@ -350,6 +351,7 @@
     // 判断段落是否从收藏中删除
     NSInteger count = self.userLikeSectionID.count;
     NSMutableArray *arr = [NSMutableArray array];
+    DataModel *d = DATA_MODEL;
     for (SectionData *sd in [DataModel defaultDataModel].userLikeSection) {
         if ([self.userLikeSectionID containsObject:sd.sectionID]) {
             [arr addObject:sd.sectionID];
