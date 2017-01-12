@@ -153,12 +153,14 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         let cell = tableView.dequeueReusableCell(withIdentifier:"courseListCell") as! courseListCell
+        let a = self.findDataArray[indexPath.row] as! NSDictionary
         (cell ).name1 = (self.findDataArray[indexPath.row] as! NSDictionary).value(forKey:"KCXJ_NAME") as! String
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let wvc =  WebViewController()
+        wvc.setDic(dic: self.findDataArray[indexPath.row] as! NSDictionary)
         self.present(wvc, animated: true, completion:nil)
     }
     

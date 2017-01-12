@@ -14,22 +14,65 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "UIViewAlertForUnsatisfiableConstraints"
-            moduleName = "">
+            filePath = "XinMinClub/FindSection/textSection/courseListViewController.swift"
+            timestampString = "505736235.901492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XinMinClub/FindSection/textSection/courseListViewController.swift"
+            timestampString = "505737049.961737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "getFindJsonn(dic:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
-                  moduleName = "UIKit"
+                  symbolName = "XinMinClub.courseListViewController.getFindJsonn (dic : __ObjC.NSDictionary) -&gt; ()"
+                  moduleName = "XinMinClub"
                   usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
+                  urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/FindSection/textSection/courseListViewController.swift"
+                  timestampString = "505793142.680738"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "518">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "XinMinClub.courseListViewController.(getFindJsonn (dic : __ObjC.NSDictionary) -&gt; ()).(closure #1)"
+                  moduleName = "XinMinClub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/FindSection/textSection/courseListViewController.swift"
+                  timestampString = "505793142.682586"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -40,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/DataModel.m"
-            timestampString = "505646001.067693"
+            filePath = "XinMinClub/FindSection/textSection/courseListViewController.swift"
+            timestampString = "505737107.882519"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "-addRecentPlay:"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getFindJsonn(dic:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -56,109 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/DataModel.m"
-            timestampString = "505646001.067693"
+            filePath = "XinMinClub/FindSection/textSection/WebViewController.swift"
+            timestampString = "505793003.846369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
-            landmarkName = "-addRecentPlay:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/DataModel.m"
-            timestampString = "505646001.067693"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-addRecentPlay:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/My/Controller/ILike/ILikeSection.m"
-            timestampString = "505643981.519201"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/UserDataModel.m"
-            timestampString = "505647944.170642"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
-            landmarkName = "-setQQData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/UserDataModel.m"
-            timestampString = "505647966.698474"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-getUserImage:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/UserDataModel.m"
-            timestampString = "505648020.023823"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-getUserImage:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/DataModel/UserDataModel.m"
-            timestampString = "505648024.955727"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-getUserImage:"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "setDic(dic:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
