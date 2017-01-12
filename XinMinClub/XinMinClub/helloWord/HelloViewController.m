@@ -116,7 +116,7 @@
             animation.type = kCATransitionFade;
             [self.view.window.layer addAnimation:animation forKey:nil];
             [self presentViewController:nav animated:NO completion:^{
-                
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
             }];
         });
     }else{

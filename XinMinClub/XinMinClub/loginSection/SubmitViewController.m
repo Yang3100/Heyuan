@@ -439,6 +439,7 @@
                 // 保存到本地
                 [[shareObjectModel shareObject] setAccount:self.iphoneNum Password:_password.text];
                 [UserDataModel defaultDataModel].userID = dataString;
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
             }];
         });
     }];

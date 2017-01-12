@@ -64,8 +64,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"wechatLoadSucessful" object:nil];
-    //    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1105855960" andDelegate:self];
+//    // 一次性执行：
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"wechatLoadSucessful" object:nil];
+//    });
 }
 
 
@@ -338,10 +341,13 @@
 
 #pragma mark - WeChat登陆成功之后获取token
 - (void)WXLogin:(NSNotification *)notifi {
-    NSString *string = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxeb4693506532bea3&secret=323a0eb9b8f7f0505f08c98f4511b8ff&code=%@&grant_type=authorization_code",notifi.object[@"code"]];
+    [self getDataString:notifi.object[@"code"]];
+}
+
+- (void)getDataString:(NSString*)notificode{
+    NSString *string = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxeb4693506532bea3&secret=323a0eb9b8f7f0505f08c98f4511b8ff&code=%@&grant_type=authorization_code",notificode];
     //第一步，创建URL
     NSURL *url = [NSURL URLWithString:string];
-    
     //第二步，通过URL创建网络请求
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     //NSURLRequest初始化方法第一个参数：请求访问路径，第二个参数：缓存协议，第三个参数：网络请求超时时间（秒）
@@ -356,12 +362,10 @@
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:received options:kNilOptions error:nil];
-    
-    NSString *pass = @"abc1234568";
     NSString *dataString = [dict valueForKey:@"openid"];
     access_token = [dict valueForKey:@"access_token"];
+    NSString *pass = @"abc1234568";
     openID = dataString;
-    
     [self wechatLoginByRequestForUserInfo];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         HomeViewController *hvc = [[HomeViewController alloc] init];
@@ -370,15 +374,14 @@
             // 保存到本地
             [[shareObjectModel shareObject] setAccount:dataString Password:pass];
             [UserDataModel defaultDataModel].userID = dataString;
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
         }];
     });
 }
 
 - (void)wechatLoginByRequestForUserInfo {
-    
     NSString *userUrlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", access_token, openID];
     // 请求用户数据
-    
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:userUrlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     [USER_DATA_MODEL saveThreePartData:[[NSString alloc] initWithData:received  encoding:NSUTF8StringEncoding]];
@@ -427,6 +430,7 @@
                 // 保存到本地
                 [[shareObjectModel shareObject] setAccount:_tencentOAuth.openId Password:pass];
                 [UserDataModel defaultDataModel].userID = dataString;
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
             }];
         });
     }];
@@ -495,6 +499,7 @@
                     // 保存到本地
                     [[shareObjectModel shareObject] setAccount:userField_.text Password:keyField_.text];
                     [UserDataModel defaultDataModel].userID = dataString;
+                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
                 }];
             });
         }
