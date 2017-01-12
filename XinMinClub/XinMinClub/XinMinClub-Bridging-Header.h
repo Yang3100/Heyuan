@@ -3,7 +3,8 @@
 //
 
 
-#import "MJscroll.h"
+//#import "MJscroll.h"
+#import "WMLoopView.h"
 #import "ShareView.h"
 #import "LoadAnimation.h"
 #import "DataModel.h"

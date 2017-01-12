@@ -44,6 +44,7 @@ import UIKit
                 // 错误转成可选值(解析处理的json为空的时候,放在程序崩掉!!)
                 let retureMessage = try? JSONSerialization.jsonObject(with:data!, options:[])
                 if (retureMessage == nil) {
+                    print(data!)
                     print(NSString(data:data!, encoding:String.Encoding.utf8.rawValue)!)
                     return
                 }

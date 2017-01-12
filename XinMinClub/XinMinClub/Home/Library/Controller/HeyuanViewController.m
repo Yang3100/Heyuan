@@ -12,7 +12,7 @@
 #import "WMLoopView.h"
 
 @interface HeyuanViewController ()<WMLoopViewDelegate>{
-    NSArray *dataArray;
+    NSMutableArray *dataArray;
 }
 
 @end
@@ -23,6 +23,7 @@
     if (self==[super init]) {
         //获取数据
         [self getData];
+        dataArray = [NSMutableArray array];
     }
     return self;
 }
@@ -41,13 +42,30 @@
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
 //            NSLog(@"ADJson:%@",json);
-            dataArray = [[json valueForKey:@"RET"] valueForKey:@"SYS_ADVERTISEMENT"];
+            [dataArray removeAllObjects];
+            NSArray *arr = [[json valueForKey:@"RET"] valueForKey:@"SYS_ADVERTISEMENT"];
             NSMutableArray *imageUrlArray = [NSMutableArray array];
-            for (NSDictionary *dicc in dataArray) {
-                NSString *app = IP;
-                NSString *urlString = [app stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
-                [imageUrlArray addObject:urlString];
+            NSMutableArray *findUrlArray = [NSMutableArray array];
+            NSMutableArray *findImageUrlArray = [NSMutableArray array];
+            for (NSDictionary *dicc in arr) {
+                NSString *url = [dicc valueForKey:@"ADV_URL"];
+                if (![url isEqualToString:@""]&&url!=nil) {
+                    NSString *str1 = [url substringWithRange:NSMakeRange(0, 3)];
+                    if ([str1 isEqualToString:@"KC:"]){
+                        [findUrlArray addObject:dicc];
+                        NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
+                        [findImageUrlArray addObject:urlString];
+                    }else if ([str1 isEqualToString:@"WJ:"]){
+                        
+                    }else{
+                        NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
+                        [imageUrlArray addObject:urlString];
+                        [dataArray addObject:dicc];
+                    }
+                }
             }
+            [DataModel defaultDataModel].findAD = findUrlArray;
+            [DataModel defaultDataModel].findADImage = findImageUrlArray;
             // 主线程执行
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[LoadAnimation defaultDataModel] endLoadAnimation];

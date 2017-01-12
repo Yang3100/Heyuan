@@ -10,23 +10,49 @@ import UIKit
 import Foundation
 
 
-class courseCell2 : UITableViewCell,MJscrollDeledage {
-
-    var imageArray:Array<UIImage>?
+class courseCell2 : UITableViewCell,WMLoopViewDelegate {
     
-    func getDataAfterLoadData() {
-        MJscroll.initWithSourceArray(self.imageArray!, addTarget:self, delegate: self, withSize:CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64))
-        self.addSubview(self.courseLabel)
-    }
-    
-    func mJscrollImage(_ bannerPlayer: UIView!, didSelectedIndex index: Int) {
-        print("dianji \(index)")
+    func loopViewDidSelectedImage(_ loopView: WMLoopView!, index: Int32) {
         let clvc = courseListViewController()
         clvc.view.backgroundColor = UIColor.white
-        self.AppRootViewController()?.present(clvc, animated: true, completion: {
-            //            clvc.navigationController?.isToolbarHidden = true;
-        })        
+        let a:NSArray = DataModel.default().findAD as NSArray
+        let diccc:NSDictionary = a[Int(index)] as! NSDictionary
+        let str:String = diccc.value(forKey:"ADV_URL") as! String
+        clvc.adID = (str as NSString).substring(from:3) as NSString
+        
+        let dic:NSDictionary = ["KC_ID":clvc.adID,"Page_Index":"1","Page_Count":"10000"]
+        let str11:String = networkSection.getParamString(param:["FunName":"Get_KC_DataList","Params":dic])
+        networkSection.getRequestDataBlock(ipzurl, str11, block:{(json) -> Void in
+            print("*****************9999999*******************")
+//            print(json)
+            DispatchQueue.main.async {
+                let arr1:NSArray = (json["RET"] as! [String: Any])["Sys_KC"] as! NSArray
+                clvc.findDict = arr1[0] as! NSDictionary
+                self.AppRootViewController()?.present(clvc, animated: true, completion: {
+                    //            clvc.navigationController?.isToolbarHidden = true;
+                })
+            }
+        })
     }
+
+//    var imageArray:Array<UIImage>?
+//    
+    func getDataAfterLoadData() {
+//        MJscroll.initWithSourceArray(self.imageArray!, addTarget:self, delegate: self, withSize:CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64))
+       let wlv = WMLoopView.init(frame: CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64), images:DataModel.default().findADImage, autoPlay: false, delay:0, isLoopNetwork: true)
+        wlv?.delegate = self
+        self.addSubview(wlv!)
+        self.addSubview(self.courseLabel)
+    }
+//
+//    func mJscrollImage(_ bannerPlayer: UIView!, didSelectedIndex index: Int) {
+//        print("dianji \(index)")
+//        let clvc = courseListViewController()
+//        clvc.view.backgroundColor = UIColor.white
+//        self.AppRootViewController()?.present(clvc, animated: true, completion: {
+//            //            clvc.navigationController?.isToolbarHidden = true;
+//        })        
+//    }
     
     func AppRootViewController() -> UIViewController? {
         var topVC  = UIApplication.shared.keyWindow?.rootViewController

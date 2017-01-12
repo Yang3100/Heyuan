@@ -39,25 +39,17 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
     private var findDataArray:NSArray = []
     func getFindJsonn(){
         LoadAnimation.defaultDataModel().start()
-        let dic:NSDictionary = ["Page_Index":"1","Page_Count":"10000"]
+        let dic:NSDictionary = ["KC_ID":"","Page_Index":"1","Page_Count":"10000"]
         let str:String = networkSection.getParamString(param:["FunName":"Get_KC_DataList","Params":dic])
         networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
-            print("************************************")
+//            print("***************66666*********************")
+//            print(json)
             DispatchQueue.main.async {
                 LoadAnimation.defaultDataModel().end()
                 self.findDataArray = (json["RET"] as! [String: Any])["Sys_KC"] as! NSArray
                 self.backTableView.reloadData()
             }
         })
-    }
-    
-    func flasedata() ->(Array<UIImage>) {
-        var aaa = Array<UIImage>()
-        aaa.append(UIImage(named:"211")!)
-        aaa.append(UIImage(named:"233")!)
-        aaa.append(UIImage(named:"244")!)
-        aaa.append(UIImage(named:"255")!)
-        return aaa
     }
     
     //MARK: - UI界面
@@ -97,7 +89,6 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier:"courseCell2") as! courseCell2
-            (cell as! courseCell2).imageArray = self.flasedata()
             (cell as! courseCell2).getDataAfterLoadData()
             return cell!
         }
