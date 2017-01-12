@@ -13,6 +13,9 @@ import Foundation
 class courseCell2 : UITableViewCell,WMLoopViewDelegate {
     
     func loopViewDidSelectedImage(_ loopView: WMLoopView!, index: Int32) {
+        if DataModel.default().findAD.count == 0 {
+            return;
+        }
         let clvc = courseListViewController()
         clvc.view.backgroundColor = UIColor.white
         let a:NSArray = DataModel.default().findAD as NSArray
