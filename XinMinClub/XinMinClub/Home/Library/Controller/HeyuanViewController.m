@@ -13,6 +13,7 @@
 
 @interface HeyuanViewController ()<WMLoopViewDelegate>{
     NSMutableArray *dataArray;
+    UIImageView *image11111; // 占位视图
 }
 
 @end
@@ -37,7 +38,6 @@
         NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_ADVERTISEMENT_DataList",@"Params":dict}];
         // 网络请求
         [networkSection getJsonDataWithUrlString:IPUrl param:paramString];
-        
         
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
@@ -69,6 +69,7 @@
             // 主线程执行
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[LoadAnimation defaultDataModel] endLoadAnimation];
+                [image11111 removeFromSuperview];
                 WMLoopView *wlv = [[WMLoopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4) images:imageUrlArray autoPlay:YES delay:2 isLoopNetwork:YES];
                 wlv.delegate = self;
                 [self.view addSubview:wlv];
@@ -87,6 +88,12 @@
 
 - (void)initView{
     CGRect frame = CGRectMake(0, SCREEN_HEIGHT/4, SCREEN_WIDTH, SCREEN_HEIGHT-SCREEN_HEIGHT/4-108);
+    
+    // 占位视图
+    image11111 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4)];
+    image11111.image = cachePicturechang;
+    [self.view addSubview:image11111];
+    
     // 九宫格
     NineNine *nine = [[NineNine alloc] initWithSize:frame Interior:nil];
     [self.view addSubview:nine];

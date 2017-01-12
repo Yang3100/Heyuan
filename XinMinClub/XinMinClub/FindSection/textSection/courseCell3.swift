@@ -24,10 +24,20 @@ class courseCell3: UITableViewCell {
         didSet {
 //            self.courseImageView.addSubview(self.textNameLabel)
 //            self.textNameLabel.text = nameString
-            let lay = UICollectionViewFlowLayout()
-            let ccoll = courseCollection(frame:CGRect(x:0,y:0,width:screenWidth,height:screenHeight-108), layout:lay, array:dataArray3)
-            
-            self.addSubview(ccoll)
+            if dataArray3.count==0 {
+                let view = UILabel()
+                view.frame = CGRect(x:(screenWidth-screenWidth/2)/2,y:30,width:screenWidth/2,height:(screenHeight-108)/2)
+                view.text = "网络连接失败请检查你的网络"
+                view.textAlignment = .center
+                view.numberOfLines = 0
+//                view.center = self.center
+//                view.backgroundColor = .red
+                self.addSubview(view)
+            }else{
+                let lay = UICollectionViewFlowLayout()
+                let ccoll = courseCollection(frame:CGRect(x:0,y:0,width:screenWidth,height:screenHeight-108), layout:lay, array:dataArray3)
+                self.addSubview(ccoll)
+            }
         }
     }
     

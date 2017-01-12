@@ -145,6 +145,9 @@
 }
 
 - (void)startNetwork{
+    if (_typeArray.count==0) {
+        return;
+    }
     [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

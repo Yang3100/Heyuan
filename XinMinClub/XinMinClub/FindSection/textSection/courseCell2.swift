@@ -39,10 +39,17 @@ class courseCell2 : UITableViewCell,WMLoopViewDelegate {
 //    
     func getDataAfterLoadData() {
 //        MJscroll.initWithSourceArray(self.imageArray!, addTarget:self, delegate: self, withSize:CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64))
-       let wlv = WMLoopView.init(frame: CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64), images:DataModel.default().findADImage, autoPlay: false, delay:0, isLoopNetwork: true)
-        wlv?.delegate = self
-        self.addSubview(wlv!)
-        self.addSubview(self.courseLabel)
+        if DataModel.default().findADImage == nil {
+            let w = UIImageView(image:UIImage(named:"taoci.jpg"))
+            w.frame = CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64)
+            self.addSubview(w)
+            self.addSubview(self.courseLabel)
+        }else{
+            let wlv = WMLoopView.init(frame: CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64), images:DataModel.default().findADImage, autoPlay: false, delay:0, isLoopNetwork: true)
+            wlv?.delegate = self
+            self.addSubview(wlv!)
+            self.addSubview(self.courseLabel)
+        }
     }
 //
 //    func mJscrollImage(_ bannerPlayer: UIView!, didSelectedIndex index: Int) {
