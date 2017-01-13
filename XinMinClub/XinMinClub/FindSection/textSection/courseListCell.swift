@@ -15,7 +15,7 @@ class courseListCell: UITableViewCell {
     var name1:String = "" {
         didSet {
            print(name1)
-            self.zjNameLabel.text = name1
+            self.zjNameLabel.text = "  " + name1
         }
     }
     

@@ -162,7 +162,8 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         let cell = tableView.dequeueReusableCell(withIdentifier:"courseListCell") as! courseListCell
-        let a = self.findDataArray[indexPath.row] as! NSDictionary
+        cell.selectionStyle = .none
+        _ = self.findDataArray[indexPath.row] as! NSDictionary
         (cell ).name1 = (self.findDataArray[indexPath.row] as! NSDictionary).value(forKey:"KCXJ_NAME") as! String
         return cell
     }
