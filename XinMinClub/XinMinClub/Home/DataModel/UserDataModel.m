@@ -587,6 +587,7 @@
 //    _userID = dic[@""];
     _userSex = dic[@"gender"];
     _userName = dic[@"nickname"];
+    _userIntroduction = @"";
     _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
 //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"figureurl_qq_2"]];
@@ -605,6 +606,7 @@
         _userSex = @"女";
     }
     _userName = dic[@"nickname"];
+    _userIntroduction = @"";
     _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
     //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"headimgurl"]];
