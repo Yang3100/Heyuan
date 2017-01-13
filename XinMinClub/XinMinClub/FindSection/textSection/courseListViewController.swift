@@ -38,7 +38,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
                 sss = findDict.value(forKey:"KC_ID") as! String
             }
             
-            let imageString:String = ipz + (findDict.value(forKey:"KC_TITLE_IMG") as? String)!
+            let imageString:String = ipz + (findDict.value(forKey:"KC_IMG") as? String)!
             let url:URL = URL(string:imageString)!
             self.headerImage.sd_setImage(with: url, placeholderImage:headerIm)
             (self.headerView.subviews[1] as! UILabel).text = findDict.value(forKey:"KC_NAME") as? String

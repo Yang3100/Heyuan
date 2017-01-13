@@ -41,7 +41,7 @@
         
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-//            NSLog(@"ADJson:%@",json);
+            NSLog(@"ADJson:%@",json);
             [dataArray removeAllObjects];
             NSArray *arr = [[json valueForKey:@"RET"] valueForKey:@"SYS_ADVERTISEMENT"];
             NSMutableArray *imageUrlArray = [NSMutableArray array];
@@ -55,9 +55,11 @@
                         [findUrlArray addObject:dicc];
                         NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                         [findImageUrlArray addObject:urlString];
-                    }else if ([str1 isEqualToString:@"WJ:"]){
-                        
-                    }else{
+                    }
+                    //                    else if ([str1 isEqualToString:@"WJ:"]){
+                    //
+                    //                    }
+                    else{
                         NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                         [imageUrlArray addObject:urlString];
                         [dataArray addObject:dicc];
@@ -109,14 +111,51 @@
 #pragma mark WMLoopViewDelegate
 - (void)loopViewDidSelectedImage:(WMLoopView *)loopView index:(int)index{
     NSDictionary *dii = dataArray[index];
-    ADViewController *advc = [[ADViewController alloc] init];
-    advc.ADTitle = [dii valueForKey:@"ADV_TITLE"];
-    advc.ADID = [dii valueForKey:@"ADV_ID"];
-    advc.ADImageUrl = [NSString stringWithFormat:@"%@%@",IP,[dii valueForKey:@"ADV_IMAGE"]];
-    advc.shopName = [dii valueForKey:@"ADV_MERCHANT_NAME"];
-    advc.shopID = [dii valueForKey:@"ADV_MERCHANT_ID"];
-    advc.shopUrlString = [dii valueForKey:@"ADV_URL"];
-    [self.navigationController pushViewController:advc animated:YES];
+    
+    NSString *url = [dii valueForKey:@"ADV_URL"];
+    if (![url isEqualToString:@""]&&url!=nil) {
+        NSString *str1 = [url substringWithRange:NSMakeRange(0, 3)];
+        if ([str1 isEqualToString:@"KC:"]){
+            
+        }
+        else if ([str1 isEqualToString:@"WJ:"]){
+            NSString *wjID = [url substringFromIndex:3];
+            // 获取章节列表
+            NSDictionary *dict = @{@"ID":wjID};
+            NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WeiJi_FromID", @"Params":dict}];
+            [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDict) {
+                        NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
+                
+                // 主线程执行
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[LoadAnimation defaultDataModel] endLoadAnimation];
+//                    NSArray *typeArray = [[[jsonDict valueForKey:@"RET"] valueForKey:@"DATA"] componentsSeparatedByString:@","];//分割数组当中的内容
+//                    NSString *bookid = [json valueForKey:@"WJ_ID"];
+//                    // 传递数据
+//                    self.chapterView.bookID = bookid;
+//                    [self.chapterView gettype:typeArray];
+//                    self.detailsView.bookID = bookid;
+//                    [self.detailsView giveMeJson:json];
+//                    self.readView.bookID = bookid;lkflkjkljfklsj ljkfjw ljlr j 
+//                    self.readView.typeArray = typeArray;
+                });
+            }];
+
+        }
+        else{
+            ADViewController *advc = [[ADViewController alloc] init];
+            advc.ADTitle = [dii valueForKey:@"ADV_TITLE"];
+            advc.ADID = [dii valueForKey:@"ADV_ID"];
+            advc.ADImageUrl = [NSString stringWithFormat:@"%@%@",IP,[dii valueForKey:@"ADV_IMAGE"]];
+            advc.shopName = [dii valueForKey:@"ADV_MERCHANT_NAME"];
+            advc.shopID = [dii valueForKey:@"ADV_MERCHANT_ID"];
+            advc.shopUrlString = [dii valueForKey:@"ADV_URL"];
+            [self.navigationController pushViewController:advc animated:YES];
+        }
+        
+    }
+    
+    
 }
 
 @end
