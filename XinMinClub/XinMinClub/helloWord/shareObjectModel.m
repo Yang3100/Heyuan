@@ -87,32 +87,63 @@
 #pragma mark 弹出AlertView
 -(void)addAlertViewTitle:(NSString*)title Message:(NSString*)message{
     
-//    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 100)];
-//    backView.center = [self appRootViewController].view.center;
-//    
+    UIView *baView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    baView.backgroundColor = [UIColor blackColor];
+    baView.alpha = 0.5;
+    [[self appRootViewController].view addSubview:baView];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"无网络或者服务器无连接!!!");
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, SCREEN_WIDTH/2*(9/7))];
+    backView.center = [self appRootViewController].view.center;
+    
+    UIImageView *diImageView = [[UIImageView alloc] initWithFrame:backView.bounds];
+    diImageView.image = [UIImage imageNamed:@"底"];
+    [backView addSubview:diImageView];
+    
+    UIButton *qudingBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    qudingBut.frame = CGRectMake(0, SCREEN_WIDTH/2*(9/7)-SCREEN_WIDTH/12-3, SCREEN_WIDTH/2, SCREEN_WIDTH/12);
+    [qudingBut setImage:[UIImage imageNamed:@"确定"] forState:UIControlStateNormal];
+    [qudingBut addTarget:self action:@selector(returnView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [backView addSubview:qudingBut];
+    
+    [[self appRootViewController].view addSubview:backView];
+    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"无网络或者服务器无连接!!!");
+//        HomeViewController *hvc = [[HomeViewController alloc] init];
+//        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+//        CATransition *animation = [CATransition animation];
+//        animation.duration = 1.0;
+//        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//        animation.type = @"rippleEffect";
+//        [[self appRootViewController].view.window.layer addAnimation:animation forKey:nil];
+//        [[self appRootViewController] presentViewController:nav animated:YES completion:^{
+//            [UserDataModel defaultDataModel].userID = nil;
+//        }];
+//
+//    }];
+//    [alertController addAction:action1];
+//    [[self appRootViewController] presentViewController:alertController animated:YES completion:NULL];
+}
+
+- (void)returnView{
         HomeViewController *hvc = [[HomeViewController alloc] init];
         HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
-        CATransition *animation = [CATransition animation];
-        animation.duration = 1.0;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = @"rippleEffect";
-        [[self appRootViewController].view.window.layer addAnimation:animation forKey:nil];
+//        CATransition *animation = [CATransition animation];
+//        animation.duration = 1.0;
+//        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//        animation.type = @"rippleEffect";
+//        [[self appRootViewController].view.window.layer addAnimation:animation forKey:nil];
         [[self appRootViewController] presentViewController:nav animated:YES completion:^{
             [UserDataModel defaultDataModel].userID = nil;
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
         }];
-
-    }];
-    [alertController addAction:action1];
-    [[self appRootViewController] presentViewController:alertController animated:YES completion:NULL];
 }
 
 - (UIViewController *)appRootViewController{
-    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController*topVC=appRootVC;
+    UIViewController *appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *topVC=appRootVC;
     while(topVC.presentedViewController) {
         topVC=topVC.presentedViewController;
     }
