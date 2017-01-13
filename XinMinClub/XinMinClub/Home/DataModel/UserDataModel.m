@@ -155,6 +155,7 @@
                 
                 NSData *imageData   = [[NSData alloc] initWithBase64Encoding:s];
                 if (![s isEqualToString:@""]) {
+                    _userImage = nil;
                     _userImage = [UIImage imageWithData:imageData];
                 }
                 [[UserDataModel defaultDataModel] saveLocalData];
@@ -583,9 +584,10 @@
 - (void)setQQData {
     NSDictionary *dic = [self getThreePartData];
     
-//    _userID = dic[@""];
+    _userID = @"123";
     _userSex = dic[@"gender"];
     _userName = dic[@"nickname"];
+    _userIntroduction = @"";
     _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
 //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"figureurl_qq_2"]];
@@ -595,7 +597,7 @@
 - (void)setWXData {
     NSDictionary *dic = [self getThreePartData];
     NSLog(@"*********************%@",dic);
-    //    _userID = dic[@""];
+    _userID = @"123";
     _userSex = dic[@"sex"];
     int a = [dic[@"sex"] intValue];
     if (a) {
@@ -604,6 +606,7 @@
         _userSex = @"女";
     }
     _userName = dic[@"nickname"];
+    _userIntroduction = @"";
     _userCity = [NSString stringWithFormat:@"%@ %@",dic[@"city"],dic[@"province"]];
     //    _userIntroduction = dic[@""];
     [self getUserImage:dic[@"headimgurl"]];

@@ -66,9 +66,15 @@ static NSString * defaultIdentifier = @"cell";
     userModel_ = [UserDataModel defaultDataModel];
     if (self = [super init]) {
         [dataModel_ addObserver:self forKeyPath:@"recommandBook" options:NSKeyValueObservingOptionNew context:nil];
-//        [userModel_ getRecommend];
+        [USER_DATA_MODEL addObserver:self forKeyPath:@"userImage" options:NSKeyValueObservingOptionNew context:nil];
+        [userModel_ getRecommend];
     }
     return self;
+}
+
+- (void)dealloc {
+    [dataModel_ removeObserver:self forKeyPath:@"recommandBook"];
+    [USER_DATA_MODEL removeObserver:self forKeyPath:@"userImage"];
 }
 
 - (void)viewDidLoad {
@@ -218,6 +224,11 @@ static NSString * defaultIdentifier = @"cell";
         dispatch_async(dispatch_get_main_queue(), ^{
             [forthCell_.recommendTable reloadData];
         });
+    }
+    
+    if ([keyPath isEqualToString:@"userImage"]) {
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
     
     //    NSLog(@"I heard about the change");
