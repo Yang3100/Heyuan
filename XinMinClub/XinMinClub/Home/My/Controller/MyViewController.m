@@ -72,6 +72,11 @@ static NSString * defaultIdentifier = @"cell";
     return self;
 }
 
+- (void)dealloc {
+    [dataModel_ removeObserver:self forKeyPath:@"recommandBook"];
+    [USER_DATA_MODEL removeObserver:self forKeyPath:@"userImage"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

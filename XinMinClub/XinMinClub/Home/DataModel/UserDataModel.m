@@ -155,6 +155,7 @@
                 
                 NSData *imageData   = [[NSData alloc] initWithBase64Encoding:s];
                 if (![s isEqualToString:@""]) {
+                    _userImage = nil;
                     _userImage = [UIImage imageWithData:imageData];
                 }
                 [[UserDataModel defaultDataModel] saveLocalData];
