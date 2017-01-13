@@ -488,6 +488,8 @@
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 USER_DATA_MODEL.userID = dataString;
+                [USER_DATA_MODEL getUserData];
+                [USER_DATA_MODEL getUserImage:nil];
                 HomeViewController *hvc = [[HomeViewController alloc] init];
                 HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
                 CATransition *animation = [CATransition animation];
