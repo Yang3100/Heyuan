@@ -69,6 +69,9 @@
             // 主线程执行
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[LoadAnimation defaultDataModel] endLoadAnimation];
+                if (imageUrlArray.count==0) {
+                    return ;
+                }
                 [image11111 removeFromSuperview];
                 WMLoopView *wlv = [[WMLoopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4) images:imageUrlArray autoPlay:YES delay:2 isLoopNetwork:YES];
                 wlv.delegate = self;
