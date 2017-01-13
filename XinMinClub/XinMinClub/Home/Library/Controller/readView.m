@@ -107,7 +107,7 @@
     if (indexPath.section<listNumArray.count) {
         NSDictionary *r_dict = [[dataArray[indexPath.section] valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
         if (kStringIsEmpty([r_dict valueForKey:@"GJ_MP3"])) {
-            r_cell.isMp3 = NO;
+            r_cell.isMp3 = YES;
         }
         r_cell.readTitle = [r_dict valueForKey:@"GJ_NAME"];
         r_cell.readText =  [r_dict valueForKey:@"GJ_CONTENT_CN"];

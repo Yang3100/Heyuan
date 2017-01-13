@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
+                <rect key="frame" x="0.0" y="0.0" width="290" height="34.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 第一回：掌门说玉" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9i-ZK-Fwa">
@@ -25,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanhui1.png" translatesAutoresizingMaskIntoConstraints="NO" id="U6a-Xo-arO">
-                        <rect key="frame" x="270" y="8" width="10" height="17"/>
+                        <rect key="frame" x="270" y="10" width="10" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="bdw-Af-q6y"/>
                         </constraints>
@@ -43,11 +42,11 @@
                     <constraint firstAttribute="trailing" secondItem="U6a-Xo-arO" secondAttribute="trailing" constant="10" id="H3X-Iu-5Mh"/>
                     <constraint firstItem="Q9i-ZK-Fwa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JjI-AY-qNO"/>
                     <constraint firstAttribute="trailing" secondItem="9KU-up-UVd" secondAttribute="trailing" id="dxQ-d0-Noo"/>
-                    <constraint firstItem="U6a-Xo-arO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="eHk-UJ-yKS"/>
+                    <constraint firstItem="U6a-Xo-arO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="eHk-UJ-yKS"/>
                     <constraint firstAttribute="bottom" secondItem="9KU-up-UVd" secondAttribute="bottom" constant="1" id="mXR-ts-Ags"/>
                     <constraint firstItem="Q9i-ZK-Fwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ntZ-iR-BWl"/>
                     <constraint firstAttribute="bottom" secondItem="Q9i-ZK-Fwa" secondAttribute="bottom" constant="1" id="r20-Pi-guB"/>
-                    <constraint firstItem="9KU-up-UVd" firstAttribute="top" secondItem="U6a-Xo-arO" secondAttribute="bottom" constant="8" id="uES-T5-Qft"/>
+                    <constraint firstItem="9KU-up-UVd" firstAttribute="top" secondItem="U6a-Xo-arO" secondAttribute="bottom" constant="10" id="uES-T5-Qft"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

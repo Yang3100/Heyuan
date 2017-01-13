@@ -36,7 +36,7 @@ class WebViewController: UINavigationController {
     }
     
     func setWebView() {
-        workWebView.frame = MY_CGRECT(x: 0, y: 64, w: SCREEN_WIDTH, h: SCREEN_HEIGHT)
+        workWebView.frame = MY_CGRECT(x: 0, y: 64, w: SCREEN_WIDTH, h: SCREEN_HEIGHT-64)
         self.view!.addSubview(workWebView)
     }
     
@@ -63,7 +63,7 @@ class WebViewController: UINavigationController {
     
     private lazy var webView : UIWebView = {
         let wv = UIWebView()
-        wv.frame = CGRect(x:0, y:64, width:screenWidth, height:screenHeight-64)
+        wv.frame = CGRect(x:0, y:0, width:screenWidth, height:screenHeight-64)
         wv.backgroundColor = .gray
         return wv
     }()
