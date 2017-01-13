@@ -56,6 +56,8 @@
     NSString *selectedProvince;
     
     UserDataModel *userDataModel_;
+    
+    UIButton *rightButton;
 }
 
 @end
@@ -93,6 +95,10 @@ static NSString * userThirdIdentifier = @"third";
         [userTableView_ reloadData];
     }
     userDataModel_.isChange = NO;
+    
+    if ([USER_DATA_MODEL.userID isEqualToString:@"123"]) {
+        rightButton.hidden = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -110,7 +116,7 @@ static NSString *userFirstText = @"       ";
     
     self.title = @"个人资料";
     self.navigationController.delegate = self;
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
     rightButton.frame = CGRectMake(0, 0, 40, 30);
     [rightButton setTitle:@"保存" forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(saveUserData) forControlEvents:UIControlEventTouchUpInside];

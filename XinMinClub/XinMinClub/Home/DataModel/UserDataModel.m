@@ -584,7 +584,7 @@
 - (void)setQQData {
     NSDictionary *dic = [self getThreePartData];
     
-//    _userID = dic[@""];
+    _userID = @"123";
     _userSex = dic[@"gender"];
     _userName = dic[@"nickname"];
     _userIntroduction = @"";
@@ -597,7 +597,7 @@
 - (void)setWXData {
     NSDictionary *dic = [self getThreePartData];
     NSLog(@"*********************%@",dic);
-    //    _userID = dic[@""];
+    _userID = @"123";
     _userSex = dic[@"sex"];
     int a = [dic[@"sex"] intValue];
     if (a) {
