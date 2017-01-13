@@ -66,7 +66,7 @@
     
     [self loadLocalData];
     if (!myData.userName) {
-        _userID = @"17713494987";
+        _userID = @"000000";
         _userSex = @"男";
         _userName = @"无用用户";
         _userCity = @"北京 北京 东城区";
@@ -93,7 +93,6 @@
     NSString *date = [dateFormater stringFromDate:[NSDate date]];
     _userBornDate = date;
     
-    [self loadLocalData];
 }
 
 - (void)keepSession {
@@ -408,6 +407,9 @@
     for (NSString *s in keyArr) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:s];
     }
+//    threeData userLocalData
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"threeData"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userLocalData"];
 }
 
 - (void)getUserData {
@@ -570,12 +572,12 @@
     if (dic[@"is_yellow_vip"]) {
         //为qq资料
         [self setQQData];
-        [self saveUserInternetData];
+//        [self saveUserInternetData];
         return;
     }
     // 为微信资料
     [self setWXData];
-    [self saveUserInternetData];
+//    [self saveUserInternetData];
 }
 
 - (void)setQQData {
