@@ -67,7 +67,7 @@ static NSString * defaultIdentifier = @"cell";
     if (self = [super init]) {
         [dataModel_ addObserver:self forKeyPath:@"recommandBook" options:NSKeyValueObservingOptionNew context:nil];
         [USER_DATA_MODEL addObserver:self forKeyPath:@"userImage" options:NSKeyValueObservingOptionNew context:nil];
-//        [userModel_ getRecommend];
+        [userModel_ getRecommend];
     }
     return self;
 }
