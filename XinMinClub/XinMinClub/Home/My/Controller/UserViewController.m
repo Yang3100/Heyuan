@@ -96,7 +96,8 @@ static NSString * userThirdIdentifier = @"third";
     }
     userDataModel_.isChange = NO;
     
-    if ([USER_DATA_MODEL.userID isEqualToString:@"123"]) {
+    
+    if ([USER_DATA_MODEL.userID length] < 30) {
         rightButton.hidden = YES;
     }
 }
