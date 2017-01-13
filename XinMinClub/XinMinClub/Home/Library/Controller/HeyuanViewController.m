@@ -128,7 +128,7 @@
                 
                 // 主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[LoadAnimation defaultDataModel] endLoadAnimation];
+//                    [[LoadAnimation defaultDataModel] endLoadAnimation];
 //                    NSArray *typeArray = [[[jsonDict valueForKey:@"RET"] valueForKey:@"DATA"] componentsSeparatedByString:@","];//分割数组当中的内容
 //                    NSString *bookid = [json valueForKey:@"WJ_ID"];
 //                    // 传递数据
