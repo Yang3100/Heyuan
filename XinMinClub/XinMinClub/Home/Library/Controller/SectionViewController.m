@@ -87,9 +87,20 @@
 #pragma mark 上一级传入的数据
 - (void)getJsonData:(NSDictionary*)json {
     bookJson = json;
-    NSString *imageUrlstring = [IP stringByAppendingString:[json valueForKey:@"WJ_IMG"]];
+    self.title = [json valueForKey:@"WJ_NAME"]; // 书集名字
+    NSString *imageUrlstring = [NSString stringWithFormat:@"%@%@",IP,[json valueForKey:@"WJ_IMG"]];
     NSURL *url = [NSURL URLWithString:imageUrlstring];
     [self.bookImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+
+    // 保存数据在datamodel
+    [DataModel defaultDataModel].bookName = self.title;
+    [DataModel defaultDataModel].bookFMImageUrl = [IP stringByAppendingString:[json valueForKey:@"WJ_FM"]]; // 书集封面Url
+//    [DataModel defaultDataModel].bookZuozheImageUrl = [IP stringByAppendingString:[json valueForKey:@"WJ_TITLE_IMG"]];; // 作者头像Url
+    
+//    NSLog(@"%@---%@",[DataModel defaultDataModel].bookFMImageUrl,[DataModel defaultDataModel].bookZuozheImageUrl);
+    
+    self.detailsView.bookID = [json valueForKey:@"WJ_ID"];
+    [self.detailsView giveMeJson:json];
 
     [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 获取章节列表
@@ -106,8 +117,6 @@
             // 传递数据
             self.chapterView.bookID = bookid;
             [self.chapterView gettype:typeArray];
-            self.detailsView.bookID = bookid;
-            [self.detailsView giveMeJson:json];
             self.readView.bookID = bookid;
             self.readView.typeArray = typeArray;
         });
@@ -130,6 +139,7 @@
 - (UIImageView*)bookImageView{
     if (!_bookImageView) {
         _bookImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
+        _bookImageView.userInteractionEnabled = NO;
     }
     return _bookImageView;
 }
@@ -169,6 +179,7 @@
 - (detailsView*)detailsView{
     if (!_detailsView) {
         _detailsView = [[detailsView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
+        [_detailsView setHidden:YES];
 //        // KVO观察滚动距离
 //        [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];
     }
@@ -178,6 +189,7 @@
 - (readView*)readView{
     if (!_readView) {
         _readView = [[readView alloc]initWithFrame:CGRectMake(0, backButtonViewHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
+        [_readView setHidden:YES];
     }
     return _readView;
 }
@@ -235,10 +247,13 @@
     if (tag==0) {
         _readView.isTopView = NO;
         _detailsView.isTopView = NO;
-        [self.view bringSubviewToFront:self.chapterView];
+        [_readView setHidden:YES];
+        [_detailsView setHidden:YES];
+        [_chapterView setHidden:NO];
+//        [self.view bringSubviewToFront:self.chapterView];
         [self.view bringSubviewToFront:self.backButtonView];
-        [self.view sendSubviewToBack:self.readView];
-        [self.view sendSubviewToBack:self.detailsView];
+//        [self.view sendSubviewToBack:self.readView];
+//        [self.view sendSubviewToBack:self.detailsView];
         self.backButtonView.frame = CGRectMake(0, lastFrame_zy, SCREEN_WIDTH, backButtonViewHeight);
         self.chapterView.frame = CGRectMake(0, lastFrame_zy+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-64);
         if (last_za>=1) {
@@ -254,10 +269,16 @@
     else if (tag==1) {
         _readView.isTopView = NO;
         _detailsView.isTopView = YES;
-        [self.view bringSubviewToFront:self.detailsView];
+        [_readView setHidden:YES];
+        [_detailsView setHidden:NO];
+        [_chapterView setHidden:YES];
+//        _readView.isTopView = NO;
+//        [_readView setHidden:YES];
+//        _detailsView.isTopView = YES;
+//        [self.view bringSubviewToFront:self.detailsView];
         [self.view bringSubviewToFront:self.backButtonView];
-        [self.view sendSubviewToBack:self.readView];
-        [self.view sendSubviewToBack:self.chapterView];
+//        [self.view sendSubviewToBack:self.readView];
+//        [self.view sendSubviewToBack:self.chapterView];
         self.backButtonView.frame = CGRectMake(0, lastFrame_y, SCREEN_WIDTH, backButtonViewHeight);
         self.detailsView.frame = CGRectMake(0, lastFrame_y+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-64);
         if (last_a>=1) {
@@ -273,10 +294,16 @@
     else{
         _readView.isTopView = YES;
         _detailsView.isTopView = NO;
+        [_readView setHidden:NO];
+        [_detailsView setHidden:YES];
+        [_chapterView setHidden:YES];
+//        [_readView setHidden:NO];
+//        _readView.isTopView = YES;
+//        _detailsView.isTopView = NO;
         self.backButtonView.frame = CGRectMake(0, 64, SCREEN_WIDTH, backButtonViewHeight);
         [self.view bringSubviewToFront:self.readView];
         [self.view bringSubviewToFront:self.backButtonView];
-        [self.navigationController.navigationBar lt_reset];// 清除设置的navigationBar的属性
+        [self.navigationController.navigationBar lt_reset]; // 清除设置的navigationBar的属性
     }
     
     
@@ -298,11 +325,11 @@
             self.navigationController.navigationBar.backgroundColor = RGB255_COLOR(219, 145, 39, 0);
             self.backButtonView.frame = CGRectMake(0, SCREEN_HEIGHT/3-_chapterView.chapterScroll, SCREEN_WIDTH, backButtonViewHeight);
             self.chapterView.frame = CGRectMake(0, SCREEN_HEIGHT/3-_chapterView.chapterScroll+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-            [self.view bringSubviewToFront:self.bookImageView];
+//            [self.view bringSubviewToFront:self.bookImageView];
             self.bookImageView.frame = CGRectMake(_chapterView.chapterScroll/2, 0, SCREEN_WIDTH-_chapterView.chapterScroll, SCREEN_HEIGHT/3-_chapterView.chapterScroll);
         }
         else{
-            [self.view bringSubviewToFront:self.chapterView];
+//            [self.view bringSubviewToFront:self.chapterView];
             [self.view bringSubviewToFront:self.backButtonView];
             // 设置navigationBar背景透明
             [self kj_setNavigationBar];
@@ -327,11 +354,11 @@
             self.navigationController.navigationBar.backgroundColor = RGB255_COLOR(219, 145, 39, 0);
             self.backButtonView.frame = CGRectMake(0, SCREEN_HEIGHT/3-_detailsView.detailsScroll, SCREEN_WIDTH, backButtonViewHeight);
             self.detailsView.frame = CGRectMake(0, SCREEN_HEIGHT/3-_detailsView.detailsScroll+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-            [self.view bringSubviewToFront:self.bookImageView];
+//            [self.view bringSubviewToFront:self.bookImageView];
             self.bookImageView.frame = CGRectMake(_detailsView.detailsScroll/2, 0, SCREEN_WIDTH-_detailsView.detailsScroll, SCREEN_HEIGHT/3-_detailsView.detailsScroll);
         }
         else{
-            [self.view bringSubviewToFront:self.detailsView];
+//            [self.view bringSubviewToFront:self.detailsView];
             [self.view bringSubviewToFront:self.backButtonView];
             // 设置navigationBar背景透明
             [self kj_setNavigationBar];

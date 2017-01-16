@@ -410,10 +410,7 @@
     NSString *language = [dic valueForKey:@"WJ_LANGUAGE"];
     NSString *libraryID = [dic valueForKey:@"WJ_ID"];
     //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
-    NSString *url = [IP stringByAppendingString:[dic valueForKey:@"WJ_IMG"]];
-    
-    
-    NSLog(@"%@%@%@",url,authorName,libraryID);
+    NSString *url = [NSString stringWithFormat:@"%@%@",IP,[dic valueForKey:@"WJ_FM"]];
     
     UIImage *defaultImage = [UIImage imageNamed:@"19"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:

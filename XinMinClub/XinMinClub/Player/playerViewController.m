@@ -490,7 +490,6 @@
         ocsv.describe = [dict valueForKey:@"GJ_USER"]; // 作者名字
     }
     ocsv.thumbImage = networkPictureUrl;
-    NSLog(@"%@",[DataModel defaultDataModel].bookImageUrl);
     ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
     
     [self.view addSubview:ocsv];
@@ -764,16 +763,9 @@ bool isObserve = YES;
     self.progress.value = 0;
     self.currentLyricNum = 0; // 歌词位置清零
     self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
-    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookImageUrl];
+    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookFMImageUrl];
     [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
-    
-//    if (![_mp3Url isEqualToString:@""]) {
-//        if ([DATA_MODEL judgeLocalPath:_mp3Url withUrl:urlString]) {
-//            urlString = _mp3Url;
-//            [_kj_player setNewPlayerWithLocalUrl:urlString]; // 传入播放的本地mp3Url
-//        }
-//    }
     
     self.isPrepare = YES;
     [_kj_player play];  // 开始播放
@@ -782,7 +774,7 @@ bool isObserve = YES;
     [self setNowPlayingInfo];  // 设置锁屏播放
     
     if (!_dic[@"image"]) {
-        [_dic setObject:DATA_MODEL.bookImageUrl forKey:@"image"];
+        [_dic setObject:DATA_MODEL.bookFMImageUrl forKey:@"image"];
     }
     if (!_dic[@"author"]) {
         [_dic setObject:@"无名" forKey:@"author"];
@@ -852,7 +844,7 @@ bool isObserve = YES;
         [_lrcImageView addSubview:self.lrcLabel];
     }
     _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
-    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookImageUrl];
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
     [_lrcImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     
     //获取添加了歌词数据的背景图

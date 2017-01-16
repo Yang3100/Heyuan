@@ -25,7 +25,7 @@ class courseCell2 : UITableViewCell,WMLoopViewDelegate {
         
         let dic:NSDictionary = ["KC_ID":clvc.adID,"Page_Index":"1","Page_Count":"10000"]
         let str11:String = networkSection.getParamString(param:["FunName":"Get_KC_DataList","Params":dic])
-        networkSection.getRequestDataBlock(ipzurl, str11, block:{(json) -> Void in
+        networkSection.getRequestDataBlock(ipurl, str11, block:{(json) -> Void in
             print("*****************9999999*******************")
 //            print(json)
             DispatchQueue.main.async {
@@ -43,7 +43,7 @@ class courseCell2 : UITableViewCell,WMLoopViewDelegate {
     func getDataAfterLoadData() {
 //        MJscroll.initWithSourceArray(self.imageArray!, addTarget:self, delegate: self, withSize:CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64))
         if DataModel.default().findADImage == nil {
-            let w = UIImageView(image:UIImage(named:"taoci.jpg"))
+            let w = UIImageView(image:teacherIm)
             w.frame = CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64)
             self.addSubview(w)
             self.addSubview(self.courseLabel)

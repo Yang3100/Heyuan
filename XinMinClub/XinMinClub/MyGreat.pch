@@ -53,6 +53,7 @@
 // 占位图
 #define cachePicture ([UIImage imageNamed:@"b"])
 #define cachePicturechang ([UIImage imageNamed:@"taoci.jpg"])   // 广告占位图
+#define wenjicachePicture ([UIImage imageNamed:@"taoci.jpg"])   // 文集占位图
 // 网络占位图网站
 #define networkPictureUrl (@"http://pic.qiantucdn.com/00/95/71/01bOOOPICc3.jpg")
 //(@"http://pic.qiantucdn.com/58pic/21/44/18/09h58PICwRf_1024.jpg")
@@ -61,15 +62,13 @@
 #define RGB255_COLOR(r,g,b,a) [UIColor colorWithRed:((r)/RGB_MAX) green:((g)/RGB_MAX) blue:((b)/RGB_MAX) alpha:a]
 
 //字符串是否为空
-#define kStringIsEmpty(str) ([str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
+#define kStringIsEmpty(str) ([str isEqualToString:@""] || [str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
 
 //IP地址（北京）
 //http://218.240.52.135  // 北京ip
 //http://192.168.3.153   // 成都ip
 #define IP @"http://218.240.52.135"
 #define IPUrl @"http://218.240.52.135/App/App.ashx"
-#define IPZ @"http://192.168.137.1"
-#define IPZUrl @"http://192.168.137.1/App/App.ashx"
 
 #define DATA_MODEL [DataModel defaultDataModel]
 #define USER_DATA_MODEL [UserDataModel defaultDataModel] 

@@ -185,7 +185,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LibraryCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"libraryCollectionCell" forIndexPath:indexPath];
     NSDictionary *dict = libraryArray[indexPath.row];
-    cell.libraryImageUrl = [dict valueForKey:@"WJ_IMG"];
+    cell.libraryImageUrl = [dict valueForKey:@"WJ_FM"];
     cell.readtotal = [dict valueForKey:@"WJ_WCOUNT"];
     return cell;
 }
@@ -194,12 +194,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *dica = libraryArray[indexPath.row];
     SectionViewController *svc = [[SectionViewController alloc] init];
-    svc.title = [dica valueForKey:@"WJ_NAME"]; // 书集名字
-    [DataModel defaultDataModel].bookName = svc.title;
-    NSString *string = [IP stringByAppendingString:[dica valueForKey:@"WJ_IMG"]];
-    [DataModel defaultDataModel].bookImageUrl = string; // 书集封面Url
     [svc getJsonData:dica];
-    
     [[DataModel defaultDataModel] addAllLibrary:dica];
     
     [self.navigationController pushViewController:svc animated:YES];
