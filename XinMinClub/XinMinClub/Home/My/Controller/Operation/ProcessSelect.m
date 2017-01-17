@@ -210,7 +210,7 @@
             cell.statusView.hidden = NO;
             
             // 判断、设置播放状态等
-            if (![data isEqual:((SectionData *)dataModel_.playingSection)]) {
+//            if (![data isEqual:((SectionData *)dataModel_.playingSection)]) {
                 dataModel_.playingSection = arr[0];
                 // 设置播放次数
                 NSInteger a = [data.playCount intValue];
@@ -234,9 +234,9 @@
                 [DataModel defaultDataModel].bookName = data.bookName;
                 [DataModel defaultDataModel].bookImageUrl = data.libraryImageUrl; // 书集封面Url
                 [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1 Data:data];
-            } else {
+//            } else {
 //                [self kj_pushIsPlayerOrEBook:1];
-            }
+//            }
         }
     }
 }

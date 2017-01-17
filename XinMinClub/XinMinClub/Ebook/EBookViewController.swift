@@ -73,6 +73,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         kj_dict = array[Num] as! NSDictionary
         // 显示文字
         self.loadText(title:kj_dict["GJ_NAME"] as! String, text:kj_dict["GJ_CONTENT_CN"] as! String)
+        let a = DataModel.default()
+        let b = kj_dict as NSDictionary? as? [AnyHashable: Any] ?? [:]
+        a?.addRecentPlay(b)
     }
     
     private func loadText(title:String,text:String){
@@ -101,6 +104,18 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         self.initView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        var image = UIImage.init(named: "喜欢")
+        let d = UserDataModel.default()
+        if (d?.judgeIsLike(kj_dict["GJ_ID"] as! String))! {
+            image = UIImage.init(named: "喜欢了")
+        }
+        //            image?.renderingMode = UIImageRenderingMode.alwaysOriginal
+        let button = self.view.viewWithTag(1+100) as! UIButton
+        button.setImage(image, for: .normal)
     }
     
     func applicationWillResignActive() {
@@ -180,7 +195,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
             button.frame = CGRect(x:SCREEN_WIDTH/5*CGFloat(i), y:0, width:SCREEN_WIDTH/5, height:49)
             let naImage = UIImage(named:nameA[i] as! String)
             button.setImage(naImage, for:.normal)
-            button.tag = i
+            button.tag = i+100
             button.addTarget(self, action:#selector(buttonAction(sender:)), for:.touchUpInside)
             selfTabBar.addSubview(button)
         }
@@ -191,19 +206,19 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         touchView.isHidden = true
         self.view!.addSubview(touchView)
         
-        lightView = UIView.init(frame: MY_CGRECT(x: 100, y: 500, width: 200, height: 50))
+        lightView = UIView.init(frame: MY_CGRECT(x: SCREEN_WIDTH * 2 / 9, y: SCREEN_HEIGHT * 7 / 8 - 20, width: SCREEN_WIDTH * 5 / 9, height: 30))
         lightView.backgroundColor = UIColor.white
         lightView.alpha = 0
         
         //TODO: Slider.size修改
-        lightSlider = UISlider.init(frame: MY_CGRECT(x: 0, y: 0, width: 200, height: 20))
+        lightSlider = UISlider.init(frame: MY_CGRECT(x: 0, y: 0, width: SCREEN_WIDTH * 5 / 9, height: 30))
         lightSlider.backgroundColor = UIColor.blue
         lightSlider.setThumbImage(self.originImage(image:UIImage(named:"设置")!, size: CGSize(width:20,height:20)), for: .normal)
         lightSlider.addTarget(self, action: #selector(self.controlBright), for: .valueChanged)
         lightView.addSubview(lightSlider)
         self.view!.addSubview(lightView)
         
-        setView.frame = MY_CGRECT(x: 200, y: 400, width: 175, height: 175)
+        setView.frame = MY_CGRECT(x: SCREEN_WIDTH * 5 / 9 - 30, y: 420, width: SCREEN_WIDTH * 4 / 9, height: 175)
         setView.alpha = 0
         setView.backgroundColor = UIColor.white
         self.view!.addSubview(setView)
@@ -239,7 +254,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     
     // MARK: Actions
     func buttonAction(sender:UIButton){
-        if sender.tag==0 {
+        if sender.tag-100==0 {
             let list = ListViewController()
             let animation = CATransition()
             animation.duration = 0.3
@@ -251,13 +266,13 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
                 list.kj_isLightStyle = self.isLightStyle
             })
         }
-        else if sender.tag==1 {
-            print("like!!!")
+        else if sender.tag-100==1 {
+            self.like()
         }
-        else if sender.tag==2 {
+        else if sender.tag-100==2 {
             self.popSlider()
         }
-        else if sender.tag==3 {
+        else if sender.tag-100==3 {
             if isLightStyle {
                 let riImage = UIImage(named:"日间")
                 sender.setImage(riImage, for:.normal)
@@ -269,11 +284,49 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
             }
             isLightStyle = !isLightStyle
         }
-        else if sender.tag==4 {
+        else if sender.tag-100==4 {
             self.popSetView()
         }
     }
+
+    func like() {
+        let userModel = UserDataModel.default()
+        let b = kj_dict as NSDictionary? as? [AnyHashable: Any] ?? [:]
+        let isLike:Bool = (userModel?.addLikeSection(b))!
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        if isLike {
+            self.perform(#selector(likeSuccess), with: nil, afterDelay: 0.3)
+            let image = UIImage.init(named: "喜欢了")
+//            image?.renderingMode = UIImageRenderingMode.alwaysOriginal
+            let button = self.view.viewWithTag(1+100) as! UIButton
+            button.setImage(image, for: .normal)
+        } else {
+            self.perform(#selector(closeLikeSuccess), with: nil, afterDelay: 0.3)
+            userModel?.deleteLikeSectionID(kj_dict["GJ_ID"] as! String)
+            let image = UIImage.init(named: "喜欢")
+            //            image?.renderingMode = UIImageRenderingMode.alwaysOriginal
+            let button = self.view.viewWithTag(1+100) as! UIButton
+            button.setImage(image, for: .normal)
+        }
+    }
+    //    UIImage *image = [[UIImage imageNamed:@"playLiked"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //    [_likeButton setImage:image forState:UIControlStateNormal];
+    //
     
+    func likeSuccess() {
+        SVProgressHUD.showSuccess(withStatus: "成功!")
+        self.perform(#selector(pDismiss), with: nil, afterDelay: 0.5)
+    }
+    
+    func closeLikeSuccess() {
+        SVProgressHUD.showSuccess(withStatus: "取消成功!")
+        self.perform(#selector(pDismiss), with: nil, afterDelay: 0.5)
+    }
+
+    func pDismiss() {
+        SVProgressHUD.dismiss()
+    }
     
     func longPress() {
         
@@ -284,9 +337,13 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     func touchLightBackground() {
-        lightView.alpha = 0
-        setView.alpha = 0
-        touchView.isHidden = true
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+            self.lightView.alpha = 0
+            self.setView.alpha = 0
+            self.touchView.isHidden = true
+        }, completion: { (true) in
+            
+        })
     }
     
     func tapText() {
@@ -338,12 +395,20 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
     }
     func popSlider() {
-        lightView.alpha = 1
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+            self.lightView.alpha = 1
+        }, completion: { (true) in
+            
+        })
         self.touchView.isHidden = false
     }
     
     func popSetView() {
-        setView.alpha = 1
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+            self.setView.alpha = 1
+        }, completion: { (true) in
+            
+        })
         self.touchView.isHidden = false
     }
     

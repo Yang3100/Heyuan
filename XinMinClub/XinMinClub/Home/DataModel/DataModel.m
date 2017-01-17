@@ -46,8 +46,8 @@
 - (void)pushWhereWithJson:(NSDictionary*)json ThouchNum:(int)num WithVC:(UIViewController*)vc Transfer:(int)transfer Data:(SectionData *)data{
     NSString *ss = [[[json valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][num] valueForKey:@"GJ_MP3"];
     if (data) {        
-        if (![data.clickMp3 isEqualToString:@""]) {
-            ss = data.clickMp3;
+        ss = data.clickMp3;
+        if (![ss isEqualToString:@""]) {
             [playerViewController defaultDataModel].mp3Url = ss;
         }
     }
@@ -468,6 +468,9 @@
     NSString *details = [dic valueForKey:@"GJ_CONTENT_CN"];
     NSString *image = [dic valueForKey:@"image"];
     NSString *mp3 = [NSString stringWithFormat:@"%@%@", IP ,[dic valueForKey:@"GJ_MP3"]];
+    if ([[dic valueForKey:@"GJ_MP3"] isEqualToString:@""]) {
+        mp3 = @"";
+    }
     
     NSString *playCount = @"0";
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -500,6 +503,10 @@
     }
     
     SectionData * data = [DATA_MODEL.allSectionAndID objectForKey:[DATA_MODEL.allSectionAndID objectForKey:sectionID]];
+    
+    if ([data.clickMp3 isEqualToString:@""]) {
+        return NO;
+    }
     
     // 数组变化
     [[DATA_MODEL mutableArrayValueForKey:@"downloadingSections"] addObject:data];

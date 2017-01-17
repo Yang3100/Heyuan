@@ -62,6 +62,7 @@
 		1A4EB8F21CCDCF27008A4564 /* BookData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EB8F11CCDCF27008A4564 /* BookData.m */; };
 		1A4EBA1C1CCE0917008A4564 /* ForthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBA1A1CCE0917008A4564 /* ForthTableViewCell.m */; };
 		1A4EBA1D1CCE0917008A4564 /* ForthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4EBA1B1CCE0917008A4564 /* ForthTableViewCell.xib */; };
+		1A53D1C21E2E250800153A8D /* 喜欢了@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */; };
 		1A67110C1CBB48410028529C /* AddressFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711051CBB48410028529C /* AddressFMDBManager.m */; };
 		1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711071CBB48410028529C /* CityAddressModel.m */; };
 		1A67110E1CBB48410028529C /* DistrictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711091CBB48410028529C /* DistrictModel.m */; };
@@ -459,6 +460,7 @@
 		1A4EBA191CCE0917008A4564 /* ForthTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForthTableViewCell.h; sourceTree = "<group>"; };
 		1A4EBA1A1CCE0917008A4564 /* ForthTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForthTableViewCell.m; sourceTree = "<group>"; };
 		1A4EBA1B1CCE0917008A4564 /* ForthTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForthTableViewCell.xib; sourceTree = "<group>"; };
+		1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "喜欢了@2x.png"; sourceTree = "<group>"; };
 		1A6711041CBB48410028529C /* AddressFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFMDBManager.h; sourceTree = "<group>"; };
 		1A6711051CBB48410028529C /* AddressFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFMDBManager.m; sourceTree = "<group>"; };
 		1A6711061CBB48410028529C /* CityAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAddressModel.h; sourceTree = "<group>"; };
@@ -1623,6 +1625,7 @@
 		68342F481E179AB00019CCCE /* picture */ = {
 			isa = PBXGroup;
 			children = (
+				1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */,
 				68FAB8DB1E1CC918008D77DC /* 返回@2x.png */,
 				68FAB8DC1E1CC918008D77DC /* 分享@2x.png */,
 				68FAB8DD1E1CC918008D77DC /* 亮度@2x.png */,
@@ -2328,6 +2331,7 @@
 				68E8B7421E0000B1000CB44A /* yin.png in Resources */,
 				1A91BE921CB360D500689AE0 /* UserFirstCell.xib in Resources */,
 				68DB36801E1DF3C400DD53D3 /* 菩提.png in Resources */,
+				1A53D1C21E2E250800153A8D /* 喜欢了@2x.png in Resources */,
 				6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */,
 				6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */,
 				68E8B7401E0000B1000CB44A /* quanhei.png in Resources */,
