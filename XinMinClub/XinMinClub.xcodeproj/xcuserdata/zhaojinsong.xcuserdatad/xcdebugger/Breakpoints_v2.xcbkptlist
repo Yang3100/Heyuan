@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/My/Controller/UserViewController.m"
-            timestampString = "505979579.74161"
+            filePath = "XinMinClub/Ebook/EBookViewController.swift"
+            timestampString = "506337639.843415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "like()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

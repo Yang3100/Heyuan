@@ -160,11 +160,12 @@
     if (!_data.isDownload) {
         _downloadButton.enabled = NO;
         // 数组变化
-        [[dataModel_ mutableArrayValueForKey:@"downloadingSections"] addObject:_data];
-        dataModel_.isDownloading = YES;
-        if (!downloadMoudle_) {
-            downloadMoudle_ = [[DownloadModule alloc] init];
-        }
+        [DATA_MODEL downloadSection:_data.sectionID];
+//        [[dataModel_ mutableArrayValueForKey:@"downloadingSections"] addObject:_data];
+//        dataModel_.isDownloading = YES;
+//        if (!downloadMoudle_) {
+//            downloadMoudle_ = [[DownloadModule alloc] init];
+//        }
         //        [downloadMoudle_ startDownload:_data];
     }
     NSLog(@"下载");
