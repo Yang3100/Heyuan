@@ -127,7 +127,6 @@
     [[UINavigationBar appearance] setTintColor:RGB255_COLOR(48, 48, 48, 1)]; // 返回按钮颜色
     [[UINavigationBar appearance] setBarTintColor:RGB255_COLOR(231, 178, 102, 1)]; // navigation背景颜色
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:RGB255_COLOR(48, 48, 48, 1), NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:18], NSFontAttributeName, nil]]; // 标题文字颜色
-    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)setNavigationBarBackButton:(UIImage *)image withText:(NSString *)text {

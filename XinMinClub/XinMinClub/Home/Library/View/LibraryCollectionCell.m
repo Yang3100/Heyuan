@@ -12,7 +12,7 @@
 
 @property(nonatomic, copy) UIImageView *libraryImageView;
 @property (nonatomic, strong) UILabel *backLabel;
-@property (nonatomic, strong) UIImageView *backView;
+//@property (nonatomic, strong) UIImageView *backView;
 
 @end
 
@@ -21,7 +21,7 @@
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        [self addSubview:self.backView];
+//        [self addSubview:self.backView];
         [self addSubview:self.libraryImageView];
         [self.libraryImageView addSubview:self.backLabel];
     }
@@ -29,28 +29,28 @@
 }
 
 #pragma mark Subviews
-- (UIImageView *)backView{
-    if (!_backView) {
-        CGFloat x = 1;
-        CGFloat y = 1;
-        CGFloat w = self.frame.size.width;
-        CGFloat h = self.frame.size.height;
-        UIImageView *view = [[UIImageView alloc]init];
-        view.backgroundColor = [UIColor colorWithWhite:0.707 alpha:0.500];
-        view.frame = CGRectMake(x,y,w,h);
-        view.image = wenjicachePicture;
-        _backView = view;
-    }
-    return _backView;
-}
+//- (UIImageView *)backView{
+//    if (!_backView) {
+//        CGFloat x = 1;
+//        CGFloat y = 1;
+//        CGFloat w = self.frame.size.width;
+//        CGFloat h = self.frame.size.height;
+//        UIImageView *view = [[UIImageView alloc]init];
+//        view.backgroundColor = [UIColor colorWithWhite:0.707 alpha:0.500];
+//        view.frame = CGRectMake(x,y,w,h);
+//        view.image = wenjicachePicture;
+//        _backView = view;
+//    }
+//    return _backView;
+//}
 
 - (UIImageView *)libraryImageView{
     if (_libraryImageView==nil) {
         _libraryImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 //        _libraryImageView.image = setUpImage;
-//        _libraryImageView.layer.masksToBounds = YES;
-//        _libraryImageView.layer.cornerRadius =2.0;
-//        _libraryImageView.layer.borderWidth = 0.1;
+        _libraryImageView.layer.masksToBounds = YES;
+        _libraryImageView.layer.cornerRadius =2.0;
+        _libraryImageView.layer.borderWidth = 0.1;
     }
     return _libraryImageView;
 }

@@ -35,50 +35,47 @@ import UIKit
         
         backVw = UIView(frame:CGRect(x:0, y:y1/8, width:x1, height:y1-y1/8))
         backVw.backgroundColor = UIColor.white
-        self.addSubview(backVw)
         
         let xuWidth = x1 < (y1-y1/8) ? x1 : (y1-y1/8)
         xuImageView = UIImageView()
         xuImageView.frame = CGRect(x:0, y:0, width:xuWidth, height:xuWidth)
         xuImageView.center = backVw.center
         xuImageView.image = UIImage(named:"quanbai")
-        self.addSubview(xuImageView)
         
         yinImageView = UIImageView()
         yinImageView.frame = CGRect(x:0, y:0, width:xuWidth, height:xuWidth)
         yinImageView.center = backVw.center
         yinImageView.image = UIImage(named:"yin")
-        self.addSubview(yinImageView)
         
         yangImageView = UIImageView()
         yangImageView.frame = CGRect(x:0, y:0, width:xuWidth, height:xuWidth)
         yangImageView.center = backVw.center
         yangImageView.image = UIImage(named:"yang")
-        self.addSubview(yangImageView)
-        
         
         qianView = UIView(frame:CGRect(x:0, y:0, width:x1/2, height:y1/8))
         qianView.backgroundColor = UIColor.white
-        self.addSubview(qianView)
         kunView = UIView(frame:CGRect(x:x1/2, y:0, width:x1/2, height:y1/8))
         kunView.backgroundColor = UIColor.white
-        self.addSubview(kunView)
         
         qianImageView = UIImageView()
         qianImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         qianImageView.center = qianView.center
         qianImageView.image = UIImage(named:"qiangua")
-        self.addSubview(qianImageView)
-        
-        print(x1/2)
-        print(y1/8)
-        
+
         kunImageView = UIImageView()
         kunImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         kunImageView.center = kunView.center
         kunImageView.image = UIImage(named:"kungua")
-        self.addSubview(kunImageView)
         
+        self.addSubview(backVw)    // 八卦后面的背景
+        self.addSubview(qianView)  // 乾卦后面的背景
+        self.addSubview(kunView)   // 坤卦后面的背景
+        self.addSubview(yangImageView) // 黑色半卦
+        self.addSubview(yinImageView)  // 白色半卦
+        self.addSubview(xuImageView)   // 虚线图
+        
+        self.addSubview(kunImageView)  // 坤卦
+        self.addSubview(qianImageView) // 乾卦
         
         self.stay(line1:qianImageView, line2:kunImageView)
     }
@@ -90,10 +87,8 @@ import UIKit
     // MARK:功能
     func stay(line1:UIImageView, line2:UIImageView) {
         //Create can drag lines and binding method
-        let pan1 = UIPanGestureRecognizer(target:self, action:#selector(pan1(sender:)))
-        pan1.maximumNumberOfTouches = 1
-        pan1.maximumNumberOfTouches = 1
-        pan1.delegate = self
+        let pan1 = UIPanGestureRecognizer()
+        pan1.addTarget(self, action:#selector(pan1(sender:)))
         line1.isUserInteractionEnabled = true
         line1.addGestureRecognizer(pan1)
         line1initalCenter = line1.center
@@ -104,14 +99,18 @@ import UIKit
         line2.addGestureRecognizer(pan2)
         line2initalCenter = line2.center
     }
-    
+    private var isQianGuaCenter:Bool = false
     func pan1(sender:UIPanGestureRecognizer) {
         let translation = sender.translation(in:qianImageView)
         
         switch sender.state {
         case .changed:
             qianImageView.center = CGPoint(x:line1initalCenter.x+translation.x, y:line1initalCenter.y+translation.y)
+            if isQianGuaCenter {
+                return;
+            }
             if backVw.center.x-25<qianImageView.center.x && qianImageView.center.x<backVw.center.x+25 && backVw.center.y-25<qianImageView.center.y && qianImageView.center.y<backVw.center.y+25 {
+                isQianGuaCenter = true
                 UIView.animate(withDuration:0.5, animations: {() -> Void in
                     self.qianImageView.center = self.qianView.center
                     self.qianImageView.isUserInteractionEnabled = false
@@ -136,14 +135,18 @@ import UIKit
             break
         }
     }
-    
+    private var isKunGuaCenter:Bool = false
     func pan2(sender:UIPanGestureRecognizer) {
         let translation = sender.translation(in:kunImageView)
         
         switch sender.state {
         case .changed:
             kunImageView.center = CGPoint(x:line2initalCenter.x+translation.x, y:line2initalCenter.y+translation.y)
+            if isKunGuaCenter {
+                return;
+            }
             if backVw.center.x-25<kunImageView.center.x && kunImageView.center.x<backVw.center.x+25 && backVw.center.y-25<kunImageView.center.y && kunImageView.center.y<backVw.center.y+25 {
+                isKunGuaCenter = true
                 UIView.animate(withDuration:0.5, animations: {() -> Void in
                     self.kunImageView.center = self.qianView.center
                     self.kunImageView.isUserInteractionEnabled = false
