@@ -181,6 +181,8 @@ static NSString *setCellIdentifier = @"setCell";
             [fileManager removeItemAtPath:filePath error:nil];
             filePath = [NSString stringWithFormat:@"%@/Documents/mp3", NSHomeDirectory()];
             [fileManager removeItemAtPath:filePath error:nil];
+            // 清除sdwebImage缓存的图片
+            [[LoadAnimation defaultDataModel] clearTmpPics];
             
             [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
             [SVProgressHUD show];

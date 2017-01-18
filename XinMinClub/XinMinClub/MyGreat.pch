@@ -10,6 +10,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "UIView+Draw.h"   // 设置view边框
 #import "UIImageView+WebCache.h"  // 加载网络图片
+#import "SDImageCache.h"
 #import "SVProgressHUD.h" // 第三方库提示
 #import "MJRefresh.h"
 
@@ -52,11 +53,9 @@
 
 // 占位图
 #define cachePicture ([UIImage imageNamed:@"b"])
-#define cachePicturechang ([UIImage imageNamed:@"taoci.jpg"])   // 广告占位图
+#define cachePicture ([UIImage imageNamed:@"b"])
+#define guangGaocachePicture ([UIImage imageNamed:@"taoci.jpg"])   // 广告占位图
 #define wenjicachePicture ([UIImage imageNamed:@"taoci.jpg"])   // 文集占位图
-// 网络占位图网站
-#define networkPictureUrl (@"http://pic.qiantucdn.com/00/95/71/01bOOOPICc3.jpg")
-//(@"http://pic.qiantucdn.com/58pic/21/44/18/09h58PICwRf_1024.jpg")
 
 #define RGB_MAX 255.0
 #define RGB255_COLOR(r,g,b,a) [UIColor colorWithRed:((r)/RGB_MAX) green:((g)/RGB_MAX) blue:((b)/RGB_MAX) alpha:a]

@@ -124,5 +124,19 @@
     }];
 }
 
+#pragma mark SDWeb相关
+//清除缓存
+- (void)clearTmpPics{
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+}
+
+//- (void)clear_xx{
+//    //计算检查缓存大小
+//    float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
+//
+//    NSLog(@"%f",tmpSize);
+//    self.clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize] : [NSString stringWithFormat:@"%.1fK",tmpSize * 1024];
+//}
 
 @end

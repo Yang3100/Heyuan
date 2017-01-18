@@ -28,7 +28,9 @@
         _currentPage = 0;
         _isloopNetwork = loop;
         
-        [self addScrollView];
+        if (images.count>0) {
+            [self addScrollView];
+        }
         [self addPageControl];
         if (self.autoPlay == YES) {
             [self toPlay];
@@ -69,16 +71,16 @@
     }
     [_currentImages removeAllObjects];
     NSInteger count = self.images.count;
-    if (!count) {
-        self.images = @[networkPictureUrl];
-        count=1;
+    if (count==0) {
+        return _currentImages;
+    }else{
+        int i = (int)(_currentPage + count - 1)%count;
+        [_currentImages addObject:self.images[i]];
+        [_currentImages addObject:self.images[_currentPage]];
+        i = (int)(_currentPage + 1)%count;
+        [_currentImages addObject:self.images[i]];
+        return _currentImages;
     }
-    int i = (int)(_currentPage + count - 1)%count;
-    [_currentImages addObject:self.images[i]];
-    [_currentImages addObject:self.images[_currentPage]];
-    i = (int)(_currentPage + 1)%count;
-    [_currentImages addObject:self.images[i]];
-    return _currentImages;
 }
 
 - (void)addScrollView {
@@ -91,7 +93,7 @@
         if (self.isloopNetwork) {
             //初始化网络图片
             NSURL *url = [NSURL URLWithString:self.currentImages[i]];
-            [imageView sd_setImageWithURL:url placeholderImage:cachePicturechang];
+            [imageView sd_setImageWithURL:url placeholderImage:guangGaocachePicture];
         }else {
             //初始化本地图片
             imageView.image = [UIImage imageNamed:self.currentImages[i]];
@@ -115,13 +117,18 @@
 
 - (void)refreshImages {
     NSArray *subViews = self.scrollView.subviews;
+    
+    if (subViews.count==0) {
+        return;
+    }
+    
     for (int i = 0; i < subViews.count; i++) {
         UIImageView *imageView = (UIImageView *)subViews[i];
         
         if (self.isloopNetwork) {
             //初始化网络图片
             NSURL *url = [NSURL URLWithString:self.currentImages[i]];
-            [imageView sd_setImageWithURL:url placeholderImage:cachePicturechang];
+            [imageView sd_setImageWithURL:url placeholderImage:guangGaocachePicture];
         }else {
             //初始化本地图片
             imageView.image = [UIImage imageNamed:self.currentImages[i]];

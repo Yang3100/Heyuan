@@ -92,7 +92,7 @@
     
     // 占位视图
     image11111 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4)];
-    image11111.image = cachePicturechang;
+    image11111.image = guangGaocachePicture;
     [self.view addSubview:image11111];
     
     // 九宫格

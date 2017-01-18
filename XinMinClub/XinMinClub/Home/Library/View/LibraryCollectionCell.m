@@ -76,7 +76,7 @@
     NSString *string = [IP stringByAppendingString:libraryImageUrl];
     NSURL *url = [NSURL URLWithString:string];
     
-    [self.libraryImageView sd_setImageWithURL:url];
+    [self.libraryImageView sd_setImageWithURL:url placeholderImage:wenjicachePicture];
 }
 
 - (void)setReadtotal:(NSString *)readtotal{

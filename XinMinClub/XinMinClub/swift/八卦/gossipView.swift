@@ -185,14 +185,17 @@ import UIKit
     }
     
     func endAnimation() {
-        angle -= 5
-        if angle <= -365 {
-            UIView.animate(withDuration:1, animations: {() -> Void in
+        angle -= 15
+        if angle <= -375 {
+            UIView.animate(withDuration:0.8, animations: {() -> Void in
                 self.yangImageView.center = CGPoint(x:-screenWidth/2, y:self.yangImageView.center.y)
                 self.yinImageView.center = CGPoint(x:screenWidth+screenWidth/2, y:self.yinImageView.center.y)
+                self.backVw.isHidden = true    // 八卦后面的背景
+                self.qianView.isHidden = true  // 乾卦后面的背景
+                self.kunView.isHidden = true   // 坤卦后面的背景
             },completion: {(_ finished: Bool) -> Void in
                 // 延时执行
-               _ = delaySection.delay(0.5, task: {
+               _ = delaySection.delay(0.2, task: {
                     self.removeFromSuperview()
                 })
             })
@@ -202,10 +205,10 @@ import UIKit
     }
 
     func disappearView() {
-        UIView.animate(withDuration:1, animations: {() -> Void in
-            self.xuImageView.alpha = 0
-            self.qianImageView.alpha = 0
-            self.kunImageView.alpha = 0
+        UIView.animate(withDuration:2, animations: {() -> Void in
+            self.xuImageView.isHidden = true
+            self.qianImageView.isHidden = true
+            self.kunImageView.isHidden = true
         })
     }
     
