@@ -234,7 +234,7 @@
                 for (NSDictionary *bookDic in Sys_GX_WenJI) {
                     NSString *wj_name = [bookDic objectForKey:@"WJ_NAME"];
                     NSString *wj_user = [bookDic objectForKey:@"WJ_USER"];
-                    NSString *wj_img = [NSString stringWithFormat:@"%@/BizFunction/GX/WenJi/Img/%@",IP,[bookDic objectForKey:@"WJ_IMG"]];
+                    NSString *wj_img = [NSString stringWithFormat:@"%@/BizFunction/GX/WenJi/Img/%@",IP,[bookDic objectForKey:@"WJ_FM"]];
                     NSString *wj_id = [bookDic objectForKey:@"WJ_ID"];
                     NSString *wj_content = [bookDic objectForKey:@"WJ_CONTENT"];
                     

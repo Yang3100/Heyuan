@@ -55,7 +55,7 @@ class teacherIntro: UIView {
         
         let imag = UIImageView()
         imag.frame = CGRect(x:10, y:laa.frame.origin.y+30, width:60, height:60)
-        let imageString:String = ipz + (self.dict.value(forKey:"KC_TITLE_IMG") as? String)!
+        let imageString:String = ip + (self.dict.value(forKey:"KC_TITLE_IMG") as? String)!
         let url:URL = URL(string:imageString)!
         imag.sd_setImage(with:url, placeholderImage:teacherIm)
 //        imag.image = UIImage(named:"15.jpg")

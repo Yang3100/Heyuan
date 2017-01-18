@@ -362,21 +362,37 @@
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:received options:kNilOptions error:nil];
-    NSString *dataString = [dict valueForKey:@"openid"];
     access_token = [dict valueForKey:@"access_token"];
-    NSString *pass = @"abc1234568";
-    openID = dataString;
-    [self wechatLoginByRequestForUserInfo];
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        HomeViewController *hvc = [[HomeViewController alloc] init];
-        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
-        [self presentViewController:nav animated:YES completion:^{
-            // 保存到本地
-            [[shareObjectModel shareObject] setAccount:dataString Password:pass];
-            [UserDataModel defaultDataModel].userID = dataString;
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
-        }];
-    });
+    openID = [dict valueForKey:@"openid"];
+    // 后台对数据类型的需要
+    NSString *pass = @"kk23456789";
+    NSDictionary *kj_dict = @{@"OpenID":openID,@"Password":pass};
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"WeiXin_Login",@"Params":kj_dict}];
+    // 网络请求
+    [networkSection getLoadJsonDataWithUrlString:IPUrl param:paramString];
+    
+    //回调函数获取数据
+    [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
+        NSLog(@"-----%@",json);
+        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Right_ID"];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            HomeViewController *hvc = [[HomeViewController alloc] init];
+            HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+            CATransition *animation = [CATransition animation];
+            animation.duration = 1.0;
+            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+            animation.type = @"rippleEffect";
+            [self.view.window.layer addAnimation:animation forKey:nil];
+            [self presentViewController:nav animated:YES completion:^{
+                // 获取用户资料
+                [self wechatLoginByRequestForUserInfo];
+                // 保存到本地
+                [[shareObjectModel shareObject] setAccount:openID Password:pass];
+                [UserDataModel defaultDataModel].userID = dataString;
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
+            }];
+        });
+    }];
 }
 
 - (void)wechatLoginByRequestForUserInfo {
@@ -417,7 +433,7 @@
     //回调函数获取数据
     [networkSection setGetLoadRequestDataClosuresCallBack:^(NSDictionary *json) {
         NSLog(@"-----%@",json);
-        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Page_Current_Index"];
+        NSString *dataString = [[json valueForKey:@"RET"] valueForKey:@"Right_ID"];
         dispatch_async(dispatch_get_main_queue(), ^(void){
             HomeViewController *hvc = [[HomeViewController alloc] init];
             HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
@@ -509,7 +525,7 @@
 }
 
 -(void)addAlertView{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"登录失败" message:@"请确认你的账户密add码是否正确!!!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"登录失败" message:@"请确认你的账户密码是否正确!!!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"账号密码错误");
     }];

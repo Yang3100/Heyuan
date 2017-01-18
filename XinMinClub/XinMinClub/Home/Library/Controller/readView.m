@@ -106,9 +106,7 @@
     r_cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section<listNumArray.count) {
         NSDictionary *r_dict = [[dataArray[indexPath.section] valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
-        if (kStringIsEmpty([r_dict valueForKey:@"GJ_MP3"])) {
-            r_cell.isMp3 = YES;
-        }
+        r_cell.isMp3 = kStringIsEmpty([r_dict valueForKey:@"GJ_MP3"]);  // 判断是否为mp3
         r_cell.readTitle = [r_dict valueForKey:@"GJ_NAME"];
         r_cell.readText =  [r_dict valueForKey:@"GJ_CONTENT_CN"];
         return r_cell;

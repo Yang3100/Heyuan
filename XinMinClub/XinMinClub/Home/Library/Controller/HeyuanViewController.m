@@ -55,11 +55,7 @@
                         [findUrlArray addObject:dicc];
                         NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                         [findImageUrlArray addObject:urlString];
-                    }
-                    //                    else if ([str1 isEqualToString:@"WJ:"]){
-                    //
-                    //                    }
-                    else{
+                    }else{
                         NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                         [imageUrlArray addObject:urlString];
                         [dataArray addObject:dicc];
@@ -124,20 +120,17 @@
             NSDictionary *dict = @{@"ID":wjID};
             NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WeiJi_FromID", @"Params":dict}];
             [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDict) {
-                        NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
-                
+                NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
                 // 主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
-//                    [[LoadAnimation defaultDataModel] endLoadAnimation];
-//                    NSArray *typeArray = [[[jsonDict valueForKey:@"RET"] valueForKey:@"DATA"] componentsSeparatedByString:@","];//分割数组当中的内容
-//                    NSString *bookid = [json valueForKey:@"WJ_ID"];
-//                    // 传递数据
-//                    self.chapterView.bookID = bookid;
-//                    [self.chapterView gettype:typeArray];
-//                    self.detailsView.bookID = bookid;
-//                    [self.detailsView giveMeJson:json];
-//                    self.readView.bookID = bookid;lkflkjkljfklsj ljkfjw ljlr j 
-//                    self.readView.typeArray = typeArray;
+                    NSDictionary *dica = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_WenJI"][0];
+                    NSLog(@"%@",dica);
+                    SectionViewController *svc = [[SectionViewController alloc] init];
+                    [svc getJsonData:dica];
+                    
+                    [[DataModel defaultDataModel] addAllLibrary:dica];
+                    
+                    [self.navigationController pushViewController:svc animated:YES];
                 });
             }];
 

@@ -8,6 +8,7 @@
 
 #import "LoadAnimation.h"
 #import "UIImage+GIF.h"
+#import "XinMinClub-Swift.h"
 
 //获取屏幕 宽度、高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
@@ -82,6 +83,12 @@
     gifview.center = backView.center;
     gifview.backgroundColor=[UIColor clearColor];
     gifview.image=image;
+    UIView *avi = [[UIView alloc] init];
+    avi.frame = CGRectMake(0,0,image.size.width/2, image.size.height/2);
+    avi.center = backView.center;
+    avi.backgroundColor = RGB255_COLOR(238, 224, 160, 1);
+    
+    [backView addSubview:avi];
     [backView addSubview:gifview];
 }
 
@@ -112,7 +119,9 @@
 }
 
 - (void)endLoadAnimation{
-    backView.alpha = 0;
+    [delaySection delay:0.5 task:^{  // 延时1秒执行
+        backView.alpha = 0;
+    }];
 }
 
 

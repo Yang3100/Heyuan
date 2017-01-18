@@ -93,6 +93,7 @@
     self.navigationItem.leftBarButtonItem = rightButtonItem;
     
     // 右侧消息按钮
+    
     UIImage *leftImage = [[UIImage imageNamed:@"shangcheng"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(PlayAction:)];
     self.navigationItem.rightBarButtonItem = leftButtonItem;
@@ -197,23 +198,7 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
-//    [[LoadAnimation defaultDataModel] startLoadAnimation];
-//    ShareView *ocsv = [[ShareView alloc]init];
-//    ocsv.setShareContent = ShareMusic;
-//    //    ocsv.text = @"abc";
-//    ocsv.title = @"image";
-//    ocsv.describe = @"这是一段简单的描述";
-//    ocsv.thumbImage = networkPictureUrl;
-//    ocsv.musicUrl = @"http://mp3.haoduoge.com/s/2016-05-03/1462273909.mp3";
-//    ocsv.webUrl = @"http://mp.weixin.qq.com/s?__biz=MzA3MTY2MjYyNA==&mid=2652302861&idx=1&sn=dbe62da8617b8f35e5f8c2b574348dc6&chksm=84c86342b3bfea54a977c1960f9e9117d6a64a5c66cb18846691da5a8e3b50d8c8070862dbc2&mpshare=1&scene=23&srcid=1013r0uIfgCD7RrZ9Fw4kg7w#rd";
-//    [self.view addSubview:ocsv];
-    // 弹出新的视图控制器
-//    if ([DataModel defaultDataModel].activityPlayer==0) {
-//        [self.navigationController pushViewController:[PalyerViewController shareObject]  animated:YES];
-//    }
-//    else{
-//        [self.navigationController pushViewController:[ReaderTableViewController shareObject]  animated:YES];
-//    }
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
 }
 
 // toolBar上面的按钮

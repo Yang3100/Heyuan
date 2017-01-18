@@ -9,11 +9,11 @@
 import UIKit
 import Foundation
 
-let ipz:String = "http://218.240.52.135"
+let ip:String = "http://218.240.52.135"
 //"http://192.168.137.1"
 //
 
-let ipzurl:String = "http://218.240.52.135/App/App.ashx"
+let ipurl:String = "http://218.240.52.135/App/App.ashx"
 //"http://192.168.137.1/App/App.ashx"
 //
 
@@ -41,7 +41,7 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
         LoadAnimation.defaultDataModel().start()
         let dic:NSDictionary = ["KC_ID":"","Page_Index":"1","Page_Count":"10000"]
         let str:String = networkSection.getParamString(param:["FunName":"Get_KC_DataList","Params":dic])
-        networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
+        networkSection.getRequestDataBlock(ipurl, str, block:{(json) -> Void in
 //            print("***************66666*********************")
 //            print(json)
             DispatchQueue.main.async {

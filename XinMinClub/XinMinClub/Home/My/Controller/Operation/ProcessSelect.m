@@ -75,16 +75,16 @@
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = data.bookName; // 书集名字
     
-    [DataModel defaultDataModel].bookImageUrl = data.imagePath; // 书集封面Url
+    [DataModel defaultDataModel].bookFMImageUrl = data.imagePath; // 书集封面Url
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
-    [dic setObject:data.imagePath forKey:@"WJ_IMG"];
+    [dic setObject:data.imagePath forKey:@"WJ_FM"];
     [dic setObject:data.bookName forKey:@"WJ_NAME"];
     [dic setObject:data.authorName forKey:@"WJ_USER"];
     [dic setObject:data.type forKey:@"WJ_TYPE"];
     [dic setObject:data.details forKey:@"WJ_CONTENT"];
     [dic setObject:data.language forKey:@"WJ_LANGUAGE"];
     [dic setObject:data.bookID forKey:@"WJ_ID"];
-    [dic setObject:data.imagePath forKey:@"WJ_IMG"];
+    [dic setObject:data.imagePath forKey:@"WJ_TITLE_IMG"];
     [svc getJsonData:[[NSMutableDictionary alloc] initWithDictionary:dic]];
     
     return svc;
@@ -184,13 +184,6 @@
     }else {
         aUrl = @"";
     }
-#warning aa aaaaaaaaaaaa
-//    [[TransferStationObject shareObject] IncomingDataLibraryName:[DataModel defaultDataModel].playingSection.libraryTitle  ImageUrl:aUrl  AuthorName:detailsNameArray ClickCellNum:saveTag+1 SectionName:detailsListArray SectionMp3:detailsMp3Array SectionID:detailsListIDArray SectionText:array data:sectionArray block:^(BOOL successful) {
-//        if (successful) {
-//            [self kj_pushIsPlayerOrEBook:1];
-//        }else
-//            [self kj_pushIsPlayerOrEBook:2];
-//    }];
 }
 
 - (void)processTableSelect:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath forData:(id)data inViewController:(UIViewController *)viewController{
@@ -232,7 +225,7 @@
                     aUrl = @"";
                 }
                 [DataModel defaultDataModel].bookName = data.bookName;
-                [DataModel defaultDataModel].bookImageUrl = data.libraryImageUrl; // 书集封面Url
+                [DataModel defaultDataModel].bookFMImageUrl = data.libraryImageUrl; // 书集封面Url
                 [[DataModel defaultDataModel] pushWhereWithJson:data.dic ThouchNum:0 WithVC:controller Transfer:1 Data:data];
 //            } else {
 //                [self kj_pushIsPlayerOrEBook:1];

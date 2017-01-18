@@ -8,13 +8,11 @@
 
 #import "LibraryCollectionCell.h"
 
-@interface LibraryCollectionCell(){
-    UIImage *setUpImage;
-}
+@interface LibraryCollectionCell()
 
 @property(nonatomic, copy) UIImageView *libraryImageView;
 @property (nonatomic, strong) UILabel *backLabel;
-@property (nonatomic, strong) UIImageView *backView;
+//@property (nonatomic, strong) UIImageView *backView;
 
 @end
 
@@ -23,9 +21,7 @@
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        setUpImage = [UIImage imageNamed:@"12345.jpg"];
-        
-        [self addSubview:self.backView];
+//        [self addSubview:self.backView];
         [self addSubview:self.libraryImageView];
         [self.libraryImageView addSubview:self.backLabel];
     }
@@ -33,20 +29,20 @@
 }
 
 #pragma mark Subviews
-- (UIImageView *)backView{
-    if (!_backView) {
-        CGFloat x = 2;
-        CGFloat y = 2;
-        CGFloat w = self.frame.size.width;
-        CGFloat h = self.frame.size.height;
-        UIImageView *view = [[UIImageView alloc]init];
-        view.backgroundColor = [UIColor colorWithWhite:0.707 alpha:0.500];
-        view.frame = CGRectMake(x,y,w,h);
-        view.image = setUpImage;
-        _backView = view;
-    }
-    return _backView;
-}
+//- (UIImageView *)backView{
+//    if (!_backView) {
+//        CGFloat x = 1;
+//        CGFloat y = 1;
+//        CGFloat w = self.frame.size.width;
+//        CGFloat h = self.frame.size.height;
+//        UIImageView *view = [[UIImageView alloc]init];
+//        view.backgroundColor = [UIColor colorWithWhite:0.707 alpha:0.500];
+//        view.frame = CGRectMake(x,y,w,h);
+//        view.image = wenjicachePicture;
+//        _backView = view;
+//    }
+//    return _backView;
+//}
 
 - (UIImageView *)libraryImageView{
     if (_libraryImageView==nil) {
@@ -80,7 +76,7 @@
     NSString *string = [IP stringByAppendingString:libraryImageUrl];
     NSURL *url = [NSURL URLWithString:string];
     
-    [self.libraryImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    [self.libraryImageView sd_setImageWithURL:url];
 }
 
 - (void)setReadtotal:(NSString *)readtotal{

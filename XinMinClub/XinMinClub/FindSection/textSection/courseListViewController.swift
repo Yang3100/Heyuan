@@ -38,9 +38,11 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
                 sss = findDict.value(forKey:"KC_ID") as! String
             }
             
-            let imageString:String = ipz + (findDict.value(forKey:"KC_IMG") as? String)!
+            let imageString:String = ip + (findDict.value(forKey:"KC_IMG") as? String)!
             let url:URL = URL(string:imageString)!
-            self.headerImage.sd_setImage(with: url, placeholderImage:headerIm)
+//            print(url)
+            self.headerImage.sd_setImage(with:url)
+//                , placeholderImage:headerIm)
             (self.headerView.subviews[1] as! UILabel).text = findDict.value(forKey:"KC_NAME") as? String
             
             let dicc:NSDictionary = ["KC_ID":sss,"Page_Index":"1","Page_Count":"10000"]
@@ -52,7 +54,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func getFindJsonn(dic:NSDictionary){
         LoadAnimation.defaultDataModel().start()
         let str:String = networkSection.getParamString(param:["FunName":"Get_ZKC_DataList","Params":dic])
-        networkSection.getRequestDataBlock(ipzurl, str, block:{(json) -> Void in
+        networkSection.getRequestDataBlock(ipurl, str, block:{(json) -> Void in
 //            print("************************************")
 //                        print(json)
             DispatchQueue.main.async {
