@@ -188,20 +188,16 @@ static NSString *toolCellIdentifier = @"toolCell";
                             [dataModel.recentPlay removeObject:data];
                             [dataModel.recentPlayAndID removeObjectForKey:dataModel.recentPlayAndID[data.sectionID]];
                             [dataModel.recentPlayAndID removeObjectForKey:data.sectionID];
+                            [[UserDataModel defaultDataModel] deleteRecentSectionWithID:data.sectionID];
                         }
                         
                         if (_deleteArr == dataModel.allSection) {
-                            [dataModel.allSection removeObject:data];
-                            [dataModel.allSectionID removeObject:data.sectionID];
-                            [dataModel.allSectionAndID removeObjectForKey: dataModel.allSectionAndID[data.sectionID]];
-                            [dataModel.allSectionAndID removeObjectForKey:data.sectionID];
-                            
                             if (data.isLike) {
                                 data.isLike = NO;
                                 [dataModel.userLikeSectionID removeObject:data.sectionID];
                                 [dataModel.userLikeSection removeObject:data];
                                 
-                                [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+                                [[UserDataModel defaultDataModel] deleteLikeSectionID:data.sectionID];
                             }
                             
                             if (data.isDownload) {
@@ -215,9 +211,17 @@ static NSString *toolCellIdentifier = @"toolCell";
                                 [dataModel.recentPlayAndID removeObjectForKey:dataModel.recentPlayAndID[data.sectionID]];
                                 [dataModel.recentPlayAndID removeObjectForKey:data.sectionID];
                                 [dataModel.recentPlay removeObject:data];
+                                [[UserDataModel defaultDataModel] deleteRecentSectionWithID:data.sectionID];
                             }
+                            [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObject:data];
+                            [dataModel.allSection removeObject:data];
+                            [dataModel.allSectionID removeObject:data.sectionID];
+                            [dataModel.allSectionAndID removeObjectForKey: dataModel.allSectionAndID[data.sectionID]];
+                            [dataModel.allSectionAndID removeObjectForKey:data.sectionID];
+                            [[SaveModule defaultObject] deleteFile:data.sectionID inDirectory:@"recentPlaySection"];
+                            
                         }
-                        
+                    
                         if (_deleteArr == dataModel.downloadSection) {
                             data.isDownload = NO;
                             [dataModel.downloadSectionList removeObject:data.sectionID];
@@ -233,6 +237,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                             data.isLike = NO;
                             [dataModel.userLikeSectionID removeObject:data.sectionID];
                             [dataModel.userLikeSection removeObject:data];
+                            [[UserDataModel defaultDataModel] deleteLikeSectionID:data.sectionID];
                         }
 
 //                    }

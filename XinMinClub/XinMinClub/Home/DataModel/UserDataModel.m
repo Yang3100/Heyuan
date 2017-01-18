@@ -306,12 +306,15 @@
     SectionData *data;
     if (DATA_MODEL.playingSection && [DATA_MODEL.playingSection.sectionID isEqualToString:dic[@"GJ_ID"]]) {
         data = DATA_MODEL.playingSection;
+    } else if(DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[dic[@"GJ_ID"]]]) {
+        data = DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[dic[@"GJ_ID"]]];
     } else {
         data = [DATA_MODEL getSectionWithDic:dic];
     }
     if (!DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[data.sectionID]]) {
         [DATA_MODEL addSectionToAll:data];
     }
+    
     if (_userLikeSectionID && [_userLikeSectionID containsObject:data.sectionID]) {
         return NO;
     }
@@ -332,12 +335,25 @@
 
 - (void)deleteLikeSectionID:(NSString *)sectionID {
     SectionData *data = DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[sectionID]];
-    DATA_MODEL.addAllBook = YES;
+//    DATA_MODEL.addAllBook = YES;
     data.isLike = NO;
     [_userLikeSectionID removeObject:data.sectionID];
     [_userLikeSection removeObject:data];
     USER_DATA_MODEL.isChange = YES;
     [SAVE_MODEL saveLikeSection:data];
+}
+
+- (BOOL)deleteRecentSectionWithID:(NSString *)sectionID {
+    SectionData *data = DATA_MODEL.allSectionAndID[DATA_MODEL.allSectionAndID[sectionID]];
+    //    DATA_MODEL.addAllBook = YES;
+    data.isAddRecent = NO;
+    USER_DATA_MODEL.isChange = YES;
+    NSString *filePath1 = [NSString stringWithFormat:@"%@/Library/Caches/recentPlaySection/%@.plist", NSHomeDirectory(), sectionID];
+    
+    NSDictionary *json = [data modelToJSONObject];
+    //写入文件
+    [json writeToFile:filePath1 atomically:YES];
+    return NO;
 }
 
 - (BOOL)judgeIsLike:(NSString *)sectionID {

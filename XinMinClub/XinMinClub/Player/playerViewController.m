@@ -164,7 +164,6 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.500]];
     
-    [self setLikeButtonImage];
 }
 
 - (void)setLikeButtonImage {
@@ -741,6 +740,8 @@ bool isObserve = YES;
  *  播放之前的准备
  */
 - (void)startPlayBefore {
+    
+    [self setLikeButtonImage];
     _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
     // 重置显示的数据
     NSLog(@"%@",kj_dict);
