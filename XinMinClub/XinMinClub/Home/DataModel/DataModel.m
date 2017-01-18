@@ -266,7 +266,9 @@
         
         [self addSectionToAll:data];
 //        NSLog(@"%@",data.dic);
-        [array addObject:data];
+        if (data.isAddRecent) {
+            [array addObject:data];
+        }
     }
 }
 
