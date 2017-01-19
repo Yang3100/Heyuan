@@ -86,6 +86,7 @@
     fileManager = [NSFileManager defaultManager];
     
     _addBook = NO;
+    _addRecommand = NO;
     _playTimeOn = NO;
     _addRecent = NO;
     
@@ -392,18 +393,21 @@
     return YES;
 }
 
-- (BOOL)addRcommandLibrary:(NSDictionary *)dic {
+- (BOOL)addRecommandLibrary:(NSDictionary *)dic {
+    
     if ([[_recommandBookAndID allKeys] containsObject:[dic valueForKey:@"WJ_ID"]]) {
         return NO;
     }
     
     BookData *data = [self getBookDataWithDic:dic];
     if ([[_allBookAndID allKeys] containsObject:data.bookID]) {
+        data = _allBookAndID[_allBookAndID[data.bookID]];
+    } else {
         
     }
-    [_allBookAndID setObject:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2] forKey:data.bookID];
-    [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2]];
-    _addAllBook = YES;
+    [_recommandBookAndID setObject:[NSString stringWithFormat:@"%ld",_recommandBookAndID.count / 2] forKey:data.bookID];
+    [_recommandBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recommandBookAndID.count / 2]];
+    _addRecommand = YES;
     
     [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
     

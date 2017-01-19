@@ -130,6 +130,7 @@
                     
                     [[DataModel defaultDataModel] addAllLibrary:dica];
                     
+                    [DATA_MODEL addRecommandLibrary:dica];
                     [self.navigationController pushViewController:svc animated:YES];
                 });
             }];
