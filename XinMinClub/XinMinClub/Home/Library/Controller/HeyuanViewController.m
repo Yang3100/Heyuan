@@ -41,7 +41,7 @@
         
         //回调函数获取数据
         [networkSection setGetRequestDataClosuresCallBack:^(NSDictionary *json) {
-            NSLog(@"ADJson:%@",json);
+//            NSLog(@"ADJson:%@",json);
             [dataArray removeAllObjects];
             NSArray *arr = [[json valueForKey:@"RET"] valueForKey:@"SYS_ADVERTISEMENT"];
             NSMutableArray *imageUrlArray = [NSMutableArray array];

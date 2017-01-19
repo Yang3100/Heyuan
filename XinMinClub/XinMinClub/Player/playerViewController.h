@@ -11,15 +11,14 @@
 
 @interface playerViewController : UIViewController
 
-@property (nonatomic, assign) bool isPlay;
-@property (nonatomic, assign) bool isPrepare;//播放器装备完毕
+@property (nonatomic, assign) bool isPlay;  // 是否正在播放
+@property (nonatomic, assign) bool isPrepare; //播放器装备完毕
 @property (nonatomic, strong) player *kj_player; /**< 播放器 */
 @property (nonatomic, assign) int currentLyricNum;// 当前歌词位置
 @property (nonatomic, strong) NSMutableArray *currentSongs; // 当前歌单
-//@property (nonatomic, assign) bool isSingleComplete;//单首播放完毕
-@property (nonatomic, copy) NSMutableDictionary *dic;
+@property (nonatomic, strong) NSMutableDictionary *dic;
 @property (nonatomic, strong) NSMutableArray *lrcArray;
-@property(nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
+@property (nonatomic, strong) UIImageView *authorImageView; /**< 作者头像 */
 @property (nonatomic, strong) NSString *mp3Url;
 
 + (instancetype)defaultDataModel;

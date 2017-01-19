@@ -153,7 +153,7 @@
                 NSDictionary *d = [dict objectForKey:@"RET"];
                 NSString *s = [d objectForKey:@"DATA"];
                 
-                NSData *imageData   = [[NSData alloc] initWithBase64Encoding:s];
+                NSData *imageData = [[NSData alloc] initWithBase64Encoding:s];
                 if (![s isEqualToString:@""]) {
                     _userImage = nil;
                     _userImage = [UIImage imageWithData:imageData];
@@ -210,7 +210,7 @@
     // 参数
     NSString *Right_ID = self.userID;
     NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_Sys_Gx_WenJi_SC\", \"Params\": {\"Page_Index\":\"1\",\"Page_Count\":\"1000000\"}}", Right_ID];
-    NSLog(@"getRecommend:%@", param);
+//    NSLog(@"getRecommend:%@", param);
     // 创建会话对象
     NSURLSession *session = [NSURLSession sharedSession];
     // 设置请求路径
@@ -228,7 +228,7 @@
         if (data != nil) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if (dict!=nil) {
-                NSLog(@"xxx返回数据:%@",dict);
+//                NSLog(@"xxx返回数据:%@",dict);
                 NSDictionary *dic = [dict objectForKey:@"RET"];
                 NSArray *Sys_GX_WenJI = [dic objectForKey:@"Sys_GX_WenJI"];
                 for (NSDictionary *bookDic in Sys_GX_WenJI) {
@@ -510,7 +510,7 @@
         if (data != nil) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if (dict!=nil) {
-                NSLog(@"xxx返回数据:%@",dict);
+//                NSLog(@"xxx返回数据:%@",dict);
 //                [[UserDataModel defaultDataModel] saveUserInternetData];
             }
             else
@@ -612,7 +612,7 @@
 
 - (void)setWXData {
     NSDictionary *dic = [self getThreePartData];
-    NSLog(@"*********************%@",dic);
+//    NSLog(@"*********************%@",dic);
     _userID = @"123";
     _userSex = dic[@"sex"];
     int a = [dic[@"sex"] intValue];
