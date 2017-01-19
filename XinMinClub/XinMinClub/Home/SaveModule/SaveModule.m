@@ -99,10 +99,7 @@
     data.isAddRecent = YES;
     data.playCount = [NSString stringWithFormat:@"%d", [data.playCount integerValue] + 1];
     
-    if ([self createSectionFile:filePath1]) {
-        [[DataModel defaultDataModel].recentPlay addObject:data];
-        DATA_MODEL.addRecent = YES;
-    }
+    [self createSectionFile:filePath1];
     NSDictionary *json = [data modelToJSONObject];
     //写入文件
     [json writeToFile:filePath1 atomically:YES];

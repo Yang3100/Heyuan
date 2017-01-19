@@ -62,6 +62,20 @@
 		1A4EBA1C1CCE0917008A4564 /* ForthTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBA1A1CCE0917008A4564 /* ForthTableViewCell.m */; };
 		1A4EBA1D1CCE0917008A4564 /* ForthTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4EBA1B1CCE0917008A4564 /* ForthTableViewCell.xib */; };
 		1A53D1C21E2E250800153A8D /* 喜欢了@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */; };
+		1A53D1EF1E30957000153A8D /* 亮度右@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E11E30957000153A8D /* 亮度右@2x.png */; };
+		1A53D1F01E30957000153A8D /* 亮度子页背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E21E30957000153A8D /* 亮度子页背景@2x.png */; };
+		1A53D1F11E30957000153A8D /* 亮度左-@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E31E30957000153A8D /* 亮度左-@2x.png */; };
+		1A53D1F21E30957000153A8D /* 减@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E41E30957000153A8D /* 减@2x.png */; };
+		1A53D1F31E30957000153A8D /* 分割线@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E51E30957000153A8D /* 分割线@2x.png */; };
+		1A53D1F41E30957000153A8D /* 加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E61E30957000153A8D /* 加@2x.png */; };
+		1A53D1F51E30957000153A8D /* 圆@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E71E30957000153A8D /* 圆@2x.png */; };
+		1A53D1F61E30957000153A8D /* 字体调节@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E81E30957000153A8D /* 字体调节@2x.png */; };
+		1A53D1F71E30957000153A8D /* 护眼@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1E91E30957000153A8D /* 护眼@2x.png */; };
+		1A53D1F81E30957000153A8D /* 羊皮纸@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1EA1E30957000153A8D /* 羊皮纸@2x.png */; };
+		1A53D1F91E30957000153A8D /* 行间距调整@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1EB1E30957000153A8D /* 行间距调整@2x.png */; };
+		1A53D1FA1E30957000153A8D /* 设置子页背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1EC1E30957000153A8D /* 设置子页背景@2x.png */; };
+		1A53D1FB1E30957000153A8D /* 青@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1ED1E30957000153A8D /* 青@2x.png */; };
+		1A53D1FC1E30957000153A8D /* 魅惑@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1EE1E30957000153A8D /* 魅惑@2x.png */; };
 		1A67110C1CBB48410028529C /* AddressFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711051CBB48410028529C /* AddressFMDBManager.m */; };
 		1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711071CBB48410028529C /* CityAddressModel.m */; };
 		1A67110E1CBB48410028529C /* DistrictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711091CBB48410028529C /* DistrictModel.m */; };
@@ -419,6 +433,20 @@
 		1A4EBA1A1CCE0917008A4564 /* ForthTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForthTableViewCell.m; sourceTree = "<group>"; };
 		1A4EBA1B1CCE0917008A4564 /* ForthTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForthTableViewCell.xib; sourceTree = "<group>"; };
 		1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "喜欢了@2x.png"; sourceTree = "<group>"; };
+		1A53D1E11E30957000153A8D /* 亮度右@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "亮度右@2x.png"; sourceTree = "<group>"; };
+		1A53D1E21E30957000153A8D /* 亮度子页背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "亮度子页背景@2x.png"; sourceTree = "<group>"; };
+		1A53D1E31E30957000153A8D /* 亮度左-@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "亮度左-@2x.png"; sourceTree = "<group>"; };
+		1A53D1E41E30957000153A8D /* 减@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "减@2x.png"; sourceTree = "<group>"; };
+		1A53D1E51E30957000153A8D /* 分割线@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分割线@2x.png"; sourceTree = "<group>"; };
+		1A53D1E61E30957000153A8D /* 加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加@2x.png"; sourceTree = "<group>"; };
+		1A53D1E71E30957000153A8D /* 圆@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "圆@2x.png"; sourceTree = "<group>"; };
+		1A53D1E81E30957000153A8D /* 字体调节@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "字体调节@2x.png"; sourceTree = "<group>"; };
+		1A53D1E91E30957000153A8D /* 护眼@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护眼@2x.png"; sourceTree = "<group>"; };
+		1A53D1EA1E30957000153A8D /* 羊皮纸@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "羊皮纸@2x.png"; sourceTree = "<group>"; };
+		1A53D1EB1E30957000153A8D /* 行间距调整@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行间距调整@2x.png"; sourceTree = "<group>"; };
+		1A53D1EC1E30957000153A8D /* 设置子页背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置子页背景@2x.png"; sourceTree = "<group>"; };
+		1A53D1ED1E30957000153A8D /* 青@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "青@2x.png"; sourceTree = "<group>"; };
+		1A53D1EE1E30957000153A8D /* 魅惑@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "魅惑@2x.png"; sourceTree = "<group>"; };
 		1A6711041CBB48410028529C /* AddressFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFMDBManager.h; sourceTree = "<group>"; };
 		1A6711051CBB48410028529C /* AddressFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFMDBManager.m; sourceTree = "<group>"; };
 		1A6711061CBB48410028529C /* CityAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAddressModel.h; sourceTree = "<group>"; };
@@ -1060,6 +1088,27 @@
 			path = ReadCell;
 			sourceTree = "<group>";
 		};
+		1A53D1E01E30957000153A8D /* drawable */ = {
+			isa = PBXGroup;
+			children = (
+				1A53D1E11E30957000153A8D /* 亮度右@2x.png */,
+				1A53D1E21E30957000153A8D /* 亮度子页背景@2x.png */,
+				1A53D1E31E30957000153A8D /* 亮度左-@2x.png */,
+				1A53D1E41E30957000153A8D /* 减@2x.png */,
+				1A53D1E51E30957000153A8D /* 分割线@2x.png */,
+				1A53D1E61E30957000153A8D /* 加@2x.png */,
+				1A53D1E71E30957000153A8D /* 圆@2x.png */,
+				1A53D1E81E30957000153A8D /* 字体调节@2x.png */,
+				1A53D1E91E30957000153A8D /* 护眼@2x.png */,
+				1A53D1EA1E30957000153A8D /* 羊皮纸@2x.png */,
+				1A53D1EB1E30957000153A8D /* 行间距调整@2x.png */,
+				1A53D1EC1E30957000153A8D /* 设置子页背景@2x.png */,
+				1A53D1ED1E30957000153A8D /* 青@2x.png */,
+				1A53D1EE1E30957000153A8D /* 魅惑@2x.png */,
+			);
+			path = drawable;
+			sourceTree = "<group>";
+		};
 		1A6711031CBB48090028529C /* CityPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1594,7 @@
 		68342F481E179AB00019CCCE /* picture */ = {
 			isa = PBXGroup;
 			children = (
+				1A53D1E01E30957000153A8D /* drawable */,
 				1A53D1C11E2E250700153A8D /* 喜欢了@2x.png */,
 				68FAB8DB1E1CC918008D77DC /* 返回@2x.png */,
 				68FAB8DC1E1CC918008D77DC /* 分享@2x.png */,
@@ -2073,20 +2123,24 @@
 				6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */,
 				68DB369E1E1DF93000DD53D3 /* 一炁.png in Resources */,
 				6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */,
+				1A53D1F31E30957000153A8D /* 分割线@2x.png in Resources */,
 				688E36361E17A35200388E46 /* taoci.jpg in Resources */,
 				792CB8A31CE36355001933E4 /* subcatalogCell.xib in Resources */,
 				682F42A71E1213E7004B3651 /* 255.png in Resources */,
 				1A36F7861E1786D400C6744F /* FirstTableViewCell.xib in Resources */,
+				1A53D1F41E30957000153A8D /* 加@2x.png in Resources */,
 				1A40336A1E0908A80006613F /* quanbu@2x.png in Resources */,
 				6865F12D1E10AFB00099D6F3 /* login@3x.jpg in Resources */,
 				1A36F7911E1D128800C6744F /* kjpause.png in Resources */,
 				6843BD081E16E2BE00D63FD7 /* playNext.png in Resources */,
 				68FAB8E81E1CC918008D77DC /* 亮度@2x.png in Resources */,
+				1A53D1FA1E30957000153A8D /* 设置子页背景@2x.png in Resources */,
 				680F4BAF1E2DD8CE002C1866 /* jiarushuji2@2x.png in Resources */,
 				1A91BE9F1CB360D500689AE0 /* SecondTableViewCell.xib in Resources */,
 				68FAB8EE1E1CC918008D77DC /* 虚线条.png in Resources */,
 				1A974C2B1CBE2E5300A92CA4 /* ToolCell.xib in Resources */,
 				68C97FA81E2785FB00D5DB9D /* 底@2x.png in Resources */,
+				1A53D1FB1E30957000153A8D /* 青@2x.png in Resources */,
 				6843BD071E16E2BE00D63FD7 /* playOn.png in Resources */,
 				68DB36671E1DF3C400DD53D3 /* 宿儒.png in Resources */,
 				68EE61E21E13CFB1001E34AD /* WeChat.png in Resources */,
@@ -2098,6 +2152,7 @@
 				6843BD011E16E2BE00D63FD7 /* playShare.png in Resources */,
 				68DB36A01E1DF93000DD53D3 /* 心斋.png in Resources */,
 				1A1B13C61CBB7B2B00BCE619 /* SetCell.xib in Resources */,
+				1A53D1F51E30957000153A8D /* 圆@2x.png in Resources */,
 				68DB367F1E1DF3C400DD53D3 /* 般若.png in Resources */,
 				68DB367A1E1DF3C400DD53D3 /* 梵行.png in Resources */,
 				1A4033731E0908A80006613F /* wenzhang.png in Resources */,
@@ -2128,8 +2183,10 @@
 				6865F12E1E10AFB00099D6F3 /* QQloog.png in Resources */,
 				1A4329B51DF7B838005A1BE2 /* LaunchScreen.storyboard in Resources */,
 				682F42B61E1256D3004B3651 /* 引导页4.png in Resources */,
+				1A53D1F81E30957000153A8D /* 羊皮纸@2x.png in Resources */,
 				680E1BE81E1B936F000B2BA3 /* xiaojiugongge.png in Resources */,
 				68EE61E01E13CFB1001E34AD /* QZone.png in Resources */,
+				1A53D1F71E30957000153A8D /* 护眼@2x.png in Resources */,
 				682F42B31E1256D3004B3651 /* 引导页1.png in Resources */,
 				68DB36661E1DF3C400DD53D3 /* 乐水.png in Resources */,
 				68C97FA91E2785FB00D5DB9D /* 确定.png in Resources */,
@@ -2149,8 +2206,10 @@
 				68FAB8EC1E1CC918008D77DC /* 喜欢@2x.png in Resources */,
 				68342F551E179AB00019CCCE /* fanhui1@2x.png in Resources */,
 				68B251151E1B50D300608CB7 /* gerenjianjiediban.png in Resources */,
+				1A53D1F91E30957000153A8D /* 行间距调整@2x.png in Resources */,
 				1A4033521E0908A80006613F /* bangzhu.png in Resources */,
 				68FAB8EB1E1CC918008D77DC /* 设置@2x.png in Resources */,
+				1A53D1F01E30957000153A8D /* 亮度子页背景@2x.png in Resources */,
 				68DB367C1E1DF3C400DD53D3 /* 禅悦.png in Resources */,
 				682F42BA1E125D36004B3651 /* 欢迎.png in Resources */,
 				6843BD0B1E16E2BE00D63FD7 /* Player_progress_bar@2x.png in Resources */,
@@ -2161,6 +2220,8 @@
 				1A6711211CBB485C0028529C /* cityData.sqlite in Resources */,
 				68E8B7421E0000B1000CB44A /* yin.png in Resources */,
 				1A91BE921CB360D500689AE0 /* UserFirstCell.xib in Resources */,
+				1A53D1F61E30957000153A8D /* 字体调节@2x.png in Resources */,
+				1A53D1F21E30957000153A8D /* 减@2x.png in Resources */,
 				68DB36801E1DF3C400DD53D3 /* 菩提.png in Resources */,
 				1A53D1C21E2E250800153A8D /* 喜欢了@2x.png in Resources */,
 				6820D7331E1779BF0068D172 /* Play_personal@3x.png in Resources */,
@@ -2187,6 +2248,7 @@
 				68DB36A41E1DF93000DD53D3 /* 玉虛.png in Resources */,
 				680F4BB01E2DD8CE002C1866 /* daididefanhui2@2x.png in Resources */,
 				68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */,
+				1A53D1F11E30957000153A8D /* 亮度左-@2x.png in Resources */,
 				680F4BB21E2E0324002C1866 /* Navigation_BackgroundImage.png in Resources */,
 				68EE61DF1E13CFB1001E34AD /* QQ.png in Resources */,
 				1A4033551E0908A80006613F /* bofangliebiao@2x.png in Resources */,
@@ -2200,6 +2262,7 @@
 				68DB36A51E1DF93000DD53D3 /* 轩箓.png in Resources */,
 				1A011D5D1D3E03100040EA23 /* Assets.xcassets in Resources */,
 				6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */,
+				1A53D1FC1E30957000153A8D /* 魅惑@2x.png in Resources */,
 				682F42A91E124B0C004B3651 /* 211.png in Resources */,
 				1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */,
 				68DB36681E1DF3C400DD53D3 /* 弘毅.png in Resources */,
@@ -2209,6 +2272,7 @@
 				682F42B41E1256D3004B3651 /* 引导页2.png in Resources */,
 				6843BD051E16E2BE00D63FD7 /* playRound.png in Resources */,
 				682F42981E1200B6004B3651 /* courseListCell.xib in Resources */,
+				1A53D1EF1E30957000153A8D /* 亮度右@2x.png in Resources */,
 				6843BD041E16E2BE00D63FD7 /* playLike.png in Resources */,
 				68DB36A11E1DF93000DD53D3 /* 抱朴.png in Resources */,
 				68DB366C1E1DF3C400DD53D3 /* 逸经.png in Resources */,
