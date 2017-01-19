@@ -92,6 +92,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 推荐文集
 @property (nonatomic, strong) NSMutableArray <BookData *> *recommandBook;
 @property (nonatomic, strong) NSMutableDictionary *recommandBookAndID;
+@property (nonatomic, assign) BOOL addRecommand;
 
 // 删除章节
 @property (nonatomic, strong) NSMutableArray <SectionData *> * deleteSection;
@@ -142,7 +143,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 // 取得最近播放章节
 - (void)getAllRecentPlaySection;
 // 加入推荐文集
-- (BOOL)addRcommandLibrary:(NSDictionary *)dic;
+- (BOOL)addRecommandLibrary:(NSDictionary *)dic;
 // 加入最近播放章节
 - (void)addRecentPlay:(NSDictionary *)dic;
 // 取得所有章节

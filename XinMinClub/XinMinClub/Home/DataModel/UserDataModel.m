@@ -245,10 +245,12 @@
                                                                     wj_user,@"authorName",
                                                                     wj_content,@"bookContent",
                                                                     nil]];
-                    if (![[DataModel defaultDataModel].recommandBookID containsObject:book.bookID]) {
-                        [[DataModel defaultDataModel].recommandBookID addObject:book.bookID];
-                        [[[DataModel defaultDataModel] mutableArrayValueForKey:@"recommandBook"] addObject:book];
-                    }
+//                    if (![[[DataModel defaultDataModel].recommandBookAndID allKeys]containsObject:book.bookID]) {
+//                        
+//                        [DATA_MODEL.recommandBookAndID setObject:[NSString stringWithFormat:@"%lu",DATA_MODEL.recommandBookAndID.count / 2] forKey:book.bookID];
+//                        [DATA_MODEL.recommandBookAndID setObject:data forKey:[NSString stringWithFormat:@"%lu",DATA_MODEL.recommandBookAndID.count / 2]];
+//                        [[[DataModel defaultDataModel] mutableArrayValueForKey:@"recommandBook"] addObject:book];
+//                    }
                 }
 //                NSString *wj_name = [dict]
             }
