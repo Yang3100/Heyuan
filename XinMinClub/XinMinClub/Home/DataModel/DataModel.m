@@ -115,7 +115,7 @@
     _userLikeBook = [NSMutableArray array];
     _userLikeBookID = [UserDataModel defaultDataModel].userLikeBookID;
     _recommandBook = [NSMutableArray array];
-    _recommandBookID = [NSMutableArray array];
+    _recommandBookAndID = [NSMutableDictionary dictionaryWithCapacity:10];
     
     _userLikeSection = [NSMutableArray array];
     _userLikeSectionID = [NSMutableArray array];
@@ -240,6 +240,11 @@
         //
         NSDictionary *json = [[NSDictionary alloc] initWithContentsOfFile:filePath];
         SectionData *data = [SectionData modelWithJSON:json];
+        
+        if (!data) {
+            return;
+        }
+        
         if ([data.author isEqualToString:@""]) {
             data.author = @"無名";
         }
@@ -387,6 +392,24 @@
     return YES;
 }
 
+- (BOOL)addRcommandLibrary:(NSDictionary *)dic {
+    if ([[_recommandBookAndID allKeys] containsObject:[dic valueForKey:@"WJ_ID"]]) {
+        return NO;
+    }
+    
+    BookData *data = [self getBookDataWithDic:dic];
+    if ([[_allBookAndID allKeys] containsObject:data.bookID]) {
+        
+    }
+    [_allBookAndID setObject:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2] forKey:data.bookID];
+    [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2]];
+    _addAllBook = YES;
+    
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
+    
+    return YES;
+}
+
 // 添加到全部文集
 - (BOOL)addAllLibrary:(NSDictionary *)dic {
     
@@ -451,6 +474,8 @@
         return;
     }
     
+    [[DataModel defaultDataModel].recentPlay addObject:data];
+    DATA_MODEL.addRecent = YES;
     [_recentPlayAndID setObject:[NSString stringWithFormat:@"%lu",_recentPlayAndID.count/2] forKey:data.sectionID];
     [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
 //    ((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount = [NSString stringWithFormat:@"%ld",[((SectionData *)_recentPlayAndID[_recentPlayAndID[data.sectionID]]).playCount integerValue] + 1];
