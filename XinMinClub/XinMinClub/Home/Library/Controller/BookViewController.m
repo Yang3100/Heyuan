@@ -163,7 +163,7 @@
 #pragma mark --UICollectionViewDelegateFlowLayout
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((SCREEN_WIDTH-4*20)/3, (SCREEN_WIDTH-4*20)/3+(SCREEN_WIDTH-4*20)/6);
+    return CGSizeMake((SCREEN_WIDTH-4*20)/3, ((SCREEN_WIDTH-4*20)/3)/0.7);
 }
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

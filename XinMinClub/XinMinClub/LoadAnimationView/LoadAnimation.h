@@ -16,4 +16,9 @@
 
 - (void)endLoadAnimation;
 
+
+
+//清除缓存
+- (void)clearTmpPics;
+
 @end

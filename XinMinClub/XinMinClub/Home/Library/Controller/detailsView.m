@@ -55,7 +55,7 @@
 #pragma mark Subviews
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -95,15 +95,15 @@
             return 80;
         }
         if(indexPath.row == self.textArray.count){
-            return 150;
+            return UITableViewAutomaticDimension;
         }
         return 50;
 //    }
 //    return UITableViewAutomaticDimension;
 }
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return UITableViewAutomaticDimension;
-//}
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
     if (indexPath.section==0&&indexPath.row==0) {

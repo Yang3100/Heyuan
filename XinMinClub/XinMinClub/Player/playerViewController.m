@@ -80,6 +80,9 @@
         self.currentSongs = [NSMutableArray array];
         // 开启防呆模式
         [self preventSBPattern:NO];
+        
+        
+        
     }
     return self;
 }
@@ -488,7 +491,7 @@
     }else{
         ocsv.describe = [dict valueForKey:@"GJ_USER"]; // 作者名字
     }
-    ocsv.thumbImage = networkPictureUrl;
+    ocsv.thumbImage = [DataModel defaultDataModel].bookFMImageUrl;
     ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
     
     [self.view addSubview:ocsv];

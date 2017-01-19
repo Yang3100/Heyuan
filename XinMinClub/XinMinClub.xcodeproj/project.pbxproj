@@ -235,6 +235,11 @@
 		6852D2491E0A524600CA55D6 /* chapterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D2481E0A524600CA55D6 /* chapterView.m */; };
 		6852D24C1E0ABA1600CA55D6 /* detailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D24B1E0ABA1600CA55D6 /* detailsView.m */; };
 		6852D24F1E0ABB2500CA55D6 /* readView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852D24E1E0ABB2500CA55D6 /* readView.m */; };
+		686161741E2F4F7E00CAD4BC /* NSString+SULoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 686161681E2F4F7E00CAD4BC /* NSString+SULoader.m */; };
+		686161751E2F4F7E00CAD4BC /* NSURL+SULoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6861616A1E2F4F7E00CAD4BC /* NSURL+SULoader.m */; };
+		686161761E2F4F7E00CAD4BC /* SUFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6861616D1E2F4F7E00CAD4BC /* SUFileHandle.m */; };
+		686161781E2F4F7E00CAD4BC /* SURequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 686161711E2F4F7E00CAD4BC /* SURequestTask.m */; };
+		686161791E2F4F7E00CAD4BC /* SUResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 686161731E2F4F7E00CAD4BC /* SUResourceLoader.m */; };
 		68622F901CA3F23500F13471 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 68622F8F1CA3F23500F13471 /* UINavigationBar+Awesome.m */; };
 		6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1251E10AFB00099D6F3 /* 123loog.png */; };
 		6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1261E10AFB00099D6F3 /* dishangfangloog.png */; };
@@ -714,6 +719,17 @@
 		6852D24B1E0ABA1600CA55D6 /* detailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailsView.m; sourceTree = "<group>"; };
 		6852D24D1E0ABB2500CA55D6 /* readView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readView.h; sourceTree = "<group>"; };
 		6852D24E1E0ABB2500CA55D6 /* readView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = readView.m; sourceTree = "<group>"; };
+		686161671E2F4F7E00CAD4BC /* NSString+SULoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SULoader.h"; sourceTree = "<group>"; };
+		686161681E2F4F7E00CAD4BC /* NSString+SULoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SULoader.m"; sourceTree = "<group>"; };
+		686161691E2F4F7E00CAD4BC /* NSURL+SULoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+SULoader.h"; sourceTree = "<group>"; };
+		6861616A1E2F4F7E00CAD4BC /* NSURL+SULoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SULoader.m"; sourceTree = "<group>"; };
+		6861616B1E2F4F7E00CAD4BC /* SULoaderCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SULoaderCategory.h; sourceTree = "<group>"; };
+		6861616C1E2F4F7E00CAD4BC /* SUFileHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUFileHandle.h; sourceTree = "<group>"; };
+		6861616D1E2F4F7E00CAD4BC /* SUFileHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUFileHandle.m; sourceTree = "<group>"; };
+		686161701E2F4F7E00CAD4BC /* SURequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SURequestTask.h; sourceTree = "<group>"; };
+		686161711E2F4F7E00CAD4BC /* SURequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SURequestTask.m; sourceTree = "<group>"; };
+		686161721E2F4F7E00CAD4BC /* SUResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUResourceLoader.h; sourceTree = "<group>"; };
+		686161731E2F4F7E00CAD4BC /* SUResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUResourceLoader.m; sourceTree = "<group>"; };
 		68622F8E1CA3F23500F13471 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		68622F8F1CA3F23500F13471 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		6865F1251E10AFB00099D6F3 /* 123loog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123loog.png; sourceTree = "<group>"; };
@@ -730,8 +746,8 @@
 		687618301E135B6900E55628 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		687F661D1E0BDCE10000D000 /* lyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lyricView.h; sourceTree = "<group>"; };
 		687F661E1E0BDCE10000D000 /* lyricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lyricView.m; sourceTree = "<group>"; };
-		687F661F1E0BDCE10000D000 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
-		687F66201E0BDCE10000D000 /* player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = player.m; sourceTree = "<group>"; };
+		687F661F1E0BDCE10000D000 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../player.h; sourceTree = "<group>"; };
+		687F66201E0BDCE10000D000 /* player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = player.m; path = ../player.m; sourceTree = "<group>"; };
 		687F66211E0BDCE10000D000 /* playerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerViewController.h; sourceTree = "<group>"; };
 		687F66221E0BDCE10000D000 /* playerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerViewController.m; sourceTree = "<group>"; };
 		6885497B1E00E9A900FD545D /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
@@ -1054,9 +1070,9 @@
 		1A49AAEF1CAD162F003DA6DB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A49AAF21CAD162F003DA6DB /* DetailsCell */,
 				1A49AAFB1CAD162F003DA6DB /* LibraryCollectionCell.h */,
 				1A49AAFC1CAD162F003DA6DB /* LibraryCollectionCell.m */,
+				1A49AAF21CAD162F003DA6DB /* DetailsCell */,
 				1A49AB021CAD162F003DA6DB /* ReadCell */,
 			);
 			path = View;
@@ -1726,6 +1742,34 @@
 			path = Lib/SDWebImage;
 			sourceTree = "<group>";
 		};
+		686161651E2F4F7E00CAD4BC /* SULoader */ = {
+			isa = PBXGroup;
+			children = (
+				686161661E2F4F7E00CAD4BC /* Category */,
+				6861616C1E2F4F7E00CAD4BC /* SUFileHandle.h */,
+				6861616D1E2F4F7E00CAD4BC /* SUFileHandle.m */,
+				686161701E2F4F7E00CAD4BC /* SURequestTask.h */,
+				686161711E2F4F7E00CAD4BC /* SURequestTask.m */,
+				686161721E2F4F7E00CAD4BC /* SUResourceLoader.h */,
+				686161731E2F4F7E00CAD4BC /* SUResourceLoader.m */,
+				687F661F1E0BDCE10000D000 /* player.h */,
+				687F66201E0BDCE10000D000 /* player.m */,
+			);
+			path = SULoader;
+			sourceTree = "<group>";
+		};
+		686161661E2F4F7E00CAD4BC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				686161671E2F4F7E00CAD4BC /* NSString+SULoader.h */,
+				686161681E2F4F7E00CAD4BC /* NSString+SULoader.m */,
+				686161691E2F4F7E00CAD4BC /* NSURL+SULoader.h */,
+				6861616A1E2F4F7E00CAD4BC /* NSURL+SULoader.m */,
+				6861616B1E2F4F7E00CAD4BC /* SULoaderCategory.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		68622F8D1CA3F23500F13471 /* UINavigationBar+Awesome */ = {
 			isa = PBXGroup;
 			children = (
@@ -1760,10 +1804,9 @@
 		687F661C1E0BDCE10000D000 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				686161651E2F4F7E00CAD4BC /* SULoader */,
 				687F661D1E0BDCE10000D000 /* lyricView.h */,
 				687F661E1E0BDCE10000D000 /* lyricView.m */,
-				687F661F1E0BDCE10000D000 /* player.h */,
-				687F66201E0BDCE10000D000 /* player.m */,
 				687F66211E0BDCE10000D000 /* playerViewController.h */,
 				687F66221E0BDCE10000D000 /* playerViewController.m */,
 				687F66231E0BDCE10000D000 /* 播放器图片 */,
@@ -2300,6 +2343,8 @@
 				68BDBD6E1E0B9B6A009547D4 /* DetailsCell4.m in Sources */,
 				6849C0151E09407900C9A5D2 /* UIImage+MultiFormat.m in Sources */,
 				1A91BE7C1CB360D500689AE0 /* DataModel.m in Sources */,
+				686161741E2F4F7E00CAD4BC /* NSString+SULoader.m in Sources */,
+				686161761E2F4F7E00CAD4BC /* SUFileHandle.m in Sources */,
 				687F66321E0BDCE10000D000 /* lyricView.m in Sources */,
 				6814F0881C9FE86C000FD40B /* MJRefreshHeader.m in Sources */,
 				6849C00F1E09407900C9A5D2 /* SDWebImageDownloader.m in Sources */,
@@ -2318,6 +2363,7 @@
 				682F429C1E1200B6004B3651 /* teacherIntro.swift in Sources */,
 				6849C00A1E09407900C9A5D2 /* MKAnnotationView+WebCache.m in Sources */,
 				68342F471E1798F60019CCCE /* EBookViewController.swift in Sources */,
+				686161751E2F4F7E00CAD4BC /* NSURL+SULoader.m in Sources */,
 				1A91BE841CB360D500689AE0 /* MyViewController.m in Sources */,
 				1A91BE861CB360D500689AE0 /* AuthorTableViewController.m in Sources */,
 				1A91BE881CB360D500689AE0 /* LocalAuthor.m in Sources */,
@@ -2393,7 +2439,9 @@
 				1A91BEA01CB360D500689AE0 /* ThirdTableViewCell.m in Sources */,
 				682F429A1E1200B6004B3651 /* courseViewController.swift in Sources */,
 				6814F0951C9FE86C000FD40B /* UIScrollView+MJRefresh.m in Sources */,
+				686161791E2F4F7E00CAD4BC /* SUResourceLoader.m in Sources */,
 				68EB89D81E0E9BFC00611357 /* NSDictionary Chinese.m in Sources */,
+				686161781E2F4F7E00CAD4BC /* SURequestTask.m in Sources */,
 				1A91BE951CB360D500689AE0 /* BookCell.m in Sources */,
 				682411601CAA7D6100EAB545 /* main.m in Sources */,
 				1A91BE931CB360D500689AE0 /* AuthorCell.m in Sources */,
