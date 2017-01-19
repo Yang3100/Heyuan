@@ -22,7 +22,9 @@
 
 - (void)setLyricArray:(NSArray *)lyricArray{
     _lyricArray = lyricArray;
-    self.lyricLocation = 0;  // 滚动位置清零
+    if (_lyricLocation!=0) {        
+        self.lyricLocation = 0;  // 滚动位置清零
+    }
 }
 
 -(void)setLyricLocation:(NSInteger)lyricLocation{
