@@ -264,6 +264,7 @@
 		68987BB41CB604130007303A /* SaveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 68987BB31CB604130007303A /* SaveData.m */; };
 		68ABD2D51DC99F0C00794ADF /* smallNineNine.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ABD2D41DC99F0C00794ADF /* smallNineNine.m */; };
 		68B251151E1B50D300608CB7 /* gerenjianjiediban.png in Resources */ = {isa = PBXBuildFile; fileRef = 68B251141E1B50D300608CB7 /* gerenjianjiediban.png */; };
+		68BCA1521E30947A00D5F613 /* sangedian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BCA1511E30947A00D5F613 /* sangedian@2x.png */; };
 		68BDBD6E1E0B9B6A009547D4 /* DetailsCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BDBD6C1E0B9B6A009547D4 /* DetailsCell4.m */; };
 		68BDBD6F1E0B9B6A009547D4 /* DetailsCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68BDBD6D1E0B9B6A009547D4 /* DetailsCell4.xib */; };
 		68C365671E0CB9C800069534 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C365631E0CB9C800069534 /* libWeChatSDK.a */; };
@@ -746,8 +747,8 @@
 		687618301E135B6900E55628 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		687F661D1E0BDCE10000D000 /* lyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lyricView.h; sourceTree = "<group>"; };
 		687F661E1E0BDCE10000D000 /* lyricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lyricView.m; sourceTree = "<group>"; };
-		687F661F1E0BDCE10000D000 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../player.h; sourceTree = "<group>"; };
-		687F66201E0BDCE10000D000 /* player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = player.m; path = ../player.m; sourceTree = "<group>"; };
+		687F661F1E0BDCE10000D000 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		687F66201E0BDCE10000D000 /* player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = player.m; sourceTree = "<group>"; };
 		687F66211E0BDCE10000D000 /* playerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerViewController.h; sourceTree = "<group>"; };
 		687F66221E0BDCE10000D000 /* playerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerViewController.m; sourceTree = "<group>"; };
 		6885497B1E00E9A900FD545D /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
@@ -761,6 +762,7 @@
 		68ABD2D31DC99F0C00794ADF /* smallNineNine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smallNineNine.h; sourceTree = "<group>"; };
 		68ABD2D41DC99F0C00794ADF /* smallNineNine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smallNineNine.m; sourceTree = "<group>"; };
 		68B251141E1B50D300608CB7 /* gerenjianjiediban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gerenjianjiediban.png; sourceTree = "<group>"; };
+		68BCA1511E30947A00D5F613 /* sangedian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sangedian@2x.png"; sourceTree = "<group>"; };
 		68BDBD6B1E0B9B6A009547D4 /* DetailsCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCell4.h; sourceTree = "<group>"; };
 		68BDBD6C1E0B9B6A009547D4 /* DetailsCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCell4.m; sourceTree = "<group>"; };
 		68BDBD6D1E0B9B6A009547D4 /* DetailsCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsCell4.xib; sourceTree = "<group>"; };
@@ -1752,8 +1754,6 @@
 				686161711E2F4F7E00CAD4BC /* SURequestTask.m */,
 				686161721E2F4F7E00CAD4BC /* SUResourceLoader.h */,
 				686161731E2F4F7E00CAD4BC /* SUResourceLoader.m */,
-				687F661F1E0BDCE10000D000 /* player.h */,
-				687F66201E0BDCE10000D000 /* player.m */,
 			);
 			path = SULoader;
 			sourceTree = "<group>";
@@ -1807,6 +1807,8 @@
 				686161651E2F4F7E00CAD4BC /* SULoader */,
 				687F661D1E0BDCE10000D000 /* lyricView.h */,
 				687F661E1E0BDCE10000D000 /* lyricView.m */,
+				687F661F1E0BDCE10000D000 /* player.h */,
+				687F66201E0BDCE10000D000 /* player.m */,
 				687F66211E0BDCE10000D000 /* playerViewController.h */,
 				687F66221E0BDCE10000D000 /* playerViewController.m */,
 				687F66231E0BDCE10000D000 /* 播放器图片 */,
@@ -1817,6 +1819,7 @@
 		687F66231E0BDCE10000D000 /* 播放器图片 */ = {
 			isa = PBXGroup;
 			children = (
+				68BCA1511E30947A00D5F613 /* sangedian@2x.png */,
 				1A36F7901E1D128800C6744F /* kjpause.png */,
 				6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */,
 				6843BCF31E16E2BE00D63FD7 /* playShare.png */,
@@ -2308,6 +2311,7 @@
 				1A53D1FC1E30957000153A8D /* 魅惑@2x.png in Resources */,
 				682F42A91E124B0C004B3651 /* 211.png in Resources */,
 				1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */,
+				68BCA1521E30947A00D5F613 /* sangedian@2x.png in Resources */,
 				68DB36681E1DF3C400DD53D3 /* 弘毅.png in Resources */,
 				1A40336E1E0908A80006613F /* shezhi@2x.png in Resources */,
 				1A4033641E0908A80006613F /* jiarushuji@2x.png in Resources */,

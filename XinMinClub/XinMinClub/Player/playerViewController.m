@@ -32,7 +32,7 @@
 // 界面布局
 @property(nonatomic, strong) UILabel *songTimeLabel; // 显示歌曲时间
 @property(nonatomic, strong) UILabel *currentTime; // 显示当前时间
-@property(nonatomic, strong) UIImageView *autorImageView; /**< 歌手图片 */
+//@property(nonatomic, strong) UIImageView *authorImageView; /**< 歌手图片 */
 @property(nonatomic, strong) UIImageView *backImageView; /**< 背景图片 */
 @property(nonatomic, strong) UIView *backView; /**< 最下面的半黑色背景 */
 @property(nonatomic, strong) UILabel *authorNameLabel; /**< 作者名字 */
@@ -70,19 +70,11 @@
 
 - (instancetype)init{
     if (self==[super init]) {
-        _kj_player = [[player alloc] init];
+        self.kj_player = [[player alloc] init];
         _kj_player.isPlayComplete = YES;
-        self.isPrepare = NO;
-        self.currentLyricNum = 0;
         lastPlayGJID = @"ykj_luandayixieshuju";
-        self.lrcArray = [NSMutableArray array];
-        timeArry = [NSMutableArray array];
-        self.currentSongs = [NSMutableArray array];
         // 开启防呆模式
         [self preventSBPattern:NO];
-        
-        
-        
     }
     return self;
 }
@@ -190,7 +182,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.backImageView];
-    [self.view addSubview:self.lyricTableView];
     [self.view addSubview:self.backView];
     [self.view addSubview:self.authorImageView];
     [self.view addSubview:self.authorNameLabel];
@@ -209,7 +200,20 @@
     
     [self.view addSubview:self.menuBack];
     [_menuBack addSubview:self.menuTable];
+    
+//    // 右侧消息按钮
+//    UIImage *leftImage = [[UIImage imageNamed:@"sangedian"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(leftAction)];
+//    self.navigationItem.rightBarButtonItem = leftButtonItem;
 }
+
+//- (void)leftAction{
+//    BOOL clear = [player clearCache];
+//    if (clear) {
+//        [SVProgressHUD showSuccessWithStatus:@"清除歌曲缓存成功!!!"];
+//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2.5f];
+//    }
+//}
 
 - (lyricView*)lyricTableView{
     if (!_lyricTableView) {
@@ -552,6 +556,7 @@
 
 -(IBAction)menuButton:(UIButton*)sender {
     _menuBack.hidden = NO;
+    [self.view bringSubviewToFront:_menuBack];
 }
 #pragma mark 循环状态
 - (IBAction)round:(UIButton*)sender {
@@ -737,53 +742,69 @@ bool isObserve = YES;
 }
 
 #pragma mark - 懒加载
+/**
+ *  初始化数据，只执行一次
+ */
+- (void)InitializationDataOnlyOnce{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self.view addSubview:self.lyricTableView];
+        self.currentLyricNum = 0; // 歌词位置清零
+        self.lrcArray = [NSMutableArray array];
+        timeArry = [NSMutableArray array];
+        self.currentSongs = [NSMutableArray array];
+        self.isPrepare = NO;
+        // 三个KVO观察播放属性
+        [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
+        [_kj_player addObserver:self forKeyPath:@"cacheValue" options:NSKeyValueObservingOptionNew context:nil];
+        [_kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
+        [_kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
+    });
+}
 
 /**
  *  播放之前的准备
  */
 - (void)startPlayBefore {
+    [self InitializationDataOnlyOnce];
+    [self updateSongInfoShow];   // 更新歌曲显示内容
     
-    [self setLikeButtonImage];
-    _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
-    // 重置显示的数据
-    NSLog(@"%@",kj_dict);
-    
-    [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
-    
-    [_kj_player removeObserver]; // 移除观察者
-    _kj_player.isPlayComplete = NO; // 播放状态
+    [_kj_player endLastOperate]; // 结束上一次操作
     NSString *urlString = [NSString stringWithFormat:@"%@%@",IP,[kj_dict valueForKey:@"GJ_MP3"]];
-    [_kj_player setNewPlayerWithUrl:urlString]; // 传入播放的mp3Url
-    
-    [_kj_player addObserver]; // 添加新的观察者
-    // 三个KVO观察播放属性
-    [_kj_player addObserver:self forKeyPath:@"songTime" options:NSKeyValueObservingOptionNew context:nil];
-    [_kj_player addObserver:self forKeyPath:@"cacheValue" options:NSKeyValueObservingOptionNew context:nil];
-    [_kj_player addObserver:self forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
-    [_kj_player addObserver:self forKeyPath:@"isPlayComplete" options:NSKeyValueObservingOptionNew context:nil];
-    
+    NSURL *urlmp3 = [NSURL URLWithString:urlString];
+    [_kj_player replaceItemWithURL:urlmp3]; // 传入播放的mp3Url
+    [_kj_player play];  // 开始播放
+}
+
+- (void)updateSongInfoShow {
+    [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
+    [self.authorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
     self.progress.value = 0;
     self.currentLyricNum = 0; // 歌词位置清零
-    self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
-    NSURL *url = [NSURL URLWithString:DATA_MODEL.bookFMImageUrl];
-    [self.autorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
     
-    self.isPrepare = YES;
-    [_kj_player play];  // 开始播放
+    _kj_player.isPlayComplete = NO; // 播放状态
     [self imageViewRotate]; // 旋转歌手图片
+    
+    self.isPrepare = YES;  //播放器装备完毕
+
+    [self setLikeButtonImage];  // 设置我喜欢的图标
     
     [self setNowPlayingInfo];  // 设置锁屏播放
     
+    // 加入到最近播放相关
+    _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
     if (!_dic[@"image"]) {
         [_dic setObject:DATA_MODEL.bookFMImageUrl forKey:@"image"];
     }
     if (!_dic[@"author"]) {
         [_dic setObject:@"无名" forKey:@"author"];
     }
-    [DATA_MODEL addRecentPlay:_dic];
+    [DATA_MODEL addRecentPlay:_dic];   // 加入到最近播放
 }
 
 
@@ -813,7 +834,7 @@ bool isObserve = YES;
 }
 
 #pragma mark - 设置控制中心正在播放的信息
--(void)setNowPlayingInfo{
+- (void)setNowPlayingInfo{
     NSDictionary *info=[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
     NSMutableDictionary *songDict=[NSMutableDictionary dictionaryWithDictionary:info];
     //歌名
