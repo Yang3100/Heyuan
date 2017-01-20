@@ -59,6 +59,7 @@
                         NSString *urlString = [IP stringByAppendingString:[dicc valueForKey:@"ADV_IMAGE"]];
                         [imageUrlArray addObject:urlString];
                         [dataArray addObject:dicc];
+                        [DATA_MODEL getRecommand:dicc];
                     }
                 }
             }
@@ -130,7 +131,6 @@
                     
                     [[DataModel defaultDataModel] addAllLibrary:dica];
                     
-                    [DATA_MODEL addRecommandLibrary:dica];
                     [self.navigationController pushViewController:svc animated:YES];
                 });
             }];
