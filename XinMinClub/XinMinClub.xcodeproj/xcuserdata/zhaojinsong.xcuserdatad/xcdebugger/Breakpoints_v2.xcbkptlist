@@ -27,6 +27,38 @@
             endingLineNumber = "123"
             landmarkName = "-loopViewDidSelectedImage:index:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HeyuanViewController loopViewDidSelectedImage:index:]"
+                  moduleName = "XinMinClub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/Library/Controller/HeyuanViewController.m"
+                  timestampString = "506600753.23124"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__55-[HeyuanViewController loopViewDidSelectedImage:index:]_block_invoke"
+                  moduleName = "XinMinClub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhaojinsong/Desktop/Git/heyuan111/XinMinClub/XinMinClub/Home/Library/Controller/HeyuanViewController.m"
+                  timestampString = "506600753.235138"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

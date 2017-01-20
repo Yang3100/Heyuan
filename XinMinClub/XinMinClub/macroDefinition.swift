@@ -37,6 +37,8 @@ let TEXT_BACK_COLOR = (UIColor.white)
 let DARK = (UIColor.black)
 let LIGHT = (UIColor.white)
 let GRAY = (UIColor.gray)
+let RED = (UIColor.red)
+let GREEN = (UIColor.green)
 
 func MY_CGRECT(x:CGFloat,y:CGFloat,w:CGFloat,h:CGFloat)->CGRect {
     return CGRect(x:x,y:y,width:w,height:h)
