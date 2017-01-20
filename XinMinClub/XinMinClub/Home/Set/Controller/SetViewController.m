@@ -15,6 +15,7 @@
 #import "SVProgressHUD.h"
 #import "UserDataModel.h"
 #import "loginViewController.h"
+#import "cleanUpView.h"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height) // 屏幕高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width) // 屏幕宽度
@@ -65,7 +66,7 @@
     [super viewDidLoad];
     
     self.title = @"设置";
-    setArr = @[@"个人资料",@"默认语言",@"清除缓存"];
+    setArr = @[@"个人资料",@"定时关闭",@"默认语言",@"清除缓存"];
     setArr1 = @[@"退出登录",@"关于软件",@"帮助"];
     setArr2 = @[@"",@"",@""];
     [self.view addSubview:self.setTableView];
@@ -134,8 +135,7 @@ static NSString *setCellIdentifier = @"setCell";
 }
 
 // 清除分割线
-- (void)clearSeparatorWithView:(UIView * )view
-{
+- (void)clearSeparatorWithView:(UIView * )view{
     if(view.subviews != 0  )
     {
         if(view.bounds.size.height < 5)
@@ -347,6 +347,7 @@ static NSString *setCellIdentifier = @"setCell";
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playTime" object:nil];
         setTimeSwitch.on = NO;
         [self switchAction];
+        [[playerViewController defaultDataModel] timerForSetIsStop:YES];
     }
 }
 
@@ -385,14 +386,16 @@ static NSString *setCellIdentifier = @"setCell";
         if (indexPath.row == 0) {
             [_delegate pushUserDataView];
         }
-//        if (indexPath.row == 1) {
-//            [self setPlayTime];
-//        }
         if (indexPath.row == 1) {
-            [self defaultLanguage];
+            [self setPlayTime];
         }
         if (indexPath.row == 2) {
-            [self sureClear];
+            [self defaultLanguage];
+        }
+        if (indexPath.row == 3) {
+//            [self sureClear];
+            cleanUpView *cuv = [[cleanUpView alloc] init];
+            [self.navigationController pushViewController:cuv animated:NO];
         }
     }
     if (indexPath.section == 1) {
@@ -438,13 +441,13 @@ static NSString *setCellIdentifier = @"setCell";
             cell.setImage.image = userModel_.userImage;
         }
         if (indexPath.row == 1) {
-//            cell.timeSwitch.hidden = NO;
-//            cell.timeSwitch.transform = CGAffineTransformMakeScale(0.75, 0.75);
-//            cell.accessoryImage.hidden = YES;
-//            cell.timeLabel.hidden = NO;
-//            timeLabel = cell.timeLabel;
-//            setTimeSwitch = cell.timeSwitch;
-//            [setTimeSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
+            cell.timeSwitch.hidden = NO;
+            cell.timeSwitch.transform = CGAffineTransformMakeScale(0.75, 0.75);
+            cell.accessoryImage.hidden = YES;
+            cell.timeLabel.hidden = NO;
+            timeLabel = cell.timeLabel;
+            setTimeSwitch = cell.timeSwitch;
+            [setTimeSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
         }
     }
     else if (indexPath.section == 1) {

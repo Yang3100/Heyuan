@@ -258,6 +258,13 @@
 		687F66341E0BDCE10000D000 /* playerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687F66221E0BDCE10000D000 /* playerViewController.m */; };
 		6885497C1E00E9A900FD545D /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497B1E00E9A900FD545D /* libc++abi.tbd */; };
 		6885497E1E00EA8300FD545D /* libobjc.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6885497D1E00EA8300FD545D /* libobjc.A.tbd */; };
+		6885FD9B1E31AB96005C5DCB /* SplitLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FD951E31AB96005C5DCB /* SplitLine.png */; };
+		6885FD9C1E31AB96005C5DCB /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FD961E31AB96005C5DCB /* delete.png */; };
+		6885FD9D1E31AB96005C5DCB /* delete2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FD971E31AB96005C5DCB /* delete2.png */; };
+		6885FD9E1E31AB96005C5DCB /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FD981E31AB96005C5DCB /* select.png */; };
+		6885FDA01E31AB96005C5DCB /* select2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FD9A1E31AB96005C5DCB /* select2.png */; };
+		6885FDA21E31AC81005C5DCB /* playDownload2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6885FDA11E31AC81005C5DCB /* playDownload2@2x.png */; };
+		6885FDA51E31AD33005C5DCB /* cleanUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6885FDA41E31AD33005C5DCB /* cleanUpView.m */; };
 		688E36361E17A35200388E46 /* taoci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 688E36351E17A35200388E46 /* taoci.jpg */; };
 		689041401E28CE1E002F35E5 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 6890413F1E28CE1E002F35E5 /* b.png */; };
 		68987BB11CB5FAD50007303A /* SaveClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 68987BB01CB5FAD50007303A /* SaveClass.m */; };
@@ -753,6 +760,14 @@
 		687F66221E0BDCE10000D000 /* playerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerViewController.m; sourceTree = "<group>"; };
 		6885497B1E00E9A900FD545D /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		6885497D1E00EA8300FD545D /* libobjc.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libobjc.A.tbd; path = usr/lib/libobjc.A.tbd; sourceTree = SDKROOT; };
+		6885FD951E31AB96005C5DCB /* SplitLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplitLine.png; sourceTree = "<group>"; };
+		6885FD961E31AB96005C5DCB /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		6885FD971E31AB96005C5DCB /* delete2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete2.png; sourceTree = "<group>"; };
+		6885FD981E31AB96005C5DCB /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select.png; sourceTree = "<group>"; };
+		6885FD9A1E31AB96005C5DCB /* select2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select2.png; sourceTree = "<group>"; };
+		6885FDA11E31AC81005C5DCB /* playDownload2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playDownload2@2x.png"; sourceTree = "<group>"; };
+		6885FDA31E31AD33005C5DCB /* cleanUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cleanUpView.h; sourceTree = "<group>"; };
+		6885FDA41E31AD33005C5DCB /* cleanUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cleanUpView.m; sourceTree = "<group>"; };
 		688E36351E17A35200388E46 /* taoci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = taoci.jpg; sourceTree = "<group>"; };
 		6890413F1E28CE1E002F35E5 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 		68987BAF1CB5FAD50007303A /* SaveClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveClass.h; path = Home/Save/SaveClass.h; sourceTree = "<group>"; };
@@ -980,6 +995,8 @@
 				1A1B13C01CBB7B2B00BCE619 /* SetCell.h */,
 				1A1B13C11CBB7B2B00BCE619 /* SetCell.m */,
 				1A1B13C21CBB7B2B00BCE619 /* SetCell.xib */,
+				6885FDA31E31AD33005C5DCB /* cleanUpView.h */,
+				6885FDA41E31AD33005C5DCB /* cleanUpView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1382,6 +1399,7 @@
 		1C434C2C1CA3F98400F538E6 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				6885FD941E31AB96005C5DCB /* 清除缓存切图 */,
 				1A1B13BF1CBB7B2B00BCE619 /* Views */,
 				1A1B13BA1CBB7B2B00BCE619 /* Controller */,
 			);
@@ -1824,6 +1842,7 @@
 				6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */,
 				6843BCF31E16E2BE00D63FD7 /* playShare.png */,
 				6843BCF41E16E2BE00D63FD7 /* playDownload.png */,
+				6885FDA11E31AC81005C5DCB /* playDownload2@2x.png */,
 				6843BCF51E16E2BE00D63FD7 /* playLiked.png */,
 				6843BCF61E16E2BE00D63FD7 /* playLike.png */,
 				6843BCF71E16E2BE00D63FD7 /* playRound.png */,
@@ -1836,6 +1855,18 @@
 				6843BCFE1E16E2BE00D63FD7 /* Player_progress_bar@3x.png */,
 			);
 			path = "播放器图片";
+			sourceTree = "<group>";
+		};
+		6885FD941E31AB96005C5DCB /* 清除缓存切图 */ = {
+			isa = PBXGroup;
+			children = (
+				6885FD951E31AB96005C5DCB /* SplitLine.png */,
+				6885FD961E31AB96005C5DCB /* delete.png */,
+				6885FD971E31AB96005C5DCB /* delete2.png */,
+				6885FD981E31AB96005C5DCB /* select.png */,
+				6885FD9A1E31AB96005C5DCB /* select2.png */,
+			);
+			path = "清除缓存切图";
 			sourceTree = "<group>";
 		};
 		68987BAE1CB5FA400007303A /* Save */ = {
@@ -2186,6 +2217,7 @@
 				68FAB8EE1E1CC918008D77DC /* 虚线条.png in Resources */,
 				1A974C2B1CBE2E5300A92CA4 /* ToolCell.xib in Resources */,
 				68C97FA81E2785FB00D5DB9D /* 底@2x.png in Resources */,
+				6885FDA01E31AB96005C5DCB /* select2.png in Resources */,
 				1A53D1FB1E30957000153A8D /* 青@2x.png in Resources */,
 				6843BD071E16E2BE00D63FD7 /* playOn.png in Resources */,
 				68DB36671E1DF3C400DD53D3 /* 宿儒.png in Resources */,
@@ -2236,6 +2268,7 @@
 				682F42B31E1256D3004B3651 /* 引导页1.png in Resources */,
 				68DB36661E1DF3C400DD53D3 /* 乐水.png in Resources */,
 				68C97FA91E2785FB00D5DB9D /* 确定.png in Resources */,
+				6885FDA21E31AC81005C5DCB /* playDownload2@2x.png in Resources */,
 				1A4033741E0908A80006613F /* woxihaun.png in Resources */,
 				1A40336F1E0908A80006613F /* shoucang@2x.png in Resources */,
 				68DB369F1E1DF93000DD53D3 /* 岐黄.png in Resources */,
@@ -2302,22 +2335,26 @@
 				68FAB8E71E1CC918008D77DC /* 分享@2x.png in Resources */,
 				68E8B73A1E0000B1000CB44A /* banhei.png in Resources */,
 				68DB367D1E1DF3C400DD53D3 /* 缘觉.png in Resources */,
+				6885FD9D1E31AB96005C5DCB /* delete2.png in Resources */,
 				1A49AB1C1CAD162F003DA6DB /* ReadCell.xib in Resources */,
 				1A91BE941CB360D500689AE0 /* AuthorCell.xib in Resources */,
 				68E8B73D1E0000B1000CB44A /* kungua.png in Resources */,
 				68DB36A51E1DF93000DD53D3 /* 轩箓.png in Resources */,
 				1A011D5D1D3E03100040EA23 /* Assets.xcassets in Resources */,
 				6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */,
+				6885FD9C1E31AB96005C5DCB /* delete.png in Resources */,
 				1A53D1FC1E30957000153A8D /* 魅惑@2x.png in Resources */,
 				682F42A91E124B0C004B3651 /* 211.png in Resources */,
 				1A91BE981CB360D500689AE0 /* EssayCell.xib in Resources */,
 				68BCA1521E30947A00D5F613 /* sangedian@2x.png in Resources */,
 				68DB36681E1DF3C400DD53D3 /* 弘毅.png in Resources */,
+				6885FD9E1E31AB96005C5DCB /* select.png in Resources */,
 				1A40336E1E0908A80006613F /* shezhi@2x.png in Resources */,
 				1A4033641E0908A80006613F /* jiarushuji@2x.png in Resources */,
 				68C79A441E176F0800AB642F /* kjplay.png in Resources */,
 				682F42B41E1256D3004B3651 /* 引导页2.png in Resources */,
 				6843BD051E16E2BE00D63FD7 /* playRound.png in Resources */,
+				6885FD9B1E31AB96005C5DCB /* SplitLine.png in Resources */,
 				682F42981E1200B6004B3651 /* courseListCell.xib in Resources */,
 				1A53D1EF1E30957000153A8D /* 亮度右@2x.png in Resources */,
 				6843BD041E16E2BE00D63FD7 /* playLike.png in Resources */,
@@ -2388,6 +2425,7 @@
 				1AEF596A1CDAFBF70028651A /* HomeNavController.m in Sources */,
 				1A91BE911CB360D500689AE0 /* UserFirstCell.m in Sources */,
 				1A974C2A1CBE2E5300A92CA4 /* ToolCell.m in Sources */,
+				6885FDA51E31AD33005C5DCB /* cleanUpView.m in Sources */,
 				6814F08D1C9FE86C000FD40B /* MJRefreshBackNormalFooter.m in Sources */,
 				6852D24F1E0ABB2500CA55D6 /* readView.m in Sources */,
 				1A91BE7D1CB360D500689AE0 /* SectionData.m in Sources */,

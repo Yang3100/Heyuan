@@ -41,4 +41,9 @@
  */
 + (BOOL)clearCache;
 
+/**
+ *  计算出文件的大小
+ */
++ (unsigned long long)fileSize;
+
 @end
