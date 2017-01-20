@@ -32,6 +32,17 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var touchView = UIView()
     var backImageView = UIImageView()
     
+    var fontView = UIView()
+    var fontP = UIButton()
+    var fontS = UIButton()
+    var fontL = UILabel()
+    
+    var backView = UIView()
+    var backSet1 = UIButton()
+    var backSet2 = UIButton()
+    var backSet3 = UIButton()
+    var backSet4 = UIButton()
+    
     var isLightStyle:Bool = true  // 是否为日间模式
     
     private var kj_total:Int = 0  // 章节总数
@@ -206,22 +217,91 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         touchView.isHidden = true
         self.view!.addSubview(touchView)
         
-        lightView = UIView.init(frame: MY_CGRECT(x: SCREEN_WIDTH * 2 / 9, y: SCREEN_HEIGHT * 7 / 8 - 20, width: SCREEN_WIDTH * 5 / 9, height: 30))
-        lightView.backgroundColor = UIColor.white
+        lightView = UIView.init(frame: MY_CGRECT(x: 0, y: SCREEN_HEIGHT * 7
+            / 8 - 49, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 8))
+        lightView.backgroundColor = UIColor.init(patternImage: UIImage.init(named: "亮度子页背景")!)
         lightView.alpha = 0
         
+        let an = UIImageView.init(frame: MY_CGRECT(x: 0, y: 0, w: 20, h: 20))
+        an.image = UIImage.init(named: "亮度左")
+        an.center = CGPoint.init(x: 10+an.frame.size.width/2, y: lightView.frame.size.height/2)
+        lightView.addSubview(an)
+        
+        let liang = UIImageView.init(frame: MY_CGRECT(x: 0, y: 0, w: 30, h: 30))
+        liang.image = UIImage.init(named: "亮度右")
+        liang.center = CGPoint.init(x: screenWidth-10-liang.frame.size.width/2, y: lightView.frame.size.height/2)
+        lightView.addSubview(liang)
+        
         //TODO: Slider.size修改
-        lightSlider = UISlider.init(frame: MY_CGRECT(x: 0, y: 0, width: SCREEN_WIDTH * 5 / 9, height: 30))
-        lightSlider.backgroundColor = UIColor.blue
-        lightSlider.setThumbImage(self.originImage(image:UIImage(named:"设置")!, size: CGSize(width:20,height:20)), for: .normal)
+        lightSlider = UISlider.init(frame: MY_CGRECT(x: SCREEN_WIDTH / 9, y: SCREEN_HEIGHT / 16.0 - 15, width: SCREEN_WIDTH * 7 / 9, height: 30))
+//        lightSlider.backgroundColor = UIColor.blue
+//        lightSlider.setThumbImage(self.originImage(image:UIImage(named:"设置")!, size: CGSize(width:20,height:20)), for: .normal)
         lightSlider.addTarget(self, action: #selector(self.controlBright), for: .valueChanged)
+        lightSlider.setThumbImage(UIImage.init(named: "圆"), for: .normal)
+        lightSlider.setMinimumTrackImage(UIImage.init(named: "liang"), for: .normal)
+        lightSlider.setMaximumTrackImage(UIImage.init(named: "hui"), for: .normal)
         lightView.addSubview(lightSlider)
         self.view!.addSubview(lightView)
         
-        setView.frame = MY_CGRECT(x: SCREEN_WIDTH * 5 / 9 - 30, y: 420, width: SCREEN_WIDTH * 4 / 9, height: 175)
+        
+        setView.frame = MY_CGRECT(x: 0, y: SCREEN_HEIGHT*4 / 5 - 49, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 5)
         setView.alpha = 0
-        setView.backgroundColor = UIColor.white
+        setView.backgroundColor = UIColor.init(patternImage: UIImage.init(named: "设置子页背景")!)
         self.view!.addSubview(setView)
+        
+        fontView = UIView.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth, h: 50))
+        
+        fontView = UIView.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth, h: 50))
+//        fontView.backgroundColor = RED
+        setView.addSubview(fontView)
+        
+        fontP = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        fontP.setImage(UIImage.init(named: "加"), for: .normal)
+        fontP.center = CGPoint.init(x: screenWidth * 9 / 10 - 10, y: 25)
+//        fontP.backgroundColor = GREEN
+        fontView.addSubview(fontP)
+        
+        fontL = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10, h: 30))
+        fontL.text = "18"
+        fontL.textAlignment = NSTextAlignment.center
+        fontL.center = CGPoint.init(x: screenWidth * 15 / 20 - 10, y: 25)
+//        fontL.backgroundColor = GREEN
+        fontL.tintColor = LIGHT
+        fontView.addSubview(fontL)
+        
+        let fontF = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10 + 5, h: 30))
+        fontF.text = "字号:"
+        fontF.textAlignment = NSTextAlignment.center
+        fontF.center = CGPoint.init(x: screenWidth * 13 / 20 - 10, y: 25)
+//        fontF.backgroundColor = GREEN
+        fontView.addSubview(fontF)
+        
+        let fontT = UIImageView.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 16))
+        fontT.center = CGPoint.init(x: screenWidth / 10 + 10, y: 25)
+        fontT.image = UIImage.init(named: "字体调节")
+        fontView.addSubview(fontT)
+        
+        fontS = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        fontS.setImage(UIImage.init(named: "减"), for: .normal)
+        fontS.contentMode = UIViewContentMode.scaleAspectFill
+        fontS.tintColor = LIGHT
+        fontS.center = CGPoint.init(x: screenWidth * 5 / 10 - 10, y: 25)
+//        fontS.backgroundColor = GREEN
+        fontView.addSubview(fontS)
+        
+        let line = UIView.init(frame: MY_CGRECT(x: 0, y: 49, w: screenWidth, h: 1))
+        line.backgroundColor = UIColor.init(patternImage: UIImage.init(named: "分割线")!)
+        fontView.addSubview(line)
+        
+        backView = UIView.init(frame: MY_CGRECT(x: 0, y: 90, w: screenWidth, h: setView.frame.size.height - 50))
+//        setView.backgroundColor = GREEN
+        setView.addSubview(backView)
+        
+        backSet1 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        backSet2 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        backSet3 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        backSet4 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        
     }
     
     func originImage(image:UIImage,size:CGSize)->(UIImage) {
