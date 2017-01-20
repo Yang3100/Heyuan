@@ -324,8 +324,8 @@
                              nil];
         BookData *bookData = [[BookData alloc] initWithDic:dic];
         [_allBook addObject:bookData];
+        [_allBookAndID setObject:[NSString stringWithFormat:@"%d",_allBookAndID.count / 2] forKey:bookData.bookID];
         [_allBookAndID setObject:bookData forKey:[NSString stringWithFormat:@"%d",_allBookAndID.count / 2]];
-        [_allBookAndID setObject:[NSNull null] forKey:sArr[0]];
         NSLog(@"%@",bookDic);
         //        NSLog(@"%d",bookDic[@"isMyBook"]);
         if ([bookDic[@"isMyBook"] doubleValue] != 0.0) {

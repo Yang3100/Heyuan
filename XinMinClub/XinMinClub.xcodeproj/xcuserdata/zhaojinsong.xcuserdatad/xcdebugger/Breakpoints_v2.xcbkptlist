@@ -147,13 +147,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XinMinClub/Home/Library/Controller/HeyuanViewController.m"
-            timestampString = "506507068.681632"
+            filePath = "XinMinClub/Home/DataModel/DataModel.m"
+            timestampString = "506571577.592546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-getData"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
+            landmarkName = "-addRecommandLibrary:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
