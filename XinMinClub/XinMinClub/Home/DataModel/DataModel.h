@@ -144,6 +144,8 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (void)getAllRecentPlaySection;
 // 加入推荐文集
 - (BOOL)addRecommandLibrary:(NSDictionary *)dic;
+// 取得推荐文集
+- (void)getRecommand:(NSDictionary *)dic;
 // 加入最近播放章节
 - (void)addRecentPlay:(NSDictionary *)dic;
 // 取得所有章节

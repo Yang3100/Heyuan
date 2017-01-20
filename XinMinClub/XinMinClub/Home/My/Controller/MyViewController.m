@@ -100,7 +100,7 @@ static NSString * defaultIdentifier = @"cell";
     [self.refreshHeaderView addRefreshingBlock:^{
         // you can do some net request or other refresh operation
         // ...
-        [weakUserModel_ getRecommend];
+//        [weakUserModel_ getRecommend];
         // here simulate do some refresh operation,and after 3s refresh complate
         double delayTime = 1.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, delayTime * NSEC_PER_SEC);
@@ -126,7 +126,11 @@ static NSString * defaultIdentifier = @"cell";
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:2];
         [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
+    
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+    [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+    
+    indexSet = [NSIndexSet indexSetWithIndex:3];
     [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -379,7 +383,11 @@ static NSString * defaultIdentifier = @"cell";
         forthCell_ = (ForthTableViewCell *)cell;
         forthCell_.backView.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
         forthCell_.delegate = self;
-        forthCell_.recommencArray = dataModel_.recommandBook;
+        NSMutableArray *a = [NSMutableArray arrayWithCapacity:10];
+        for (int i = 0; i < dataModel_.recommandBookAndID.count / 2; i++) {
+             [a addObject:[dataModel_.recommandBookAndID objectForKey:[NSString stringWithFormat:@"%d",i]]];
+        }
+        forthCell_.recommencArray = a;
         [forthCell_.recommendTable roundedRectWithConerRadius:5 BorderWidth:0 borderColor:nil];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -397,7 +405,10 @@ static NSString * defaultIdentifier = @"cell";
 #pragma mark RecommendDelegate
 
 - (void)recommendTable:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"点击了推荐");
+    BookData *data = [dataModel_.recommandBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+//    NSLog(@"%d",indexPath.row);
+    //    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
+    [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
 }
 
 #pragma mark Action

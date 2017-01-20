@@ -393,6 +393,28 @@
     return YES;
 }
 
+- (void)getRecommand:(NSDictionary *)dic {
+    NSDictionary *dii = dic;
+    
+    NSString *url = [dii valueForKey:@"ADV_URL"];
+    
+    NSString *wjID = [url substringFromIndex:3];
+    // 获取章节列表
+    NSDictionary *dict = @{@"ID":wjID};
+    NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WeiJi_FromID", @"Params":dict}];
+    [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDict) {
+        NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
+        // 主线程执行
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary *dica = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_WenJI"][0];
+            [[DataModel defaultDataModel] addAllLibrary:dica];
+            
+            [DATA_MODEL addRecommandLibrary:dica];
+        });
+    }];
+
+}
+
 - (BOOL)addRecommandLibrary:(NSDictionary *)dic {
     
     if ([[_recommandBookAndID allKeys] containsObject:[dic valueForKey:@"WJ_ID"]]) {
@@ -405,8 +427,8 @@
     } else {
         
     }
-    [_recommandBookAndID setObject:[NSString stringWithFormat:@"%ld",_recommandBookAndID.count / 2] forKey:data.bookID];
-    [_recommandBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recommandBookAndID.count / 2]];
+    [_recommandBookAndID setObject:[NSString stringWithFormat:@"%lu",_recommandBookAndID.count / 2] forKey:data.bookID];
+    [_recommandBookAndID setObject:data forKey:[NSString stringWithFormat:@"%lu",_recommandBookAndID.count / 2]];
     _addRecommand = YES;
     
     [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
