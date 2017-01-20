@@ -18,6 +18,7 @@
 - (void)requestTaskDidUpdateCache; //更新缓冲进度代理方法
 
 @optional
+
 - (void)requestTaskDidReceiveResponse;
 - (void)requestTaskDidFinishLoadingWithCache:(BOOL)cache;
 - (void)requestTaskDidFailWithError:(NSError *)error;

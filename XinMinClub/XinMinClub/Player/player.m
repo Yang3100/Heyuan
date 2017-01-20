@@ -164,7 +164,7 @@
         CMTimeRange timeRange = [array.firstObject CMTimeRangeValue]; //本次缓冲的时间范围
         NSTimeInterval totalBuffer = CMTimeGetSeconds(timeRange.start) + CMTimeGetSeconds(timeRange.duration); //缓冲总长度
         self.cacheValue = totalBuffer/CMTimeGetSeconds(songItem.duration);
-        NSLog(@"共缓冲%.2f",totalBuffer);
+        NSLog(@"共缓冲%.2f",self.cacheValue);
     }
     
 //    if ([keyPath isEqualToString:@"rate"]) {
@@ -203,7 +203,8 @@
 
 #pragma mark - SULoaderDelegate
 - (void)loader:(SUResourceLoader *)loader cacheProgress:(CGFloat)progress {
-    self.cacheValue = progress;
+//    self.cacheValue = progress;
+//    NSLog(@"*********共缓冲%.2f",progress);
 }
 
 #pragma mark - Property Set

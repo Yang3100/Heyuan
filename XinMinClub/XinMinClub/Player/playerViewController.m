@@ -201,19 +201,19 @@
     [self.view addSubview:self.menuBack];
     [_menuBack addSubview:self.menuTable];
     
-//    // 右侧消息按钮
-//    UIImage *leftImage = [[UIImage imageNamed:@"sangedian"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(leftAction)];
-//    self.navigationItem.rightBarButtonItem = leftButtonItem;
+    // 右侧消息按钮
+    UIImage *leftImage = [[UIImage imageNamed:@"sangedian"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(leftAction)];
+    self.navigationItem.rightBarButtonItem = leftButtonItem;
 }
 
-//- (void)leftAction{
+- (void)leftAction{
 //    BOOL clear = [player clearCache];
 //    if (clear) {
 //        [SVProgressHUD showSuccessWithStatus:@"清除歌曲缓存成功!!!"];
 //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:2.5f];
 //    }
-//}
+}
 
 - (lyricView*)lyricTableView{
     if (!_lyricTableView) {
@@ -416,7 +416,7 @@
 - (UIView *)menuBack {
     if (!_menuBack) {
         _menuBack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _menuBack.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+        _menuBack.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         _menuBack.hidden = YES;
         UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backTap)];
         ges.delegate = self;
@@ -429,11 +429,12 @@
     if (!_menuTable) {
         CGFloat width = SCREEN_WIDTH;
         CGFloat height = SCREEN_HEIGHT * 2 / 5;
-        _menuTable = [[UITableView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-height, width, height) style:UITableViewStyleGrouped];
+        _menuTable = [[UITableView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, width, height) style:UITableViewStyleGrouped];
         _menuTable.backgroundColor = RGB255_COLOR(213.0,186.0,139.0,0.95);
         _menuTable.delegate = self;
         _menuTable.dataSource = self;
         _menuTable.tableHeaderView = nil;
+        [_menuTable setSeparatorColor:[UIColor colorWithWhite:0 alpha:0.1]];  // 设置横线颜色
     }
     return _menuTable;
 }
@@ -446,7 +447,13 @@
     NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
     NSString *urlString = [dict valueForKey:@"GJ_NAME"];
     cell.textLabel.text = urlString;
+    if (_touchNum==indexPath.row) {
+        [cell.textLabel setTextColor:RGB255_COLOR(247.0, 47.0, 43.0, 1.0)];
+    }else{
+        [cell.textLabel setTextColor:RGB255_COLOR(45.0, 45.0, 45.0, 1.0)];
+    }
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -465,7 +472,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //    [self next:indexPath];
     self.touchNum = indexPath.row;
-    _menuBack.hidden = YES;
+    [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.menuTable.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT * 2 / 5);
+    } completion:^(BOOL finished) {
+        _menuBack.hidden = YES;
+    }];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -477,7 +488,11 @@
 
 #pragma mark Action
 - (void)backTap {
-    _menuBack.hidden = YES;
+    [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.menuTable.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT * 2 / 5);
+    } completion:^(BOOL finished) {
+        _menuBack.hidden = YES;
+    }];
 }
 
 - (IBAction)share:(UIButton *)sender {
@@ -554,9 +569,14 @@
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
 }
 
--(IBAction)menuButton:(UIButton*)sender {
+- (IBAction)menuButton:(UIButton*)sender {
     _menuBack.hidden = NO;
-    [self.view bringSubviewToFront:_menuBack];
+    [self.view bringSubviewToFront:self.menuBack];
+    [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.menuTable.frame = CGRectMake(0, SCREEN_HEIGHT-SCREEN_HEIGHT * 2 / 5, SCREEN_WIDTH, SCREEN_HEIGHT * 2 / 5);
+    } completion:^(BOOL finished) {
+        [self.menuTable reloadData];
+    }];
 }
 #pragma mark 循环状态
 - (IBAction)round:(UIButton*)sender {
@@ -629,6 +649,16 @@
     [self setNowPlayingInfo];
 }
 
+// 设置那边的定时器
+- (void)timerForSetIsStop:(BOOL)stop{
+    if (stop) {
+        self.isPlay=NO;
+        [_kj_player pause]; // 暂停
+        [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
+        [self.playButton setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];
+    }
+    [self setNowPlayingInfo];
+}
 
 #pragma mark - 自定义方法
 
@@ -778,13 +808,13 @@ bool isObserve = YES;
 
 - (void)updateSongInfoShow {
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
+    self.currentLyricNum = 0; // 歌词位置清零
     NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
     [self.authorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
     self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
     self.progress.value = 0;
-    self.currentLyricNum = 0; // 歌词位置清零
     [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
     
     _kj_player.isPlayComplete = NO; // 播放状态

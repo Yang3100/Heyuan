@@ -10,8 +10,6 @@
 #import "MyViewController.h"
 #import "HeyuanViewController.h"
 
-
-
 @interface HomeViewController () <SetViewDelegate, MyDelegate> {
     SetViewController *setVC;
     MyViewController *myViewController;
@@ -197,7 +195,6 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
-//    [[LoadAnimation defaultDataModel] startLoadAnimation];
 }
 
 // toolBar上面的按钮
