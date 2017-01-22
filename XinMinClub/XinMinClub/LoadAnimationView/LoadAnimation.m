@@ -52,12 +52,12 @@
 #pragma mark 视图布局
 - (void)initView{
     backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    backView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+    backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     [[self appRootViewController].view addSubview:backView];
     UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backTap)];
 //    ges.delegate = self;
     [backView addGestureRecognizer:ges];
-    [self gifPlay6];
+//    [self gifPlay6];
 }
 
 //- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -70,6 +70,7 @@
 #pragma mark Action
 - (void)backTap {
     backView.alpha = 0;
+    [SVProgressHUD dismiss];
 }
 
 /**   
@@ -79,14 +80,14 @@
  */
 -(void)gifPlay6 {
     UIImage *image=[UIImage sd_animatedGIFNamed:@"load"];
-    gifview = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,image.size.width, image.size.height)];
+    gifview = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,image.size.width*1.5, image.size.height*1.5)];
     gifview.center = backView.center;
     gifview.backgroundColor=[UIColor clearColor];
     gifview.image=image;
-    UIView *avi = [[UIView alloc] init];
-    avi.frame = CGRectMake(0,0,image.size.width/2, image.size.height/2);
+    UIImageView *avi = [[UIImageView alloc] init];
+    avi.frame = CGRectMake(0,0,SCREEN_WIDTH/4, SCREEN_WIDTH/6);
     avi.center = backView.center;
-    avi.backgroundColor = RGB255_COLOR(238, 224, 160, 1);
+    avi.image = [UIImage imageNamed:@"diban-"];
     
     [backView addSubview:avi];
     [backView addSubview:gifview];
@@ -116,13 +117,25 @@
 
 - (void)startLoadAnimation{
     backView.alpha = 1;
+//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
+//    [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
 }
 
 - (void)endLoadAnimation{
     [delaySection delay:0.5 task:^{  // 延时1秒执行
         backView.alpha = 0;
+        [SVProgressHUD dismiss];
     }];
 }
+//- (void)success {
+//    [SVProgressHUD showSuccessWithStatus:@"Clean Up!"];
+//    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
+//}
+//
+//- (void)dismiss {
+//    [SVProgressHUD dismiss];
+//}
 
 #pragma mark SDWeb相关
 //清除缓存

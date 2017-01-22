@@ -463,11 +463,8 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     func clickRightButton() {
         print("nisagho")
         let shareBut = ShareView()
-        shareBut.setShareContent = .ShareMusic
-        shareBut.title = "title"
-        shareBut.describe = "这是一段简单的描述"
-        shareBut.thumbImage = networkPictureUrl_swift
-        shareBut.musicUrl = "http://mp3.haoduoge.com/s/2016-05-03/1462273909.mp3"
+        shareBut.setShareContent = .ShareText
+        shareBut.text = "标题:" + (kj_dict["GJ_NAME"] as! String) + "\n\n" + "        " + (kj_dict["GJ_CONTENT_CN"] as! String);
         self.view.addSubview(shareBut)
     }
     

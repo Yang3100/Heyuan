@@ -121,6 +121,7 @@ import UIKit
                     else if self.kunKaiguan == true &&  self.qianKaiguan == false{
                         self.xuImageView.image = UIImage(named:"heile")
                         self.startAnimation()
+//                        self.startAnimation2()
                         self.disappearView()
                     }
                 })
@@ -157,6 +158,7 @@ import UIKit
                     else if self.kunKaiguan == false &&  self.qianKaiguan == true{
                         self.xuImageView.image = UIImage(named:"heile")
                         self.startAnimation()
+//                        self.startAnimation2()
                         self.disappearView()
                     }
                 })
@@ -173,6 +175,7 @@ import UIKit
     }
     
     private var angle:Float = 0
+    private var angle2:Float = 0
     func startAnimation() {
         UIView.beginAnimations(nil, context:nil)
         UIView.setAnimationDuration(0.03)
@@ -184,15 +187,32 @@ import UIKit
         UIView.commitAnimations()
     }
     
+    func startAnimation2() {
+        UIView.beginAnimations(nil, context:nil)
+        UIView.setAnimationDuration(0.06)
+        UIView.setAnimationDelegate(self)
+        //        UIView.setAnimationDidStop(#selector(self.endAnimation2))
+        let rotationAngle = angle2 * Float(M_PI)/180.0
+        xuImageView.transform = .init(rotationAngle:CGFloat(rotationAngle))
+        UIView.commitAnimations()
+    }
+    
+    private var angle3:Float = 0
     func endAnimation() {
-        angle -= 15
-        if angle <= -375 {
-            UIView.animate(withDuration:0.8, animations: {() -> Void in
+        angle -= 5
+        angle2 = angle2 + angle3
+        angle3 += 0.23
+        if angle <= -365 {
+            UIView.animate(withDuration:1, animations: {() -> Void in
+//                self.xuImageView.isHidden = true
+//                self.qianImageView.isHidden = true
+//                self.kunImageView.isHidden = true
+//                self.backVw.isHidden = true    // 八卦后面的背景
+//                self.qianView.isHidden = true  // 乾卦后面的背景
+//                self.kunView.isHidden = true   // 坤卦后面的背景
                 self.yangImageView.center = CGPoint(x:-screenWidth/2, y:self.yangImageView.center.y)
                 self.yinImageView.center = CGPoint(x:screenWidth+screenWidth/2, y:self.yinImageView.center.y)
-                self.backVw.isHidden = true    // 八卦后面的背景
-                self.qianView.isHidden = true  // 乾卦后面的背景
-                self.kunView.isHidden = true   // 坤卦后面的背景
+                self.alpha = 0
             },completion: {(_ finished: Bool) -> Void in
                 // 延时执行
                _ = delaySection.delay(0.2, task: {
@@ -202,13 +222,16 @@ import UIKit
             return
         }
         self.startAnimation()
+        self.startAnimation2()
     }
-
+    
     func disappearView() {
         UIView.animate(withDuration:2, animations: {() -> Void in
-            self.xuImageView.isHidden = true
-            self.qianImageView.isHidden = true
             self.kunImageView.isHidden = true
+            self.qianImageView.isHidden = true
+//            self.xuImageView.isHidden = true
+//            self.qianImageView.isHidden = true
+//            self.kunImageView.isHidden = true
         })
     }
     

@@ -57,6 +57,8 @@
 #define guangGaocachePicture ([UIImage imageNamed:@"taoci.jpg"])   // 广告占位图
 #define wenjicachePicture ([UIImage imageNamed:@"taoci.jpg"])   // 文集占位图
 
+#define networkCachePicture (@"http://www.kingwant.com/Images/app_touxaing.png")
+
 #define RGB_MAX 255.0
 #define RGB255_COLOR(r,g,b,a) [UIColor colorWithRed:((r)/RGB_MAX) green:((g)/RGB_MAX) blue:((b)/RGB_MAX) alpha:a]
 
