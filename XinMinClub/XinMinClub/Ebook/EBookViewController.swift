@@ -43,6 +43,8 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var backSet3 = UIButton()
     var backSet4 = UIButton()
     
+    var fontSize = 18
+    
     var isLightStyle:Bool = true  // 是否为日间模式
     
     private var kj_total:Int = 0  // 章节总数
@@ -259,6 +261,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         fontP.setImage(UIImage.init(named: "加"), for: .normal)
         fontP.center = CGPoint.init(x: screenWidth * 9 / 10 - 10, y: 25)
 //        fontP.backgroundColor = GREEN
+        fontP.addTarget(self, action: #selector(p), for: .touchUpInside)
         fontView.addSubview(fontP)
         
         fontL = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10, h: 30))
@@ -266,7 +269,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         fontL.textAlignment = NSTextAlignment.center
         fontL.center = CGPoint.init(x: screenWidth * 15 / 20 - 10, y: 25)
 //        fontL.backgroundColor = GREEN
-        fontL.tintColor = LIGHT
+        fontL.textColor = LIGHT
         fontView.addSubview(fontL)
         
         let fontF = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10 + 5, h: 30))
@@ -274,6 +277,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         fontF.textAlignment = NSTextAlignment.center
         fontF.center = CGPoint.init(x: screenWidth * 13 / 20 - 10, y: 25)
 //        fontF.backgroundColor = GREEN
+        fontF.textColor = LIGHT
         fontView.addSubview(fontF)
         
         let fontT = UIImageView.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 16))
@@ -284,24 +288,102 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         fontS = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
         fontS.setImage(UIImage.init(named: "减"), for: .normal)
         fontS.contentMode = UIViewContentMode.scaleAspectFill
-        fontS.tintColor = LIGHT
         fontS.center = CGPoint.init(x: screenWidth * 5 / 10 - 10, y: 25)
 //        fontS.backgroundColor = GREEN
+        fontS.addTarget(self, action: #selector(s), for: .touchUpInside)
         fontView.addSubview(fontS)
         
         let line = UIView.init(frame: MY_CGRECT(x: 0, y: 49, w: screenWidth, h: 1))
         line.backgroundColor = UIColor.init(patternImage: UIImage.init(named: "分割线")!)
         fontView.addSubview(line)
         
-        backView = UIView.init(frame: MY_CGRECT(x: 0, y: 90, w: screenWidth, h: setView.frame.size.height - 50))
-//        setView.backgroundColor = GREEN
+        backView = UIView.init(frame: MY_CGRECT(x: 0, y: 50, w: screenWidth, h:  screenHeight / 5 - 50))
+//        backView.backgroundColor = GREEN
+        
+        let margin = screenWidth * 3 / 7 / 5.0
+        
         setView.addSubview(backView)
         
-        backSet1 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
-        backSet2 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
-        backSet3 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
-        backSet4 = UIButton.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 5, h: 30))
+        backSet1 = UIButton.init(frame: MY_CGRECT(x: margin, y: 5, w: screenWidth / 7, h: screenWidth / 7))
+        backSet2 = UIButton.init(frame: MY_CGRECT(x: screenWidth / 7 + 2 * margin, y: 5, w: screenWidth / 7, h: screenWidth / 7))
+        backSet3 = UIButton.init(frame: MY_CGRECT(x: screenWidth * 2 / 7 + 3*margin, y: 5, w: screenWidth / 7, h: screenWidth / 7))
+        backSet4 = UIButton.init(frame: MY_CGRECT(x: screenWidth * 3 / 7 + 4 * margin, y: 5, w: screenWidth / 7, h: screenWidth / 7))
+//        backSet1.backgroundColor = DARK
+//        backSet2.backgroundColor = DARK
+//        backSet3.backgroundColor = DARK
+//        backSet4.backgroundColor = DARK
+        backSet1.setBackgroundImage(UIImage.init(named: "护眼"), for: .normal)
+        backSet2.setBackgroundImage(UIImage.init(named: "日间模式"), for: .normal)
+        backSet3.setBackgroundImage(UIImage.init(named: "魅惑"), for: .normal)
+        backSet4.setBackgroundImage(UIImage.init(named: "青"), for: .normal)
+        backSet1.addTarget(self, action: #selector(setAction1), for: .touchUpInside)
+        backSet2.addTarget(self, action: #selector(setAction2), for: .touchUpInside)
+        backSet3.addTarget(self, action: #selector(setAction3), for: .touchUpInside)
+        backSet4.addTarget(self, action: #selector(setAction4), for: .touchUpInside)
+        backView.addSubview(backSet1)
+        backView.addSubview(backSet2)
+        backView.addSubview(backSet3)
+        backView.addSubview(backSet4)
         
+        let vMargin = 5 + backSet1.frame.size.height
+        let height = backView.frame.size.height
+        let lab1 = UILabel.init(frame: MY_CGRECT(x: margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))
+        let lab2 = UILabel.init(frame: MY_CGRECT(x: screenWidth / 7 + 2 * margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))
+        let lab3 = UILabel.init(frame: MY_CGRECT(x: screenWidth * 2 / 7 + 3*margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))
+        let lab4 = UILabel.init(frame: MY_CGRECT(x: screenWidth * 3 / 7 + 4 * margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))
+        lab1.text = "护眼"
+        lab2.text = "牛皮纸"
+        lab3.text = "魅惑"
+        lab4.text = "青"
+        lab1.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
+        lab2.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
+        lab3.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
+        lab4.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
+        lab1.textAlignment = NSTextAlignment.center
+        lab2.textAlignment = NSTextAlignment.center
+        lab3.textAlignment = NSTextAlignment.center
+        lab4.textAlignment = NSTextAlignment.center
+        backView.addSubview(lab1)
+        backView.addSubview(lab2)
+        backView.addSubview(lab3)
+        backView.addSubview(lab4)
+        
+    }
+    
+    func p() {
+        if fontSize == 28 {
+            return
+        }
+        fontSize += 1
+        textView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+    }
+    
+    func s() {
+        if fontSize == 15 {
+            return
+        }
+        fontSize -= 1
+        textView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+    }
+    
+    func setAction1() {
+        let backImage = UIImage(named:"护眼")!
+        backImageView.image = backImage
+    }
+    
+    func setAction2() {
+        let backImage = UIImage(named:"日间模式")!
+        backImageView.image = backImage
+    }
+    
+    func setAction3() {
+        let backImage = UIImage(named:"魅惑")!
+        backImageView.image = backImage
+    }
+    
+    func setAction4() {
+        let backImage = UIImage(named:"青")!
+        backImageView.image = backImage
     }
     
     func originImage(image:UIImage,size:CGSize)->(UIImage) {
