@@ -18,7 +18,7 @@
 
 
 
-//清除缓存
+//清除图片缓存
 - (void)clearTmpPics;
 
 @end

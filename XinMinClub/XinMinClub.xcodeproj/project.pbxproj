@@ -288,6 +288,7 @@
 		68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */; };
 		68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */; };
 		68C79A441E176F0800AB642F /* kjplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C79A421E176F0800AB642F /* kjplay.png */; };
+		68C882B81E31FE94000CDB34 /* diban-.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C882B71E31FE94000CDB34 /* diban-.png */; };
 		68C97FA81E2785FB00D5DB9D /* 底@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C97FA61E2785FB00D5DB9D /* 底@2x.png */; };
 		68C97FA91E2785FB00D5DB9D /* 确定.png in Resources */ = {isa = PBXBuildFile; fileRef = 68C97FA71E2785FB00D5DB9D /* 确定.png */; };
 		68DB36661E1DF3C400DD53D3 /* 乐水.png in Resources */ = {isa = PBXBuildFile; fileRef = 68DB36491E1DF3C400DD53D3 /* 乐水.png */; };
@@ -799,6 +800,7 @@
 		68C79A3D1E176BAC00AB642F /* actionbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionbutton@2x.png"; sourceTree = "<group>"; };
 		68C79A3F1E176C3900AB642F /* add_user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_user_icon@2x.png"; sourceTree = "<group>"; };
 		68C79A421E176F0800AB642F /* kjplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kjplay.png; sourceTree = "<group>"; };
+		68C882B71E31FE94000CDB34 /* diban-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diban-.png"; sourceTree = "<group>"; };
 		68C97FA61E2785FB00D5DB9D /* 底@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "底@2x.png"; sourceTree = "<group>"; };
 		68C97FA71E2785FB00D5DB9D /* 确定.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "确定.png"; sourceTree = "<group>"; };
 		68DB36491E1DF3C400DD53D3 /* 乐水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "乐水.png"; sourceTree = "<group>"; };
@@ -1982,6 +1984,7 @@
 				68DC28AC1E1E1885005EF62B /* LoadAnimation.h */,
 				68DC28AD1E1E1885005EF62B /* LoadAnimation.m */,
 				68DC28B11E1E1FFA005EF62B /* load.gif */,
+				68C882B71E31FE94000CDB34 /* diban-.png */,
 			);
 			path = LoadAnimationView;
 			sourceTree = "<group>";
@@ -2334,6 +2337,7 @@
 				6843BD031E16E2BE00D63FD7 /* playLiked.png in Resources */,
 				68DB367E1E1DF3C400DD53D3 /* 自在.png in Resources */,
 				68DB36A41E1DF93000DD53D3 /* 玉虛.png in Resources */,
+				68C882B81E31FE94000CDB34 /* diban-.png in Resources */,
 				680F4BB01E2DD8CE002C1866 /* daididefanhui2@2x.png in Resources */,
 				68C79A3E1E176BAC00AB642F /* actionbutton@2x.png in Resources */,
 				680F4BB21E2E0324002C1866 /* Navigation_BackgroundImage.png in Resources */,
