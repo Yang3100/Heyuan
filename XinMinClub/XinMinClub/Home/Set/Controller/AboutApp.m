@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"关于软件";
+    self.title = @"关于和源";
     [self.view addSubview:[self backView]];
     [self.view addSubview:[self textView]];
 }
@@ -45,8 +45,7 @@
 }
 
 
-- (UITextView *)textView
-{
+- (UITextView *)textView{
     if (!textView_) {
         textView_ = [UITextView new];
         CGFloat x = 0;
@@ -55,9 +54,9 @@
         CGFloat h = [UIScreen mainScreen].bounds.size.height;
         textView_.frame = CGRectMake(x,y,w / 2,h / 5);
         textView_.center = backView_.center;
-        textView_.text = @"我的网站\
-                          http://kingwant.com\
-                          你可以登录网站了解更多关于我们的信息";
+        textView_.text = @"有任何意见或者建议请发送到我们的邮箱\
+                          support@kingwant.com\
+                          谢谢！";
         textView_.font = [UIFont systemFontOfSize:16];
         textView_.textAlignment = NSTextAlignmentCenter;
         textView_.backgroundColor = [UIColor clearColor];

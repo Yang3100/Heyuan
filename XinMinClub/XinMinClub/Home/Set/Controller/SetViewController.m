@@ -67,7 +67,7 @@
     
     self.title = @"设置";
     setArr = @[@"个人资料",@"定时关闭",@"默认语言",@"清除缓存"];
-    setArr1 = @[@"退出登录",@"关于软件",@"帮助"];
+    setArr1 = @[@"退出登录",@"关于"];
     setArr2 = @[@"",@"",@""];
     [self.view addSubview:self.setTableView];
     [self choiceAlert];
@@ -408,12 +408,12 @@ static NSString *setCellIdentifier = @"setCell";
             }
             [self.navigationController pushViewController:aboutApp animated:YES];
         }
-        if (indexPath.row == 2) {
-            if (!help) {
-                help = [[Help alloc] init];
-            }
-            [self.navigationController pushViewController:help animated:YES];
-        }
+//        if (indexPath.row == 2) {
+//            if (!help) {
+//                help = [[Help alloc] init];
+//            }
+//            [self.navigationController pushViewController:help animated:YES];
+//        }
     }
 }
 
