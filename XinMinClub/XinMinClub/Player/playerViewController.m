@@ -84,7 +84,8 @@
     getDataWay = NO;
     total=1;
     kj_dict = dict;
-    [_currentSongs addObject:dict];
+    NSArray *arr = @[dict];
+    [_currentSongs addObjectsFromArray:arr];
     [self.menuTable reloadData];
 }
 
@@ -92,7 +93,7 @@
 - (void)getJson:(NSDictionary *)json{
     jsonDict = json;
     getDataWay = YES;
-    NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
+//    NSLog(@"xxxxxxxxxxxxxxxxxjsonDict:%@",jsonDict);
     NSNumber *num = [[jsonDict valueForKey:@"RET"] valueForKey:@"Record_Count"];
     total = num.intValue;
     NSArray *arr = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"];
@@ -444,8 +445,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
-    NSString *urlString = [dict valueForKey:@"GJ_NAME"];
+    NSString *urlString = [kj_dict valueForKey:@"GJ_NAME"];
     cell.textLabel.text = urlString;
     if (_touchNum==indexPath.row) {
         [cell.textLabel setTextColor:RGB255_COLOR(247.0, 47.0, 43.0, 1.0)];

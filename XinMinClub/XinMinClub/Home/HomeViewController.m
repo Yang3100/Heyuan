@@ -195,7 +195,7 @@
 // 点击播放按钮
 - (void)PlayAction:(UIButton *)button {
     NSLog(@"点击了商城按钮");
-    [[LoadAnimation defaultDataModel] startLoadAnimation];
+//    [[LoadAnimation defaultDataModel] startLoadAnimation];
 }
 
 // toolBar上面的按钮
