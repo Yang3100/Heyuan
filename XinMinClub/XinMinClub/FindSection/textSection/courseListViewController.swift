@@ -113,7 +113,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     private lazy var headerImage : UIImageView = {
         let hi = UIImageView()
         hi.frame = CGRect(x:15, y:8+navigationBarHeight, width:screenWidth-30, height:44)
-        hi.image = UIImage(named:"header")
+        hi.image = cachePicture_350x44
         
         return hi
     }()
@@ -172,6 +172,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let wvc =  WebViewController()
+        wvc.teacher = (findDict.value(forKey:"KC_CONTENT") as? String)!
         wvc.setDic(dic: self.findDataArray[indexPath.row] as! NSDictionary)
         self.present(wvc, animated: true, completion:nil)
     }

@@ -249,7 +249,7 @@
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(X/2, self.shareButton.frame.origin.y-2*X+X/3, 3*X, 3*X);
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.image = cachePicture;
+        imageView.image = cachePicture_100x100;
         imageView.layer.masksToBounds = YES;
         imageView.layer.borderWidth = 2;
         imageView.layer.cornerRadius = (3*X)/2;
@@ -810,7 +810,7 @@ bool isObserve = YES;
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
     self.currentLyricNum = 0; // 歌词位置清零
     NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
-    [self.authorImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    [self.authorImageView sd_setImageWithURL:url placeholderImage:cachePicture_100x100];
     self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
     self.currentTime.text = @"00:00";
     self.pro.progress = 0; // 缓存进度条
@@ -900,7 +900,7 @@ bool isObserve = YES;
     }
     _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
     NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
-    [_lrcImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    [_lrcImageView sd_setImageWithURL:url placeholderImage:wenjicachePicture];
     
     //获取添加了歌词数据的背景图
     UIGraphicsBeginImageContextWithOptions(_lrcImageView.frame.size, NO, 0.0);

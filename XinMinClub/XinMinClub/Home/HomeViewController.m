@@ -124,7 +124,7 @@
     image1 = [[UIImageView alloc]initWithFrame:CGRectMake(-10, 2.5, th-5, th-5)];
     image1.layer.masksToBounds = YES;
     image1.layer.cornerRadius =  (th-5)/2.0;
-    image1.image = cachePicture;
+    image1.image = cachePicture_100x100;
     label1 = [[UILabel alloc]initWithFrame:CGRectMake(th-8, 0, tw-tw/4-th-2, th/2)];
     label2 = [[UILabel alloc]initWithFrame:CGRectMake(th-4, th/2, tw-tw/4-th-6, th/2)];
     label1.font = [UIFont systemFontOfSize:13];

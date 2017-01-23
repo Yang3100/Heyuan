@@ -43,17 +43,23 @@ class courseCollection: UICollectionView,UICollectionViewDataSource,UICollection
 //    }
     
     private lazy var courseCollectionView : UICollectionView = {
+        let collectionImage:UIImageView = UIImageView(image:UIImage(named:"shuiyin"))
         let ccv = UICollectionView(frame:self.frm!, collectionViewLayout:self.lay!)
-        ccv.backgroundColor = UIColor(red:251/255, green:251/255, blue:251/255, alpha:0.98)
+        ccv.backgroundColor = .clear
+        ccv.backgroundView = collectionImage
+//            UIColor(red:251/255, green:251/255, blue:251/255, alpha:0.98)
         ccv.dataSource = self
         ccv.delegate = self
         ccv.showsHorizontalScrollIndicator = false
         ccv.showsVerticalScrollIndicator = false
         ccv.isScrollEnabled = false
         //设置每一个cell的宽高
-        self.lay!.scrollDirection = .vertical
-        self.lay!.itemSize = CGSize(width:(screenWidth-60)/3, height:(screenWidth-60)*1.5/3)
-        self.lay!.sectionInset = UIEdgeInsetsMake(10, 15, 10, 15)
+        self.lay!.scrollDirection = .vertical  // 竖直滚动
+        let width1:CGFloat = 0.224*screenWidth
+        self.lay!.itemSize = CGSize(width:width1, height:1.744*width1)
+//        self.lay!.minimumInteritemSpacing = 0.07*screenWidth  //水平间隔
+        self.lay!.minimumLineSpacing = screenWidth/22 //垂直行间距
+        self.lay!.sectionInset = UIEdgeInsetsMake(screenWidth/22, screenWidth/10, screenWidth/22, screenWidth/10)  // 设置整个Item的距离边距
         // 注册类
         ccv.register(courseCollectionViewCell.self, forCellWithReuseIdentifier: "courseCollectionViewCell")
         

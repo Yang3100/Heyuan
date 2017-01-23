@@ -9,17 +9,6 @@
 import UIKit
 import Foundation
 
-let ip:String = "http://218.240.52.135"
-//"http://192.168.137.1"
-//
-
-let ipurl:String = "http://218.240.52.135/App/App.ashx"
-//"http://192.168.137.1/App/App.ashx"
-//
-
-let headerIm:UIImage = UIImage(named:"header")!
-let teacherIm:UIImage = UIImage(named:"taoci.jpg")!
-
 
 class courseViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -122,7 +111,7 @@ class courseViewController: UIViewController,UITableViewDataSource,UITableViewDe
             la.font = UIFont(name:"Arial", size:13)
             vi.addSubview(la)
             let xian = UIView()
-            xian.frame = CGRect(x:5,y:26,width:screenWidth-10,height:1)
+            xian.frame = CGRect(x:0,y:27,width:screenWidth,height:1)
             xian.backgroundColor = UIColor(red:181/255, green:181/255, blue:181/255, alpha:0.8)
             vi.addSubview(xian)
             return vi

@@ -28,7 +28,7 @@ class WebViewController: UINavigationController {
         let s = dic.value(forKey: "KCXJ_ID") as! String
 //        http://www.kingwant.com/BizFunction/KC/ZiKeChen/Html/Sys_ZKC_Info.aspx?ID=2b7611cd-a7cc-4efa-a4e1-d38004e1e0b1
         let urlHead = "http://218.240.52.135/m/KC/Html/kc_Info.aspx?ID="
-        let url = NSURL.init(string: urlHead+s)
+        let url = NSURL.init(string:urlHead+s)
         let request = NSURLRequest.init(url: url as! URL)
         workWebView.loadRequest(request as URLRequest)
         
@@ -55,6 +55,27 @@ class WebViewController: UINavigationController {
         lab.text = dataDic.value(forKey:"KCXJ_NAME") as? String
         lab.textAlignment = .center
         self.view.addSubview(lab)
+        
+        let shareImage = UIImage(named:"share_web")
+        let shareNavBar = UIButton(type:.custom)
+        shareNavBar.frame = CGRect(x:screenWidth-40,y:27,width:30,height:30)
+        shareNavBar.setImage(shareImage, for:.normal)
+        shareNavBar.addTarget(self, action:#selector(self.clickRightButton), for:.touchUpInside)
+        
+        self.view.addSubview(shareNavBar)
+    }
+    
+    var teacher:String = ""
+    func clickRightButton() {
+        let shareBut = ShareView()
+        shareBut.setShareContent = .ShareWeb
+        shareBut.title = dataDic.value(forKey: "KCXJ_NAME") as! String
+        let string_1 = "http://218.240.52.135/m/KC/Html/kc_Info.aspx?ID="
+        let string_2 = dataDic.value(forKey: "KCXJ_ID") as! String
+        shareBut.webUrl = string_1 + string_2
+        shareBut.thumbImage = networkPictureUrl_swift
+        shareBut.describe = teacher
+        self.view.addSubview(shareBut)
     }
     
     func buttonAction2(sender:UIButton) {

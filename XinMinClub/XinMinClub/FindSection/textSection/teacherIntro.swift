@@ -57,7 +57,7 @@ class teacherIntro: UIView {
         imag.frame = CGRect(x:10, y:laa.frame.origin.y+30, width:60, height:60)
         let imageString:String = ip + (self.dict.value(forKey:"KC_TITLE_IMG") as? String)!
         let url:URL = URL(string:imageString)!
-        imag.sd_setImage(with:url, placeholderImage:teacherIm)
+        imag.sd_setImage(with:url, placeholderImage:cachePicture_100x100)
 //        imag.image = UIImage(named:"15.jpg")
         tiv.addSubview(imag)
         
