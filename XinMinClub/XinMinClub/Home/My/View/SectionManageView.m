@@ -153,7 +153,27 @@
 }
 
 - (void)fuckAction {
-    
+    [_delegate cacenl];
+    ShareView *ocsv = [[ShareView alloc]init];
+    if (!kStringIsEmpty(_data.clickMp3)) {
+        ocsv.setShareContent = ShareMusic;
+        if ([DataModel defaultDataModel].bookFMImageUrl) {
+            ocsv.thumbImage = [DataModel defaultDataModel].bookFMImageUrl;
+        }else{
+            ocsv.thumbImage = networkCachePicture;
+        }
+        ocsv.title = _data.sectionName;
+        ocsv.musicUrl = _data.clickMp3;
+        if ([_data.author isEqualToString:@""]) {
+            ocsv.describe = @"和源";
+        }else{
+            ocsv.describe = _data.author;
+        }
+    }else{
+        ocsv.setShareContent = ShareText;
+        ocsv.text = [NSString stringWithFormat:@"标题:%@\n%@",[_data.dic valueForKey:@"GJ_NAME"],[_data.dic valueForKey:@"GJ_CONTENT_CN"]];
+    }
+    [self addSubview:ocsv];
 }
 
 - (void)downloadAction {
