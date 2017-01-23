@@ -810,6 +810,7 @@ bool isObserve = YES;
     NSURL *urlmp3 = [NSURL URLWithString:urlString];
     [_kj_player replaceItemWithURL:urlmp3]; // 传入播放的mp3Url
     [_kj_player play];  // 开始播放
+    [self setLikeButtonImage];  // 设置我喜欢的图标
 }
 
 - (void)updateSongInfoShow {
@@ -827,8 +828,6 @@ bool isObserve = YES;
     [self imageViewRotate]; // 旋转歌手图片
     
     self.isPrepare = YES;  //播放器装备完毕
-
-    [self setLikeButtonImage];  // 设置我喜欢的图标
     
     [self setNowPlayingInfo];  // 设置锁屏播放
     
