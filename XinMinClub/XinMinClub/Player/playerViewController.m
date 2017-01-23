@@ -445,7 +445,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    NSString *urlString = [kj_dict valueForKey:@"GJ_NAME"];
+    NSString *urlString;
+    if (total>1) {
+        NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][indexPath.row];
+        urlString = [dict valueForKey:@"GJ_NAME"];
+    }else{
+        urlString = [kj_dict valueForKey:@"GJ_NAME"];
+    }
     cell.textLabel.text = urlString;
     if (_touchNum==indexPath.row) {
         [cell.textLabel setTextColor:RGB255_COLOR(247.0, 47.0, 43.0, 1.0)];
