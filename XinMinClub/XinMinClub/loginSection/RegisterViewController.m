@@ -50,7 +50,7 @@
     [self.view addSubview:self.country];
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.loadButton];
-    [self.view addSubview:self.agreementLabel];
+//    [self.view addSubview:self.agreementLabel];
     
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
