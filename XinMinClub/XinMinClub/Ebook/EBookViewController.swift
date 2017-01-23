@@ -133,7 +133,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UIScreen.main.brightness = brightness
+//        UIScreen.main.brightness = brightness
     }
     
     func applicationWillResignActive() {
