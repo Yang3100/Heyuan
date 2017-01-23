@@ -123,8 +123,8 @@ static NSString *userFirstText = @"       ";
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     
-    userLabelArr_ = @[userFirstText,@"昵称",@"性别",@"出生年月",@"所在城市",@"账号",@"简介"];
-    userDataArr_ = @[@"更换头像",@"哟哈哈哈",@"男",@"1992-08-02",@"四川 成都 锦江区",@"17713458884",@"略"];
+    userLabelArr_ = @[userFirstText,@"昵称",@"性别",@"出生年月",@"所在城市",@"简介"];
+    userDataArr_ = @[@"更换头像",@"哟哈哈哈",@"男",@"1992-08-02",@"四川 成都 锦江区",@"略"];
     
     nib_ = [UINib nibWithNibName:@"UserFirstCell" bundle:nil];
     [userTableView_ registerNib:nib_ forCellReuseIdentifier:userFirstIdentifier];
@@ -500,10 +500,10 @@ static NSString *userFirstText = @"       ";
         cell.userDataField.enabled = YES;
         cell.userDataField.inputView = [self cityPicker];
     }
-    if (indexPath.section == 5){
-        cell.userDataField.placeholder = userDataModel_.userID;
-        cell.userDataField.text = @"";
-    }
+//    if (indexPath.section == 5){
+//        cell.userDataField.placeholder = userDataModel_.userID;
+//        cell.userDataField.text = @"";
+//    }
     if (indexPath.section == userDataArr_.count - 1) {
 //        cell.userDetailLabel.text = userLabelArr_[indexPath.section];
 //        if (![userDataModel_.userIntroduction isEqualToString:@"还没有简介哦!"]) {
