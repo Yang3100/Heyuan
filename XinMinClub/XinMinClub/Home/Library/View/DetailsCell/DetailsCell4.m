@@ -20,7 +20,7 @@
 - (void)setImageUrl:(NSString *)imageUrl{
     self.details3ImageView.layer.masksToBounds = YES;
     self.details3ImageView.layer.cornerRadius = self.details3ImageView.frame.size.height/2;
-    [self.details3ImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:cachePicture];
+    [self.details3ImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:cachePicture_100x100];
 }
     
 - (void)setLibraryName:(NSString *)libraryName{

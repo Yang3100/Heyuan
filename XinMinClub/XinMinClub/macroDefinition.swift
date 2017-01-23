@@ -19,7 +19,13 @@ let WX_REFRESH_TOKEN = "refresh_token"
 let WX_UNION_ID = "unionid"
 let WX_BASE_URL = "https://api.weixin.qq.com/sns"
 
+
+let ip:String = "http://218.240.52.135"
+let ipurl:String = "http://218.240.52.135/App/App.ashx"
+
 let networkPictureUrl_swift = "http://www.kingwant.com/Images/app_touxaing.png"
+let cachePicture_350x44 = UIImage(named:"header")
+let cachePicture_100x100 = UIImage(named:"b")
 
 // 屏幕宽度
 let screenWidth = UIScreen.main.bounds.width

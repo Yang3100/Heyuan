@@ -210,8 +210,8 @@ import UIKit
 //                self.backVw.isHidden = true    // 八卦后面的背景
 //                self.qianView.isHidden = true  // 乾卦后面的背景
 //                self.kunView.isHidden = true   // 坤卦后面的背景
-                self.yangImageView.center = CGPoint(x:-screenWidth/2, y:self.yangImageView.center.y)
-                self.yinImageView.center = CGPoint(x:screenWidth+screenWidth/2, y:self.yinImageView.center.y)
+                self.yangImageView.center = CGPoint(x:screenWidth/4, y:self.yangImageView.center.y)
+                self.yinImageView.center = CGPoint(x:screenWidth-screenWidth/4, y:self.yinImageView.center.y)
                 self.alpha = 0
             },completion: {(_ finished: Bool) -> Void in
                 // 延时执行

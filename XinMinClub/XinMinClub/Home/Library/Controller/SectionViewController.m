@@ -114,7 +114,7 @@
     self.title = [json valueForKey:@"WJ_NAME"]; // 书集名字
     NSString *imageUrlstring = [NSString stringWithFormat:@"%@%@",IP,[json valueForKey:@"WJ_IMG"]];
     NSURL *url = [NSURL URLWithString:imageUrlstring];
-    [self.bookImageView sd_setImageWithURL:url placeholderImage:cachePicture];
+    [self.bookImageView sd_setImageWithURL:url placeholderImage:cachePicture_375x222];
     
     // 保存数据在datamodel
     [DataModel defaultDataModel].bookName = self.title;

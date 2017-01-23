@@ -100,7 +100,7 @@ static NSString *EssayIdentifier = @"essay";
     NSLog(@"%d",indexPath.row);
     cell.userName.text = book.bookName;//((SectionData *)dataModel_.allSection[indexPath.row]).bookName;
     //    cell.userDetail.text = ;//((SectionData *)dataModel_.allSection[indexPath.row]).author;
-    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:book.imagePath] placeholderImage:cachePicture];
+    [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:book.imagePath] placeholderImage:wenjicachePicture];
     if (book.bookImage) cell.userImageView.image = book.bookImage;
     cell.userDetail.text = book.authorName;
     [cell.userDetail setTextColor:DEFAULT_TINTCOLOR];

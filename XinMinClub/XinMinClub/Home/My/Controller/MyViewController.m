@@ -118,7 +118,7 @@ static NSString * defaultIdentifier = @"cell";
     if (userModel_.threePartReload) {
 //        userModel_.threePartReload = NO;
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+//        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
     
     if (dataModel_.addBook){
@@ -362,7 +362,7 @@ static NSString * defaultIdentifier = @"cell";
             cell = [tableView dequeueReusableCellWithIdentifier:thirdIdentifier forIndexPath:indexPath];
             BookData *book = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row - 1]];
             ((ThirdTableViewCell *)cell).bookImageView.image = book.bookImage;
-            [((ThirdTableViewCell *)cell).bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imagePath] placeholderImage:cachePicture];
+            [((ThirdTableViewCell *)cell).bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imagePath] placeholderImage:wenjicachePicture];
             ((ThirdTableViewCell *)cell).bookName.text = book.bookName;
             [((ThirdTableViewCell *)cell).bookDetail setTextColor:DEFAULT_TINTCOLOR];
             ((ThirdTableViewCell *)cell).bookDetail.text = book.authorName;

@@ -43,7 +43,7 @@ class courseCell2 : UITableViewCell,WMLoopViewDelegate {
     func getDataAfterLoadData() {
 //        MJscroll.initWithSourceArray(self.imageArray!, addTarget:self, delegate: self, withSize:CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64))
         if DataModel.default().findADImage == nil {
-            let w = UIImageView(image:teacherIm)
+            let w = UIImageView(image:cachePicture_100x100)
             w.frame = CGRect(x:0,y:0,width:screenWidth,height:screenHeight/3-64)
             self.addSubview(w)
             self.addSubview(self.courseLabel)
