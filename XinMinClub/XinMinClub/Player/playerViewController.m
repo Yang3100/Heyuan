@@ -503,7 +503,7 @@
     }
     ShareView *ocsv = [[ShareView alloc]init];
     ocsv.setShareContent = ShareMusic;
-    NSDictionary *dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
+    NSDictionary *dict = kj_dict;
     ocsv.title = [dict valueForKey:@"GJ_NAME"]; // 小节名字
     if ([[dict valueForKey:@"GJ_USER"] isEqualToString:@""]) {
         ocsv.describe = @"和源";
