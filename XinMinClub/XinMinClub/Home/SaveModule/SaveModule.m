@@ -148,7 +148,7 @@
     [usersDic writeToFile:filePath atomically:YES];
     if (!book) return;
     
-    NSArray *arr = @[@"bookName",@"authorName",@"imagePath",@"libraryType",@"libraryLanguage",@"libraryDetails"];
+    NSArray *arr = @[@"bookName",@"authorName",@"imagePath",@"libraryType",@"libraryLanguage",@"libraryDetails",@"dic"];
     //设置属性值,没有的数据就新建，已有的数据就修改。
     [bookDic setObject:book.bookName forKey:arr[0]];
     [bookDic setObject:book.authorName forKey:arr[1]];
@@ -156,6 +156,7 @@
     [bookDic setObject:book.type forKey:arr[3]];
     [bookDic setObject:book.language forKey:arr[4]];
     [bookDic setObject:book.details forKey:arr[5]];
+    [bookDic setObject:book.dic forKey:arr[6]];
     //写入文件
     [usersDic setObject:bookDic forKey:@"book"];
     [usersDic writeToFile:filePath atomically:YES];

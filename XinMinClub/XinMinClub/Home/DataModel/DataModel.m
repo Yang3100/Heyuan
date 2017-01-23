@@ -90,6 +90,8 @@
     _playTimeOn = NO;
     _addRecent = NO;
     
+    _dic = [NSDictionary dictionary];
+    
     _allSection = [NSMutableArray array];
     _allSectionID = [NSMutableArray array];
     _allSectionAndID = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -319,6 +321,7 @@
                              bookDic[@"libraryType"], @"libraryType",
                              sArr[0],@"bookID",
                              bookDic[@"isMyBook"], @"isMyBook",
+                             bookDic[@"dic"], @"dic",
                              listDic[sArr[0]],@"firstLevelList",
                              secondLevelList,@"firstLevelListWithSecondLevelList",
                              nil];
@@ -388,7 +391,7 @@
     [_myBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_myBookAndID.count / 2]];
     _addBook = YES;
     
-    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:YES];
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",data.dic,@"dic",nil]] isMyBook:YES];
     
     return YES;
 }
@@ -407,7 +410,7 @@
         // 主线程执行
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDictionary *dica = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_WenJI"][0];
-            [[DataModel defaultDataModel] addAllLibrary:dica];
+//            [[DataModel defaultDataModel] addAllLibrary:dica];
             
             [DATA_MODEL addRecommandLibrary:dica];
         });
@@ -431,7 +434,7 @@
     [_recommandBookAndID setObject:data forKey:[NSString stringWithFormat:@"%lu",_recommandBookAndID.count / 2]];
     _addRecommand = YES;
     
-    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",data.dic,@"dic",nil]] isMyBook:NO];
     
     return YES;
 }
@@ -448,7 +451,7 @@
     [_allBookAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_allBookAndID.count / 2]];
     _addAllBook = YES;
     
-    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID",nil]] isMyBook:NO];
+    [saveModule saveBookDataWithBookID:data.bookID bookData:[[BookData alloc] initWithDic:[NSDictionary dictionaryWithObjectsAndKeys:data.bookName,@"bookName",data.authorName,@"authorName",data.imagePath,@"imagePath", data.type, @"libraryType", data.language, @"libraryLanguage", data.details, @"libraryDetails", data.bookID, @"WJ_ID", data.dic, @"dic",nil]] isMyBook:NO];
     
     return YES;
 }
@@ -463,7 +466,9 @@
     //        kj_svc.libraryAuthorImageUrl = [IP stringByAppendingString:[dic valueForKey:@"WJ_TITLE_IMG"]];
     NSString *url = [NSString stringWithFormat:@"%@%@",IP,[dic valueForKey:@"WJ_FM"]];
     
-    UIImage *defaultImage = [UIImage imageNamed:@"19"];
+    UIImage *defaultImage = wenjicachePicture;
+    
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  libraryID,@"bookID",
                                  bookName, @"bookName",
@@ -473,12 +478,15 @@
                                  language, @"libraryLanguage",
                                  details, @"libraryDetails",
                                  defaultImage, @"bookImage",
+                                 dic, @"dic",
                                  nil];
     
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *urlString = [NSURL URLWithString:url];
     [imageView sd_setImageWithURL:urlString completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [dict setObject:image forKey:@"bookImage"];
+        BookData * data = DATA_MODEL.allBookAndID[DATA_MODEL.allBookAndID[dict[@"libraryID"]]];
+        data.bookImage = image;
     }];
     
     BookData *data = [[BookData alloc] initWithDic:dict];

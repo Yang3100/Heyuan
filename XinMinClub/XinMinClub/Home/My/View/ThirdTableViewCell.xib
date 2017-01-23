@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="452" height="137"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="136"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuL-Ee-XzM">
@@ -46,21 +46,20 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-b0-Qsd">
-                                <rect key="frame" x="155" y="104" width="92.5" height="16"/>
+                                <rect key="frame" x="140" y="90" width="92.5" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11章，10章下载" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiC-is-e81">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.65826115131916652" green="0.65826115131916652" blue="0.65826115131916652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCs-fu-9mz">
-                                <rect key="frame" x="139.5" y="104" width="16" height="16"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCs-fu-9mz">
+                                <rect key="frame" x="139.5" y="90" width="1" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="qCs-fu-9mz" secondAttribute="height" multiplier="1:1" id="7ft-5t-T9U"/>
-                                    <constraint firstAttribute="width" constant="16" id="eNa-2v-Y76"/>
+                                    <constraint firstAttribute="width" constant="1" id="eNa-2v-Y76"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -86,10 +85,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="RqM-Lg-0XG"/>
-                                <exclude reference="dZ9-DX-TcU"/>
                                 <exclude reference="cjz-AC-d0s"/>
                                 <exclude reference="dAJ-RH-LY5"/>
+                                <exclude reference="RqM-Lg-0XG"/>
+                                <exclude reference="dZ9-DX-TcU"/>
                             </mask>
                         </variation>
                     </view>

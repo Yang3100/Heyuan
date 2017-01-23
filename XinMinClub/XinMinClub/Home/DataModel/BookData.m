@@ -28,6 +28,7 @@
 
 - (void)initData {
     _sections = [NSMutableArray array];
+    _dic = [NSDictionary dictionary];
 }
 
 - (id)initWithDic:(NSDictionary *)dic {
@@ -42,6 +43,7 @@
     bookData.details = dic[@"libraryDetails"];
     bookData.firstLevelList = dic[@"firstLevelList"];
     bookData.firstLevelListWithSecondLevelList = dic[@"firstLevelListWithSecondLevelList"];
+    bookData.dic = dic[@"dic"];
     return bookData;
 }
 
