@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 @property(nonatomic, strong) NSArray *findAD;
 @property(nonatomic, strong) NSArray *findADImage;
 
+// 弹出文集的dic
+@property(nonatomic, strong) NSDictionary *dic;
+
 // 控制小九宫格弹出收起的开关
 @property(nonatomic, assign) int kaiguannnn;
 @property(nonatomic, strong) NSString *bookFMImageUrl; // 书集封面Url

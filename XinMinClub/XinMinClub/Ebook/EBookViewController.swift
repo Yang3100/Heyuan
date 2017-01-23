@@ -115,12 +115,13 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-        
+        lightSlider.value = Float(UIScreen.main.brightness)
         self.initView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        brightness = UIScreen.main.brightness
+        UIScreen.main.brightness = CGFloat(lightSlider.value)
         var image = UIImage.init(named: "喜欢")
         let d = UserDataModel.default()
         if (d?.judgeIsLike(kj_dict["GJ_ID"] as! String))! {
@@ -131,12 +132,17 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         button.setImage(image, for: .normal)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        UIScreen.main.brightness = brightness
+    }
+    
     func applicationWillResignActive() {
         UIScreen.main.brightness = brightness
     }
     
     func applicationDidBecomeActive() {
         brightness = UIScreen.main.brightness
+        UIScreen.main.brightness = CGFloat(lightSlider.value)
     }
     
     func initView() {
@@ -356,6 +362,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         }
         fontSize += 1
         textView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        fontL.text = NSString.init(format: "%d", fontSize) as String
     }
     
     func s() {
@@ -364,6 +371,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         }
         fontSize -= 1
         textView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        fontL.text = NSString.init(format: "%d", fontSize) as String
     }
     
     func setAction1() {

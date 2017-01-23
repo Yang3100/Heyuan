@@ -75,7 +75,7 @@
     SectionViewController *svc = [[SectionViewController alloc] init];
     svc.title = data.bookName; // 书集名字
     
-    [DataModel defaultDataModel].bookFMImageUrl = data.imagePath; // 书集封面Url
+    [DataModel defaultDataModel].bookFMImageUrl = [data.dic objectForKey:@"WJ_FM"]; // 书集封面Url
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
     [dic setObject:data.imagePath forKey:@"WJ_FM"];
     [dic setObject:data.bookName forKey:@"WJ_NAME"];
@@ -85,7 +85,7 @@
     [dic setObject:data.language forKey:@"WJ_LANGUAGE"];
     [dic setObject:data.bookID forKey:@"WJ_ID"];
     [dic setObject:data.imagePath forKey:@"WJ_TITLE_IMG"];
-    [svc getJsonData:[[NSMutableDictionary alloc] initWithDictionary:dic]];
+    [svc getJsonData:[[NSMutableDictionary alloc] initWithDictionary:data.dic]];
     
     return svc;
 }
