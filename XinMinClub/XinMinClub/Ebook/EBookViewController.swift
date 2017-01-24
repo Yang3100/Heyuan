@@ -89,6 +89,16 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         let a = DataModel.default()
         let b = kj_dict as NSDictionary? as? [AnyHashable: Any] ?? [:]
         a?.addRecentPlay(b)
+        let isLike = DataModel.default().userLikeSectionID.contains(kj_dict["GJ_ID"])
+        if isLike {
+            let image = UIImage.init(named: "喜欢了")
+            let button = self.view.viewWithTag(1+100) as! UIButton
+            button.setImage(image, for: .normal)
+        } else {
+            let image = UIImage.init(named: "喜欢")
+            let button = self.view.viewWithTag(1+100) as! UIButton
+            button.setImage(image, for: .normal)
+        }
     }
     
     private func loadText(title:String,text:String){
