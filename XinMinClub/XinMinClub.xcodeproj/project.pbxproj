@@ -78,6 +78,7 @@
 		1A53D1FF1E31FD6F00153A8D /* hui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1FD1E31FD6E00153A8D /* hui@2x.png */; };
 		1A53D2001E31FD6F00153A8D /* liang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1FE1E31FD6E00153A8D /* liang@2x.png */; };
 		1A53D2021E32025600153A8D /* 亮度左@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D2011E32025600153A8D /* 亮度左@2x.png */; };
+		1A53D2061E3708B200153A8D /* noBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D2051E3708B200153A8D /* noBack@2x.png */; };
 		1A67110C1CBB48410028529C /* AddressFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711051CBB48410028529C /* AddressFMDBManager.m */; };
 		1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711071CBB48410028529C /* CityAddressModel.m */; };
 		1A67110E1CBB48410028529C /* DistrictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711091CBB48410028529C /* DistrictModel.m */; };
@@ -465,6 +466,7 @@
 		1A53D1FD1E31FD6E00153A8D /* hui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hui@2x.png"; sourceTree = "<group>"; };
 		1A53D1FE1E31FD6E00153A8D /* liang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liang@2x.png"; sourceTree = "<group>"; };
 		1A53D2011E32025600153A8D /* 亮度左@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "亮度左@2x.png"; sourceTree = "<group>"; };
+		1A53D2051E3708B200153A8D /* noBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noBack@2x.png"; sourceTree = "<group>"; };
 		1A6711041CBB48410028529C /* AddressFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFMDBManager.h; sourceTree = "<group>"; };
 		1A6711051CBB48410028529C /* AddressFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFMDBManager.m; sourceTree = "<group>"; };
 		1A6711061CBB48410028529C /* CityAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAddressModel.h; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 		1A07BE961CB658D300E327DA /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1A53D2051E3708B200153A8D /* noBack@2x.png */,
 				68DB36471E1DF3C400DD53D3 /* 印章原版 */,
 				1A40331A1E0908A80006613F /* tubiao */,
 				682F429D1E120CA8004B3651 /* header.png */,
@@ -2291,6 +2294,7 @@
 				1A49AB131CAD162F003DA6DB /* DetailsCell1.xib in Resources */,
 				682F42B51E1256D3004B3651 /* 引导页3.png in Resources */,
 				682F42AD1E12561B004B3651 /* 注册.png in Resources */,
+				1A53D2061E3708B200153A8D /* noBack@2x.png in Resources */,
 				68E8B73C1E0000B1000CB44A /* heile.png in Resources */,
 				6800B1DC1E1F535300D05FFA /* zhujian@3x.png in Resources */,
 				68DA92691E35BAC200A463F0 /* shuiyin@3x.png in Resources */,

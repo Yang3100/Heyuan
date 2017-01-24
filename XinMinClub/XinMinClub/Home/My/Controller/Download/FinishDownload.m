@@ -28,6 +28,8 @@
     UserDataModel *userModel_;
     SectionManageView *smView_;
     UIControl *smBackView_;
+    UIImageView *backImageView_;
+    UILabel *backLabel_;
 
 }
 
@@ -50,12 +52,26 @@ static NSString *bookCell = @"bookCell";
     [self.tableView registerNib:nib_ forCellReuseIdentifier:bookCell];
     self.tableView.tableHeaderView = [self searchView];
     self.tableView.backgroundColor = DEFAULT_BACKGROUNDCOLOR;
+    
+    [self.view addSubview:[self backImageView]];
+    [self.view addSubview:[self backLabel]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+    
+    if (dataModel_.downloadSectionList.count == 0) {
+        backImageView_.hidden = NO;
+        backLabel_.hidden = NO;
+        self.tableView.userInteractionEnabled = NO;
+    }
+    else {
+        backImageView_.hidden = YES;
+        backLabel_.hidden = YES;
+        self.tableView.userInteractionEnabled = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -78,6 +94,31 @@ static NSString *bookCell = @"bookCell";
     searchView_.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
     return searchView_;
 }
+
+
+- (UIImageView *)backImageView {
+    if (!backImageView_) {
+        backImageView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noBack"]];
+        backImageView_.frame = CGRectMake(0, 0, SCREEN_WIDTH / 3, SCREEN_WIDTH / 2);
+        backImageView_.center = CGPointMake(self.view.center.x, self.view.center.y - SCREEN_WIDTH / 3);
+        backImageView_.alpha = 0.5;
+    }
+    return backImageView_;
+}
+
+- (UILabel *)backLabel {
+    if (!backLabel_) {
+        backLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 60)];
+        backLabel_.text = @"还没有播放";
+        [backLabel_ setFont:[UIFont systemFontOfSize:15]];
+        backLabel_.textColor = [UIColor colorWithWhite:0.696 alpha:1.000];
+        backLabel_.textAlignment = NSTextAlignmentCenter;
+        backLabel_.backgroundColor = [UIColor clearColor];
+        backLabel_.center = CGPointMake(self.view.center.x, backImageView_.frame.origin.y + backImageView_.bounds.size.height + 30);
+    }
+    return backLabel_;
+}
+
 
 #pragma mark Actions
 

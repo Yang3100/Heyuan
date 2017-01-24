@@ -97,7 +97,7 @@ static NSString *bookCell = @"bookCell";
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
-    if (dataModel_.recentPlay.count == 0) {
+    if (dataModel_.recentPlayAndID.count == 0) {
         backImageView_.hidden = NO;
         backLabel_.hidden = NO;
         self.tableView.userInteractionEnabled = NO;
@@ -128,7 +128,7 @@ static NSString *bookCell = @"bookCell";
 
 - (UIImageView *)backImageView {
     if (!backImageView_) {
-//        backImageView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"12345@3x.jpg"]];
+        backImageView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noBack"]];
         backImageView_.frame = CGRectMake(0, 0, SCREEN_WIDTH / 3, SCREEN_WIDTH / 2);
         backImageView_.center = CGPointMake(self.view.center.x, self.view.center.y - SCREEN_WIDTH / 3);
         backImageView_.alpha = 0.5;

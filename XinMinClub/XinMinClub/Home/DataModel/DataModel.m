@@ -269,13 +269,12 @@
             [_downloadSection addObject:data];
         }
         
-        [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
-        [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
-        
         [self addSectionToAll:data];
 //        NSLog(@"%@",data.dic);
         if (data.isAddRecent) {
             [array addObject:data];
+            [_recentPlayAndID setObject:[NSString stringWithFormat:@"%d",_recentPlayAndID.count/2] forKey:data.sectionID];
+            [_recentPlayAndID setObject:data forKey:[NSString stringWithFormat:@"%ld",_recentPlayAndID.count / 2]];
         }
     }
 }
