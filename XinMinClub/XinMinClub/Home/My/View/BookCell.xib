@@ -19,11 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="359" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-N6-SkB">
-                        <rect key="frame" x="13" y="49" width="11" height="11"/>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DWDCheck_personal.png" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-N6-SkB">
+                        <rect key="frame" x="13" y="30" width="1" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="xqZ-N6-SkB" secondAttribute="height" multiplier="1:1" id="IXR-bU-Bjy"/>
-                            <constraint firstAttribute="width" constant="11" id="NJ2-tf-2zc"/>
+                            <constraint firstAttribute="width" constant="1" id="NJ2-tf-2zc"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QWU-Bf-0gh">
@@ -45,7 +44,7 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="btf-U6-qNy">
-                        <rect key="frame" x="29" y="47.5" width="111.5" height="14.5"/>
+                        <rect key="frame" x="19" y="47.5" width="111.5" height="14.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李行亮□点亮 第三期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-Fc-Tbe">
                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="14.5"/>
