@@ -82,7 +82,9 @@
     }else{
         cell.textLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
-    cell.textLabel.text = _lyricArray[indexPath.row];
+    if (indexPath.row<_lyricArray.count) {
+        cell.textLabel.text = _lyricArray[indexPath.row];
+    }
     return cell;
 }
 

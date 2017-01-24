@@ -11,6 +11,8 @@
 #import "RegisterViewController.h"
 #import "ForgetViewController.h"
 
+#define chushizuobiao ([UIScreen mainScreen].bounds.size.height/2)
+
 @interface loginViewController () <UITextFieldDelegate,TencentSessionDelegate> {
     UITextField *userField_, *keyField_;
     UITextField *curTextField_;
@@ -54,7 +56,7 @@
     [self.view addSubview:self.keyLabel];
     [self.view addSubview:self.keyField];
     [self.view addSubview:self.userField];
-    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.registerBtn];
     [self.view addSubview:self.forgetBtn];
     [self.view addSubview:self.QQLoogin];
@@ -74,11 +76,11 @@
 
 - (UILabel *)titleLabel {
     if (!titleLabel_) {
-        titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 50)];
-        titleLabel_.textColor = [UIColor whiteColor];
+        titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 50, 30)];
+        titleLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
         titleLabel_.text = @"登录";
-        titleLabel_.textAlignment = NSTextAlignmentCenter;
-        [titleLabel_ setFont:[UIFont systemFontOfSize:32]];
+        titleLabel_.textAlignment = NSTextAlignmentLeft;
+        [titleLabel_ setFont:[UIFont systemFontOfSize:16]];
     }
     return titleLabel_;
 }
@@ -86,7 +88,7 @@
 - (UIImageView *)backImage{
     if (!backImage_) {
         backImage_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height + 3)];
-        backImage_.image = [UIImage imageNamed:@"login.jpg"];
+        backImage_.image = loginCachePicture;
     }
     return backImage_;
 }
@@ -107,9 +109,9 @@
 //用户名输入提示
 - (UILabel *)userLabel{
     if (!userLabel_) {
-        userLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-110, 55, 30)];
+        userLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao-60, 55, 30)];
         userLabel_.text = @"用户:";
-        userLabel_.textColor = [UIColor whiteColor];
+        userLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return userLabel_;
 }
@@ -117,9 +119,9 @@
 //密码输入提示
 - (UILabel *)keyLabel{
     if (!keyLabel_) {
-        keyLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-50, 55, 30)];
+        keyLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao, 55, 30)];
         keyLabel_.text = @"密码:";
-        keyLabel_.textColor = [UIColor whiteColor];
+        keyLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return keyLabel_;
 }
@@ -127,7 +129,7 @@
 //用户名输入框
 - (UITextField *)userField{
     if (!userField_) {
-        userField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 22.5, SCREEN_HEIGHT/2-110, SCREEN_WIDTH/2, 30)];
+        userField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 22.5, chushizuobiao-60, SCREEN_WIDTH/2, 30)];
         userField_.placeholder = @"请输入你的手机号";
         userField_.keyboardType = UIKeyboardTypeNumberPad;
         userField_.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -140,7 +142,7 @@
 //密码输入框
 - (UITextField *)keyField{
     if (!keyField_) {
-        keyField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 22.5, SCREEN_HEIGHT/2-50, SCREEN_WIDTH/2, 30)];
+        keyField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 22.5, chushizuobiao, SCREEN_WIDTH/2, 30)];
         keyField_.placeholder = @"请输入密码";
         keyField_.clearButtonMode = UITextFieldViewModeWhileEditing;
         keyField_.returnKeyType = UIReturnKeyDone;//改变键盘为DONE键
@@ -155,9 +157,9 @@
 - (UIButton *)loadButton{
     if (!loadButton_) {
         loadButton_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        loadButton_.frame = CGRectMake(50, SCREEN_HEIGHT/2, SCREEN_WIDTH-100, 50);
+        loadButton_.frame = CGRectMake(50, chushizuobiao+50, SCREEN_WIDTH-100, 50);
         [loadButton_ setTitle:@"登录" forState:UIControlStateNormal];
-        loadButton_.backgroundColor = [UIColor colorWithWhite:0.065 alpha:0.800];
+        loadButton_.backgroundColor = RGB255_COLOR(0.0, 0.0, 0.0, 0.35);
         [loadButton_ addTarget:self action:@selector(loadAction:) forControlEvents:UIControlEventTouchUpInside];
         loadButton_.tintColor = [UIColor whiteColor];
     }
@@ -167,8 +169,8 @@
 - (UIButton *)registerBtn{
     if (!registerBtn_) {
         registerBtn_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        registerBtn_.frame = CGRectMake(28, SCREEN_HEIGHT/2+60, 80, 30);
-        registerBtn_.tintColor = [UIColor whiteColor];
+        registerBtn_.frame = CGRectMake(28, chushizuobiao+110, 80, 30);
+        registerBtn_.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [registerBtn_ setTitle:@"注册" forState:UIControlStateNormal];
         [registerBtn_.titleLabel setFont:[UIFont systemFontOfSize:16]];
         registerBtn_.layer.masksToBounds = YES;
@@ -182,8 +184,8 @@
 - (UIButton *)forgetBtn{
     if (!forgetBtn_) {
         forgetBtn_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        forgetBtn_.frame = CGRectMake(SCREEN_WIDTH-130, SCREEN_HEIGHT/2+60, 80, 30);
-        forgetBtn_.tintColor = [UIColor whiteColor];
+        forgetBtn_.frame = CGRectMake(SCREEN_WIDTH-130, chushizuobiao+110, 80, 30);
+        forgetBtn_.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [forgetBtn_ setTitle:@"忘记密码?" forState:UIControlStateNormal];
         [forgetBtn_.titleLabel setFont:[UIFont systemFontOfSize:16]];
         forgetBtn_.layer.masksToBounds = YES;
@@ -196,17 +198,17 @@
 
 #pragma mark 第三方登录
 //第三方登陆的几个字
--(UIImageView *)DishangfangLoogin{
+- (UIImageView *)DishangfangLoogin{
     if (!_DishangfangLoogin) {
         _DishangfangLoogin=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"dishangfangloog"]];
-        _DishangfangLoogin.frame=CGRectMake(0, SCREEN_HEIGHT-SCREEN_HEIGHT/3-30, SCREEN_WIDTH, 30);
+        _DishangfangLoogin.frame=CGRectMake(0, chushizuobiao+140, SCREEN_WIDTH, 30);
     }
     return _DishangfangLoogin;
 }
 //QQ登陆
 -(UIButton*)QQLoogin{
     if (!_QQLoogin) {
-        _QQLoogin=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4, SCREEN_HEIGHT-SCREEN_HEIGHT/3, 70, 70)];
+        _QQLoogin=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4, chushizuobiao+180, 70, 70)];
         UIImage *QQimage=[UIImage imageNamed:@"123loog"];
         [_QQLoogin setImage:QQimage forState:UIControlStateNormal];
         [_QQLoogin addTarget:self action:@selector(QQLoogin:) forControlEvents:UIControlEventTouchUpInside];
@@ -215,7 +217,7 @@
 }
 -(UIButton*)WeixingLoogin{
     if (!_WeixingLoogin) {
-        _WeixingLoogin=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+25, SCREEN_HEIGHT-SCREEN_HEIGHT/3, 68, 70)];
+        _WeixingLoogin=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+25, chushizuobiao+180, 68, 70)];
         UIImage *WeChatimage=[UIImage imageNamed:@"QQloog"];
         [_WeixingLoogin setImage:WeChatimage forState:UIControlStateNormal];
         [_WeixingLoogin addTarget:self action:@selector(WeixingLoogin:) forControlEvents:UIControlEventTouchUpInside];

@@ -199,10 +199,10 @@ import UIKit
     
     private var angle3:Float = 0
     func endAnimation() {
-        angle -= 5
+        angle -= 10
         angle2 = angle2 + angle3
         angle3 += 0.23
-        if angle <= -365 {
+        if angle <= -370 {
             UIView.animate(withDuration:1, animations: {() -> Void in
 //                self.xuImageView.isHidden = true
 //                self.qianImageView.isHidden = true

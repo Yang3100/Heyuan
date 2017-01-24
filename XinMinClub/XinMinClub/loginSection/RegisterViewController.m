@@ -13,6 +13,8 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
+#define chushizuobiao ([UIScreen mainScreen].bounds.size.height/2)
+
 @interface RegisterViewController ()<UITextFieldDelegate,UIAlertViewDelegate> {
     UITextField *country_, *iPhone_;
     UITextField *curTextField_;
@@ -48,7 +50,7 @@
     [self.view addSubview:self.iPhoneLabel];
     [self.view addSubview:self.iPhone];
     [self.view addSubview:self.country];
-    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.loadButton];
 //    [self.view addSubview:self.agreementLabel];
     
@@ -64,11 +66,11 @@
 #pragma mark Views
 - (UILabel *)titleLabel {
     if (!titleLabel_) {
-        titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 50)];
-        titleLabel_.textColor = [UIColor whiteColor];
+        titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 50, 30)];
+        titleLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
         titleLabel_.text = @"注册";
         titleLabel_.textAlignment = NSTextAlignmentCenter;
-        [titleLabel_ setFont:[UIFont systemFontOfSize:32]];
+        [titleLabel_ setFont:[UIFont systemFontOfSize:16]];
     }
     return titleLabel_;
 }
@@ -76,7 +78,7 @@
 - (UIImageView *)backImage{
     if (!backImage_) {
         backImage_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height + 3)];
-        backImage_.image = [UIImage imageNamed:@"login.jpg"];
+        backImage_.image = loginCachePicture;
     }
     return backImage_;
 }
@@ -85,10 +87,10 @@
 - (UILabel *)countryLabel{
     
     if (!countryLabel_) {
-        countryLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-110, 90, 30)];
+        countryLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao-60, 90, 30)];
         countryLabel_.text = @"国家和地区";
         countryLabel_.textAlignment = NSTextAlignmentCenter;
-        countryLabel_.textColor = [UIColor whiteColor];
+        countryLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return countryLabel_;
 }
@@ -96,13 +98,14 @@
 //密码输入提示
 - (UILabel *)iPhoneLabel{
     if (!iPhoneLabel_) {
-        iPhoneLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-50, 90, 30)];
+        iPhoneLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao, 90, 30)];
         iPhoneLabel_.text = @"+86";
         iPhoneLabel_.layer.masksToBounds = YES;
         iPhoneLabel_.layer.borderWidth = 0.5;
+        iPhoneLabel_.layer.cornerRadius = 2.0;
         iPhoneLabel_.layer.borderColor = [[UIColor grayColor] CGColor];
         iPhoneLabel_.textAlignment = NSTextAlignmentCenter;
-        iPhoneLabel_.textColor = [UIColor whiteColor];
+        iPhoneLabel_.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return iPhoneLabel_;
 }
@@ -110,13 +113,13 @@
 //用户名输入框
 - (UITextField *)country{
     if (!country_) {
-        country_ = [[UITextField alloc] initWithFrame:CGRectMake(countryLabel_.center.x + 50, SCREEN_HEIGHT/2-110, SCREEN_WIDTH/2, 30)];
+        country_ = [[UITextField alloc] initWithFrame:CGRectMake(countryLabel_.center.x + 50, chushizuobiao-60, SCREEN_WIDTH/2, 30)];
         country_.placeholder = @"请选择国家";
         country_.text = @"中国";
         country_.clearButtonMode = UITextFieldViewModeWhileEditing;
         country_.returnKeyType = UIReturnKeyNext;//改变键盘，右下角位NEXT键
         country_.delegate = self;//遵循协议,响应键盘弹出,隐藏事件,NEXT键功能
-        country_ .textColor = [UIColor whiteColor];
+        country_ .textColor = RGB255_COLOR(68, 68, 68, 1);
         country_.enabled=NO;
     }
     return country_;
@@ -125,12 +128,12 @@
 //密码输入框
 - (UITextField *)iPhone{
     if (!iPhone_) {
-        iPhone_ = [[UITextField alloc] initWithFrame:CGRectMake(countryLabel_.center.x + 50, SCREEN_HEIGHT/2-50, SCREEN_WIDTH/2, 30)];
+        iPhone_ = [[UITextField alloc] initWithFrame:CGRectMake(countryLabel_.center.x + 50, chushizuobiao, SCREEN_WIDTH/2, 30)];
         iPhone_.placeholder = @"请输入手机号码";
         iPhone_.clearButtonMode = UITextFieldViewModeWhileEditing;
         iPhone_.returnKeyType = UIReturnKeyDone;//改变键盘为DONE键
         iPhone_.delegate = self; //遵循协议,响应键盘弹出,隐藏事件,DONE键功能
-        iPhone_.textColor = [UIColor whiteColor];
+        iPhone_.textColor = RGB255_COLOR(68, 68, 68, 1);
         iPhone_.keyboardType = UIKeyboardTypeNumberPad;
     }
     return iPhone_;
@@ -140,31 +143,31 @@
 - (UIButton *)registerButton{
     if (!registerButton_) {
         registerButton_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        registerButton_.frame = CGRectMake(50, SCREEN_HEIGHT/2, SCREEN_WIDTH-100, 50);
+        registerButton_.frame = CGRectMake(50, chushizuobiao+50, SCREEN_WIDTH-100, 50);
         [registerButton_ setTitle:@"注册" forState:UIControlStateNormal];
-        registerButton_.backgroundColor = [UIColor colorWithWhite:0.065 alpha:0.800];
+        registerButton_.backgroundColor = RGB255_COLOR(0.0, 0.0, 0.0, 0.35);
         [registerButton_ addTarget:self action:@selector(registerAction:) forControlEvents:UIControlEventTouchUpInside];
         registerButton_.tintColor = [UIColor whiteColor];
     }
     return registerButton_;
 }
 
-- (UILabel *)agreementLabel{
-    if (!_agreementLabel) {
-        _agreementLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, SCREEN_HEIGHT/2+60, SCREEN_WIDTH - 120, 30)];
-        _agreementLabel.tintColor = [UIColor whiteColor];
-        _agreementLabel.text = @"注册即表示同意<XXXX用户协议>";
-        _agreementLabel.font = [UIFont systemFontOfSize:13];
-        _agreementLabel.textColor = [UIColor grayColor];
-    }
-    return _agreementLabel;
-}
+//- (UILabel *)agreementLabel{
+//    if (!_agreementLabel) {
+//        _agreementLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, chushizuobiao+110, SCREEN_WIDTH - 120, 30)];
+//        _agreementLabel.tintColor = [UIColor whiteColor];
+//        _agreementLabel.text = @"注册即表示同意<XXXX用户协议>";
+//        _agreementLabel.font = [UIFont systemFontOfSize:13];
+//        _agreementLabel.textColor = [UIColor grayColor];
+//    }
+//    return _agreementLabel;
+//}
 
 - (UIButton *)loadButton{
     if (!loadButton_) {
         loadButton_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        loadButton_.frame = CGRectMake(SCREEN_WIDTH-130, SCREEN_HEIGHT/2+100, 80, 30);
-        loadButton_.tintColor = [UIColor whiteColor];
+        loadButton_.frame = CGRectMake(SCREEN_WIDTH-130, chushizuobiao+110, 80, 30);
+        loadButton_.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [loadButton_ setTitle:@"登陆" forState:UIControlStateNormal];
         [loadButton_.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [loadButton_ addTarget:self action:@selector(loadAction:) forControlEvents:UIControlEventTouchUpInside];
