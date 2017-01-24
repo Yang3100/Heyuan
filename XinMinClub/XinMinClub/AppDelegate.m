@@ -191,8 +191,6 @@
     NSLog(@"666%@",response);
 }
 
-
-
 #pragma mark - ICETutorialController delegate
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
     //    NSLog(@"点击了登录");

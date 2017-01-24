@@ -52,12 +52,12 @@
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
 // 占位图
-#define cachePicture ([UIImage imageNamed:@"b"])
 #define guangGaocachePicture ([UIImage imageNamed:@"taoci.jpg"]) // 广告占位图
 #define wenjicachePicture ([UIImage imageNamed:@"taoci.jpg"])    // 文集占位图
 #define cachePicture_100x100 ([UIImage imageNamed:@"b"])       // 正方形占位图
 #define cachePicture_375x222 ([UIImage imageNamed:@"chang"])   // 长方形占位图
 
+#define loginCachePicture ([UIImage imageNamed:@"login"])  // 登录注册后面的背景图
 #define networkCachePicture (@"http://www.kingwant.com/Images/app_touxaing.png")
 
 #define RGB_MAX 255.0

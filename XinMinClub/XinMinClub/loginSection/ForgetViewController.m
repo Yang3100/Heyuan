@@ -13,6 +13,8 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
+#define chushizuobiao ([UIScreen mainScreen].bounds.size.height/2)
+
 @interface ForgetViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *backImage;
@@ -61,7 +63,7 @@
     [self.view addSubview:self.userLabel];
     [self.view addSubview:self.passwordField];
     [self.view addSubview:self.verifyField];
-    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.registerBtn];
     [self.view addSubview:self.loadBtn];
     
@@ -74,11 +76,11 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-260, SCREEN_WIDTH, 50)];
-        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 70, 30)];
+        _titleLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
         _titleLabel.text = @"忘记密码";
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_titleLabel setFont:[UIFont systemFontOfSize:32]];
+        [_titleLabel setFont:[UIFont systemFontOfSize:16]];
     }
     return _titleLabel;
 }
@@ -86,7 +88,7 @@
 - (UIImageView *)backImage{
     if (!_backImage) {
         _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height + 3)];
-        _backImage.image = [UIImage imageNamed:@"login.jpg"];
+        _backImage.image = loginCachePicture;
     }
     return _backImage;
 }
@@ -94,10 +96,10 @@
 //国家和地区输入提示
 - (UILabel *)countryLabel{
     if (!_countryLabel) {
-        _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-190, 100, 30)];
+        _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao-110, 100, 30)];
         _countryLabel.text = @"国家和地区";
         _countryLabel.textAlignment = NSTextAlignmentCenter;
-        _countryLabel.textColor = [UIColor whiteColor];
+        _countryLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _countryLabel;
 }
@@ -105,11 +107,11 @@
 // 国家和地区输入框
 - (UITextField *)countryField{
     if (!_countryField) {
-        _countryField = [[UITextField alloc] initWithFrame:CGRectMake(_countryLabel.center.x + 60, SCREEN_HEIGHT/2-190, SCREEN_WIDTH/2, 30)];
+        _countryField = [[UITextField alloc] initWithFrame:CGRectMake(_countryLabel.center.x + 60, chushizuobiao-110, SCREEN_WIDTH/2, 30)];
         _countryField.placeholder = @"请输入国家地区";
         _countryField.text = @"中国";
         _countryField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _countryField .textColor = [UIColor whiteColor];
+        _countryField .textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _countryField;
 }
@@ -117,11 +119,12 @@
 //手机号码输入提示
 - (UILabel *)iphoneLabel{
     if (!_iphoneLabel) {
-        _iphoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-130, 100, 30)];
+        _iphoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao-60, 100, 30)];
         _iphoneLabel.text = @"+86";
         _iphoneLabel.layer.borderWidth = 0.5;
+        _iphoneLabel.layer.cornerRadius = 2.0;
         _iphoneLabel.textAlignment = NSTextAlignmentCenter;
-        _iphoneLabel.textColor = [UIColor whiteColor];
+        _iphoneLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _iphoneLabel;
 }
@@ -129,13 +132,13 @@
 // 手机号码输入框
 - (UITextField *)iphoneField{
     if (!_iphoneField) {
-        _iphoneField = [[UITextField alloc] initWithFrame:CGRectMake(_iphoneLabel.center.x + 60, SCREEN_HEIGHT/2-130, SCREEN_WIDTH/2, 30)];
+        _iphoneField = [[UITextField alloc] initWithFrame:CGRectMake(_iphoneLabel.center.x + 60, chushizuobiao-60, SCREEN_WIDTH/2, 30)];
         _iphoneField.placeholder = @"请输入手机号码";
         _iphoneField.keyboardType = UIKeyboardTypeNumberPad;
         _iphoneField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _iphoneField.returnKeyType = UIReturnKeyDone;//改变键盘为DONE键
         _iphoneField.delegate = self; //遵循协议,响应键盘弹出,隐藏事件,DONE键功能
-        _iphoneField.textColor = [UIColor whiteColor];
+        _iphoneField.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _iphoneField;
 }
@@ -145,18 +148,19 @@
 //用户名输入提示
 - (UILabel *)userLabel{
     if (!_userLabel) {
-        _userLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-70, 100, 30)];
+        _userLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao, 100, 30)];
         _userLabel.text = @"获取验证码";
         _userLabel.layer.borderWidth = 0.5;
+        _userLabel.layer.cornerRadius = 2.0;
         _userLabel.textAlignment = NSTextAlignmentCenter;
-        _userLabel.textColor = [UIColor whiteColor];
+        _userLabel.textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _userLabel;
 }
 - (UIButton *)againRegister{
     if (!_againRegister) {
         _againRegister = [UIButton buttonWithType:UIButtonTypeCustom];
-        _againRegister.frame=CGRectMake(50, SCREEN_HEIGHT/2-70, 100, 30);
+        _againRegister.frame=CGRectMake(50, chushizuobiao, 100, 30);
         _againRegister.layer.borderWidth = 0.5;
         [_againRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; // 字体颜色
         [_againRegister.titleLabel setFont:[UIFont boldSystemFontOfSize:14]]; //定义按钮标题字体格式
@@ -169,13 +173,13 @@
 // 验证码输入框
 - (UITextField *)verifyField{
     if (!_verifyField) {
-        _verifyField = [[UITextField alloc] initWithFrame:CGRectMake(_userLabel.center.x + 60, SCREEN_HEIGHT/2-70, SCREEN_WIDTH/2, 30)];
+        _verifyField = [[UITextField alloc] initWithFrame:CGRectMake(_userLabel.center.x + 60, chushizuobiao, SCREEN_WIDTH/2, 30)];
         _verifyField.placeholder = @"请输入验证码";
         _verifyField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _verifyField.keyboardType = UIKeyboardTypeNumberPad;
         _verifyField.returnKeyType = UIReturnKeyNext;//改变键盘，右下角位NEXT键
         _verifyField.delegate = self;//遵循协议,响应键盘弹出,隐藏事件,NEXT键功能
-        _verifyField .textColor = [UIColor whiteColor];
+        _verifyField .textColor = RGB255_COLOR(68, 68, 68, 1);
     }
     return _verifyField;
 }
@@ -183,7 +187,7 @@
 // 密码输入框
 - (UITextField *)passwordField{
     if (!_passwordField) {
-        _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-20, SCREEN_WIDTH/2, 30)];
+        _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50, chushizuobiao+50, SCREEN_WIDTH-100, 30)];
         _passwordField.placeholder = @"请创建6-16位包含数字和字母的新密码";
         _passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordField.returnKeyType = UIReturnKeyDone;//改变键盘为DONE键
@@ -198,9 +202,9 @@
 - (UIButton *)forgetButton{
     if (!_forgetButton) {
         _forgetButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _forgetButton.frame = CGRectMake(50, SCREEN_HEIGHT/2+30, SCREEN_WIDTH-100, 50);
+        _forgetButton.frame = CGRectMake(50, chushizuobiao+90, SCREEN_WIDTH-100, 50);
         [_forgetButton setTitle:@"重置密码" forState:UIControlStateNormal];
-        _forgetButton.backgroundColor = [UIColor colorWithWhite:0.065 alpha:0.800];
+        _forgetButton.backgroundColor = RGB255_COLOR(0.0, 0.0, 0.0, 0.35);
         [_forgetButton addTarget:self action:@selector(forgetAction:) forControlEvents:UIControlEventTouchUpInside];
         _forgetButton.tintColor = [UIColor whiteColor];
     }
@@ -210,8 +214,8 @@
 - (UIButton *)loadBtn{
     if (!_loadBtn) {
         _loadBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _loadBtn.frame = CGRectMake(28, SCREEN_HEIGHT/2+90, 80, 30);
-        _loadBtn.tintColor = [UIColor whiteColor];
+        _loadBtn.frame = CGRectMake(28, chushizuobiao+145, 80, 30);
+        _loadBtn.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [_loadBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_loadBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         _loadBtn.layer.masksToBounds = YES;
@@ -225,8 +229,8 @@
 - (UIButton *)registerBtn{
     if (!_registerBtn) {
         _registerBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _registerBtn.frame = CGRectMake(SCREEN_WIDTH-108, SCREEN_HEIGHT/2+90, 80, 30);
-        _registerBtn.tintColor = [UIColor whiteColor];
+        _registerBtn.frame = CGRectMake(SCREEN_WIDTH-108, chushizuobiao+145, 80, 30);
+        _registerBtn.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [_registerBtn setTitle:@"注册" forState:UIControlStateNormal];
         [_registerBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         _registerBtn.layer.masksToBounds = YES;

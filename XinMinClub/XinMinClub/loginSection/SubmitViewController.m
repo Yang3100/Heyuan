@@ -14,6 +14,8 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
+#define chushizuobiao ([UIScreen mainScreen].bounds.size.height/2)
+
 @interface SubmitViewController ()<UITextFieldDelegate> {
     UITextField *userField_, *authField_;
     UITextField *curTextField_;
@@ -94,7 +96,7 @@
 - (UIImageView *)backImage{
     if (!backImage_) {
         backImage_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height + 3)];
-        backImage_.image = [UIImage imageNamed:@"login.jpg"];
+        backImage_.image = loginCachePicture;
     }
     return backImage_;
 }
@@ -102,10 +104,11 @@
 //用户名输入提示
 - (UILabel *)userLabel{
     if (!userLabel_) {
-        userLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-110, 80, 30)];
+        userLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao-60, 80, 30)];
         userLabel_.text = @"+86";
         userLabel_.textColor = [UIColor whiteColor];
         userLabel_.layer.borderWidth = 0.5;
+        userLabel_.layer.cornerRadius = 2.0;
         userLabel_.textAlignment = NSTextAlignmentCenter;
     }
     return userLabel_;
@@ -114,10 +117,11 @@
 // 验证码输入提示
 - (UILabel *)keyLabel{
     if (!keyLabel_) {
-        keyLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-50, 80, 30)];
+        keyLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(50, chushizuobiao, 80, 30)];
         keyLabel_.text = @"60秒";
         keyLabel_.textColor = [UIColor whiteColor];
         keyLabel_.layer.borderWidth = 0.5;
+        keyLabel_.layer.cornerRadius = 2.0;
         keyLabel_.textAlignment = NSTextAlignmentCenter;
     }
     return keyLabel_;
@@ -125,7 +129,7 @@
 - (UIButton *)againRegister{
     if (!_againRegister) {
         _againRegister = [UIButton buttonWithType:UIButtonTypeCustom];
-        _againRegister.frame = CGRectMake(50, SCREEN_HEIGHT/2-50, 80, 30);
+        _againRegister.frame = CGRectMake(50, chushizuobiao, 80, 30);
         _againRegister.layer.borderWidth = 0.5;
         [_againRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; // 字体颜色
         [_againRegister.titleLabel setFont:[UIFont boldSystemFontOfSize:14]]; //定义按钮标题字体格式
@@ -138,7 +142,7 @@
 //用户名输入框
 - (UITextField *)userField{
     if (!userField_) {
-        userField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 50, SCREEN_HEIGHT/2-110, SCREEN_WIDTH/2, 30)];
+        userField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 50, chushizuobiao-60, SCREEN_WIDTH/2, 30)];
         userField_.placeholder = @"请输入你的手机号";
         userField_.text = self.iphoneNum;
         userField_.keyboardType = UIKeyboardTypePhonePad;
@@ -153,7 +157,7 @@
 //验证码输入框
 - (UITextField *)authField{
     if (!authField_) {
-        authField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 50, SCREEN_HEIGHT/2-50, SCREEN_WIDTH/2-20, 30)];
+        authField_ = [[UITextField alloc] initWithFrame:CGRectMake(userLabel_.center.x + 50, chushizuobiao, SCREEN_WIDTH/2-20, 30)];
         authField_.placeholder = @"请输入5位验证码";
         authField_.clearButtonMode = UITextFieldViewModeWhileEditing;
         authField_.keyboardType = UIKeyboardTypePhonePad;
@@ -166,7 +170,7 @@
 // 密码
 - (UITextField *)password{
     if (!_password) {
-        _password = [[UITextField alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2, SCREEN_WIDTH-100, 30)];
+        _password = [[UITextField alloc]initWithFrame:CGRectMake(50, chushizuobiao+50, SCREEN_WIDTH-100, 30)];
         _password.placeholder = @"请创建6-16位包含数字和字母的密码";
         _password.clearButtonMode = UITextFieldViewModeWhileEditing;
         _password.returnKeyType = UIReturnKeyDone;//改变键盘为DONE键
@@ -181,9 +185,9 @@
 - (UIButton *)submitButton{
     if (!submitButton_) {
         submitButton_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        submitButton_.frame = CGRectMake(50, SCREEN_HEIGHT/2+40, SCREEN_WIDTH-100, 50);
+        submitButton_.frame = CGRectMake(50, chushizuobiao+90, SCREEN_WIDTH-100, 50);
         [submitButton_ setTitle:@"提交" forState:UIControlStateNormal];
-        submitButton_.backgroundColor = [UIColor colorWithWhite:0.065 alpha:0.800];
+        submitButton_.backgroundColor = RGB255_COLOR(0.0, 0.0, 0.0, 0.35);;
         [submitButton_ addTarget:self action:@selector(submitAction:) forControlEvents:UIControlEventTouchUpInside];
         submitButton_.tintColor = [UIColor whiteColor];
     }
@@ -192,12 +196,13 @@
 - (UIButton *)goBackButton{
     if (!_goBackButton) {
         CGFloat x = 10;
-        CGFloat y = 30;
+        CGFloat y = 20;
         CGFloat w = 50;
         CGFloat h = 30;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(x, y, w, h);
-        [button setTitle:@"返回" forState:UIControlStateNormal];//正常
+//        [button setTitle:@"返回" forState:UIControlStateNormal];//正常
+        [button setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal]; // 字体颜色
         [button addTarget:self action:@selector(gobackButton:) forControlEvents:UIControlEventTouchUpInside]; // 绑定点击事件
         button.showsTouchWhenHighlighted = YES; // 设置按钮按下会发光
@@ -210,13 +215,13 @@
 #pragma mark Actions
 // 返回按钮
 - (void)gobackButton:(UIButton *)sender{
-    // 设置切换动画
-    CATransition *animation = [CATransition animation];
-    animation.duration = 0.4;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"cube";
-    animation.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:animation forKey:nil];
+//    // 设置切换动画
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 0.4;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.type = @"cube";
+//    animation.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:animation forKey:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 //移除响应者

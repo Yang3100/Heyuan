@@ -635,8 +635,8 @@
  *  播放 与 暂停
  */
 - (IBAction)play:(UIButton *)sender {
-    if (!self.isPlay) {
-        self.isPlay=YES;
+    if (!_isPlay) {
+        _isPlay=YES;
         if (_kj_player.isPlayComplete) {
 //            [self next:nil];
             [self startPlayBefore];
@@ -647,7 +647,7 @@
             [self.playButton setImage:[UIImage imageNamed:@"kjpause"] forState:UIControlStateNormal];
         }
     }else{
-        self.isPlay=NO;
+        _isPlay=NO;
         [_kj_player pause]; // 暂停
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [sender setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];
@@ -658,7 +658,7 @@
 // 设置那边的定时器
 - (void)timerForSetIsStop:(BOOL)stop{
     if (stop) {
-        self.isPlay=NO;
+        _isPlay=NO;
         [_kj_player pause]; // 暂停
         [self.authorImageView.layer removeAnimationForKey:@"rotationAnimation"];
         [self.playButton setImage:[UIImage imageNamed:@"kjplay"] forState:UIControlStateNormal];

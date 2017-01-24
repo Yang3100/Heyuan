@@ -227,6 +227,9 @@ static NSString *setCellIdentifier = @"setCell";
             [SVProgressHUD show];
             [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.5f];
             
+            // 关闭播放器
+            [[playerViewController defaultDataModel] timerForSetIsStop:YES];
+            
             [userModel_ loginOut];
             // 删除本地账号密码
             [[shareObjectModel shareObject] deleteAccountAndPassword];

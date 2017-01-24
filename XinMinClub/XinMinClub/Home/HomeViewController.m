@@ -91,7 +91,7 @@
     self.navigationItem.leftBarButtonItem = rightButtonItem;
     
     // 右侧消息按钮
-    UIImage *leftImage = [[UIImage imageNamed:@"shangcheng"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *leftImage = [[UIImage imageNamed:@"toumingtu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:leftImage style:UIBarButtonItemStylePlain target:self action:@selector(PlayAction:)];
     self.navigationItem.rightBarButtonItem = leftButtonItem;
     
