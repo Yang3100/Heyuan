@@ -121,7 +121,8 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         brightness = UIScreen.main.brightness
-        UIScreen.main.brightness = CGFloat(lightSlider.value)
+        lightSlider.value = Float(UIScreen.main.brightness)
+//        UIScreen.main.brightness = CGFloat(lightSlider.value)
         var image = UIImage.init(named: "喜欢")
         let d = UserDataModel.default()
         if (d?.judgeIsLike(kj_dict["GJ_ID"] as! String))! {
@@ -133,16 +134,16 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UIScreen.main.brightness = brightness
+//        UIScreen.main.brightness = brightness
     }
     
     func applicationWillResignActive() {
-        UIScreen.main.brightness = brightness
+//        UIScreen.main.brightness = brightness
     }
     
     func applicationDidBecomeActive() {
-        brightness = UIScreen.main.brightness
-        UIScreen.main.brightness = CGFloat(lightSlider.value)
+//        brightness = UIScreen.main.brightness
+//        UIScreen.main.brightness = CGFloat(lightSlider.value)
     }
     
     func initView() {
