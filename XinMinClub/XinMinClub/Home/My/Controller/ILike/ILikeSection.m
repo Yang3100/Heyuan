@@ -47,7 +47,7 @@ static NSString *bookCell = @"bookCell";
     
     dataModel_ = [DataModel defaultDataModel];
     userModel_ = [UserDataModel defaultDataModel];
-    NSLog(@"%@",[UserDataModel defaultDataModel].userID);
+//    NSLog(@"%@",[UserDataModel defaultDataModel].userID);
     
     self.title = @"文章";
     // 选择的cell

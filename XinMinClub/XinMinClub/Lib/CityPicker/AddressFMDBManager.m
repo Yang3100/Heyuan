@@ -36,12 +36,12 @@
 //    _cityData=[FMDatabase databaseWithPath:kDbFilePath];
     _cityData=[FMDatabase databaseWithPath:path];
     if (![_cityData open]) {
-        NSLog(@"无法打开数据库");
+//        NSLog(@"无法打开数据库");
 //       [_cityData executeUpdate:@"/Users/yikang/Library/Developer/CoreSimulator/Devices/DBE84367-E595-412B-ADD0-F6888A8A5190/data/Containers/Data/Application/8CF7F97F-D53D-42E4-9ECA-6BD1AFA82CEB/Documents/cityData.sqlite"];
         
 //       return _cityData;
     }
-    NSLog(@"aaa＝%@",kDbFilePath);
+//    NSLog(@"aaa＝%@",kDbFilePath);
  
 }
 

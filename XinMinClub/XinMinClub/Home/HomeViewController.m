@@ -243,7 +243,7 @@
     }
     
     if ([keyPath isEqualToString:@"currentSongs"]) {
-       NSLog(@"歌单:%@", [change valueForKey:@"new"]  );
+//       NSLog(@"歌单:%@", [change valueForKey:@"new"]  );
     }
 }
 

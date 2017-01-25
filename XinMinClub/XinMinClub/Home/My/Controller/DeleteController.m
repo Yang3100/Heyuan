@@ -148,7 +148,7 @@ static NSString *toolCellIdentifier = @"toolCell";
         flowLayout.sectionInset = UIEdgeInsetsMake(10, 50, 10, 50);
         //列与列/行与行之间的最小距离
         flowLayout.minimumLineSpacing = SCREEN_WIDTH - flowLayout.itemSize.width * 2 - flowLayout.sectionInset.left * 2;
-        NSLog(@"%f %f %f",flowLayout.minimumLineSpacing,flowLayout.itemSize.width , flowLayout.sectionInset.left * 2);
+//        NSLog(@"%f %f %f",flowLayout.minimumLineSpacing,flowLayout.itemSize.width , flowLayout.sectionInset.left * 2);
         //两个而连续的cell之间的最小距离
         flowLayout.minimumInteritemSpacing = 1;
         //卷动的方向(默认是垂直的)
@@ -297,7 +297,7 @@ static NSString *toolCellIdentifier = @"toolCell";
                     if (![dataModel.downloadingSections containsObject:s]) {
                         if (!s.isDownload) {                            
                             // 数组设置便于监听
-                            NSLog(@"%@",s);
+//                            NSLog(@"%@",s);
                             [[DownloadModule defaultDataModel].urlArr addObject:s.clickMp3];
                             [[dataModel mutableArrayValueForKey:@"downloadingSections"] addObject:s];
 //                            NSLog(@"%@",[DownloadModule defaultDataModel].urlArr);

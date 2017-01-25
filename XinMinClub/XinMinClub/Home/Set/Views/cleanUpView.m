@@ -191,7 +191,7 @@
 - (NSString*)imageCache{
     float tmpSize = [[SDImageCache sharedImageCache] getDiskCount];
     NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
-    NSLog(@"%@",clearCacheName);
+//    NSLog(@"%@",clearCacheName);
     return clearCacheName;
 }
 
@@ -199,7 +199,7 @@
 - (NSString*)musicCache{
     float tmpSize = [SUFileHandle fileSize]/1000.0/1000;
     NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
-    NSLog(@"%@",clearCacheName);
+//    NSLog(@"%@",clearCacheName);
     return clearCacheName;
 }
 
@@ -207,7 +207,7 @@
 - (NSString*)fileCache{
     float tmpSize = [self fileSize]/1000.0/1000;
     NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
-    NSLog(@"%@",clearCacheName);
+//    NSLog(@"%@",clearCacheName);
     return clearCacheName;
 }
 
