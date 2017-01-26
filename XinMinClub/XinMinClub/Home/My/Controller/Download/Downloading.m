@@ -128,7 +128,7 @@ static NSString *bookCell = @"bookCell";
 - (UILabel *)backLabel {
     if (!backLabel_) {
         backLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 60)];
-        backLabel_.text = @"还没有播放";
+        backLabel_.text = @"还没有下载";
         [backLabel_ setFont:[UIFont systemFontOfSize:15]];
         backLabel_.textColor = [UIColor colorWithWhite:0.696 alpha:1.000];
         backLabel_.textAlignment = NSTextAlignmentCenter;

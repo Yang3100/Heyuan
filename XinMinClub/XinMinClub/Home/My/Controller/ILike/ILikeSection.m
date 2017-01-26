@@ -123,7 +123,7 @@ void like (){
 - (UILabel *)backLabel {
     if (!backLabel_) {
         backLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 60)];
-        backLabel_.text = @"还没有喜欢哦";
+        backLabel_.text = @"还没有喜欢";
         [backLabel_ setFont:[UIFont systemFontOfSize:15]];
         backLabel_.textColor = [UIColor colorWithWhite:0.696 alpha:1.000];
         backLabel_.textAlignment = NSTextAlignmentCenter;
