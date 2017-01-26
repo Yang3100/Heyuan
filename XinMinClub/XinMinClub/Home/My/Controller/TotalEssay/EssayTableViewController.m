@@ -83,9 +83,9 @@ static NSString *EssayIdentifier = @"essay";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     EssayCell *cell = [tableView dequeueReusableCellWithIdentifier:EssayIdentifier    forIndexPath:indexPath];
-    NSLog(@"%@",dataModel_.allBookAndID);
+//    NSLog(@"%@",dataModel_.allBookAndID);
     BookData *book = [dataModel_.allBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
-    NSLog(@"%d",indexPath.row);
+//    NSLog(@"%d",indexPath.row);
     cell.userName.text = book.bookName;//((SectionData *)dataModel_.allSection[indexPath.row]).bookName;
 //    cell.userDetail.text = ;//((SectionData *)dataModel_.allSection[indexPath.row]).author;
     [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:book.imagePath] placeholderImage:wenjicachePicture];

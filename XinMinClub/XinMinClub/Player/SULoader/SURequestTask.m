@@ -44,7 +44,7 @@
 //服务器响应
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
     if (self.cancel) return;
-    NSLog(@"response: %@",response);
+//    NSLog(@"response: %@",response);
     completionHandler(NSURLSessionResponseAllow);
     NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
     NSString * contentRange = [[httpResponse allHeaderFields] objectForKey:@"Content-Range"];

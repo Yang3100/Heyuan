@@ -39,7 +39,7 @@
         view.center = self.view.center;
         [view roundedRectWithConerRadius:6 BorderWidth:0 borderColor:[UIColor whiteColor]];
         backView_ = view;
-        NSLog(@"%f%f",backView_.center.x,backView_.center.y);
+//        NSLog(@"%f%f",backView_.center.x,backView_.center.y);
     }
     return backView_;
 }

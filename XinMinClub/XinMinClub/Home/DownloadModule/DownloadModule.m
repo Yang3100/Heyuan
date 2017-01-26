@@ -75,7 +75,7 @@
         return;
     }
     _sectionData.progress = _sectionData.progress + 0.01;
-    NSLog(@"%@:%f", _sectionData.sectionName, _sectionData.progress);
+//    NSLog(@"%@:%f", _sectionData.sectionName, _sectionData.progress);
 }
 
 - (void)startDownload:(SectionData *)sectionData {
@@ -126,7 +126,7 @@
             [dataModel.allSection insertObject:_sectionData atIndex:0];
         }
         timer.fireDate = [NSDate distantFuture];
-        NSLog(@"finish:%@",dataModel.downloadingSection.sectionName);
+//        NSLog(@"finish:%@",dataModel.downloadingSection.sectionName);
         if (dataModel.downloadingSections.count > 0) {
             [[dataModel mutableArrayValueForKey:@"downloadingSections"] removeObjectAtIndex:0];
             if (dataModel.downloadingSections.count > 1) {
@@ -142,21 +142,21 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     
     _sectionData.progress = totalBytesWritten / 1.0 / totalBytesExpectedToWrite;
-    NSLog(@"%f",_sectionData.progress);
+//    NSLog(@"%f",_sectionData.progress);
 }
 
 // 暂停下载
 - (void)pauseDownload {
     [task_ cancelByProducingResumeData:^(NSData * resumeData) {
         resumeData_ = resumeData;
-        NSLog(@"XXX - %ld",(unsigned long)resumeData_.length);
+//        NSLog(@"XXX - %ld",(unsigned long)resumeData_.length);
     }];
     task_ = nil;
 }
 
 // 继续下载
 - (void)resumeDownload {
-    NSLog(@"AB%ld",(unsigned long)resumeData_.length);
+//    NSLog(@"AB%ld",(unsigned long)resumeData_.length);
     if (!resumeData_) {
         [self startDownload:_sectionData];
         return;

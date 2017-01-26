@@ -469,7 +469,7 @@
 //}
 - (void)getUserInfoResponse:(APIResponse*)response{
     NSLog(@"*********");
-    NSLog(@" response %@",response.message);
+//    NSLog(@" response %@",response.message);
     [USER_DATA_MODEL saveThreePartData:response.message];
     //    NSLog(@"*********%@",response.jsonResponse[@"figureurl_qq_2"]);
 }

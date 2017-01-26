@@ -135,7 +135,7 @@
     // 1-1-1  判断保存的账号密码是否正确
     [[shareObjectModel shareObject] isTrueForAcctont:account Password:password Block:^(BOOL successful, NSString *userID) {
         if (successful) { // 账号密码正确，登录成功
-            NSLog(@"登录成功!!! userID:%@",userID);
+//            NSLog(@"登录成功!!! userID:%@",userID);
             [UserDataModel defaultDataModel].userID = userID;
             istrue = 1;
         }else{ // 登录失败

@@ -93,7 +93,7 @@
     
     // 占位视图
     image11111 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4)];
-    image11111.image = guangGaocachePicture;
+    image11111.image = cachePicture_375x222;
     [self.view addSubview:image11111];
     
     // 九宫格
@@ -121,11 +121,11 @@
             NSDictionary *dict = @{@"ID":wjID};
             NSString *paramString = [networkSection getParamStringWithParam:@{@"FunName":@"Get_WeiJi_FromID", @"Params":dict}];
             [networkSection getRequestDataBlock:IPUrl :paramString block:^(NSDictionary *jsonDict) {
-                NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
+//                NSLog(@"Get_WJ_ZJ_TYPE:%@",jsonDict);
                 // 主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSDictionary *dica = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_WenJI"][0];
-                    NSLog(@"%@",dica);
+//                    NSLog(@"%@",dica);
                     SectionViewController *svc = [[SectionViewController alloc] init];
                     [svc getJsonData:dica];
                     

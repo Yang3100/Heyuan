@@ -17,7 +17,7 @@
 
 @implementation BookCell
 - (IBAction)bookMenu:(id)sender {
-    NSLog(@"%@",self.sectionsName.text);
+//    NSLog(@"%@",self.sectionsName.text);
     UIButton *btn = sender;
     [_delegate sectionManage:btn.tag];
 }
