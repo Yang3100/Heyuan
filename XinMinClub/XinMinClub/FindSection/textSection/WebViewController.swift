@@ -27,7 +27,7 @@ class WebViewController: UINavigationController {
         dataDic = dic
         let s = dic.value(forKey: "KCXJ_ID") as! String
 //        http://www.kingwant.com/BizFunction/KC/ZiKeChen/Html/Sys_ZKC_Info.aspx?ID=2b7611cd-a7cc-4efa-a4e1-d38004e1e0b1
-        let urlHead = "http://218.240.52.135/m/KC/Html/kc_Info.aspx?ID="
+        let urlHead = "http://www.kingwant.com/m/KC/Html/kc_Info.aspx?ID="
         let url = NSURL.init(string:urlHead+s)
         let request = NSURLRequest.init(url: url as! URL)
         workWebView.loadRequest(request as URLRequest)
@@ -70,7 +70,7 @@ class WebViewController: UINavigationController {
         let shareBut = ShareView()
         shareBut.setShareContent = .ShareWeb
         shareBut.title = dataDic.value(forKey: "KCXJ_NAME") as! String
-        let string_1 = "http://218.240.52.135/m/KC/Html/kc_Info.aspx?ID="
+        let string_1 = "http://www.kingwant.com/m/KC/Html/kc_Info.aspx?ID="
         let string_2 = dataDic.value(forKey: "KCXJ_ID") as! String
         shareBut.webUrl = string_1 + string_2
         shareBut.thumbImage = networkPictureUrl_swift

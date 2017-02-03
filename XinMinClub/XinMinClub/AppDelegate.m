@@ -204,5 +204,18 @@
     [leadViewController presentViewController:rvc animated:YES completion:nil];
 }
 
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnVisitorButton:(UIButton *)sender{
+    // 游客登录
+    NSLog(@"111");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+        [leadViewController presentViewController:nav animated:NO completion:^{
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
+            [DataModel defaultDataModel].isVisitorLoad = YES;
+        }];
+    });
+}
+
 
 @end

@@ -60,5 +60,6 @@ typedef void (^ButtonBlock)(UIButton *button);
 - (void)tutorialControllerDidReachLastPage:(ICETutorialController *)tutorialController;
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender;
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender;
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnVisitorButton:(UIButton *)sender;
 
 @end

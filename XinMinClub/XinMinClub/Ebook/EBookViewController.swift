@@ -342,6 +342,8 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         backView.addSubview(backSet3)
         backView.addSubview(backSet4)
         
+        print("%d",screenWidth)
+        
         let vMargin = 5 + backSet1.frame.size.height
         let height = backView.frame.size.height
         let lab1 = UILabel.init(frame: MY_CGRECT(x: margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))

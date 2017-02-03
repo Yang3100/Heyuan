@@ -78,6 +78,7 @@
 		1A53D1FF1E31FD6F00153A8D /* hui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1FD1E31FD6E00153A8D /* hui@2x.png */; };
 		1A53D2001E31FD6F00153A8D /* liang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D1FE1E31FD6E00153A8D /* liang@2x.png */; };
 		1A53D2021E32025600153A8D /* 亮度左@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D2011E32025600153A8D /* 亮度左@2x.png */; };
+		1A53D2061E3708B200153A8D /* noBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A53D2051E3708B200153A8D /* noBack@2x.png */; };
 		1A67110C1CBB48410028529C /* AddressFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711051CBB48410028529C /* AddressFMDBManager.m */; };
 		1A67110D1CBB48410028529C /* CityAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711071CBB48410028529C /* CityAddressModel.m */; };
 		1A67110E1CBB48410028529C /* DistrictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6711091CBB48410028529C /* DistrictModel.m */; };
@@ -212,6 +213,7 @@
 		6843BD0B1E16E2BE00D63FD7 /* Player_progress_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCFD1E16E2BE00D63FD7 /* Player_progress_bar@2x.png */; };
 		6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCFE1E16E2BE00D63FD7 /* Player_progress_bar@3x.png */; };
 		6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BD0D1E16E4EE00D63FD7 /* xuanhuan.png */; };
+		6848DCB51E446BD100A24BB1 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */; };
 		6849BF671E0937C000C9A5D2 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BF641E0937C000C9A5D2 /* FBKVOController.m */; };
 		6849BF681E0937C000C9A5D2 /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BF661E0937C000C9A5D2 /* NSObject+FBKVOController.m */; };
 		6849C00A1E09407900C9A5D2 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BFEA1E09407900C9A5D2 /* MKAnnotationView+WebCache.m */; };
@@ -468,6 +470,7 @@
 		1A53D1FD1E31FD6E00153A8D /* hui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hui@2x.png"; sourceTree = "<group>"; };
 		1A53D1FE1E31FD6E00153A8D /* liang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liang@2x.png"; sourceTree = "<group>"; };
 		1A53D2011E32025600153A8D /* 亮度左@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "亮度左@2x.png"; sourceTree = "<group>"; };
+		1A53D2051E3708B200153A8D /* noBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noBack@2x.png"; sourceTree = "<group>"; };
 		1A6711041CBB48410028529C /* AddressFMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFMDBManager.h; sourceTree = "<group>"; };
 		1A6711051CBB48410028529C /* AddressFMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFMDBManager.m; sourceTree = "<group>"; };
 		1A6711061CBB48410028529C /* CityAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAddressModel.h; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 		6843BCFD1E16E2BE00D63FD7 /* Player_progress_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player_progress_bar@2x.png"; sourceTree = "<group>"; };
 		6843BCFE1E16E2BE00D63FD7 /* Player_progress_bar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player_progress_bar@3x.png"; sourceTree = "<group>"; };
 		6843BD0D1E16E4EE00D63FD7 /* xuanhuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuanhuan.png; sourceTree = "<group>"; };
+		6848DCB31E446BD100A24BB1 /* UserAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAgreementViewController.h; sourceTree = "<group>"; };
+		6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		6849BF631E0937C000C9A5D2 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBKVOController.h; sourceTree = "<group>"; };
 		6849BF641E0937C000C9A5D2 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
 		6849BF651E0937C000C9A5D2 /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
@@ -966,6 +971,7 @@
 		1A07BE961CB658D300E327DA /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1A53D2051E3708B200153A8D /* noBack@2x.png */,
 				68DB36471E1DF3C400DD53D3 /* 印章原版 */,
 				1A40331A1E0908A80006613F /* tubiao */,
 				682F429D1E120CA8004B3651 /* header.png */,
@@ -2109,6 +2115,8 @@
 				68EB89BF1E0E995100611357 /* loginViewController.m */,
 				68EB89C01E0E995100611357 /* RegisterViewController.h */,
 				68EB89C11E0E995100611357 /* RegisterViewController.m */,
+				6848DCB31E446BD100A24BB1 /* UserAgreementViewController.h */,
+				6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */,
 				68EB89C21E0E995100611357 /* SubmitViewController.h */,
 				68EB89C31E0E995100611357 /* SubmitViewController.m */,
 			);
@@ -2302,6 +2310,7 @@
 				1A49AB131CAD162F003DA6DB /* DetailsCell1.xib in Resources */,
 				682F42B51E1256D3004B3651 /* 引导页3.png in Resources */,
 				682F42AD1E12561B004B3651 /* 注册.png in Resources */,
+				1A53D2061E3708B200153A8D /* noBack@2x.png in Resources */,
 				68E8B73C1E0000B1000CB44A /* heile.png in Resources */,
 				6800B1DC1E1F535300D05FFA /* zhujian@3x.png in Resources */,
 				68DA92691E35BAC200A463F0 /* shuiyin@3x.png in Resources */,
@@ -2450,6 +2459,7 @@
 				1A91BE911CB360D500689AE0 /* UserFirstCell.m in Sources */,
 				1A974C2A1CBE2E5300A92CA4 /* ToolCell.m in Sources */,
 				6885FDA51E31AD33005C5DCB /* cleanUpView.m in Sources */,
+				6848DCB51E446BD100A24BB1 /* UserAgreementViewController.m in Sources */,
 				6814F08D1C9FE86C000FD40B /* MJRefreshBackNormalFooter.m in Sources */,
 				6852D24F1E0ABB2500CA55D6 /* readView.m in Sources */,
 				1A91BE7D1CB360D500689AE0 /* SectionData.m in Sources */,
@@ -2615,6 +2625,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -2657,6 +2668,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2696,7 +2708,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yangkejun.XinMinClub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingwant.XinMinClub;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2740,7 +2752,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yangkejun.XinMinClub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingwant.XinMinClub;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

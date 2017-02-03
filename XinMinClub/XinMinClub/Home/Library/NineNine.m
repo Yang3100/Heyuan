@@ -190,16 +190,27 @@
 
 - (void)buildView{
     UIButton *button;
-    CGFloat space = 20;
-    CGFloat Nwidth = ((int)kj_width-4*space)/3;
-    CGFloat space_height = (kj_height - (int)kj_width/12 - 3*Nwidth)/4;
+    CGFloat kj_w = kj_width;
+    CGFloat kj_h = kj_height - kj_width/3/3.5;
+    CGFloat Nwidth;
+    CGFloat space_w;
+    CGFloat space_h;
+    if (kj_w<kj_h) {
+        Nwidth = 5*kj_w/19;
+        space_w = Nwidth/5;
+        space_h = (kj_h-3*Nwidth)/4;
+    }else{
+        Nwidth = 5*kj_h/19;
+        space_w = (kj_w-3*Nwidth)/4;
+        space_h = Nwidth/5;
+    }
     int k=0;
     for (int x = 0; x < 3; x++) {
         for (int y = 0; y < 3; y++) {
             k++;
             button = [UIButton buttonWithType:UIButtonTypeCustom];
-            CGFloat bx = (space+Nwidth)*y+space;
-            CGFloat by = (space_height+Nwidth)*x+space_height+kj_y+(int)kj_width/12;
+            CGFloat bx = (space_w+Nwidth)*y+space_w;
+            CGFloat by = (space_h+Nwidth)*x+space_h+kj_y+(int)kj_width/3/3.5;
             button.frame = CGRectMake(bx, by, Nwidth, Nwidth);
             button.backgroundColor = [UIColor clearColor];
             [button setImage:shiArr[k-1] forState:UIControlStateNormal];
@@ -212,7 +223,6 @@
         }
     }
 }
-
 - (void)xxx:(UIButton*)but butTag:(NSInteger)butag{
     NSString *s = [NSString stringWithFormat:@"%ld",(long)butag];
     [but_dict addEntriesFromDictionary:@{s:but}];

@@ -64,7 +64,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        CGFloat x = -1;
+        CGFloat x = 10;
         CGFloat y = -1;
         CGFloat w = [UIScreen mainScreen].bounds.size.width + 2;
         CGFloat h = 30;
@@ -99,7 +99,7 @@
 - (UIButton *)likeButton {
     if (!_likeButton) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _likeButton.frame = CGRectMake((SCREEN_WIDTH - 3 * 40) / 3, 30, 40, 40);
+        _likeButton.frame = CGRectMake(0, 30, SCREEN_WIDTH/3, 40);
         _likeButton.backgroundColor = [UIColor clearColor];
         [_likeButton setTitle:@"喜欢" forState:UIControlStateNormal];
         [_likeButton setTintColor:DEFAULT_COLOR];
@@ -111,7 +111,7 @@
 - (UIButton *)downloadButton {
     if (!_downloadButton) {
         _downloadButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _downloadButton.frame = CGRectMake((SCREEN_WIDTH - 3 * 40) / 3 * 2, 30, 40, 40);
+        _downloadButton.frame = CGRectMake(SCREEN_WIDTH/3, 30, SCREEN_WIDTH/3, 40);
         _downloadButton.backgroundColor = [UIColor clearColor];
         [_downloadButton setTitle:@"下载" forState:UIControlStateNormal];
         [_downloadButton setTintColor:DEFAULT_COLOR];
@@ -123,7 +123,7 @@
 - (UIButton *)fuckButton {
     if (!_fuckButton) {
         _fuckButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _fuckButton.frame = CGRectMake((SCREEN_WIDTH - 3 * 40) / 3 * 3, 30, 40, 40);
+        _fuckButton.frame = CGRectMake(SCREEN_WIDTH * 2 / 3, 30, SCREEN_WIDTH/3, 40);
         _fuckButton.backgroundColor = [UIColor clearColor];
         [_fuckButton setTintColor:DEFAULT_COLOR];
         [_fuckButton setTitle:@"分享" forState:UIControlStateNormal];
