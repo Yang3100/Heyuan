@@ -137,10 +137,7 @@
     [self.backLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
     //    self.overlayTitle.frame = CGRectMake(0, SCREEN_HEIGHT/3, SCREEN_WIDTH, 50);
-<<<<<<< HEAD
-=======
     self.visitorButton.frame = CGRectMake(SCREEN_WIDTH-95, 30, 80, 30);
->>>>>>> yangKJ/master
     self.leftButton.frame = CGRectMake(20, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
     self.rightButton.frame = CGRectMake(SCREEN_WIDTH - SCREEN_WIDTH/2 + 10, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
     self.pageControl.frame = CGRectMake(0, SCREEN_HEIGHT-86, SCREEN_WIDTH, 20);
