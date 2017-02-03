@@ -21,6 +21,7 @@
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
 @property (nonatomic, strong, readonly) UIButton *leftButton;
 @property (nonatomic, strong, readonly) UIButton *rightButton;
+@property (nonatomic, strong, readonly) UIButton *visitorButton;
 
 @property (nonatomic, assign) ScrollingState currentState;
 @property (nonatomic, strong) NSArray *pages;
@@ -44,6 +45,7 @@
 //        _overlayTitle = [[UILabel alloc] init];
         _pageControl = [[UIPageControl alloc] init];
         _leftButton = [[UIButton alloc] init];
+        _visitorButton = [[UIButton alloc] init];
         _rightButton = [[UIButton alloc] init];
     }
     return self;
@@ -101,12 +103,18 @@
 //    [self.rightButton setTitle:@"注册" forState:UIControlStateNormal];
 //    [self.leftButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 //    [self.rightButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [self.visitorButton setImage:[UIImage imageNamed:@"登录"] forState:UIControlStateNormal];
+    [self.visitorButton setTitle:@"游客登录" forState:UIControlStateNormal];
+    _visitorButton.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+    _visitorButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    _visitorButton.layer.cornerRadius = 5.0;
     [self.leftButton setImage:[UIImage imageNamed:@"登录"] forState:UIControlStateNormal];
     [self.rightButton setImage:[UIImage imageNamed:@"注册"] forState:UIControlStateNormal];
 //    self.leftButton.layer.masksToBounds = YES;
 //    self.rightButton.layer.masksToBounds = YES;
 //    self.leftButton.layer.cornerRadius = 5.0;
 //    self.rightButton.layer.cornerRadius = 5.0;
+    [self.visitorButton addTarget:self action:@selector(didClickOnVisitor:) forControlEvents:UIControlEventTouchUpInside];
     [self.leftButton addTarget:self action:@selector(didClickOnLogon:) forControlEvents:UIControlEventTouchUpInside];
     [self.rightButton addTarget:self action:@selector(didClickOnRegister:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -117,6 +125,7 @@
 //    [self.view addSubview:self.overlayTitle];
     [self.view addSubview:self.pageControl];
     [self.view addSubview:self.leftButton];
+    [self.view addSubview:self.visitorButton];
     [self.view addSubview:self.rightButton];
     
     [self addAllConstraints];
@@ -128,6 +137,10 @@
     [self.backLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
     //    self.overlayTitle.frame = CGRectMake(0, SCREEN_HEIGHT/3, SCREEN_WIDTH, 50);
+<<<<<<< HEAD
+=======
+    self.visitorButton.frame = CGRectMake(SCREEN_WIDTH-95, 30, 80, 30);
+>>>>>>> yangKJ/master
     self.leftButton.frame = CGRectMake(20, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
     self.rightButton.frame = CGRectMake(SCREEN_WIDTH - SCREEN_WIDTH/2 + 10, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
     self.pageControl.frame = CGRectMake(0, SCREEN_HEIGHT-86, SCREEN_WIDTH, 20);
@@ -144,6 +157,11 @@
 - (IBAction)didClickOnRegister:(id)sender {
     if ([self.delegate respondsToSelector:@selector(tutorialController:didClickOnRightButton:)]) {
         [self.delegate tutorialController:self didClickOnRightButton:sender];
+    }
+}
+- (IBAction)didClickOnVisitor:(id)sender{
+    if ([self.delegate respondsToSelector:@selector(tutorialController:didClickOnVisitorButton:)]) {
+        [self.delegate tutorialController:self didClickOnVisitorButton:sender];
     }
 }
 

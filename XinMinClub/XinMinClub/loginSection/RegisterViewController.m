@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "SubmitViewController.h"
 #import "loginViewController.h"
+#import "UserAgreementViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -26,7 +27,7 @@
     UIButton *loadButton_;
 }
 
-@property(nonatomic, copy) UILabel *agreementLabel; // 用户协议Label
+@property(nonatomic, copy) UIButton *agreementLabel; // 用户协议Label
 
 @end
 
@@ -46,13 +47,13 @@
     
     [self.view addSubview:self.backImage];
     [self.view addSubview:self.registerButton];
+    [self.view addSubview:self.agreementLabel];
     [self.view addSubview:self.countryLabel];
     [self.view addSubview:self.iPhoneLabel];
     [self.view addSubview:self.iPhone];
     [self.view addSubview:self.country];
 //    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.loadButton];
-//    [self.view addSubview:self.agreementLabel];
     
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -152,21 +153,30 @@
     return registerButton_;
 }
 
-//- (UILabel *)agreementLabel{
-//    if (!_agreementLabel) {
-//        _agreementLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, chushizuobiao+110, SCREEN_WIDTH - 120, 30)];
-//        _agreementLabel.tintColor = [UIColor whiteColor];
-//        _agreementLabel.text = @"注册即表示同意<XXXX用户协议>";
-//        _agreementLabel.font = [UIFont systemFontOfSize:13];
-//        _agreementLabel.textColor = [UIColor grayColor];
-//    }
-//    return _agreementLabel;
-//}
+- (UIButton *)agreementLabel{
+    if (!_agreementLabel) {
+        _agreementLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+        _agreementLabel.frame = CGRectMake(40, chushizuobiao+110, SCREEN_WIDTH - 120, 30);
+        _agreementLabel.tintColor = [UIColor grayColor];
+        [_agreementLabel setTitle:@"注册即表示同意<和源用户协议>" forState:UIControlStateNormal];
+        [_agreementLabel addTarget:self action:@selector(agreementLabellll) forControlEvents:UIControlEventTouchDragInside];
+        _agreementLabel.titleLabel.font = [UIFont systemFontOfSize:13];
+        _agreementLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        _agreementLabel.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
+    }
+    return _agreementLabel;
+}
+
+- (void)agreementLabellll{
+    UserAgreementViewController *advc = [[UserAgreementViewController alloc] init];
+    UINavigationController *root = [[UINavigationController alloc] initWithRootViewController:advc];
+    [self presentViewController:root animated:YES completion:nil];
+}
 
 - (UIButton *)loadButton{
     if (!loadButton_) {
         loadButton_ = [UIButton buttonWithType:UIButtonTypeSystem];
-        loadButton_.frame = CGRectMake(SCREEN_WIDTH-130, chushizuobiao+110, 80, 30);
+        loadButton_.frame = CGRectMake(SCREEN_WIDTH-110, chushizuobiao+110, 80, 30);
         loadButton_.tintColor = RGB255_COLOR(68, 68, 68, 1);
         [loadButton_ setTitle:@"登陆" forState:UIControlStateNormal];
         [loadButton_.titleLabel setFont:[UIFont systemFontOfSize:14]];

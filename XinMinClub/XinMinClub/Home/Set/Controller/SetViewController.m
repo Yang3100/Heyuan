@@ -236,6 +236,8 @@ static NSString *setCellIdentifier = @"setCell";
             [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{
                 loginViewController *lvc = [[loginViewController alloc] init];
                 [[self appRootViewController] presentViewController:lvc animated:NO completion:nil];
+                // 游客登录
+                [DataModel defaultDataModel].isVisitorLoad = NO;
             }];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -387,7 +389,11 @@ static NSString *setCellIdentifier = @"setCell";
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            if ([DataModel defaultDataModel].isVisitorLoad) {
+                [[DataModel defaultDataModel] pushLoadViewController];
+            }else{
             [_delegate pushUserDataView];
+            }
         }
         if (indexPath.row == 1) {
             [self setPlayTime];

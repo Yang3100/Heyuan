@@ -68,7 +68,7 @@
     if (!myData.userName) {
         _userID = @"000000";
         _userSex = @"男";
-        _userName = @"无用用户";
+        _userName = @"无用户";
         _userCity = @"北京 北京 东城区";
         _userIntroduction = @"";
     }

@@ -38,7 +38,7 @@
     UIView *searchView_;
     UIButton *searchButton_;
     UIButton *speechButton_;
-//    UserViewController *userController_;
+    //    UserViewController *userController_;
     TotalViewController *totalController_;
     ResentPlay *resentPlay_;
     ILikePage *iLike_;
@@ -83,7 +83,7 @@ static NSString * defaultIdentifier = @"cell";
     [self initView];
     // 初始化刷新view
     self.refreshHeaderView = [[TableHeaderRefreshView alloc] initWithScrollView:myTableView_ hasNavigationBar:NO];
-//    [[UserDataModel defaultDataModel] keepSession];
+    //    [[UserDataModel defaultDataModel] keepSession];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,7 +100,7 @@ static NSString * defaultIdentifier = @"cell";
     [self.refreshHeaderView addRefreshingBlock:^{
         // you can do some net request or other refresh operation
         // ...
-//        [weakUserModel_ getRecommend];
+        //        [weakUserModel_ getRecommend];
         // here simulate do some refresh operation,and after 3s refresh complate
         double delayTime = 1.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, delayTime * NSEC_PER_SEC);
@@ -116,13 +116,13 @@ static NSString * defaultIdentifier = @"cell";
     }
     
     if (userModel_.threePartReload) {
-//        userModel_.threePartReload = NO;
+        //        userModel_.threePartReload = NO;
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-//        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        //        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
     
     if (dataModel_.addBook){
-//        dataModel_.addBook = NO;
+        //        dataModel_.addBook = NO;
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:2];
         [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
@@ -135,10 +135,10 @@ static NSString * defaultIdentifier = @"cell";
 }
 
 - (void)initView {
-//    [self.view addSubview:[self backImage]];
+    //    [self.view addSubview:[self backImage]];
     [self.view addSubview:self.myTableView];
-//    [myTableView_ setBackgroundView:[self backImage]];
-//    userController_ = [[UserViewController alloc] init];
+    //    [myTableView_ setBackgroundView:[self backImage]];
+    //    userController_ = [[UserViewController alloc] init];
     
     UINib *nib = [UINib nibWithNibName:@"FirstTableViewCell" bundle:nil];
     [myTableView_ registerNib:nib forCellReuseIdentifier:firstIdentifier];
@@ -172,7 +172,7 @@ static NSString * defaultIdentifier = @"cell";
     }
     myTableView_.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
     myTableView_.tableHeaderView = [self searchView];
-//    searchView_.backgroundColor = [UIColor clearColor];
+    //    searchView_.backgroundColor = [UIColor clearColor];
     return myTableView_;
 }
 
@@ -181,8 +181,8 @@ static NSString * defaultIdentifier = @"cell";
         searchView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8/*55*/)];
     }
     searchView_.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
-//    [searchView_ addSubview:self.searchButton];
-//    [searchView_ addSubview:self.speechButton];
+    //    [searchView_ addSubview:self.searchButton];
+    //    [searchView_ addSubview:self.speechButton];
     searchView_.center = searchButton_.center;
     return searchView_;
 }
@@ -217,13 +217,13 @@ static NSString * defaultIdentifier = @"cell";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     
     if ([keyPath isEqualToString:@"recommandBook"]) {
-//        forthCell_ = [myTableView_ dequeueReusableCellWithIdentifier:forthIdentifier];
-//        if (!forthCell_) {
-//            forthCell_ = [[ForthTableViewCell alloc] init];
-//        }
+        //        forthCell_ = [myTableView_ dequeueReusableCellWithIdentifier:forthIdentifier];
+        //        if (!forthCell_) {
+        //            forthCell_ = [[ForthTableViewCell alloc] init];
+        //        }
         forthCell_.recommencArray = dataModel_.recommandBook;
-//        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:3];
-//        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+        //        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:3];
+        //        [myTableView_ reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
         [myTableView_ reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [forthCell_.recommendTable reloadData];
@@ -242,34 +242,43 @@ static NSString * defaultIdentifier = @"cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        [_delegate pushUserController];
+        if (dataModel_.isVisitorLoad) {
+            [dataModel_ pushLoadViewController];
+        }else{
+            [_delegate pushUserController];
+        }
     }
     if (indexPath.section == 2) {
         if (indexPath.row > 0) {
             
-//            BookData *data = dataModel_.myBook[indexPath.row - 1];
-//            KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
-//            kj_svc.libraryTitle = data.bookName;
-//            kj_svc.libraryAuthorName = data.authorName;
-//            kj_svc.libraryType = data.type;
-//            kj_svc.libraryDetails = data.details;
-//            kj_svc.libraryLanguage = data.language;
-//            kj_svc.libraryNum = data.bookID;
-////            kj_svc.libraryAuthorImageUrl = data.imagePath;
-//            kj_svc.libraryImageUrl = data.imagePath;
-//hhhhhhhhhhh
-//            SectionViewController *svc = [[SectionViewController alloc] init];
-////            svc.title = [dica valueForKey:@"WJ_NAME"];
-////            [svc getJsonData:dica];
-//            [self.navigationController pushViewController:svc animated:NO];
+            //            BookData *data = dataModel_.myBook[indexPath.row - 1];
+            //            KJ_BackTableViewController *kj_svc = [[KJ_BackTableViewController alloc] init];
+            //            kj_svc.libraryTitle = data.bookName;
+            //            kj_svc.libraryAuthorName = data.authorName;
+            //            kj_svc.libraryType = data.type;
+            //            kj_svc.libraryDetails = data.details;
+            //            kj_svc.libraryLanguage = data.language;
+            //            kj_svc.libraryNum = data.bookID;
+            ////            kj_svc.libraryAuthorImageUrl = data.imagePath;
+            //            kj_svc.libraryImageUrl = data.imagePath;
+            //hhhhhhhhhhh
+            //            SectionViewController *svc = [[SectionViewController alloc] init];
+            ////            svc.title = [dica valueForKey:@"WJ_NAME"];
+            ////            [svc getJsonData:dica];
+            //            [self.navigationController pushViewController:svc animated:NO];
             BookData *data = [dataModel_.myBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row - 1]];
             //    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
             [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
         }
         else {
-            MyBookListController *bookList = [[MyBookListController alloc] init];
-            bookList.title = @"我的文集";
-            [self.navigationController pushViewController:bookList animated:YES];
+            if (dataModel_.isVisitorLoad) {
+                [dataModel_ pushLoadViewController];
+            }else{
+                MyBookListController *bookList = [[MyBookListController alloc] init];
+                bookList.title = @"我的文集";
+                [self.navigationController pushViewController:bookList animated:YES];
+            }
+            
         }
     }
 }
@@ -354,7 +363,7 @@ static NSString * defaultIdentifier = @"cell";
             }
             cell.textLabel.text = @"我的文集";
             [cell addSubview:[((MyBookTableViewCell *)cell) footLine]];
-//            [cell.textLabel setTextColor:[UIColor whiteColor]];
+            //            [cell.textLabel setTextColor:[UIColor whiteColor]];
             [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
             int num = (dataModel_.myBookAndID.count / 2) > 4 ? 4 : (dataModel_.myBookAndID.count / 2);
             ((MyBookTableViewCell *)cell).label.text = [NSString stringWithFormat:@"%d", dataModel_.myBookAndID.count/2];
@@ -375,17 +384,17 @@ static NSString * defaultIdentifier = @"cell";
             }
         }
     } else if (indexPath.section == 3) {
-//        if (forthCell_) {
-//            cell = (UITableViewCell *)forthCell_;
-//        } else {
-            cell = [tableView dequeueReusableCellWithIdentifier:forthIdentifier forIndexPath:indexPath];
-//        }
+        //        if (forthCell_) {
+        //            cell = (UITableViewCell *)forthCell_;
+        //        } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:forthIdentifier forIndexPath:indexPath];
+        //        }
         forthCell_ = (ForthTableViewCell *)cell;
         forthCell_.backView.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
         forthCell_.delegate = self;
         NSMutableArray *a = [NSMutableArray arrayWithCapacity:10];
         for (int i = 0; i < dataModel_.recommandBookAndID.count / 2; i++) {
-             [a addObject:[dataModel_.recommandBookAndID objectForKey:[NSString stringWithFormat:@"%d",i]]];
+            [a addObject:[dataModel_.recommandBookAndID objectForKey:[NSString stringWithFormat:@"%d",i]]];
         }
         forthCell_.recommencArray = a;
         [forthCell_.recommendTable roundedRectWithConerRadius:5 BorderWidth:0 borderColor:nil];
@@ -406,7 +415,7 @@ static NSString * defaultIdentifier = @"cell";
 
 - (void)recommendTable:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BookData *data = [dataModel_.recommandBookAndID objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
-//    NSLog(@"%d",indexPath.row);
+    //    NSLog(@"%d",indexPath.row);
     //    NSLog(@"%@",[NSString stringWithFormat:@"%d", indexPath.row]);
     [self.navigationController pushViewController:[DATA_MODEL.process popBookWithData:data] animated:YES];
 }
@@ -433,13 +442,13 @@ static NSInteger selfSign = 0;
 #pragma mark CellDelegate
 
 - (void)sign {
-
-//    shareView *s = [[shareView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) shareData:nil];
-//    [s pushViewWithController:nil view:s];
-//    
-//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-//    [SVProgressHUD show];
-//    [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
+    
+    //    shareView *s = [[shareView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) shareData:nil];
+    //    [s pushViewWithController:nil view:s];
+    //
+    //    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    //    [SVProgressHUD show];
+    //    [self performSelector:@selector(success) withObject:nil afterDelay:0.6f];
 }
 
 - (void)clickButton:(NSInteger)tag {
@@ -481,22 +490,26 @@ static NSInteger selfSign = 0;
     } else if (tag == 1012) {
         if (!resentPlay_) {
             resentPlay_ = [[ResentPlay alloc] initWithStyle:UITableViewStyleGrouped];
-//            resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            //            resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
         }
         [self.navigationController pushViewController:resentPlay_ animated:YES];
     } else if (tag == 1013) {
-        if (!iLike_) {
-            iLike_ = [[ILikePage alloc] init];
-            resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+        if (dataModel_.isVisitorLoad) {
+            [dataModel_ pushLoadViewController];
+        }else{
+            if (!iLike_) {
+                iLike_ = [[ILikePage alloc] init];
+                resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            }
+            [self.navigationController pushViewController:iLike_ animated:YES];
         }
-        [self.navigationController pushViewController:iLike_ animated:YES];
     }
 }
 
 - (UIViewController *)p_defaultControllers:(NSArray *)viewControllers withClass: (id)class{
     WMPageController *pageVC;
     pageVC = [[WMPageController alloc] initWithViewControllerClasses:viewControllers andTheirTitles:titleArr_];
-
+    
     pageVC.menuItemWidth = 80;
     NSNumber *a = [NSNumber numberWithInt:10];
     NSNumber *b = [NSNumber numberWithInt:0];

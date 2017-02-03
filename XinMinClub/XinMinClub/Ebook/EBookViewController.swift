@@ -31,6 +31,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     var setView = UIView()
     var touchView = UIView()
     var backImageView = UIImageView()
+    var titleLabel = UILabel()
     
     var fontView = UIView()
     var fontP = UIButton()
@@ -82,7 +83,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     // MARK:加载数据
     func loadDataToView(array:NSArray, Num:Int){
-        print(Num)
+//        print(Num)
         kj_dict = array[Num] as! NSDictionary
         // 显示文字
         self.loadText(title:kj_dict["GJ_NAME"] as! String, text:kj_dict["GJ_CONTENT_CN"] as! String)
@@ -118,6 +119,15 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         }else{
             textView.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
         }
+        
+        titleLabel.text = title
+        
+        let button = self.view.viewWithTag(1+100) as! UIButton
+        if DataModel.default().isVisitorLoad{
+            button.isEnabled = false
+            return
+        }
+            button.isEnabled = true
     }
     
     override func viewDidLoad() {
@@ -351,6 +361,10 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         backView.addSubview(backSet3)
         backView.addSubview(backSet4)
         
+<<<<<<< HEAD
+=======
+        print("%d",screenWidth)
+>>>>>>> yangKJ/master
         
         let vMargin = 5 + backSet1.frame.size.height
         let height = backView.frame.size.height
@@ -445,6 +459,12 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         shareNavBar.setImage(shareImage, for:.normal)
         shareNavBar.addTarget(self, action:#selector(self.clickRightButton), for:.touchUpInside)
         navView.addSubview(shareNavBar)
+        
+        titleLabel.frame = CGRect(x:50,y:20,width:screenWidth-100,height:44)
+        titleLabel.textColor = UIColor.white
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize:19)
+        navView.addSubview(titleLabel)
     }
     
     // MARK: Actions

@@ -49,6 +49,14 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 @property(nonatomic, strong) NSArray *findAD;
 @property(nonatomic, strong) NSArray *findADImage;
 
+@property(nonatomic, assign) BOOL isVisitorLoad;
+
+/**
+ *  游客登录的时候弹出登录注册界面
+ *
+ */
+- (void)pushLoadViewController;
+
 // 弹出文集的dic
 @property(nonatomic, strong) NSDictionary *dic;
 

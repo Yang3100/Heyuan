@@ -195,6 +195,10 @@
 }
 
 - (void)likeAction {
+    if ([DataModel defaultDataModel].isVisitorLoad) {
+        [[DataModel defaultDataModel] pushLoadViewController];
+        return;
+    }
     if (!_data.isLike) {
         _data.isLike = YES;
         _likeButton.enabled = NO;

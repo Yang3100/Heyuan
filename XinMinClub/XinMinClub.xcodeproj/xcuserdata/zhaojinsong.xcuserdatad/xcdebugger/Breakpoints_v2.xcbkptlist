@@ -99,6 +99,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "XinMinClub/Home/My/Controller/Operation/SectionOperation.m"
             timestampString = "507806328.283194"
             startingColumnNumber = "9223372036854775807"
@@ -139,6 +140,16 @@
                   offsetFromSymbolStart = "26">
                </Location>
             </Locations>
+=======
+            filePath = "XinMinClub/Ebook/EBookViewController.swift"
+            timestampString = "507792741.772979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
+            landmarkName = "initTabBar()"
+            landmarkType = "7">
+>>>>>>> yangKJ/master
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

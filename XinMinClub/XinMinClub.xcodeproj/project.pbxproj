@@ -213,6 +213,7 @@
 		6843BD0B1E16E2BE00D63FD7 /* Player_progress_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCFD1E16E2BE00D63FD7 /* Player_progress_bar@2x.png */; };
 		6843BD0C1E16E2BE00D63FD7 /* Player_progress_bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCFE1E16E2BE00D63FD7 /* Player_progress_bar@3x.png */; };
 		6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BD0D1E16E4EE00D63FD7 /* xuanhuan.png */; };
+		6848DCB51E446BD100A24BB1 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */; };
 		6849BF671E0937C000C9A5D2 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BF641E0937C000C9A5D2 /* FBKVOController.m */; };
 		6849BF681E0937C000C9A5D2 /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BF661E0937C000C9A5D2 /* NSObject+FBKVOController.m */; };
 		6849C00A1E09407900C9A5D2 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6849BFEA1E09407900C9A5D2 /* MKAnnotationView+WebCache.m */; };
@@ -689,6 +690,8 @@
 		6843BCFD1E16E2BE00D63FD7 /* Player_progress_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player_progress_bar@2x.png"; sourceTree = "<group>"; };
 		6843BCFE1E16E2BE00D63FD7 /* Player_progress_bar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player_progress_bar@3x.png"; sourceTree = "<group>"; };
 		6843BD0D1E16E4EE00D63FD7 /* xuanhuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuanhuan.png; sourceTree = "<group>"; };
+		6848DCB31E446BD100A24BB1 /* UserAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAgreementViewController.h; sourceTree = "<group>"; };
+		6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		6849BF631E0937C000C9A5D2 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBKVOController.h; sourceTree = "<group>"; };
 		6849BF641E0937C000C9A5D2 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
 		6849BF651E0937C000C9A5D2 /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
@@ -2112,6 +2115,8 @@
 				68EB89BF1E0E995100611357 /* loginViewController.m */,
 				68EB89C01E0E995100611357 /* RegisterViewController.h */,
 				68EB89C11E0E995100611357 /* RegisterViewController.m */,
+				6848DCB31E446BD100A24BB1 /* UserAgreementViewController.h */,
+				6848DCB41E446BD100A24BB1 /* UserAgreementViewController.m */,
 				68EB89C21E0E995100611357 /* SubmitViewController.h */,
 				68EB89C31E0E995100611357 /* SubmitViewController.m */,
 			);
@@ -2454,6 +2459,7 @@
 				1A91BE911CB360D500689AE0 /* UserFirstCell.m in Sources */,
 				1A974C2A1CBE2E5300A92CA4 /* ToolCell.m in Sources */,
 				6885FDA51E31AD33005C5DCB /* cleanUpView.m in Sources */,
+				6848DCB51E446BD100A24BB1 /* UserAgreementViewController.m in Sources */,
 				6814F08D1C9FE86C000FD40B /* MJRefreshBackNormalFooter.m in Sources */,
 				6852D24F1E0ABB2500CA55D6 /* readView.m in Sources */,
 				1A91BE7D1CB360D500689AE0 /* SectionData.m in Sources */,
