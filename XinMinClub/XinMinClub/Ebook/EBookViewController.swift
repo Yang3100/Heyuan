@@ -170,6 +170,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         lastPage.setTitle("  上  \n  一  \n  章  ", for: .normal)
         lastPage.setTitleColor(.white, for: .normal)
         lastPage.backgroundColor = UIColor.black
+        lastPage.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         lastPage.alpha = 0.8
         lastPage.tag = 0
         lastPage.titleLabel?.lineBreakMode = NSLineBreakMode(rawValue: 0)!
@@ -180,6 +181,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         nextPage.frame = CGRect(x:0,y:0,width:SCREEN_WIDTH / 9,height:SCREEN_HEIGHT/10)
         nextPage.center = CGPoint(x:SCREEN_WIDTH-nextPage.bounds.size.width/2,y:SCREEN_HEIGHT/2)
         nextPage.setTitle("  下  \n  一  \n  章  ", for: .normal)
+        nextPage.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         nextPage.setTitleColor(.white, for: .normal)
         nextPage.backgroundColor = UIColor.black
         nextPage.alpha = 0.8
@@ -252,7 +254,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         lightView.addSubview(liang)
         
         //TODO: Slider.size修改
-        lightSlider = UISlider.init(frame: MY_CGRECT(x: SCREEN_WIDTH / 9, y: SCREEN_HEIGHT / 16.0 - 15, width: SCREEN_WIDTH * 7 / 9, height: 30))
+        lightSlider = UISlider.init(frame: MY_CGRECT(x: SCREEN_WIDTH / 9 - 5, y: SCREEN_HEIGHT / 16.0 - 15, width: SCREEN_WIDTH * 7 / 9, height: 30))
 //        lightSlider.backgroundColor = UIColor.blue
 //        lightSlider.setThumbImage(self.originImage(image:UIImage(named:"设置")!, size: CGSize(width:20,height:20)), for: .normal)
         lightSlider.addTarget(self, action: #selector(self.controlBright), for: .valueChanged)
@@ -264,6 +266,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         
         setView.frame = MY_CGRECT(x: 0, y: SCREEN_HEIGHT*4 / 5 - 49, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 5)
+        if screenWidth <= 450 {
+            setView.frame = MY_CGRECT(x: 0, y: SCREEN_HEIGHT*4 / 5 - 89, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 5+40)
+        }
         setView.alpha = 0
         setView.backgroundColor = UIColor.init(patternImage: UIImage.init(named: "设置子页背景")!)
         self.view!.addSubview(setView)
@@ -283,6 +288,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         fontL = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10, h: 30))
         fontL.text = "18"
+        fontL.font = UIFont.systemFont(ofSize: 14)
         fontL.textAlignment = NSTextAlignment.center
         fontL.center = CGPoint.init(x: screenWidth * 15 / 20 - 10, y: 25)
 //        fontL.backgroundColor = GREEN
@@ -291,6 +297,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         let fontF = UILabel.init(frame: MY_CGRECT(x: 0, y: 0, w: screenWidth / 10 + 5, h: 30))
         fontF.text = "字号:"
+        fontF.font = UIFont.systemFont(ofSize: 14)
         fontF.textAlignment = NSTextAlignment.center
         fontF.center = CGPoint.init(x: screenWidth * 13 / 20 - 10, y: 25)
 //        fontF.backgroundColor = GREEN
@@ -316,7 +323,9 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         backView = UIView.init(frame: MY_CGRECT(x: 0, y: 50, w: screenWidth, h:  screenHeight / 5 - 50))
 //        backView.backgroundColor = GREEN
-        
+        if screenWidth <= 450 {
+            backView.frame = MY_CGRECT(x: 0, y: 50, w: screenWidth, h:  screenHeight / 5 - 10)
+        }
         let margin = screenWidth * 3 / 7 / 5.0
         
         setView.addSubview(backView)
@@ -342,6 +351,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         backView.addSubview(backSet3)
         backView.addSubview(backSet4)
         
+        
         let vMargin = 5 + backSet1.frame.size.height
         let height = backView.frame.size.height
         let lab1 = UILabel.init(frame: MY_CGRECT(x: margin, y: vMargin, w: screenWidth / 7, h: height - vMargin))
@@ -356,6 +366,10 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         lab2.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
         lab3.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
         lab4.textColor = RGB255_COLOR(r: 255, g: 255, b: 255, a: 0.7)
+        lab1.font = UIFont.systemFont(ofSize: 14)
+        lab2.font = UIFont.systemFont(ofSize: 14)
+        lab3.font = UIFont.systemFont(ofSize: 14)
+        lab4.font = UIFont.systemFont(ofSize: 14)
         lab1.textAlignment = NSTextAlignment.center
         lab2.textAlignment = NSTextAlignment.center
         lab3.textAlignment = NSTextAlignment.center
@@ -377,7 +391,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     func s() {
-        if fontSize == 15 {
+        if fontSize == 13 {
             return
         }
         fontSize -= 1
@@ -582,6 +596,10 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     func popSetView() {
+        
+        print("%d",screenWidth)
+        print("%d",screenHeight)
+        
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
             self.setView.alpha = 1
         }, completion: { (true) in

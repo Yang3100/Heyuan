@@ -125,14 +125,14 @@
 #pragma mark - 界面布局(坐标和大小)
 - (void)addAllConstraints {
     [self.frontLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-	[self.backLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self.backLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
-//    self.overlayTitle.frame = CGRectMake(0, SCREEN_HEIGHT/3, SCREEN_WIDTH, 50);
+    //    self.overlayTitle.frame = CGRectMake(0, SCREEN_HEIGHT/3, SCREEN_WIDTH, 50);
     self.leftButton.frame = CGRectMake(20, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
-    self.rightButton.frame = CGRectMake(SCREEN_WIDTH/2 + 10, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
+    self.rightButton.frame = CGRectMake(SCREEN_WIDTH - SCREEN_WIDTH/2 + 10, SCREEN_HEIGHT - 56, SCREEN_WIDTH/2 - 30, 36);
     self.pageControl.frame = CGRectMake(0, SCREEN_HEIGHT-86, SCREEN_WIDTH, 20);
-//    self.gradientView.frame = self.view.bounds;
-//    self.gradientView.alpha = 0.8;
+    //    self.gradientView.frame = self.view.bounds;
+    //    self.gradientView.alpha = 0.8;
 }
 #pragma mark - Actions
 - (IBAction)didClickOnLogon:(id)sender {

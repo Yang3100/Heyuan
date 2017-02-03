@@ -66,8 +66,12 @@
 #define kStringIsEmpty(str) ([str isEqualToString:@""] || [str isKindOfClass:[NSNull class]] || str == nil || [str length] < 1 ? YES : NO )
 
 //IP地址（北京）
-#define IP @"http://218.240.52.135"
-#define IPUrl @"http://218.240.52.135/App/App.ashx"
+//#define IP @"http://218.240.52.135"
+//#define IPUrl @"http://218.240.52.135/App/App.ashx"
+
+#define IP @"http://www.kingwant.com"
+#define IPUrl @"http://www.kingwant.com/App/App.ashx"
+
 
 #define DATA_MODEL [DataModel defaultDataModel]
 #define USER_DATA_MODEL [UserDataModel defaultDataModel] 
