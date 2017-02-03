@@ -840,6 +840,12 @@ bool isObserve = YES;
         [_dic setObject:@"无名" forKey:@"author"];
     }
     [DATA_MODEL addRecentPlay:_dic];   // 加入到最近播放
+    
+    if ([DataModel defaultDataModel].isVisitorLoad) {
+        self.likeButton.enabled = NO;
+        return;
+    }
+    self.likeButton.enabled = YES;
 }
 
 

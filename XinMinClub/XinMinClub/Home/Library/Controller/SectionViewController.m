@@ -236,6 +236,10 @@
 }
 
 - (void)rightAction{
+    if ([DataModel defaultDataModel].isVisitorLoad) {
+        [[DataModel defaultDataModel] pushLoadViewController];
+        return;
+    }
     if ([DATA_MODEL addMyLibrary:bookJson]) {
         // 提示成功
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
