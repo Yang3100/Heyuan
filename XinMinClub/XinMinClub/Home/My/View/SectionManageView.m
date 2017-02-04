@@ -136,7 +136,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _cancelButton.frame = CGRectMake(-1, SCREEN_HEIGHT / 6 - 35 , SCREEN_WIDTH + 1, 35 + 1);
-        if (SCREEN_WIDTH <= 450) {
+        if (SCREEN_WIDTH <= 320) {
             _cancelButton.frame = CGRectMake(-1, SCREEN_HEIGHT / 6 + 5 , SCREEN_WIDTH + 1, 35 + 1);
         }
         _cancelButton.backgroundColor = [UIColor whiteColor];
