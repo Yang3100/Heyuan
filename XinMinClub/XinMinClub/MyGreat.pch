@@ -19,6 +19,7 @@
 #import "SaveModule.h"
 #import "UserDataModel.h"
 #import "SectionData.h"
+#import "FristLoadView.h"
 
 #import "XinMinClub-Swift.h"
 

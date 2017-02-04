@@ -103,6 +103,10 @@
     // 八卦
     gossipView *gv = [[gossipView alloc] initWithFrame:frame];
     [self.view addSubview:gv];
+    
+    FristLoadView *flv = [[FristLoadView alloc] init];
+    [flv useToWhere:@"bagua"];
+    [self.view addSubview:flv];
 }
 
 #pragma mark WMLoopViewDelegate
