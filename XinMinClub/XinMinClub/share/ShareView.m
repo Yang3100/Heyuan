@@ -35,23 +35,35 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
     if (self==[super init]) {
         [self initView];
         NSArray *array = whiteView.subviews;
-        if (!DATA_MODEL.wxInstalled&&DATA_MODEL.qqInstalled) {
+        if (!DATA_MODEL.wxInstalled&&DATA_MODEL.qqInstalled) {  // 没微信有QQ
             [array[2] removeFromSuperview];
             [array[3] removeFromSuperview];
             UIButton *but1 = (UIButton*)array[0];
             UIButton *but2 = (UIButton*)array[1];
-            but1.frame = CGRectMake(0, SCREEN_HEIGHT-2*(whiteView.frame.size.height/4-5), SCREEN_WIDTH, whiteView.frame.size.height/4-5);
-            but2.frame = CGRectMake(0, SCREEN_HEIGHT-(whiteView.frame.size.height/4-5), SCREEN_WIDTH, whiteView.frame.size.height/4-5);
-            whiteView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+            [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                whiteView.frame = CGRectMake(0, SCREEN_HEIGHT - SCREEN_HEIGHT/6, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+            } completion:nil];
+            but1.frame = CGRectMake(0, 0, SCREEN_WIDTH, whiteView.frame.size.height/2-5);
+            but2.frame = CGRectMake(0, whiteView.frame.size.height/2, SCREEN_WIDTH, whiteView.frame.size.height/2-5);
         }
-        else if (DATA_MODEL.wxInstalled&&!DATA_MODEL.qqInstalled) {
+        else if (!DATA_MODEL.qqInstalled&&DATA_MODEL.wxInstalled) {  // 没QQ有微信
             [array[0] removeFromSuperview];
             [array[1] removeFromSuperview];
-            whiteView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+            UIButton *but1 = (UIButton*)array[2];
+            UIButton *but2 = (UIButton*)array[3];
+            [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                whiteView.frame = CGRectMake(0, SCREEN_HEIGHT - SCREEN_HEIGHT/6, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+            } completion:nil];
+            but1.frame = CGRectMake(0, 0, SCREEN_WIDTH, whiteView.frame.size.height/2-5);
+            but2.frame = CGRectMake(0, whiteView.frame.size.height/2, SCREEN_WIDTH, whiteView.frame.size.height/2-5);
         }
-        else if (!DATA_MODEL.wxInstalled&&!DATA_MODEL.qqInstalled) {
+        else if (!DATA_MODEL.wxInstalled&&!DATA_MODEL.qqInstalled) {  // 没微信也没QQ
             [backBut removeFromSuperview];
             [whiteView removeFromSuperview];
+        }else if (DATA_MODEL.wxInstalled&&DATA_MODEL.qqInstalled) {
+            [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                whiteView.frame = CGRectMake(0, SCREEN_HEIGHT - SCREEN_HEIGHT/3, SCREEN_WIDTH, SCREEN_HEIGHT/3);
+            } completion:nil];
         }
     }
     return self;
@@ -94,9 +106,6 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
     }
     
     [[self appRootViewController].view addSubview:whiteView];
-    [UIView animateWithDuration:0.45 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        whiteView.frame = CGRectMake(0, SCREEN_HEIGHT -SCREEN_HEIGHT/3, SCREEN_WIDTH, SCREEN_HEIGHT/3);
-    } completion:nil];
 }
 
 #pragma mark 点击分享事件
