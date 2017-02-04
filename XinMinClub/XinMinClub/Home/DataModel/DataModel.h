@@ -143,6 +143,12 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 @property (nonatomic, strong) ProcessSelect * process;//处理点击
 
+@property (nonatomic, assign) BOOL wxInstalled;
+@property (nonatomic, assign) BOOL qqInstalled;
+@property (nonatomic, assign) BOOL baguaTeach;
+@property (nonatomic, assign) BOOL rushidaoTeach;
+@property (nonatomic, assign) BOOL jiugonggeTeach;
+
 + (instancetype)defaultDataModel;
 
 // 加入我的文集
