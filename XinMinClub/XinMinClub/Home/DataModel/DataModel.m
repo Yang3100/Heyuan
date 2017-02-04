@@ -105,12 +105,32 @@
     }
 }
 
+- (void)readTeachState {
+    _baguaTeach = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:@"bagua"];
+    _jiugonggeTeach = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:@"jiugongge"];
+    _rushidaoTeach = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:@"rushidao"];
+}
+
 - (void)initData {
     
     download = [[DownloadModule alloc] init];
     saveModule = [SaveModule defaultObject];
     _process = [[ProcessSelect alloc] init];
     fileManager = [NSFileManager defaultManager];
+    
+    
+    _wxInstalled = NO;
+    _qqInstalled = NO;
+    _baguaTeach = NO;
+    _rushidaoTeach = NO;
+    _jiugonggeTeach = NO;
+    [self readTeachState];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
+        _qqInstalled = YES;
+    }
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
+        _wxInstalled = YES;
+    }
     
     _addBook = NO;
     _addRecommand = NO;

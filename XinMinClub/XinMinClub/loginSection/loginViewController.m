@@ -59,9 +59,27 @@
 //    [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.registerBtn];
     [self.view addSubview:self.forgetBtn];
-    [self.view addSubview:self.QQLoogin];
-    [self.view addSubview:self.WeixingLoogin];
     [self.view addSubview:self.DishangfangLoogin];
+    _DishangfangLoogin.hidden = YES;
+    if (DATA_MODEL.qqInstalled) {
+        [self.view addSubview:self.QQLoogin];
+        _DishangfangLoogin.hidden = NO;
+    }
+    if (DATA_MODEL.wxInstalled) {
+        [self.view addSubview:self.WeixingLoogin];
+        _DishangfangLoogin.hidden = NO;
+    }
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(10, 10, 40, 40);
+    if (SCREEN_WIDTH >450) {
+        button.frame = CGRectMake(30, 40, 40, 40);
+    }
+    [button setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
+    [button setTintColor:[UIColor whiteColor]];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -73,6 +91,9 @@
 //    });
 }
 
+- (void)back {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (UILabel *)titleLabel {
     if (!titleLabel_) {
