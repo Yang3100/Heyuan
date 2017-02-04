@@ -276,7 +276,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         
         setView.frame = MY_CGRECT(x: 0, y: SCREEN_HEIGHT*4 / 5 - 49, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 5)
-        if screenWidth <= 450 {
+        if screenWidth <= 320 {
             setView.frame = MY_CGRECT(x: 0, y: SCREEN_HEIGHT*4 / 5 - 89, width: SCREEN_WIDTH, height: SCREEN_HEIGHT / 5+40)
         }
         setView.alpha = 0
@@ -333,7 +333,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
         
         backView = UIView.init(frame: MY_CGRECT(x: 0, y: 50, w: screenWidth, h:  screenHeight / 5 - 50))
 //        backView.backgroundColor = GREEN
-        if screenWidth <= 450 {
+        if screenWidth <= 320 {
             backView.frame = MY_CGRECT(x: 0, y: 50, w: screenWidth, h:  screenHeight / 5 - 10)
         }
         let margin = screenWidth * 3 / 7 / 5.0

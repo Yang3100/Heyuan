@@ -32,14 +32,14 @@
     backView.hidden = NO;
     [UIView animateWithDuration:0.15 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         backView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.354];
-        if (SCREEN_WIDTH <= 450) {
+        if (SCREEN_WIDTH <= 320) {
             statusview.frame = CGRectMake(0, SCREEN_HEIGHT / 6 * 5 - 45, SCREEN_WIDTH, SCREEN_HEIGHT / 6 + 45);
         } else {
             statusview.frame = CGRectMake(0, SCREEN_HEIGHT / 6 * 5 - 5, SCREEN_WIDTH, SCREEN_HEIGHT / 6 + 5);
         }
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            if (SCREEN_WIDTH <= 450) {
+            if (SCREEN_WIDTH <= 320) {
                 statusview.frame = CGRectMake(0, SCREEN_HEIGHT / 6 * 5 - 40, SCREEN_WIDTH, SCREEN_HEIGHT / 6 + 40);
             } else {
                 statusview.frame = CGRectMake(0, SCREEN_HEIGHT / 6 * 5, SCREEN_WIDTH, SCREEN_HEIGHT / 6);
