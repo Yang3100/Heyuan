@@ -67,9 +67,23 @@
     [self.view addSubview:self.registerBtn];
     [self.view addSubview:self.loadBtn];
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(10, 20, 40, 40);
+    if (SCREEN_WIDTH > 320) {
+        button.frame = CGRectMake(10, 20, 40, 40);
+    }
+    [button setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
+    [button setTintColor:[UIColor whiteColor]];
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
     //添加观察者,监听键盘弹出，隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)back {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Views
