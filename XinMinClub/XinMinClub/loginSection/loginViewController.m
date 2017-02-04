@@ -71,8 +71,8 @@
     }
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(10, 10, 40, 40);
-    if (SCREEN_WIDTH >450) {
+    button.frame = CGRectMake(10, 20, 40, 40);
+    if (SCREEN_WIDTH > 450) {
         button.frame = CGRectMake(30, 40, 40, 40);
     }
     [button setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];

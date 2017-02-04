@@ -201,6 +201,7 @@
 		68342F451E1798A40019CCCE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68342F431E1798A40019CCCE /* ListViewController.swift */; };
 		68342F471E1798F60019CCCE /* EBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68342F461E1798F60019CCCE /* EBookViewController.swift */; };
 		68342F551E179AB00019CCCE /* fanhui1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68342F4A1E179AB00019CCCE /* fanhui1@2x.png */; };
+		68397F591E457D3600058DE0 /* FristLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68397F581E457D3600058DE0 /* FristLoadView.m */; };
 		6843BCFF1E16E2BE00D63FD7 /* yellowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */; };
 		6843BD011E16E2BE00D63FD7 /* playShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF31E16E2BE00D63FD7 /* playShare.png */; };
 		6843BD021E16E2BE00D63FD7 /* playDownload.png in Resources */ = {isa = PBXBuildFile; fileRef = 6843BCF41E16E2BE00D63FD7 /* playDownload.png */; };
@@ -677,6 +678,8 @@
 		68342F431E1798A40019CCCE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		68342F461E1798F60019CCCE /* EBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBookViewController.swift; sourceTree = "<group>"; };
 		68342F4A1E179AB00019CCCE /* fanhui1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fanhui1@2x.png"; sourceTree = "<group>"; };
+		68397F571E457D3600058DE0 /* FristLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FristLoadView.h; sourceTree = "<group>"; };
+		68397F581E457D3600058DE0 /* FristLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FristLoadView.m; sourceTree = "<group>"; };
 		6841B0A11C9BAC5D003D1056 /* XinMinClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XinMinClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6843BCF11E16E2BE00D63FD7 /* yellowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBackground.png; sourceTree = "<group>"; };
 		6843BCF31E16E2BE00D63FD7 /* playShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playShare.png; sourceTree = "<group>"; };
@@ -1671,6 +1674,15 @@
 			path = picture;
 			sourceTree = "<group>";
 		};
+		68397F561E457D1600058DE0 /* FristLoad */ = {
+			isa = PBXGroup;
+			children = (
+				68397F571E457D3600058DE0 /* FristLoadView.h */,
+				68397F581E457D3600058DE0 /* FristLoadView.m */,
+			);
+			path = FristLoad;
+			sourceTree = "<group>";
+		};
 		6841B0981C9BAC5D003D1056 = {
 			isa = PBXGroup;
 			children = (
@@ -1692,6 +1704,7 @@
 			isa = PBXGroup;
 			children = (
 				1A011D531D3E02F20040EA23 /* New Group */,
+				68397F561E457D1600058DE0 /* FristLoad */,
 				68DC28AB1E1E186C005EF62B /* LoadAnimationView */,
 				68342F411E1798A40019CCCE /* Ebook */,
 				682F42861E1200B6004B3651 /* FindSection */,
@@ -2505,6 +2518,7 @@
 				1A67110F1CBB48410028529C /* ProvinceAddressModel.m in Sources */,
 				1AEEB0311CD1171D0076E396 /* MyBookListController.m in Sources */,
 				6852D24C1E0ABA1600CA55D6 /* detailsView.m in Sources */,
+				68397F591E457D3600058DE0 /* FristLoadView.m in Sources */,
 				682F42941E1200B6004B3651 /* courseCell3.swift in Sources */,
 				1A011D5C1D3E03100040EA23 /* AppDelegate.m in Sources */,
 				1A91BE8B1CB360D500689AE0 /* LocalSection.m in Sources */,

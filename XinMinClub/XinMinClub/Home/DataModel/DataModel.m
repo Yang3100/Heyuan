@@ -37,18 +37,18 @@
 - (void)pushLoadViewController{
     loginViewController *lvc = [[loginViewController alloc] init];
     [[self appRootViewController] presentViewController:lvc animated:YES completion:^{
-        UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
-        but.frame = CGRectMake(10, 25, 30, 30);
-        UIImage *rightImage = [[UIImage imageNamed:@"goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [but setImage:rightImage forState:UIControlStateNormal];
-        [but addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
-        [lvc.view addSubview:but];
+//        UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
+//        but.frame = CGRectMake(10, 25, 30, 30);
+//        UIImage *rightImage = [[UIImage imageNamed:@"goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        [but setImage:rightImage forState:UIControlStateNormal];
+//        [but addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+//        [lvc.view addSubview:but];
     }];
 }
 
-- (void)rightAction{
-    [[self appRootViewController] dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)rightAction{
+//    [[self appRootViewController] dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark 最顶层视图控制器
 - (UIViewController *)appRootViewController{
