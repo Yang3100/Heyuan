@@ -11,4 +11,5 @@
 #import "UserDataModel.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"  // 加载网络图片
+#import "FristLoadView.h"
 

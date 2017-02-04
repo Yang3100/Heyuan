@@ -100,13 +100,23 @@
     NineNine *nine = [[NineNine alloc] initWithSize:frame Interior:nil];
     [self.view addSubview:nine];
     
+//    // 第一次进入
+//    if (!DATA_MODEL.rushidaoTeach) {
+//        FristLoadView *flv = [[FristLoadView alloc] init];
+//        [flv useToWhere:@"rushidao"];
+//        [self.view addSubview:flv];
+//    }
+    
     // 八卦
     gossipView *gv = [[gossipView alloc] initWithFrame:frame];
     [self.view addSubview:gv];
     
-    FristLoadView *flv = [[FristLoadView alloc] init];
-    [flv useToWhere:@"bagua"];
-    [self.view addSubview:flv];
+    // 第一次进入
+    if (!DATA_MODEL.baguaTeach) {
+        FristLoadView *flv = [[FristLoadView alloc] init];
+        [flv useToWhere:@"bagua"];
+        [self.view addSubview:flv];
+    }
 }
 
 #pragma mark WMLoopViewDelegate

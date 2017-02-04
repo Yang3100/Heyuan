@@ -34,6 +34,25 @@ typedef NS_ENUM(NSInteger, ShareToWhere) {
 - (instancetype)init{
     if (self==[super init]) {
         [self initView];
+        NSArray *array = whiteView.subviews;
+        if (!DATA_MODEL.wxInstalled&&DATA_MODEL.qqInstalled) {
+            [array[2] removeFromSuperview];
+            [array[3] removeFromSuperview];
+            UIButton *but1 = (UIButton*)array[0];
+            UIButton *but2 = (UIButton*)array[1];
+            but1.frame = CGRectMake(0, SCREEN_HEIGHT-2*(whiteView.frame.size.height/4-5), SCREEN_WIDTH, whiteView.frame.size.height/4-5);
+            but2.frame = CGRectMake(0, SCREEN_HEIGHT-(whiteView.frame.size.height/4-5), SCREEN_WIDTH, whiteView.frame.size.height/4-5);
+            whiteView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+        }
+        else if (DATA_MODEL.wxInstalled&&!DATA_MODEL.qqInstalled) {
+            [array[0] removeFromSuperview];
+            [array[1] removeFromSuperview];
+            whiteView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/6);
+        }
+        else if (!DATA_MODEL.wxInstalled&&!DATA_MODEL.qqInstalled) {
+            [backBut removeFromSuperview];
+            [whiteView removeFromSuperview];
+        }
     }
     return self;
 }

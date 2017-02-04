@@ -186,6 +186,13 @@
         [[but_dict2 valueForKey:[NSString stringWithFormat:@"%d",2]] setTitleColor:RGB255_COLOR(219, 145, 39, 1) forState:UIControlStateNormal];
         [self kkkaa:3];
     }
+    
+    // 第一次进入
+    if (!DATA_MODEL.jiugonggeTeach) {
+        FristLoadView *flv = [[FristLoadView alloc] init];
+        [flv useToWhere:@"jiugongge"];
+        [self addSubview:flv];
+    }
 }
 
 - (void)buildView{

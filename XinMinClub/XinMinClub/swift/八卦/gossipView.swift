@@ -9,7 +9,7 @@
 import UIKit
 
 @objc class gossipView: UIView, UIGestureRecognizerDelegate {
-
+    
     override init(frame:CGRect) {
         super.init(frame:frame)
         
@@ -61,7 +61,7 @@ import UIKit
         qianImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         qianImageView.center = qianView.center
         qianImageView.image = UIImage(named:"qiangua")
-
+        
         kunImageView = UIImageView()
         kunImageView.frame = CGRect(x:0, y:0, width:x1/2, height:y1/8)
         kunImageView.center = kunView.center
@@ -121,13 +121,13 @@ import UIKit
                     else if self.kunKaiguan == true &&  self.qianKaiguan == false{
                         self.xuImageView.image = UIImage(named:"heile")
                         self.startAnimation()
-//                        self.startAnimation2()
+                        //                        self.startAnimation2()
                         self.disappearView()
                     }
                 })
             }
             break
-
+            
         default:
             UIView.animate(withDuration:0.3, animations: {() -> Void in
                 self.qianImageView.center = self.qianView.center
@@ -158,7 +158,7 @@ import UIKit
                     else if self.kunKaiguan == false &&  self.qianKaiguan == true{
                         self.xuImageView.image = UIImage(named:"heile")
                         self.startAnimation()
-//                        self.startAnimation2()
+                        //                        self.startAnimation2()
                         self.disappearView()
                     }
                 })
@@ -204,19 +204,25 @@ import UIKit
         angle3 += 0.23
         if angle <= -370 {
             UIView.animate(withDuration:1, animations: {() -> Void in
-//                self.xuImageView.isHidden = true
-//                self.qianImageView.isHidden = true
-//                self.kunImageView.isHidden = true
-//                self.backVw.isHidden = true    // 八卦后面的背景
-//                self.qianView.isHidden = true  // 乾卦后面的背景
-//                self.kunView.isHidden = true   // 坤卦后面的背景
+                //                self.xuImageView.isHidden = true
+                //                self.qianImageView.isHidden = true
+                //                self.kunImageView.isHidden = true
+                //                self.backVw.isHidden = true    // 八卦后面的背景
+                //                self.qianView.isHidden = true  // 乾卦后面的背景
+                //                self.kunView.isHidden = true   // 坤卦后面的背景
                 self.yangImageView.center = CGPoint(x:screenWidth/4, y:self.yangImageView.center.y)
                 self.yinImageView.center = CGPoint(x:screenWidth-screenWidth/4, y:self.yinImageView.center.y)
                 self.alpha = 0
             },completion: {(_ finished: Bool) -> Void in
                 // 延时执行
-               _ = delaySection.delay(0.2, task: {
+                _ = delaySection.delay(0.2, task: {
                     self.removeFromSuperview()
+                    // 第一次进入
+                    if !DataModel.default().rushidaoTeach {
+                        let flview = FristLoadView()
+                        flview.use(toWhere: "rushidao")
+                        self.AppRootViewController()?.view.addSubview(flview)
+                    }
                 })
             })
             return
@@ -225,13 +231,22 @@ import UIKit
         self.startAnimation2()
     }
     
+    //获取当前view所在的viewCOntroller
+    func AppRootViewController() -> UIViewController? {
+        var topVC  = UIApplication.shared.keyWindow?.rootViewController
+        while topVC?.presentedViewController != nil {
+            topVC = topVC?.presentedViewController
+        }
+        return topVC!
+    }
+    
     func disappearView() {
         UIView.animate(withDuration:2, animations: {() -> Void in
             self.kunImageView.isHidden = true
             self.qianImageView.isHidden = true
-//            self.xuImageView.isHidden = true
-//            self.qianImageView.isHidden = true
-//            self.kunImageView.isHidden = true
+            //            self.xuImageView.isHidden = true
+            //            self.qianImageView.isHidden = true
+            //            self.kunImageView.isHidden = true
         })
     }
     
