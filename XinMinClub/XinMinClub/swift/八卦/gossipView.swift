@@ -213,16 +213,18 @@ import UIKit
                 self.yangImageView.center = CGPoint(x:screenWidth/4, y:self.yangImageView.center.y)
                 self.yinImageView.center = CGPoint(x:screenWidth-screenWidth/4, y:self.yinImageView.center.y)
                 self.alpha = 0
-            },completion: {(_ finished: Bool) -> Void in
-                // 延时执行
-                _ = delaySection.delay(0.2, task: {
-                    self.removeFromSuperview()
+                DispatchQueue.main.async {
                     // 第一次进入
                     if !DataModel.default().rushidaoTeach {
                         let flview = FristLoadView()
                         flview.use(toWhere: "rushidao")
                         self.AppRootViewController()?.view.addSubview(flview)
                     }
+                }
+            },completion: {(_ finished: Bool) -> Void in
+                // 延时执行
+                _ = delaySection.delay(0.2, task: {
+                    self.removeFromSuperview()
                 })
             })
             return

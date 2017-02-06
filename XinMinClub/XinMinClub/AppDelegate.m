@@ -177,11 +177,11 @@
     }else if ([resp isKindOfClass:[QQBaseResp class]]){ //QQ
         QQBaseResp *rep = (QQBaseResp *)resp;
         NSLog(@"result:%@,extendInfo:%@,type:%d,errorDescription:%@", rep.result,rep.extendInfo,rep.type,rep.errorDescription);
-//        if (rep.errCode == 0) {
-//            NSLog(@"QQ成功登陆");
-//        }else{
-//            NSLog(@"%dWWloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
-//        }
+        //        if (rep.errCode == 0) {
+        //            NSLog(@"QQ成功登陆");
+        //        }else{
+        //            NSLog(@"%dWWloadSuccess!!!,错误提示字段%@,响应类型:%d",resp.errCode,resp.errStr,resp.type);
+        //        }
     }
     
 }
@@ -206,15 +206,13 @@
 
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnVisitorButton:(UIButton *)sender{
     // 游客登录
-    NSLog(@"111");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        HomeViewController *hvc = [[HomeViewController alloc] init];
-        HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
-        [leadViewController presentViewController:nav animated:NO completion:^{
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
-            [DataModel defaultDataModel].isVisitorLoad = YES;
-        }];
-    });
+    HomeViewController *hvc = [[HomeViewController alloc] init];
+    HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+    [leadViewController presentViewController:nav animated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
+        [DataModel defaultDataModel].isVisitorLoad = YES;
+    }];
+    
 }
 
 
