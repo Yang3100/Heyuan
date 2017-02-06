@@ -187,12 +187,15 @@
         [self kkkaa:3];
     }
     
-    // 第一次进入
-    if (!DATA_MODEL.jiugonggeTeach) {
-        FristLoadView *flv = [[FristLoadView alloc] init];
-        [flv useToWhere:@"jiugongge"];
-        [self addSubview:flv];
-    }
+    // 主线程执行：
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 第一次进入
+        if (!DATA_MODEL.jiugonggeTeach) {
+            FristLoadView *flv = [[FristLoadView alloc] init];
+            [flv useToWhere:@"jiugongge"];
+            [self addSubview:flv];
+        }
+    });
 }
 
 - (void)buildView{

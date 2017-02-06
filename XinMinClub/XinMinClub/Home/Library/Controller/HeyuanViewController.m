@@ -110,13 +110,17 @@
     // 八卦
     gossipView *gv = [[gossipView alloc] initWithFrame:frame];
     [self.view addSubview:gv];
-    
-    // 第一次进入
-    if (!DATA_MODEL.baguaTeach) {
-        FristLoadView *flv = [[FristLoadView alloc] init];
-        [flv useToWhere:@"bagua"];
-        [self.view addSubview:flv];
-    }
+
+    // 主线程执行：
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 第一次进入
+        if (!DATA_MODEL.baguaTeach) {
+            FristLoadView *flv = [[FristLoadView alloc] init];
+            [flv useToWhere:@"bagua"];
+            [self.view addSubview:flv];
+        }
+    }); 
+
 }
 
 #pragma mark WMLoopViewDelegate
