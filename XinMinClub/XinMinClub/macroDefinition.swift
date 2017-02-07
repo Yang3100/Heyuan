@@ -25,7 +25,8 @@ let ipurl:String = "http://www.kingwant.com/App/App.ashx"
 
 let networkPictureUrl_swift = "http://www.kingwant.com/Images/app_touxaing.png"
 let cachePicture_350x44 = UIImage(named:"header")
-let cachePicture_100x100 = UIImage(named:"b")
+let cachePicture_100x100 = UIImage(named:"100x100")
+let cachePicture_375x222 = UIImage(named:"375x222")
 
 // 屏幕宽度
 let screenWidth = UIScreen.main.bounds.width

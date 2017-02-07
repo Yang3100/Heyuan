@@ -30,7 +30,7 @@
 }
 
 - (void)getData{
-    [[LoadAnimation defaultDataModel] startLoadAnimation];
+//    [[LoadAnimation defaultDataModel] startLoadAnimation];
     // 后台执行
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 后台对数据类型的需要
@@ -86,6 +86,7 @@
     [super viewDidLoad];
     
     [self initView]; // 加载视图
+    [[LoadAnimation defaultDataModel] startLoadAnimation];
 }
 
 - (void)initView{

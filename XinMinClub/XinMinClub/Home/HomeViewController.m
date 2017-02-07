@@ -113,6 +113,7 @@
     button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     //    button2.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button2.frame = CGRectMake(tw*4/5, 0, tw/8, th);
+    button2.enabled = NO;
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
 //        button3.backgroundColor = [UIColor colorWithWhite:0.826 alpha:0.200];
     button3.frame = CGRectMake(tw*4/5, 0, tw/8, th);
@@ -201,6 +202,12 @@
 // toolBar上面的按钮
 - (void)button1Action:(UIButton *)button {
     //    NSLog(@"点击了播放头像和歌曲");
+    if([p.lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]) {
+        // 第一次进入
+        button2.enabled = NO;
+        return;
+    }
+    button2.enabled = YES;
     [self.navigationController pushViewController:p  animated:YES];
 }
 - (void)button2Action:(UIButton *)button {
