@@ -7,8 +7,6 @@
 //
 
 #import "ForgetViewController.h"
-#import "RegisterViewController.h"
-#import "loginViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -437,14 +435,20 @@
 // 登录小按钮
 - (IBAction)loadAction:(id)sender{
     NSLog(@"点击了登录");
-    loginViewController *lvc = [[loginViewController alloc] init];
-    [self presentViewController:lvc animated:YES completion:nil];
+//    loginViewController *lvc = [[loginViewController alloc] init];
+//    [self presentViewController:lvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [_delegate forgerToLogin:self];
+    }];
 }
 // 注册小按钮
 - (IBAction)registerAction:(id)sender{
     NSLog(@"点击了注册");
-    RegisterViewController *rvc = [[RegisterViewController alloc] init];
-    [self presentViewController:rvc animated:YES completion:nil];
+//    RegisterViewController *rvc = [[RegisterViewController alloc] init];
+//    [self presentViewController:rvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [_delegate forgetToRegister:self];
+    }];
 }
 
 #pragma mark 网络请求
@@ -556,8 +560,11 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"密码修改成功!!!" message:@"请重新登录!!!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         dispatch_async(dispatch_get_main_queue(), ^(void){            
-            loginViewController *lvc = [[loginViewController alloc] init];
-            [self presentViewController:lvc animated:YES completion:nil];
+//            loginViewController *lvc = [[loginViewController alloc] init];
+//            [self presentViewController:lvc animated:YES completion:nil];
+            [self dismissViewControllerAnimated:NO completion:^{
+                [_delegate forgerToLogin:self];
+            }];
         });
     }];
     [alertController addAction:action1];

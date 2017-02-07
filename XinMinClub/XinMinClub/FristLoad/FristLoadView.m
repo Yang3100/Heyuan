@@ -20,27 +20,30 @@
 - (void)useToWhere:(NSString*)where{
     [[UIApplication sharedApplication].keyWindow addSubview:self.kj_imageView];
     if ([where isEqualToString:@"bagua"]) {
-        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/ba_gua.gif"];
-        NSData *kj_data = [NSData dataWithContentsOfURL:url];
-        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+//        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/ba_gua.gif"];
+//        NSData *kj_data = [NSData dataWithContentsOfURL:url];
+//        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+        UIImage *kj_image = [UIImage imageNamed:@"ba_gua.gif"];
         self.kj_imageView.image = kj_image;
         DATA_MODEL.baguaTeach = YES;
         NSNumber *number = [NSNumber numberWithBool:YES];
         [[NSUserDefaults standardUserDefaults] setObject:number forKey:@"bagua"];
     }
     if ([where isEqualToString:@"rushidao"]) {
-        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/ru_shi_dao.gif"];
-        NSData *kj_data = [NSData dataWithContentsOfURL:url];
-        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+//        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/ru_shi_dao.gif"];
+//        NSData *kj_data = [NSData dataWithContentsOfURL:url];
+//        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+        UIImage *kj_image = [UIImage imageNamed:@"ru_shi_dao.gif"];
         self.kj_imageView.image = kj_image;
         DATA_MODEL.rushidaoTeach = YES;
         NSNumber *number = [NSNumber numberWithBool:YES];
         [[NSUserDefaults standardUserDefaults] setObject:number forKey:@"rushidao"];
     }
     if ([where isEqualToString:@"jiugongge"]) {
-        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/jiu_gong_ge.gif"];
-        NSData *kj_data = [NSData dataWithContentsOfURL:url];
-        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+//        NSURL *url = [NSURL URLWithString:@"http://www.kingwant.com/Images/jiu_gong_ge.gif"];
+//        NSData *kj_data = [NSData dataWithContentsOfURL:url];
+//        UIImage *kj_image = [UIImage sd_animatedGIFWithData:kj_data];
+        UIImage *kj_image = [UIImage imageNamed:@"jiu_gong_ge.gif"];
         self.kj_imageView.image = kj_image;
         DATA_MODEL.jiugonggeTeach = YES;
         NSNumber *number = [NSNumber numberWithBool:YES];

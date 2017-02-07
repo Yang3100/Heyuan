@@ -20,7 +20,7 @@
     NSDictionary *jsonDict;
     int total; // 总歌曲数
     NSMutableArray *timeArry;
-    NSString *lastPlayGJID;  // 保存上一次播放的音频的章节ID
+//    NSString *lastPlayGJID;  // 保存上一次播放的音频的章节ID
     bool isRound; // 是否循环
     NSDictionary *kj_dict;
     bool getDataWay;  // 获取数据的方式  yes代表第1种，no第2种
@@ -72,7 +72,7 @@
     if (self==[super init]) {
         self.kj_player = [[player alloc] init];
         _kj_player.isPlayComplete = YES;
-        lastPlayGJID = @"ykj_luandayixieshuju";
+        self.lastPlayGJID = @"ykj_luandayixieshuju";
         // 开启防呆模式
         [self preventSBPattern:NO];
     }
@@ -106,15 +106,15 @@
     [self preventSBPattern:YES];
     _touchNum = touchNum;
     if (!getDataWay) {  // 第1种获取数据方式
-        if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
+        if ([_lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
             return;
-        }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
-            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+        }else if([_lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+            _lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
             [self play:nil];
         }else{
             // 播放准备
             [self startPlayBefore];
-            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+            _lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
             return;
         }
         if (isRound) {
@@ -124,15 +124,15 @@
     }
     else{   // 第2种获取数据方式
         kj_dict = [[jsonDict valueForKey:@"RET"] valueForKey:@"Sys_GX_ZJ"][_touchNum];
-        if ([lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
+        if ([_lastPlayGJID isEqualToString:[kj_dict valueForKey:@"GJ_ID"]]) {
             NSLog(@"继续播放!!!");
-        }else if([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
-            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+        }else if([_lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 代表第一次进入播放器
+            _lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
             [self play:nil];
         }else{
             // 播放准备
             [self startPlayBefore];
-            lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
+            _lastPlayGJID = [kj_dict valueForKey:@"GJ_ID"];
         }
     }
 }
@@ -503,7 +503,7 @@
 
 - (IBAction)share:(UIButton *)sender {
     NSLog(@"点击了分享!!!");
-    if ([lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 第一次进入播放器
+    if ([_lastPlayGJID isEqualToString:@"ykj_luandayixieshuju"]){ // 第一次进入播放器
         NSLog(@"无数据分享!!!");
         return;
     }

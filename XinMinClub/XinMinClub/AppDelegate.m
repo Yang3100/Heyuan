@@ -10,12 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HelloViewController.h"
 #import "ICETutorialController.h"
-#import "loginViewController.h"
-#import "RegisterViewController.h"
 
-
-@interface AppDelegate ()<WXApiDelegate, QQApiInterfaceDelegate, ICETutorialControllerDelegate>{
-    ICETutorialController *leadViewController;
+@interface AppDelegate ()<WXApiDelegate, QQApiInterfaceDelegate, ICETutorialControllerDelegate, registerDelegate,loginDelegate,forgetDelegate>{
+    ICETutorialController *icetutorial;
+    loginViewController *kj_login;
+    RegisterViewController *kj_register;
+    ForgetViewController *kj_forget;
 }
 
 @end
@@ -113,10 +113,10 @@
         [[ICETutorialStyle sharedInstance] setSubTitleColor:RGB255_COLOR(212, 175, 116, 1)];
         [[ICETutorialStyle sharedInstance] setSubTitleOffset:150];
         // Init tutorial.
-        leadViewController = [[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self];
+        icetutorial = [[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self];
         // Run it.
-        [leadViewController startScrolling];
-        self.window.rootViewController = leadViewController;
+        [icetutorial startScrolling];
+        self.window.rootViewController = icetutorial;
     }
     
     return YES;
@@ -194,26 +194,83 @@
 #pragma mark - ICETutorialController delegate
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
     //    NSLog(@"点击了登录");
-    loginViewController *lvc = [[loginViewController alloc] init];
-    [leadViewController presentViewController:lvc animated:YES completion:nil];
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [icetutorial presentViewController:kj_login animated:YES completion:nil];
 }
+
 
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender {
     //    NSLog(@"点击了注册");
-    RegisterViewController *rvc = [[RegisterViewController alloc] init];
-    [leadViewController presentViewController:rvc animated:YES completion:nil];
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [icetutorial presentViewController:kj_register animated:YES completion:nil];
 }
 
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnVisitorButton:(UIButton *)sender{
     // 游客登录
     HomeViewController *hvc = [[HomeViewController alloc] init];
     HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
-    [leadViewController presentViewController:nav animated:NO completion:^{
+    [icetutorial presentViewController:nav animated:NO completion:^{
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
         [DataModel defaultDataModel].isVisitorLoad = YES;
     }];
-    
 }
+
+#pragma mark loginDelegate
+- (void)loginToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+//    kj_register.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [icetutorial presentViewController:kj_register animated:YES completion:nil];
+}
+
+- (void)loginToForget:(UIViewController *)viewController{
+    if (!kj_forget) {
+        kj_forget = [[ForgetViewController alloc] init];
+        kj_forget.delegate = self;
+    }
+    [icetutorial presentViewController:kj_forget animated:YES completion:nil];
+}
+#pragma mark registerDelegate
+- (void)registerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [icetutorial presentViewController:kj_login animated:YES completion:nil];
+}
+#pragma mark forgetDelegate
+- (void)forgetToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [icetutorial presentViewController:kj_register animated:YES completion:nil];
+}
+- (void)forgerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [icetutorial presentViewController:kj_login animated:YES completion:nil];
+}
+
+- (UIViewController *)appRootViewController{
+    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController*topVC=appRootVC;
+    while(topVC.presentedViewController) {
+        topVC=topVC.presentedViewController;
+    }
+    return topVC;
+}
+
 
 
 @end

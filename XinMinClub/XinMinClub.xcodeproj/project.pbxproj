@@ -246,6 +246,9 @@
 		6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1251E10AFB00099D6F3 /* 123loog.png */; };
 		6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1261E10AFB00099D6F3 /* dishangfangloog.png */; };
 		6865F12E1E10AFB00099D6F3 /* QQloog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1291E10AFB00099D6F3 /* QQloog.png */; };
+		6873A2EB1E49684A0007E2D3 /* jiu_gong_ge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2E81E49684A0007E2D3 /* jiu_gong_ge.gif */; };
+		6873A2EC1E49684A0007E2D3 /* ru_shi_dao.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2E91E49684A0007E2D3 /* ru_shi_dao.gif */; };
+		6873A2ED1E49684A0007E2D3 /* ba_gua.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2EA1E49684A0007E2D3 /* ba_gua.gif */; };
 		687618261E135ABB00E55628 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687618241E135ABB00E55628 /* TencentOpenAPI.framework */; };
 		687618271E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 687618251E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		687618291E135B0F00E55628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687618281E135B0F00E55628 /* CoreGraphics.framework */; };
@@ -756,6 +759,9 @@
 		6865F1251E10AFB00099D6F3 /* 123loog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123loog.png; sourceTree = "<group>"; };
 		6865F1261E10AFB00099D6F3 /* dishangfangloog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishangfangloog.png; sourceTree = "<group>"; };
 		6865F1291E10AFB00099D6F3 /* QQloog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQloog.png; sourceTree = "<group>"; };
+		6873A2E81E49684A0007E2D3 /* jiu_gong_ge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jiu_gong_ge.gif; sourceTree = "<group>"; };
+		6873A2E91E49684A0007E2D3 /* ru_shi_dao.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ru_shi_dao.gif; sourceTree = "<group>"; };
+		6873A2EA1E49684A0007E2D3 /* ba_gua.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ba_gua.gif; sourceTree = "<group>"; };
 		687618241E135ABB00E55628 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		687618251E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		687618281E135B0F00E55628 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1679,6 +1685,9 @@
 			children = (
 				68397F571E457D3600058DE0 /* FristLoadView.h */,
 				68397F581E457D3600058DE0 /* FristLoadView.m */,
+				6873A2E81E49684A0007E2D3 /* jiu_gong_ge.gif */,
+				6873A2E91E49684A0007E2D3 /* ru_shi_dao.gif */,
+				6873A2EA1E49684A0007E2D3 /* ba_gua.gif */,
 			);
 			path = FristLoad;
 			sourceTree = "<group>";
@@ -2280,6 +2289,7 @@
 				68C79A401E176C3900AB642F /* add_user_icon@2x.png in Resources */,
 				687618271E135ABB00E55628 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				68FAB8F01E1CC918008D77DC /* 日间模式.png in Resources */,
+				6873A2EC1E49684A0007E2D3 /* ru_shi_dao.gif in Resources */,
 				68DB36781E1DF3C400DD53D3 /* 定慧.png in Resources */,
 				68FAB8EF1E1CC918008D77DC /* 夜间@2x.png in Resources */,
 				68FAB8F81E1CDA1E008D77DC /* 夜间背景.png in Resources */,
@@ -2378,6 +2388,7 @@
 				68EE61DF1E13CFB1001E34AD /* QQ.png in Resources */,
 				1A4033551E0908A80006613F /* bofangliebiao@2x.png in Resources */,
 				68E8B7411E0000B1000CB44A /* yang.png in Resources */,
+				6873A2ED1E49684A0007E2D3 /* ba_gua.gif in Resources */,
 				68FAB8E71E1CC918008D77DC /* 分享@2x.png in Resources */,
 				68E8B73A1E0000B1000CB44A /* banhei.png in Resources */,
 				68DB367D1E1DF3C400DD53D3 /* 缘觉.png in Resources */,
@@ -2387,6 +2398,7 @@
 				68E8B73D1E0000B1000CB44A /* kungua.png in Resources */,
 				68DB36A51E1DF93000DD53D3 /* 轩箓.png in Resources */,
 				1A011D5D1D3E03100040EA23 /* Assets.xcassets in Resources */,
+				6873A2EB1E49684A0007E2D3 /* jiu_gong_ge.gif in Resources */,
 				6843BD0E1E16E4EE00D63FD7 /* xuanhuan.png in Resources */,
 				6885FD9C1E31AB96005C5DCB /* delete.png in Resources */,
 				1A53D1FC1E30957000153A8D /* 魅惑@2x.png in Resources */,

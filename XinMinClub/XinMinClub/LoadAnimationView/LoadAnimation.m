@@ -123,7 +123,7 @@
 }
 
 - (void)endLoadAnimation{
-    [delaySection delay:0.5 task:^{  // 延时1秒执行
+    [delaySection delay:0.4 task:^{  // 延时1秒执行
         backView.alpha = 0;
         [SVProgressHUD dismiss];
     }];

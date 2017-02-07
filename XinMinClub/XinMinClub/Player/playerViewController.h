@@ -11,6 +11,8 @@
 
 @interface playerViewController : UIViewController
 
+@property (nonatomic, strong) NSString *lastPlayGJID;  // 保存上一次播放的音频的章节ID
+
 @property (nonatomic, assign) bool isPlay;  // 是否正在播放
 @property (nonatomic, assign) bool isPrepare; //播放器装备完毕
 @property (nonatomic, strong) player *kj_player; /**< 播放器 */

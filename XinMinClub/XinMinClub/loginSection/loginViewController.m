@@ -8,8 +8,6 @@
 
 #import "loginViewController.h"
 #import "HomeViewController.h"
-#import "RegisterViewController.h"
-#import "ForgetViewController.h"
 
 #define chushizuobiao ([UIScreen mainScreen].bounds.size.height/2)
 
@@ -330,14 +328,20 @@
 // 注册小按钮
 - (IBAction)registerAction:(id)sender{
     NSLog(@"点击了注册!!!");
-    RegisterViewController *rvc = [[RegisterViewController alloc]init];
-    [self presentViewController:rvc animated:YES completion:nil];
+//    RegisterViewController *rvc = [[RegisterViewController alloc]init];
+//    [self presentViewController:rvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [_delegate loginToRegister:self];
+    }];
 }
 // 忘记密码小按钮
 - (IBAction)forgetAction:(id)sender{
     NSLog(@"点击了忘记密码!!!");
-    ForgetViewController *fvc = [[ForgetViewController alloc]init];
-    [self presentViewController:fvc animated:YES completion:nil];
+//    ForgetViewController *fvc = [[ForgetViewController alloc]init];
+//    [self presentViewController:fvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [_delegate loginToForget:self];
+    }];
 }
 
 #pragma mark - 第三方登录
