@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol forgetDelegate <NSObject>
+@optional
+
+- (void)forgetToRegister:(UIViewController*)viewController;
+- (void)forgerToLogin:(UIViewController*)viewController;
+
+@end
+
 @interface ForgetViewController : UIViewController
+
+@property (nonatomic, assign) id <forgetDelegate> delegate;
 
 @property (nonatomic, copy) NSString *iphoneNum;
 

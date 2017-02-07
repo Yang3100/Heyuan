@@ -21,6 +21,10 @@
 #import "SectionData.h"
 #import "FristLoadView.h"
 
+#import "loginViewController.h"
+#import "RegisterViewController.h"
+#import "ForgetViewController.h"
+
 #import "XinMinClub-Swift.h"
 
 // 微信SDK

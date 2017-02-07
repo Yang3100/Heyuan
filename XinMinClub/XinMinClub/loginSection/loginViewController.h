@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol loginDelegate <NSObject>
+@optional
+
+- (void)loginToRegister:(UIViewController*)viewController;
+- (void)loginToForget:(UIViewController*)viewController;
+
+@end
+
 @interface loginViewController : UIViewController
+
+@property (nonatomic, assign) id <loginDelegate> delegate;
 
 @end

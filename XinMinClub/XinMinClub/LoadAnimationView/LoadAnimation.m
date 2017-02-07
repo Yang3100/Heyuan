@@ -123,10 +123,10 @@
 }
 
 - (void)endLoadAnimation{
-//    [delaySection delay:0.2 task:^{  // 延时1秒执行
+    [delaySection delay:0.4 task:^{  // 延时1秒执行
         backView.alpha = 0;
         [SVProgressHUD dismiss];
-//    }];
+    }];
 }
 //- (void)success {
 //    [SVProgressHUD showSuccessWithStatus:@"Clean Up!"];

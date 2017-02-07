@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol registerDelegate <NSObject>
+@optional
+
+- (void)registerToLogin:(UIViewController*)viewController;
+
+@end
 
 @interface RegisterViewController : UIViewController
 
+@property (nonatomic, assign) id <registerDelegate> delegate;
 
 @end

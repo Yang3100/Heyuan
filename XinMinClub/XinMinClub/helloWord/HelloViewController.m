@@ -9,15 +9,18 @@
 #import "HelloViewController.h"
 #import "shareObjectModel.h"
 #import "HomeViewController.h"
-#import "loginViewController.h"
 
-@interface HelloViewController (){
+@interface HelloViewController ()<loginDelegate,forgetDelegate,registerDelegate>{
     UIImage *adImage;
     UILabel *lab; // 跳过数字
     NSTimer *timer; // 定时器
     NSInteger num;
     int istrue;
     BOOL isUnload;
+    
+    loginViewController *kj_login;
+    RegisterViewController *kj_register;
+    ForgetViewController *kj_forget;
 }
 
 @end
@@ -122,10 +125,62 @@
     }else{
         dispatch_async(dispatch_get_main_queue(), ^{
             [[shareObjectModel shareObject] deleteAccountAndPassword]; // 删除本地账号密码
-            loginViewController *lvc = [[loginViewController alloc] init];
-            [self presentViewController:lvc animated:NO completion:nil];
+            if (!kj_login) {
+                kj_login = [[loginViewController alloc] init];
+                kj_login.delegate = self;
+            }
+            [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
         });
     }
+}
+
+- (UIViewController *)appRootViewController{
+    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController*topVC=appRootVC;
+    while(topVC.presentedViewController) {
+        topVC=topVC.presentedViewController;
+    }
+    return topVC;
+}
+
+#pragma mark loginDelegate
+- (void)loginToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+
+- (void)loginToForget:(UIViewController *)viewController{
+    if (!kj_forget) {
+        kj_forget = [[ForgetViewController alloc] init];
+        kj_forget.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_forget animated:YES completion:nil];
+}
+#pragma mark registerDelegate
+- (void)registerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
+}
+#pragma mark forgetDelegate
+- (void)forgetToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+- (void)forgerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
 }
 
 - (void)network{

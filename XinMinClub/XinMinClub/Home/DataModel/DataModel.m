@@ -10,13 +10,15 @@
 #import "DownloadModule.h"
 #import "SaveModule.h"
 #import "playerViewController.h"
-#import "loginViewController.h"
 
-@interface DataModel() {
+@interface DataModel()<loginDelegate,forgetDelegate,registerDelegate> {
     DownloadModule *download;
     SaveModule *saveModule;
     NSString *filePath;
     NSFileManager *fileManager;
+    loginViewController *kj_login;
+    ForgetViewController *kj_forget;
+    RegisterViewController *kj_register;
 }
 
 @end
@@ -35,8 +37,11 @@
 }
 
 - (void)pushLoadViewController{
-    loginViewController *lvc = [[loginViewController alloc] init];
-    [[self appRootViewController] presentViewController:lvc animated:YES completion:^{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:^{
 //        UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
 //        but.frame = CGRectMake(10, 25, 30, 30);
 //        UIImage *rightImage = [[UIImage imageNamed:@"goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -45,6 +50,47 @@
 //        [lvc.view addSubview:but];
     }];
 }
+
+#pragma mark loginDelegate
+- (void)loginToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+
+- (void)loginToForget:(UIViewController *)viewController{
+    if (!kj_forget) {
+        kj_forget = [[ForgetViewController alloc] init];
+        kj_forget.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_forget animated:YES completion:nil];
+}
+#pragma mark registerDelegate
+- (void)registerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
+}
+#pragma mark forgetDelegate
+- (void)forgetToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+- (void)forgerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
+}
+
 
 //- (void)rightAction{
 //    [[self appRootViewController] dismissViewControllerAnimated:YES completion:nil];

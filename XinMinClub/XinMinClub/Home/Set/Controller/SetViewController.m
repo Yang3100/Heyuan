@@ -14,7 +14,6 @@
 #import "Help.h"
 #import "SVProgressHUD.h"
 #import "UserDataModel.h"
-#import "loginViewController.h"
 #import "cleanUpView.h"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height) // 屏幕高度
@@ -22,7 +21,7 @@
 
 #define DEFAULT_HEIGHT SCREEN_HEIGHT / 5
 
-@interface SetViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate> {
+@interface SetViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate,loginDelegate,forgetDelegate,registerDelegate> {
     NSArray *setArr;
     NSArray *setArr1;
     NSArray *setArr2;
@@ -47,6 +46,10 @@
     NSTimer *timer;
     UIAlertController *clearAlert;
     UIAlertController *sexAlert;
+    
+    loginViewController *kj_login;
+    ForgetViewController *kj_forget;
+    RegisterViewController *kj_register;
 }
 
 @property (nonatomic, strong) UITableView *setTableView;
@@ -234,8 +237,11 @@ static NSString *setCellIdentifier = @"setCell";
             // 删除本地账号密码
             [[shareObjectModel shareObject] deleteAccountAndPassword];
             [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{
-                loginViewController *lvc = [[loginViewController alloc] init];
-                [[self appRootViewController] presentViewController:lvc animated:NO completion:nil];
+                if (!kj_login) {
+                    kj_login = [[loginViewController alloc] init];
+                    kj_login.delegate = self;
+                }
+                [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
                 // 游客登录
                 [DataModel defaultDataModel].isVisitorLoad = NO;
             }];
@@ -246,6 +252,46 @@ static NSString *setCellIdentifier = @"setCell";
         [choiceAlert addAction:sureAction];
     }
     return choiceAlert;
+}
+
+#pragma mark loginDelegate
+- (void)loginToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+
+- (void)loginToForget:(UIViewController *)viewController{
+    if (!kj_forget) {
+        kj_forget = [[ForgetViewController alloc] init];
+        kj_forget.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_forget animated:YES completion:nil];
+}
+#pragma mark registerDelegate
+- (void)registerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
+}
+#pragma mark forgetDelegate
+- (void)forgetToRegister:(UIViewController *)viewController{
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_register animated:YES completion:nil];
+}
+- (void)forgerToLogin:(UIViewController *)viewController{
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
 }
 
 #pragma mark 最顶层视图控制器

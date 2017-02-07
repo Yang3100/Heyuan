@@ -8,7 +8,6 @@
 
 #import "RegisterViewController.h"
 #import "SubmitViewController.h"
-#import "loginViewController.h"
 #import "UserAgreementViewController.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
@@ -251,8 +250,9 @@
 #pragma mark ButtonActions
 // 登陆小按钮
 - (IBAction)loadAction:(id)sender{
-    loginViewController *lvc = [[loginViewController alloc] init];
-    [self presentViewController:lvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^{
+        [_delegate registerToLogin:self];
+    }];
 }
 
 #pragma mark  手机号码规范
@@ -332,9 +332,10 @@
 -(void)addAlertViewIphone{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"手机号码已被注册" message:@"请直接登录" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        dispatch_async(dispatch_get_main_queue(), ^(void){           
-            loginViewController *lvc = [[loginViewController alloc] init];
-            [self presentViewController:lvc animated:NO completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self dismissViewControllerAnimated:NO completion:^{
+                [_delegate registerToLogin:self];
+            }];
         });
     }];
     [alertController addAction:action1];

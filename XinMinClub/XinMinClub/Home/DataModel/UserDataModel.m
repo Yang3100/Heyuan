@@ -452,7 +452,7 @@
         if (data != nil) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if (dict!=nil) {
-                NSLog(@"查询用户信息的返回数据:%@",dict);
+//                NSLog(@"查询用户信息的返回数据:%@",dict);
                 NSDictionary *dic = [dict objectForKey:@"RET"];
                 NSDictionary *retDic = [dic objectForKey:@"Sys_GX_User"];
                 
