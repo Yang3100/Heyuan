@@ -328,7 +328,7 @@ static NSString *toolCellIdentifier = @"toolCell";
     
     ToolCell *toolCell = [collectionView dequeueReusableCellWithReuseIdentifier:toolCellIdentifier forIndexPath:indexPath];
     [toolCell.toolCellButton setTintColor:DEFAULT_COLOR];
-    [toolCell.toolCellButton setImage:[UIImage imageNamed:@"shangcheng"] forState:UIControlStateNormal];
+    [toolCell.toolCellButton setImage:[UIImage imageNamed:@"cha"] forState:UIControlStateNormal];
     toolCell.delegate = self;
     toolCell.toolCellButton.tag = 10040 + indexPath.row;
     if (indexPath.row == 1) {

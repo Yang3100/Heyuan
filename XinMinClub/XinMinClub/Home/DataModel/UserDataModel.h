@@ -54,6 +54,8 @@
 - (void)saveUserImage;// 网络保存用户头像
 - (void)getUserImage:(NSString *)url; // 取得用户头像
 - (void)saveThreePartData:(NSString *)data;// 保存三方登录资料
+- (void)getUserComment:(NSString *)bookID;// 获取文集评论
+- (void)addUserComment:(NSString *)bookID comment:(NSString *)comment;// 添加评论
 - (NSDictionary *)getThreePartData;// 取得三方登录资料
 
 // 本地部分

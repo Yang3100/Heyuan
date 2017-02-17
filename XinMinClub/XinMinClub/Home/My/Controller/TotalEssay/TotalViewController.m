@@ -90,9 +90,9 @@
     // 返回按钮
     [self setNavigationBarBackButton:nil withText:@""];
     // 右侧消息按钮
-    UIImage *rightImage = [[UIImage imageNamed:@"actionIconAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
+//    UIImage *rightImage = [[UIImage imageNamed:@"actionIconAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:nil];
+//    self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
 

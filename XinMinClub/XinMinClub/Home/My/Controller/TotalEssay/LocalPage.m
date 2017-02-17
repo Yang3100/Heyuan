@@ -54,10 +54,10 @@
     sectionsNum = dataModel_.allSection.count;
     authorNum = dataModel_.allSection.count;
     bookNum = dataModel_.allSection.count;
-    NSString *section = [NSString stringWithFormat:@"%@",@"文章"];//%@",[NSNumber numberWithInteger:sectionsNum]];
+    NSString *section = [NSString stringWithFormat:@"%@",@"章节"];//%@",[NSNumber numberWithInteger:sectionsNum]];
     NSString *author = nil;//[NSString stringWithFormat:@"作者"];//%@",[NSNumber numberWithInteger:authorNum]];
-    NSString *book = [NSString stringWithFormat:@"%@", @"文集"];//%@",[NSNumber numberWithInteger:bookNum]];
-    titleArr_ = @[book,section];
+    NSString *book = nil;//[NSString stringWithFormat:@"%@", @"文集"];//%@",[NSNumber numberWithInteger:bookNum]];
+    titleArr_ = @[section];
     if (author) {
         titleArr_ = @[section,author,book];
     }
@@ -76,7 +76,7 @@
     
     //    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.menuItemWidth = SCREEN_WIDTH / 3;
+    self.menuItemWidth = SCREEN_WIDTH;
     if (titleArr_.count == 2) {
         self.menuItemWidth = LINE_WIDTH;
     }
@@ -90,9 +90,9 @@
     // 返回按钮
     [self setNavigationBarBackButton:nil withText:@""];
     // 右侧消息按钮
-    UIImage *rightImage = [[UIImage imageNamed:@"actionIconAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
+//    UIImage *rightImage = [[UIImage imageNamed:@"actionIconAdd"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:nil];
+//    self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 
 
@@ -130,12 +130,17 @@
     
     if (index == 0) {
         //
-        if (!localBook_) {
-            localBook_ = [[LocalBook alloc] initWithStyle:UITableViewStyleGrouped];
-            localBook_.localBook = bookNum;
-            localBook_.delegate = self;
+//        if (!localBook_) {
+//            localBook_ = [[LocalBook alloc] initWithStyle:UITableViewStyleGrouped];
+//            localBook_.localBook = bookNum;
+//            localBook_.delegate = self;
+//        }
+//        return localBook_;
+        if (!localSection_) {
+            localSection_ = [[LocalSection alloc] initWithStyle:UITableViewStyleGrouped];
+            localSection_.localSection = sectionsNum;
         }
-        return localBook_;
+        return localSection_;
     } else if (index == 1) {
         if (titleArr_.count == 2) {
             if (!localSection_) {
