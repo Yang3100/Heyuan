@@ -60,6 +60,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [DataModel defaultDataModel].playingImageUrl = [DataModel defaultDataModel].bookFMImageUrl;
     [[DataModel defaultDataModel] pushWhereWithJson:self.jsonData ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2 Data:nil];
 }
 
