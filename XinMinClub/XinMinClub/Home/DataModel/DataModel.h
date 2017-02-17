@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 @interface DataModel : NSObject
 
+@property(nonatomic,strong) NSString *playingImageUrl;
+
 /**
  *  跳转到播放器或者电子书
  *
@@ -182,3 +184,4 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (BOOL)downloadSection:(NSString *)sectionID;
 
 @end
+
