@@ -60,6 +60,7 @@
     _userLikeSectionID = [NSMutableArray array];
     _userLikeBookID = [NSMutableArray array];
     _userRecentPlayIDAndCount = [NSMutableDictionary dictionaryWithCapacity:10];
+    _comment = [NSDictionary dictionary];
     _isChange = NO;
     _isReload = NO;
     _threePartReload = NO;
@@ -230,7 +231,8 @@
         if (data != nil) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if (dict!=nil) {
-                
+//                USER_DATA_MODEL.comment = nil;
+                USER_DATA_MODEL.comment = dict;
             }
             else
                 dispatch_async(dispatch_get_main_queue(), ^(void){

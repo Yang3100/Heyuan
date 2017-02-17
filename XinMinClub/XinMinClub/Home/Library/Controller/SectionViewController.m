@@ -99,6 +99,12 @@
     [_detailsView removeObserver:self forKeyPath:@"detailsScroll" context:nil];
     
     self.navigationController.navigationBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
+    
+    _detailsView.kj_backView.hidden = YES;
+}
+
+- (void)dealloc {
+    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"comment"];
 }
 
 #pragma maek 设置navigationBar透明

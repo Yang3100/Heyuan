@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *userLikeBookID;
 @property (nonatomic, strong) NSMutableArray *userLikeAuthor;
 @property (nonatomic, strong) NSMutableDictionary *userRecentPlayIDAndCount;
+@property (nonatomic, strong) NSDictionary *comment;
 // 播放定时
 @property (nonatomic, assign) NSString *playTime;
 // 资料改变

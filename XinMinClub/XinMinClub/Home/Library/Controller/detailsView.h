@@ -16,5 +16,6 @@
 // 需求的数据
 - (void)giveMeJson:(NSDictionary*)json;
 @property(nonatomic,copy) NSString *bookID; // 书集ID
+@property(nonatomic,copy) UIView *kj_backView;
 
 @end
