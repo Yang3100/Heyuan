@@ -184,3 +184,4 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 - (BOOL)downloadSection:(NSString *)sectionID;
 
 @end
+
