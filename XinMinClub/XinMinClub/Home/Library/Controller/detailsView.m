@@ -17,6 +17,7 @@
 }
 
 @property(nonatomic,copy) UITableView *tableView;
+@property(nonatomic,copy) UIView *kj_backView;
 
 @end
 
@@ -36,12 +37,20 @@
         [self.tableView registerNib:de4 forCellReuseIdentifier:@"detailsCell4"];
 //        DATA_MODEL.isVisitorLoad;
         [USER_DATA_MODEL getUserComment:_bookID];
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:self.kj_backView];
+        self.kj_backView.hidden = YES;
     }
     return self;
 }
 
 - (void)setIsTopView:(BOOL)isTopView{
     NSLog(@"detailsTop:%d",isTopView);
+    if (isTopView) {
+        self.kj_backView.hidden = NO;
+    }else{
+        self.kj_backView.hidden = YES;
+    }
 }
 
 - (void)giveMeJson:(NSDictionary*)json{
@@ -64,6 +73,14 @@
         _tableView.bounces = NO;
     }
     return _tableView;
+}
+
+- (UIView*)kj_backView{
+    if (!_kj_backView) {
+        _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-44, SCREEN_WIDTH, 44)];
+        _kj_backView.backgroundColor = [UIColor grayColor];
+    }
+    return _kj_backView;
 }
 
 #pragma mark UIScrollViewDelegate
