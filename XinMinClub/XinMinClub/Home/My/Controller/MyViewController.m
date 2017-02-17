@@ -452,6 +452,10 @@ static NSInteger selfSign = 0;
 }
 
 - (void)clickButton:(NSInteger)tag {
+    
+    UIImage *rightImage = [[UIImage imageNamed:@"toumingtu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:nil];
+    
     if (tag == 1010) {
         NSArray *arr = @[@"全部",@"本地"];
         [self initDataWithArr:arr];
@@ -465,9 +469,10 @@ static NSInteger selfSign = 0;
             pageController.titleSizeNormal = 18;
             pageController.showOnNavigationBar = YES;
             pageController.menuBGColor = [UIColor clearColor];
+//            pageController.view.backgroundColor = [UIColor whiteColor];
             pageController.titleColorNormal = [UIColor colorWithRed:0.831 green:0.686 blue:0.690 alpha:1.000];
             pageController.titleColorSelected = [UIColor whiteColor];
-            pageController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            pageController.navigationItem.rightBarButtonItem = rightButtonItem;
         }
         [self.navigationController pushViewController:pageController animated:YES];
     } else if (tag == 1011) {
@@ -484,13 +489,13 @@ static NSInteger selfSign = 0;
             downloadPC.menuBGColor = [UIColor clearColor];
             downloadPC.titleColorNormal = [UIColor colorWithRed:0.831 green:0.686 blue:0.690 alpha:1.000];
             downloadPC.titleColorSelected = [UIColor whiteColor];
-            downloadPC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            downloadPC.navigationItem.rightBarButtonItem = rightButtonItem;
         }
         [self.navigationController pushViewController:downloadPC animated:YES];
     } else if (tag == 1012) {
         if (!resentPlay_) {
             resentPlay_ = [[ResentPlay alloc] initWithStyle:UITableViewStyleGrouped];
-            //            resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            resentPlay_.navigationItem.rightBarButtonItem = rightButtonItem;
         }
         [self.navigationController pushViewController:resentPlay_ animated:YES];
     } else if (tag == 1013) {
@@ -499,7 +504,7 @@ static NSInteger selfSign = 0;
         }else{
             if (!iLike_) {
                 iLike_ = [[ILikePage alloc] init];
-                resentPlay_.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+                resentPlay_.navigationItem.rightBarButtonItem = rightButtonItem;
             }
             [self.navigationController pushViewController:iLike_ animated:YES];
         }

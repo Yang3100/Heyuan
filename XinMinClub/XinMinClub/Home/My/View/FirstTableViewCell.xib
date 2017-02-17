@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="428" height="60"/>
+                <rect key="frame" x="0.0" y="0.0" width="428" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuL-Ee-XzM">
@@ -32,7 +32,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="XjW-rr-RPO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XjW-rr-RPO">
                                 <rect key="frame" x="15" y="10" width="39" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XjW-rr-RPO" secondAttribute="height" multiplier="1:1" id="Vb1-cr-lmI"/>
@@ -84,7 +84,4 @@
             <point key="canvasLocation" x="377" y="228"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="2.jpg" width="375" height="667"/>
-    </resources>
 </document>

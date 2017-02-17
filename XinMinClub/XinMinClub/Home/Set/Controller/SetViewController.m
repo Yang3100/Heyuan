@@ -450,6 +450,7 @@ static NSString *setCellIdentifier = @"setCell";
         if (indexPath.row == 3) {
 //            [self sureClear];
             cleanUpView *cuv = [[cleanUpView alloc] init];
+            cuv.view.backgroundColor = [UIColor whiteColor];
             [self.navigationController pushViewController:cuv animated:NO];
         }
     }
