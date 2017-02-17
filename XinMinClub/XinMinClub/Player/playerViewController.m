@@ -81,6 +81,7 @@
 //第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式
 - (void)getDict:(NSDictionary*)dict{
     NSLog(@"第1种数据传输方式 -  从最近播放、下载、我喜欢点入的方式%@",dict);
+    DATA_MODEL.playingImageUrl = @"http://www.kingwant.com/Images/app_touxaing.png";  // 最近播放点入缺少图片，修改为logo
     getDataWay = NO;
     total=1;
     kj_dict = dict;
@@ -516,7 +517,7 @@
     }else{
         ocsv.describe = [dict valueForKey:@"GJ_USER"]; // 作者名字
     }
-    ocsv.thumbImage = [DataModel defaultDataModel].bookFMImageUrl;
+    ocsv.thumbImage = [DataModel defaultDataModel].playingImageUrl;
     ocsv.musicUrl = [IP stringByAppendingString:[dict valueForKey:@"GJ_MP3"]];
     
     [self.view addSubview:ocsv];
@@ -816,7 +817,7 @@ bool isObserve = YES;
 - (void)updateSongInfoShow {
     [self paserLrcFileContents:[kj_dict valueForKey:@"GJ_CONTENT_CN"]];// 解析歌词 - 传入歌词
     self.currentLyricNum = 0; // 歌词位置清零
-    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].playingImageUrl];
     [self.authorImageView sd_setImageWithURL:url placeholderImage:cachePicture_100x100];
     self.authorNameLabel.text = [kj_dict valueForKey:@"GJ_NAME"];
     self.currentTime.text = @"00:00";
@@ -834,7 +835,7 @@ bool isObserve = YES;
     // 加入到最近播放相关
     _dic = [NSMutableDictionary dictionaryWithDictionary:kj_dict];
     if (!_dic[@"image"]) {
-        [_dic setObject:DATA_MODEL.bookFMImageUrl forKey:@"image"];
+        [_dic setObject:DATA_MODEL.playingImageUrl forKey:@"image"];
     }
     if (!_dic[@"author"]) {
         [_dic setObject:@"无名" forKey:@"author"];
@@ -910,7 +911,7 @@ bool isObserve = YES;
         [_lrcImageView addSubview:self.lrcLabel];
     }
     _lrcLabel.text = [_lrcArray objectAtIndex:self.currentLyricNum];
-    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].bookFMImageUrl];
+    NSURL *url = [NSURL URLWithString:[DataModel defaultDataModel].playingImageUrl];
     [_lrcImageView sd_setImageWithURL:url placeholderImage:wenjicachePicture];
     
     //获取添加了歌词数据的背景图
