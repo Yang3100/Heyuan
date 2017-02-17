@@ -14,15 +14,15 @@
 @interface detailsView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate,UITextFieldDelegate>{
     NSDictionary *jsonData;
     NSArray *dataArray;
+    NSArray *commentArray;
+    NSArray *nameArray;
+    NSArray *imgArray;
+    NSArray *timeArray;
     UITextField *_detailsTextField;
-    
-    int isFristShowKeyboard;
 }
 
 @property(nonatomic,copy) UITableView *tableView;
-@property(nonatomic,copy) UIView *kj_backView;
 @property(nonatomic,copy) UIView *backView;
-
 
 @end
 
@@ -33,6 +33,11 @@
         self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.tableView];
         
+        commentArray = [NSArray array];
+        nameArray = [NSArray array];
+        imgArray = [NSArray array];
+        timeArray = [NSArray array];
+        
         // 注册cell
         UINib *de1 = [UINib nibWithNibName:@"DetailsCell1" bundle:nil];
         [self.tableView registerNib:de1 forCellReuseIdentifier:@"detailsCell1"];
@@ -42,27 +47,52 @@
         [self.tableView registerNib:de4 forCellReuseIdentifier:@"detailsCell4"];
 //        DATA_MODEL.isVisitorLoad;
         [USER_DATA_MODEL getUserComment:_bookID];
+        [USER_DATA_MODEL addObserver:self forKeyPath:@"comment" options:NSKeyValueObservingOptionNew context:nil];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self.backView];
         [[UIApplication sharedApplication].keyWindow addSubview:self.kj_backView];
         self.backView.hidden = YES;
         self.kj_backView.hidden = YES;
-        isFristShowKeyboard = 0;
         
-        static dispatch_once_t onceToken;
-//        dispatch_once(&onceToken, ^{
         // 添加观察者,监听键盘弹出，隐藏事件
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
-//        });
     }
     return self;
 }
 
-//- (void)dealloc{
-//    [_detailsTextField resignFirstResponder];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"comment"]) {
+        [self loadComment];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
+}
+
+- (void)loadComment {
+    NSLog(@"%@", USER_DATA_MODEL.comment);
+    NSDictionary *dic = [[USER_DATA_MODEL.comment objectForKey:@"RET"] objectForKey:@"SYS_GX_WJ_PL"];
+    NSMutableArray * arr = [NSMutableArray  arrayWithCapacity:10];
+    NSMutableArray * arr1 = [NSMutableArray  arrayWithCapacity:10];
+    NSMutableArray * arr2 = [NSMutableArray  arrayWithCapacity:10];
+    NSMutableArray * arr3 = [NSMutableArray  arrayWithCapacity:10];
+    for (NSDictionary *d in dic) {
+        [arr addObject:[d objectForKey:@"PL_WJ_CONTENT"]];
+        [arr1 addObject:[d objectForKey:@"USER_NAME"]];
+        [arr2 addObject:[d objectForKey:@"USER_IMG"]];
+        [arr3 addObject:[d objectForKey:@"PL_OPS_TIME"]];
+    }
+    commentArray = [NSArray arrayWithArray:arr];
+    nameArray = [NSArray arrayWithArray:arr1];
+    timeArray = [NSArray arrayWithArray:arr3];
+    imgArray = [NSArray arrayWithArray:arr2];
+}
+
+- (void)dealloc{
+    [_detailsTextField resignFirstResponder];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)setIsTopView:(BOOL)isTopView{
     NSLog(@"detailsTop:%d",isTopView);
@@ -112,6 +142,7 @@
 
 - (UIView*)kj_backView{
     if (!_kj_backView) {
+        _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
         _kj_backView.backgroundColor = [UIColor grayColor];
         
@@ -164,12 +195,12 @@
 - (void)keyboardShow:(NSNotification *)notify{
     NSValue *value = [notify.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
     CGFloat keyboardHeight = value.CGRectValue.size.height;
-    if (isFristShowKeyboard>=2) {
+    if ([DataModel defaultDataModel].isFristShowKeyboard>=2) {
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-60,SCREEN_WIDTH, 60);
     }else{
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-100,SCREEN_WIDTH, 60);
     }
-    isFristShowKeyboard++;
+    [DataModel defaultDataModel].isFristShowKeyboard++;
     self.backView.hidden = NO;
 }
 
@@ -198,14 +229,6 @@
     //    NSLog(@"%f",scrollView.bounds.origin.y);
     self.detailsScroll = scrollView.bounds.origin.y;
 }
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (decelerate){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            printf("STOP IT!!\n");
-            [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-        });
-    }
-}
 
 
 #pragma mark UITableViewDataSource
@@ -216,7 +239,7 @@
     if (section==0) {
         return self.textArray.count+1;
     }
-    return 20;
+    return commentArray.count + 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
@@ -227,8 +250,12 @@
             return UITableViewAutomaticDimension;
         }
         return 50;
+    } else {
+        if (indexPath.row == commentArray.count + 1) {
+            return 49;
+        }
     }
-    return 80;
+    return UITableViewAutomaticDimension;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
@@ -258,13 +285,27 @@
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell2" forIndexPath:indexPath];
 //        commentData = commentArray[indexPath.row];
-//        ((DetailsCell2*)cell).detailsImageUrl = commentData.commentImageUrl;
-        ((DetailsCell2*)cell).details2Title = @"23412412fsfdvs123efdcr132dedf3er43edct4rfefd34qfrtrgrrehrtuyehorwwo8q34ruotuwi3ryoghiw4yoruiwo3pjaewiurwhrbktiwhkursihriju";
-//        ((DetailsCell2*)cell).details2Time = commentData.commentTime;
-//        ((DetailsCell2*)cell).details2Title = commentData.commentText;
+    if (indexPath.row == commentArray.count + 1) {
+        ((DetailsCell2*)cell).details2Title = @"dsfafds";
+    }
+    if (commentArray.count && commentArray.count > indexPath.row) {
+        if (![imgArray[indexPath.row] isKindOfClass:[NSNull class]]) {
+            ((DetailsCell2*)cell).detailsImageUrl = imgArray[indexPath.row];
+        }
+        if (![commentArray[indexPath.row] isKindOfClass:[NSNull class]]) {
+            ((DetailsCell2*)cell).details2Title = commentArray[indexPath.row];
+        }
+        if (![timeArray[indexPath.row] isKindOfClass:[NSNull class]]) {
+            ((DetailsCell2*)cell).details2Time = timeArray[indexPath.row];
+        }
+        if (![nameArray[indexPath.row] isKindOfClass:[NSNull class]]) {
+            ((DetailsCell2*)cell).details2Text = nameArray[indexPath.row];
+        }
+    }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.textColor = [UIColor colorWithWhite:0.373 alpha:1.000];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     
     return cell;
 }

@@ -20,6 +20,13 @@
 @implementation DetailsCell2
 
 - (void)setDetailsImageUrl:(NSString *)detailsImageUrl{
+    UIImage *image = nil;
+    NSData *imageData = [[NSData alloc] initWithBase64Encoding:detailsImageUrl];
+    if (![detailsImageUrl isEqualToString:@""]) {
+        image = nil;
+        image = [UIImage imageWithData:imageData];
+    }
+    self.detailsImageView.image = image;
     self.detailsImageView.layer.masksToBounds = YES;
     self.detailsImageView.layer.cornerRadius = 25;
 }
