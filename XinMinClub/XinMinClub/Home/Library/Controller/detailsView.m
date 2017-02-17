@@ -14,25 +14,15 @@
 @interface detailsView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate,UITextFieldDelegate>{
     NSDictionary *jsonData;
     NSArray *dataArray;
-<<<<<<< HEAD
     NSArray *commentArray;
     NSArray *nameArray;
     NSArray *imgArray;
     NSArray *timeArray;
-}
-
-@property(nonatomic,copy) UITableView *tableView;
-=======
     UITextField *_detailsTextField;
-    
-    int isFristShowKeyboard;
 }
 
 @property(nonatomic,copy) UITableView *tableView;
-@property(nonatomic,copy) UIView *kj_backView;
 @property(nonatomic,copy) UIView *backView;
->>>>>>> master
-
 
 @end
 
@@ -59,27 +49,18 @@
         [USER_DATA_MODEL getUserComment:_bookID];
         [USER_DATA_MODEL addObserver:self forKeyPath:@"comment" options:NSKeyValueObservingOptionNew context:nil];
         
-<<<<<<< HEAD
-//        [[UIApplication sharedApplication].keyWindow addSubview:self.kj_backView];
-=======
         [[UIApplication sharedApplication].keyWindow addSubview:self.backView];
         [[UIApplication sharedApplication].keyWindow addSubview:self.kj_backView];
         self.backView.hidden = YES;
->>>>>>> master
         self.kj_backView.hidden = YES;
-        isFristShowKeyboard = 0;
         
-        static dispatch_once_t onceToken;
-//        dispatch_once(&onceToken, ^{
         // 添加观察者,监听键盘弹出，隐藏事件
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
-//        });
     }
     return self;
 }
 
-<<<<<<< HEAD
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"comment"]) {
         [self loadComment];
@@ -107,12 +88,11 @@
     timeArray = [NSArray arrayWithArray:arr3];
     imgArray = [NSArray arrayWithArray:arr2];
 }
-=======
-//- (void)dealloc{
-//    [_detailsTextField resignFirstResponder];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
->>>>>>> master
+
+- (void)dealloc{
+    [_detailsTextField resignFirstResponder];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)setIsTopView:(BOOL)isTopView{
     NSLog(@"detailsTop:%d",isTopView);
@@ -162,11 +142,8 @@
 
 - (UIView*)kj_backView{
     if (!_kj_backView) {
-<<<<<<< HEAD
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
-=======
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
->>>>>>> master
         _kj_backView.backgroundColor = [UIColor grayColor];
         
         _detailsTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH*3/4-10, 40)];
@@ -218,12 +195,12 @@
 - (void)keyboardShow:(NSNotification *)notify{
     NSValue *value = [notify.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
     CGFloat keyboardHeight = value.CGRectValue.size.height;
-    if (isFristShowKeyboard>=2) {
+    if ([DataModel defaultDataModel].isFristShowKeyboard>=2) {
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-60,SCREEN_WIDTH, 60);
     }else{
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-100,SCREEN_WIDTH, 60);
     }
-    isFristShowKeyboard++;
+    [DataModel defaultDataModel].isFristShowKeyboard++;
     self.backView.hidden = NO;
 }
 
