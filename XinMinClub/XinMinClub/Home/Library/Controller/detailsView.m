@@ -11,6 +11,8 @@
 #import "DetailsCell2.h"
 #import "DetailsCell4.h"
 
+#define backButtonViewHeight (([UIScreen mainScreen].bounds.size.height)/18)
+
 @interface detailsView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate,UITextFieldDelegate>{
     NSDictionary *jsonData;
     NSArray *dataArray;
@@ -134,6 +136,16 @@
     }
 }
 
+- (void)setMoveHeight:(CGFloat)moveHeight{
+    NSLog(@"%f--%f",moveHeight,SCREEN_HEIGHT/3-64);
+    if (moveHeight>SCREEN_HEIGHT/3-64) {
+        return;
+    }else if (moveHeight<0){
+        return;
+    }
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight);
+}
+
 - (void)giveMeJson:(NSDictionary*)json{
     jsonData = json;
     dataArray = @[[jsonData valueForKey:@"WJ_USER"],[jsonData valueForKey:@"WJ_TYPE"],[jsonData valueForKey:@"WJ_LANGUAGE"],[jsonData valueForKey:@"WJ_CONTENT"]];
@@ -147,11 +159,11 @@
 #pragma mark Subviews
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.bounds.size.height-60) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.bounces = NO;
+
     }
     return _tableView;
 }
@@ -175,11 +187,7 @@
     if (!_kj_backView) {
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
-<<<<<<< HEAD
         _kj_backView.backgroundColor = RGB255_COLOR(235, 235, 235, 1);
-=======
-        _kj_backView.backgroundColor = [UIColor grayColor];
->>>>>>> yangKJ/master
         
         _detailsTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH*3/4-10, 40)];
         [_detailsTextField setBorderStyle:UITextBorderStyleRoundedRect]; //外框类型
@@ -264,6 +272,16 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //    NSLog(@"%f",scrollView.bounds.origin.y);
     self.detailsScroll = scrollView.bounds.origin.y;
+    self.moveHeight = scrollView.bounds.origin.y;
+//    //限制下拉的距离
+//    if(scrollView.contentOffset.y<-70 && scrollView.isDragging){
+//        [scrollView setContentOffset:CGPointMake(0, -70)];
+//    }
+    //以0为例，当tableView还在滑动的时候，不断设置contentOffset
+    if(scrollView.contentOffset.y<0 && scrollView.isDecelerating){
+        [scrollView setContentOffset:CGPointMake(0, 0)];
+        NSLog(@"xxxxx");
+    }
 }
 
 
@@ -273,12 +291,12 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return self.textArray.count+2;
+        return self.textArray.count+1;
     }
 //    if (DATA_MODEL.isVisitorLoad) {
 //        return commentArray.count;
 //    }
-    return commentArray.count + 1;
+    return commentArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
@@ -316,12 +334,11 @@
         cell.textLabel.textColor = [UIColor colorWithWhite:0.373 alpha:1.000];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else{
-    if (indexPath.section==0&&indexPath.row>0){
-        if (indexPath.row == self.textArray.count+1) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
-            return cell;
-        }
+    }else if (indexPath.section==0&&indexPath.row>0){
+//        if (indexPath.row == self.textArray.count+1||indexPath.row == self.textArray.count+2) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
+//            return cell;
+//        }
         DetailsCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell1" forIndexPath:indexPath];
         cell.details1Text = self.textArray[indexPath.row-1];
         cell.details1Title = dataArray[indexPath.row-1];
@@ -330,13 +347,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    }
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell2" forIndexPath:indexPath];
 //        commentData = commentArray[indexPath.row];
-    if (indexPath.row == commentArray.count) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
-    }
+//    if (indexPath.row == commentArray.count) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
+//    }
     if (commentArray.count && commentArray.count > indexPath.row) {
         if (![imgArray[indexPath.row] isKindOfClass:[NSNull class]]) {
             ((DetailsCell2*)cell).detailsImageUrl = imgArray[indexPath.row];
