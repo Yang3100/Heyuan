@@ -175,11 +175,7 @@
     if (!_kj_backView) {
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
-<<<<<<< HEAD
         _kj_backView.backgroundColor = RGB255_COLOR(235, 235, 235, 1);
-=======
-        _kj_backView.backgroundColor = [UIColor grayColor];
->>>>>>> yangKJ/master
         
         _detailsTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH*3/4-10, 40)];
         [_detailsTextField setBorderStyle:UITextBorderStyleRoundedRect]; //外框类型
