@@ -26,14 +26,19 @@
 @implementation DataModel
 
 + (instancetype)defaultDataModel {
-    
     static DataModel *dataModel;
     if (!dataModel) {
         dataModel = [[super allocWithZone:NULL] init];
         [dataModel initData];
     }
-    
     return dataModel;
+}
+
+- (instancetype)init{
+    if (self==[super init]) {
+        self.isFristShowKeyboard = 0;
+    }
+    return self;
 }
 
 - (void)pushLoadViewController{

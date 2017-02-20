@@ -105,6 +105,7 @@
 
 - (void)dealloc {
     [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"comment"];
+    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"isComment"];
 }
 
 #pragma maek 设置navigationBar透明
