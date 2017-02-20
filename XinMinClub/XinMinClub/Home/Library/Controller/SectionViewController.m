@@ -218,7 +218,7 @@
 
 - (detailsView*)detailsView{
     if (!_detailsView) {
-        _detailsView = [[detailsView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
+        _detailsView = [[detailsView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64-60)];
         [_detailsView setHidden:YES];
         //        // KVO观察滚动距离
         //        [_detailsView addObserver:self forKeyPath:@"detailsScroll" options:NSKeyValueObservingOptionNew context:nil];

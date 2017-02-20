@@ -18,4 +18,6 @@
 @property(nonatomic,copy) NSString *bookID; // 书集ID
 @property(nonatomic,copy) UIView *kj_backView;
 
+@property(nonatomic,assign) CGFloat moveHeight;
+
 @end

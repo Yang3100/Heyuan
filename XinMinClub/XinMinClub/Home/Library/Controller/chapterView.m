@@ -9,6 +9,8 @@
 #import "chapterView.h"
 #import "subcatalogCell.h"
 
+#define backButtonViewHeight (([UIScreen mainScreen].bounds.size.height)/18)
+
 @interface chapterView()<UITableViewDelegate,UITableViewDataSource>{
     NSDictionary *jsonDict; // 获取到的小节数据字典
     int listTotal; // 小节数目
@@ -29,6 +31,8 @@
 
 @property(nonatomic,strong) UIScrollView *backScrollView;
 @property(nonatomic,strong) UITableView *chapterTable;
+
+@property(nonatomic,assign) CGFloat moveHeight;
 
 @end
 
@@ -199,6 +203,18 @@
 //    }
 //    CGFloat kj_y = scrollView.bounds.origin.y;
 //    self.chapterTable.frame = CGRectMake(x, kj_y, w, h);
+    
+    self.moveHeight = scrollView.bounds.origin.y;
+}
+
+- (void)setMoveHeight:(CGFloat)moveHeight{
+    NSLog(@"%f--%f",moveHeight,SCREEN_HEIGHT/3-64);
+    if (moveHeight>SCREEN_HEIGHT/3-64) {
+        return;
+    }else if (moveHeight<0){
+        return;
+    }
+    self.chapterTable.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight);
 }
 
 
