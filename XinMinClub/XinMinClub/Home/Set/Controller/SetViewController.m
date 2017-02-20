@@ -15,13 +15,14 @@
 #import "SVProgressHUD.h"
 #import "UserDataModel.h"
 #import "cleanUpView.h"
+#import "ICETutorialController.h"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height) // 屏幕高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width) // 屏幕宽度
 
 #define DEFAULT_HEIGHT SCREEN_HEIGHT / 5
 
-@interface SetViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate,loginDelegate,forgetDelegate,registerDelegate> {
+@interface SetViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate,loginDelegate,forgetDelegate,registerDelegate,ICETutorialControllerDelegate> {
     NSArray *setArr;
     NSArray *setArr1;
     NSArray *setArr2;
@@ -50,6 +51,7 @@
     loginViewController *kj_login;
     ForgetViewController *kj_forget;
     RegisterViewController *kj_register;
+    ICETutorialController *icetutorial;
 }
 
 @property (nonatomic, strong) UITableView *setTableView;
@@ -237,11 +239,32 @@ static NSString *setCellIdentifier = @"setCell";
             // 删除本地账号密码
             [[shareObjectModel shareObject] deleteAccountAndPassword];
             [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{
-                if (!kj_login) {
-                    kj_login = [[loginViewController alloc] init];
-                    kj_login.delegate = self;
-                }
-                [[self appRootViewController] presentViewController:kj_login animated:YES completion:nil];
+//                if (!kj_login) {
+//                    kj_login = [[loginViewController alloc] init];
+//                    kj_login.delegate = self;
+//                }
+                // 设置滚动的文字和图片
+                ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"仁愛謹信  知行合一" pictureName:@"引导页1" duration:3.0];
+                ICETutorialPage *layer2 = [[ICETutorialPage alloc] initWithTitle:@"雅書華學舘" subTitle:@"雅讀詩書氣質華" pictureName:@"引导页2" duration:3.0];
+                ICETutorialPage *layer3 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"仁愛謹信  知行合一" pictureName:@"引导页3" duration:3.0];
+                ICETutorialPage *layer4 = [[ICETutorialPage alloc] initWithTitle:@"樂 學 堂" subTitle:@"好學者不如樂學者" pictureName:@"引导页4" duration:3.0];
+                NSArray *tutorialLayers = @[layer4,layer2,layer3,layer1];
+                // Set the common style for the title.
+                ICETutorialLabelStyle *titleStyle = [[ICETutorialLabelStyle alloc] init];
+                [titleStyle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17.0f]];
+                [titleStyle setTextColor:RGB255_COLOR(122, 111, 77, 1)];
+                [titleStyle setLinesNumber:1];
+                [titleStyle setOffset:180];
+                [[ICETutorialStyle sharedInstance] setTitleStyle:titleStyle];
+                // Set the subTitles style with few properties and let the others by default.
+                [[ICETutorialStyle sharedInstance] setSubTitleColor:RGB255_COLOR(212, 175, 116, 1)];
+                [[ICETutorialStyle sharedInstance] setSubTitleOffset:150];
+                // Init tutorial.
+                icetutorial = [[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self];
+                // Run it.
+                [icetutorial startScrolling];
+                
+                [[self appRootViewController] presentViewController:icetutorial animated:YES completion:nil];
                 // 游客登录
                 [DataModel defaultDataModel].isVisitorLoad = NO;
             }];
@@ -253,6 +276,37 @@ static NSString *setCellIdentifier = @"setCell";
     }
     return choiceAlert;
 }
+
+#pragma mark - ICETutorialController delegate
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
+    //    NSLog(@"点击了登录");
+    if (!kj_login) {
+        kj_login = [[loginViewController alloc] init];
+        kj_login.delegate = self;
+    }
+    [icetutorial presentViewController:kj_login animated:YES completion:nil];
+}
+
+
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender {
+    //    NSLog(@"点击了注册");
+    if (!kj_register) {
+        kj_register = [[RegisterViewController alloc] init];
+        kj_register.delegate = self;
+    }
+    [icetutorial presentViewController:kj_register animated:YES completion:nil];
+}
+
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnVisitorButton:(UIButton *)sender{
+    // 游客登录
+    HomeViewController *hvc = [[HomeViewController alloc] init];
+    HomeNavController *nav = [[HomeNavController alloc] initWithRootViewController:hvc];
+    [icetutorial presentViewController:nav animated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"wechatLoadSucessful" object:nil];
+        [DataModel defaultDataModel].isVisitorLoad = YES;
+    }];
+}
+
 
 #pragma mark loginDelegate
 - (void)loginToRegister:(UIViewController *)viewController{

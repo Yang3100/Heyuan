@@ -626,7 +626,7 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     func setReadStyle(style:String="日间"){
         if style=="夜间" {
             backImageView.image = UIImage(named:"夜间背景")
-            textView.textColor = UIColor(red:81/255.0, green:133/255.0, blue:203/255.0, alpha:1.0)
+            textView.textColor = UIColor(red:180/255.0, green:180/255.0, blue:180/255.0, alpha:1.0)
             lastPage.alpha = 1.0
             nextPage.alpha = 1.0
             navView.backgroundColor = UIColor(white:0.0, alpha:1.0)

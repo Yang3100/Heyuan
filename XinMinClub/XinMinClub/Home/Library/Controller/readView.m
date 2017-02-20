@@ -122,12 +122,14 @@
 }
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UILabel *lan = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    lan.backgroundColor=[UIColor colorWithRed:0.7622 green:0.7622 blue:0.7622 alpha:1.0];
+    lan.backgroundColor=[UIColor colorWithRed:0.8622 green:0.8622 blue:0.8622 alpha:1.0];
     lan.text=[NSString stringWithFormat:@"   %@",_typeArray[section]];
     return lan;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [DataModel defaultDataModel].playingImageUrl = [DataModel defaultDataModel].bookFMImageUrl;
     [[DataModel defaultDataModel] pushWhereWithJson:jsonArrayDict[indexPath.section] ThouchNum:indexPath.row WithVC:[self viewController] Transfer:2 Data:nil];
 }
 //  获取当前view所处的viewController重写读方法

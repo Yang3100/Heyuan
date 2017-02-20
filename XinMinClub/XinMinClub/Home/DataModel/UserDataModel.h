@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *userLikeAuthor;
 @property (nonatomic, strong) NSMutableDictionary *userRecentPlayIDAndCount;
 @property (nonatomic, strong) NSDictionary *comment;
+@property (nonatomic, assign) BOOL isComment;
 // 播放定时
 @property (nonatomic, assign) NSString *playTime;
 // 资料改变
@@ -56,7 +57,7 @@
 - (void)getUserImage:(NSString *)url; // 取得用户头像
 - (void)saveThreePartData:(NSString *)data;// 保存三方登录资料
 - (void)getUserComment:(NSString *)bookID;// 获取文集评论
-- (void)addUserComment:(NSString *)bookID comment:(NSString *)comment;// 添加评论
+- (void)addUserComment:(NSString *)string ID:(NSString *)ID;// 添加评论
 - (NSDictionary *)getThreePartData;// 取得三方登录资料
 
 // 本地部分

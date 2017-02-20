@@ -64,6 +64,7 @@
     _isChange = NO;
     _isReload = NO;
     _threePartReload = NO;
+    _isComment = NO;
     
     [self loadLocalData];
     if (!myData.userName) {
@@ -207,9 +208,50 @@
     [self linkInternet:param];
 }
 
+- (void)addUserComment:(NSString *)string ID:(NSString *)ID {
+    // 参数
+    NSString *WJ_ID = ID;
+    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"\",\"FunName\": \"Add_Sys_Gx_WenJi_PL\",\"Params\": {\"PL_WJ_ID\": \"%@\",\"PL_WJ_CONTENT\": \"%@\"}}",WJ_ID,string];
+    //    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_Sys_Gx_WenJi_SC\", \"Params\": {\"Page_Index\":\"1\",\"Page_Count\":\"1000000\"}}", Right_ID];
+    //    NSLog(@"getRecommend:%@", param);
+    // 创建会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    // 设置请求路径
+    NSURL *URL=[NSURL URLWithString:IPUrl];//不需要传递参数
+    
+    // 创建请求对象
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:URL];//默认为get请求
+    request.timeoutInterval=20.0;//设置请求超时为5秒
+    request.HTTPMethod=@"POST";//设置请求方法
+    //    NSLog(@"%@",param);    // 把拼接后的字符串转换为data，设置请求体
+    
+    request.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        // 解析数据
+        if (data != nil) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if (dict!=nil) {
+                //                USER_DATA_MODEL.comment = nil;
+                if ([[dict objectForKey:@"Error"] isEqualToString:@""]) {
+                    USER_DATA_MODEL.isComment = YES;
+                }
+            }
+            else
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    // 服务器无反应
+                });
+        }
+        else
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                // 无网络
+            });
+    }];
+    // 执行任务
+    [dataTask resume];
+}
+
 - (void)getUserComment:(NSString *)bookID {
     // 参数
-    NSString *Right_ID = self.userID;
     NSString *WJ_ID = bookID;
     NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"\",\"FunName\": \"Get_Sys_Gx_WenJi_PL\",\"Params\": {\"WJ_ID\": \"%@\"}}",WJ_ID];
 //    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_Sys_Gx_WenJi_SC\", \"Params\": {\"Page_Index\":\"1\",\"Page_Count\":\"1000000\"}}", Right_ID];

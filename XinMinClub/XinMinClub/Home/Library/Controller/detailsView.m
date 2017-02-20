@@ -46,8 +46,8 @@
         UINib *de4 = [UINib nibWithNibName:@"DetailsCell4" bundle:nil];
         [self.tableView registerNib:de4 forCellReuseIdentifier:@"detailsCell4"];
 //        DATA_MODEL.isVisitorLoad;
-        [USER_DATA_MODEL getUserComment:_bookID];
         [USER_DATA_MODEL addObserver:self forKeyPath:@"comment" options:NSKeyValueObservingOptionNew context:nil];
+        [USER_DATA_MODEL addObserver:self forKeyPath:@"isComment" options:NSKeyValueObservingOptionNew context:nil];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self.backView];
         [[UIApplication sharedApplication].keyWindow addSubview:self.kj_backView];
@@ -68,6 +68,34 @@
             [self.tableView reloadData];
         });
     }
+    if ([keyPath isEqualToString:@"isComment"]) {
+        // 提示成功
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD show];
+//        [self performSelector:@selector(successs) withObject:nil afterDelay:0.6f];
+        //会调用
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.6*NSEC_PER_SEC);
+        dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self successs];
+        });
+    }
+}
+- (void)successs {
+    [SVProgressHUD showSuccessWithStatus:@"添加评论成功!"];
+    //会调用
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.5*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self dismiss];
+    });
+    [USER_DATA_MODEL getUserComment:_bookID];
+}
+- (void)dismiss {
+    [SVProgressHUD dismiss];
+}
+- (void)setBookID:(NSString *)bookID {
+    _bookID = nil;
+    _bookID = bookID;
+    [USER_DATA_MODEL getUserComment:_bookID];
 }
 
 - (void)loadComment {
@@ -98,6 +126,9 @@
     NSLog(@"detailsTop:%d",isTopView);
     if (isTopView) {
         self.kj_backView.hidden = NO;
+        if (DATA_MODEL.isVisitorLoad) {
+            self.kj_backView.hidden = YES;
+        }
     }else{
         self.kj_backView.hidden = YES;
     }
@@ -144,7 +175,11 @@
     if (!_kj_backView) {
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
+<<<<<<< HEAD
+        _kj_backView.backgroundColor = RGB255_COLOR(235, 235, 235, 1);
+=======
         _kj_backView.backgroundColor = [UIColor grayColor];
+>>>>>>> yangKJ/master
         
         _detailsTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH*3/4-10, 40)];
         [_detailsTextField setBorderStyle:UITextBorderStyleRoundedRect]; //外框类型
@@ -160,7 +195,6 @@
         [detailsButon setTitle:@"发送" forState:UIControlStateNormal];
         [detailsButon setTitleColor:[UIColor colorWithRed:0.553 green:0.281 blue:0.248 alpha:1.000] forState:UIControlStateNormal];
         [detailsButon addTarget:self action:@selector(updateUser) forControlEvents:UIControlEventTouchUpInside];
-        
         detailsButon.layer.masksToBounds = YES;
         detailsButon.layer.cornerRadius = 6.0;
         detailsButon.layer.borderColor = [[UIColor colorWithWhite:0.503 alpha:0.800] CGColor];
@@ -175,6 +209,8 @@
 
 - (void)updateUser{
  // 提交评价
+    [USER_DATA_MODEL addUserComment:_detailsTextField.text ID:_bookID];
+    _detailsTextField.text = @"";
 }
 
 #pragma mark 手势(解决点击收键盘事件)
@@ -237,8 +273,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return self.textArray.count+1;
+        return self.textArray.count+2;
     }
+//    if (DATA_MODEL.isVisitorLoad) {
+//        return commentArray.count;
+//    }
     return commentArray.count + 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -249,9 +288,15 @@
         if(indexPath.row == self.textArray.count){
             return UITableViewAutomaticDimension;
         }
+        if (indexPath.row == self.textArray.count+1) {
+            return 1;
+        }
         return 50;
     } else {
-        if (indexPath.row == commentArray.count + 1) {
+        if (indexPath.row == commentArray.count) {
+            if (DATA_MODEL.isVisitorLoad) {
+                return 1;
+            }
             return 49;
         }
     }
@@ -273,6 +318,10 @@
         return cell;
     }else{
     if (indexPath.section==0&&indexPath.row>0){
+        if (indexPath.row == self.textArray.count+1) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
+            return cell;
+        }
         DetailsCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell1" forIndexPath:indexPath];
         cell.details1Text = self.textArray[indexPath.row-1];
         cell.details1Title = dataArray[indexPath.row-1];
@@ -285,8 +334,8 @@
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"detailsCell2" forIndexPath:indexPath];
 //        commentData = commentArray[indexPath.row];
-    if (indexPath.row == commentArray.count + 1) {
-        ((DetailsCell2*)cell).details2Title = @"dsfafds";
+    if (indexPath.row == commentArray.count) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"21321"];
     }
     if (commentArray.count && commentArray.count > indexPath.row) {
         if (![imgArray[indexPath.row] isKindOfClass:[NSNull class]]) {
