@@ -65,6 +65,7 @@
     _isReload = NO;
     _threePartReload = NO;
     _isComment = NO;
+    _userID = [[NSString alloc] init];
     
     [self loadLocalData];
     if (!myData.userName) {
@@ -208,11 +209,15 @@
     [self linkInternet:param];
 }
 
-- (void)addUserComment:(NSString *)string ID:(NSString *)ID {
+- (void)addUserComment:(NSString *)string image:(NSString *)imageStr ID:(NSString *)ID {
     // 参数
     NSString *WJ_ID = ID;
-    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"\",\"FunName\": \"Add_Sys_Gx_WenJi_PL\",\"Params\": {\"PL_WJ_ID\": \"%@\",\"PL_WJ_CONTENT\": \"%@\"}}",WJ_ID,string];
-    //    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_Sys_Gx_WenJi_SC\", \"Params\": {\"Page_Index\":\"1\",\"Page_Count\":\"1000000\"}}", Right_ID];
+    
+    NSData *imageData = UIImageJPEGRepresentation(USER_DATA_MODEL.userImage,0.7);
+    //NSData 转NSString
+    imageStr = [imageData base64Encoding];
+    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"\",\"FunName\": \"Add_Sys_Gx_WenJi_PL\",\"Params\": {\"PL_WJ_ID\": \"%@\",\"PL_WJ_CONTENT\": \"%@\",\"USER_IMG\":\"%@\",\"USER_NAME\":\"%@\"}}",WJ_ID,string,imageStr,_userName];
+    //    NSString *param = [NSString stringWithFormat:@"{\"Right_ID\": \"%@\", \"FunName\": \"Get_Sys_Gx_WenJi_SC\", \"Params\": {\"Page_Index\":\"1\",\"Page_Count\":\"1000000\"}}", Right_ID]; 
     //    NSLog(@"getRecommend:%@", param);
     // 创建会话对象
     NSURLSession *session = [NSURLSession sharedSession];
@@ -454,7 +459,6 @@
     // 判断段落是否从收藏中删除
     NSInteger count = self.userLikeSectionID.count;
     NSMutableArray *arr = [NSMutableArray array];
-    DataModel *d = DATA_MODEL;
     for (SectionData *sd in [DataModel defaultDataModel].userLikeSection) {
         if ([self.userLikeSectionID containsObject:sd.sectionID]) {
             [arr addObject:sd.sectionID];
@@ -627,7 +631,7 @@
     request.HTTPMethod=@"POST";//设置请求方法
     //    NSLog(@"%@",param);    // 把拼接后的字符串转换为data，设置请求体
     // 参数
-    NSString *Right_ID = self.userID;
+    NSString *Right_ID = self.userUID;
     NSString *USER_UID = self.userUID;
     NSString *USER_NAME = self.userName;
     NSString *USER_BASE_NAME = self.userName;

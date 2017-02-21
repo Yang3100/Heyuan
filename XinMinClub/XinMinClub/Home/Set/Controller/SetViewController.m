@@ -236,6 +236,7 @@ static NSString *setCellIdentifier = @"setCell";
             [[playerViewController defaultDataModel] timerForSetIsStop:YES];
             
             [userModel_ loginOut];
+            DATA_MODEL.which = 0;
             // 删除本地账号密码
             [[shareObjectModel shareObject] deleteAccountAndPassword];
             [[self appRootViewController] dismissViewControllerAnimated:NO completion:^{

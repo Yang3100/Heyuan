@@ -34,13 +34,6 @@
     return dataModel;
 }
 
-- (instancetype)init{
-    if (self==[super init]) {
-        self.isFristShowKeyboard = 0;
-    }
-    return self;
-}
-
 - (void)pushLoadViewController{
     if (!kj_login) {
         kj_login = [[loginViewController alloc] init];
@@ -169,7 +162,8 @@
     _process = [[ProcessSelect alloc] init];
     fileManager = [NSFileManager defaultManager];
     
-    
+    _which = 0;
+    _isFristShowKeyboard = 0;
     _wxInstalled = NO;
     _qqInstalled = NO;
     _baguaTeach = NO;

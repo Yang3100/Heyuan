@@ -21,11 +21,24 @@
 
 - (void)setDetailsImageUrl:(NSString *)detailsImageUrl{
     UIImage *image = nil;
+    
     NSData *imageData = [[NSData alloc] initWithBase64Encoding:detailsImageUrl];
     if (![detailsImageUrl isEqualToString:@""]) {
         image = nil;
         image = [UIImage imageWithData:imageData];
     }
+    
+//    if (DATA_MODEL.which == 1) {
+//        image = [UIImage imageNamed:@"QQloog"];
+//    }
+//    if (DATA_MODEL.which == 2) {
+//        image = [UIImage imageNamed:@"123loog"];
+//    }
+//    NSData *imageData = UIImageJPEGRepresentation(image,0.7);
+//    //NSData 转NSString
+//    NSString* pictureDataString = [imageData base64Encoding];
+    
+    
     self.detailsImageView.image = image;
     self.detailsImageView.layer.masksToBounds = YES;
     self.detailsImageView.layer.cornerRadius = 25;

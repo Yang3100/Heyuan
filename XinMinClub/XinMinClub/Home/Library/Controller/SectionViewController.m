@@ -56,7 +56,7 @@
     [self.view addSubview:self.bookImageView];
     [self.view addSubview:self.detailsView];
     [self.view addSubview:self.chapterView];
-}
+}   
 
 #pragma mark 视图控制器将要显示
 - (void)viewWillAppear:(BOOL)animated{

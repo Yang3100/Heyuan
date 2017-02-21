@@ -72,8 +72,8 @@
     }
     if ([keyPath isEqualToString:@"isComment"]) {
         // 提示成功
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-        [SVProgressHUD show];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+//        [SVProgressHUD show];
 //        [self performSelector:@selector(successs) withObject:nil afterDelay:0.6f];
         //会调用
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.6*NSEC_PER_SEC);
@@ -128,9 +128,9 @@
     NSLog(@"detailsTop:%d",isTopView);
     if (isTopView) {
         self.kj_backView.hidden = NO;
-        if (DATA_MODEL.isVisitorLoad) {
-            self.kj_backView.hidden = YES;
-        }
+//        if (DATA_MODEL.isVisitorLoad) {
+//            self.kj_backView.hidden = YES;
+//        }
     }else{
         self.kj_backView.hidden = YES;
     }
@@ -217,7 +217,7 @@
 
 - (void)updateUser{
  // 提交评价
-    [USER_DATA_MODEL addUserComment:_detailsTextField.text ID:_bookID];
+    [USER_DATA_MODEL addUserComment:_detailsTextField.text image:@"" ID:_bookID];
     _detailsTextField.text = @"";
 }
 
@@ -242,7 +242,7 @@
     if ([DataModel defaultDataModel].isFristShowKeyboard>=2) {
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-60,SCREEN_WIDTH, 60);
     }else{
-        self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-100,SCREEN_WIDTH, 60);
+        self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-130,SCREEN_WIDTH, 60);
     }
     [DataModel defaultDataModel].isFristShowKeyboard++;
     self.backView.hidden = NO;
@@ -278,10 +278,10 @@
 //        [scrollView setContentOffset:CGPointMake(0, -70)];
 //    }
     //以0为例，当tableView还在滑动的时候，不断设置contentOffset
-    if(scrollView.contentOffset.y<0 && scrollView.isDecelerating){
-        [scrollView setContentOffset:CGPointMake(0, 0)];
-        NSLog(@"xxxxx");
-    }
+//    if(scrollView.contentOffset.y<0 && scrollView.isDecelerating){
+//        [scrollView setContentOffset:CGPointMake(0, 0)];
+//        NSLog(@"xxxxx");
+//    }
 }
 
 

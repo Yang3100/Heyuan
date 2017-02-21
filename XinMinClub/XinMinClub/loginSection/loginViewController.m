@@ -354,6 +354,7 @@
                             kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
                             kOPEN_PERMISSION_ADD_SHARE,
                             nil];
+    DATA_MODEL.which = 2;
     [_tencentOAuth authorize:permissions];
 }
 -(IBAction)WeixingLoogin:(id)sender{
@@ -428,6 +429,7 @@
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:userUrlStr] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     [USER_DATA_MODEL saveThreePartData:[[NSString alloc] initWithData:received  encoding:NSUTF8StringEncoding]];
+    DATA_MODEL.which = 1;
 }
 
 #pragma TencentSessionDelegate
