@@ -214,7 +214,7 @@
     }else if (moveHeight<0){
         return;
     }
-    self.chapterTable.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight);
+    self.chapterTable.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight -20);
 }
 
 

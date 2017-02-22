@@ -310,9 +310,9 @@ static NSString *userFirstText = @"       ";
             if (i == 4){
                 userDataModel_.userCity = cell_.userDataField.text;
             }
-            if (i == 5){
-                userDataModel_.userID = cell_.userDataField.placeholder;
-            }
+//            if (i == 5){
+//                userDataModel_.userID = cell_.userDataField.placeholder;
+//            }
             if (i == userDataArr_.count - 1) {
                 userDataModel_.userIntroduction = cell_.userDetailDataField.text;
             }

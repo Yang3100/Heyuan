@@ -53,6 +53,7 @@ typedef NS_ENUM(NSInteger, SelectedDefaultLanguage) {
 
 @property(nonatomic, assign) BOOL isVisitorLoad; // 是否游客登录
 @property(nonatomic,assign) int isFristShowKeyboard;
+@property(nonatomic, assign) int which;// 哪一个三方登陆
 
 /**
  *  游客登录的时候弹出登录注册界面
