@@ -40,20 +40,11 @@
     return self;
 }
 
-- (UIViewController *)appRootViewController{
-    UIViewController*appRootVC=[UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController*topVC=appRootVC;
-    while(topVC.presentedViewController) {
-        topVC=topVC.presentedViewController;
-    }
-    return topVC;
-}
-
 #pragma mark 视图布局
 - (void)initView{
     backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
-    [[self appRootViewController].view addSubview:backView];
+    [[UIApplication sharedApplication].keyWindow addSubview:backView];
     UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backTap)];
 //    ges.delegate = self;
     [backView addGestureRecognizer:ges];

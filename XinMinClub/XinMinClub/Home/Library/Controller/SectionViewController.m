@@ -103,10 +103,10 @@
     _detailsView.kj_backView.hidden = YES;
 }
 
-- (void)dealloc {
-    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"comment"];
-    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"isComment"];
-}
+//- (void)dealloc {
+//    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"comment"];
+//    [USER_DATA_MODEL removeObserver:_detailsView forKeyPath:@"isComment"];
+//}
 
 #pragma maek 设置navigationBar透明
 - (void)kj_setNavigationBar{
@@ -209,7 +209,7 @@
 
 - (chapterView*)chapterView{
     if (!_chapterView) {
-        _chapterView = [[chapterView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64)];
+        _chapterView = [[chapterView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3+backButtonViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-backButtonViewHeight-64-10)];
         //        // KVO观察滚动距离
         //        [_chapterView addObserver:self forKeyPath:@"chapterScroll" options:NSKeyValueObservingOptionNew context:nil];
     }

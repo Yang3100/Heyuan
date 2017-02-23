@@ -33,6 +33,7 @@
         
         touchNum = touch;
         rushidaoname = name;
+        [DataModel defaultDataModel].lastrushidaoName = name;
         typeAr = array;
         
         [self addSubview:self.backbutton];
@@ -117,6 +118,11 @@
 }
 
 - (IBAction)butClick:(UIButton*)sender{
+    [DataModel defaultDataModel].kaiguannnn = 0;
+    [self removeFromSuperview];
+}
+
+- (void)goBackHideJiuGongGe{
     [DataModel defaultDataModel].kaiguannnn = 0;
     [self removeFromSuperview];
 }

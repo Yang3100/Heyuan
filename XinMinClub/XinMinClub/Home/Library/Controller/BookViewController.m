@@ -42,6 +42,11 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [snn goBackHideJiuGongGe];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     

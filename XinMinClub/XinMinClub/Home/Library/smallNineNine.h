@@ -12,4 +12,6 @@
 
 - (id)initWithSize:(CGRect)frame rushidaoName:(NSString*)name smallNineArray:(NSArray*)array TouchNum:(int)touch;
 
+- (void)goBackHideJiuGongGe;  // 返回隐藏九宫格
+
 @end

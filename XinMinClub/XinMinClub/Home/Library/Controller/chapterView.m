@@ -27,12 +27,14 @@
     UIImage *rightImage;
     UIImage *downImage;
     UIImageView *kj_imageView;
+    
+    CGFloat addViewHeight;
 }
 
 @property(nonatomic,strong) UIScrollView *backScrollView;
 @property(nonatomic,strong) UITableView *chapterTable;
 
-@property(nonatomic,assign) CGFloat moveHeight;
+//@property(nonatomic,assign) CGFloat moveHeight;
 
 @end
 
@@ -55,7 +57,6 @@
         
         UINib *nib=[UINib nibWithNibName:@"subcatalogCell" bundle:nil];
         [self.chapterTable registerNib:nib forCellReuseIdentifier:@"subcaCell"];
-        
         [self addSubview:self.chapterTable];
     }
     return self;
@@ -85,27 +86,35 @@
 
 #pragma mark UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return sectionTypeArray.count*2;
+    if (section==0) {
+        return sectionTypeArray.count*2;
+    }
+    return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (kj_clickCellNum+1==indexPath.row) {
-        switch (kj_clickCellStatus) {
-            case YES:
-                return listTotal*40;
-                break;
-                
-            case NO:
-                return 0.1;
-                break;
+    if (indexPath.section==0) {        
+        if (kj_clickCellNum+1==indexPath.row) {
+            switch (kj_clickCellStatus) {
+                case YES:
+                    return listTotal*40;
+                    break;
+                    
+                case NO:
+                    return 0.1;
+                    break;
+            }
         }
+        if (indexPath.row%2!=0) {
+            return 0.1;
+        }
+        return 44;
+    }else{
+        NSLog(@"xxxxxxx:%f",addViewHeight);
+        return addViewHeight;
     }
-    if (indexPath.row%2!=0) {
-        return 0.1;
-    }
-    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -113,46 +122,58 @@
     if (!kj_cell) {
         kj_cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    
-    if (indexPath.row%2==0) {
-        switch (kj_clickCellStatus) {
-            case YES:
-                if (kj_clickCellNum!=indexPath.row) {
+    if (indexPath.section==0) {
+        if (indexPath.row%2==0) {
+            switch (kj_clickCellStatus) {
+                case YES:
+                    if (kj_clickCellNum!=indexPath.row) {
+                        kj_imageView=[[UIImageView alloc]initWithImage:rightImage];
+                    }else
+                        kj_imageView=[[UIImageView alloc]initWithImage:downImage];
+                    break;
+                    
+                case NO:
                     kj_imageView=[[UIImageView alloc]initWithImage:rightImage];
-                }else
-                    kj_imageView=[[UIImageView alloc]initWithImage:downImage];
-                break;
-                
-            case NO:
-                kj_imageView=[[UIImageView alloc]initWithImage:rightImage];
-                break;
+                    break;
+            }
+            kj_cell.accessoryView=kj_imageView;
+            kj_cell.textLabel.text=[NSString stringWithFormat:@"%@",sectionTypeArray[indexPath.row/2]];
+        }else{
+            kj_cell=[tableView dequeueReusableCellWithIdentifier:@"subcaCell" forIndexPath:indexPath];
+            // 传递数据
+            ((subcatalogCell*)kj_cell).jsonData = jsonDict;
         }
-        kj_cell.accessoryView=kj_imageView;
-        kj_cell.textLabel.text=[NSString stringWithFormat:@"%@",sectionTypeArray[indexPath.row/2]];
-    }else{
-        kj_cell=[tableView dequeueReusableCellWithIdentifier:@"subcaCell" forIndexPath:indexPath];
-        // 传递数据
-        ((subcatalogCell*)kj_cell).jsonData = jsonDict;
+        kj_cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return kj_cell;
     }
+    kj_cell.textLabel.text = @"";
     kj_cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    kj_cell.backgroundColor = [UIColor whiteColor];
     return kj_cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (kj_clickCellNum!=indexPath.row) {
-        kj_kaiguan=NO;
-    }
-    kj_kaiguan = !kj_kaiguan;
-    if (kj_kaiguan) {
-        kj_clickCellStatus=YES;
-        [self getDataListWithType:sectionTypeArray[indexPath.row/2]]; // 获取数据
-        kj_clickCellNum=indexPath.row;
-        kj_k=indexPath.row/2;
-    }else{
-        if (kj_clickCellNum==indexPath.row) {
-            kj_clickCellStatus=NO;
-            [self.chapterTable reloadData];
+    if (indexPath.section==0) {
+        if (kj_clickCellNum!=indexPath.row) {
+            kj_kaiguan=NO;
         }
+        kj_kaiguan = !kj_kaiguan;
+        if (kj_kaiguan) {
+            kj_clickCellStatus=YES;
+            [self getDataListWithType:sectionTypeArray[indexPath.row/2]]; // 获取数据
+            kj_clickCellNum=indexPath.row;
+            kj_k=indexPath.row/2;
+        }else{
+            if (kj_clickCellNum==indexPath.row) {
+                kj_clickCellStatus=NO;
+                if (sectionTypeArray.count<=18) {
+                    addViewHeight = 44*(18-sectionTypeArray.count);
+                }
+                [self.chapterTable reloadData];
+            }
+        }
+    }else{
+        NSLog(@"点击的空白处!");
     }
     
 }
@@ -160,6 +181,9 @@
 #pragma mark 获取到数据
 - (void)gettype:(NSArray *)type{
     sectionTypeArray = type;
+    if (sectionTypeArray.count<=18) {
+        addViewHeight = 44*(18-sectionTypeArray.count);
+    }
     [self.chapterTable reloadData];
 }
 
@@ -185,6 +209,11 @@
                 NSLog(@"模拟点击cell的时候传递数据!!!");
                 return;
             }
+            if ((sectionTypeArray.count+listTotal)<=18) {
+                addViewHeight = 44*(18-sectionTypeArray.count-listTotal);
+            }else{
+                addViewHeight = 0;
+            }
             [self.chapterTable reloadData];
         });
     }];
@@ -204,18 +233,18 @@
 //    CGFloat kj_y = scrollView.bounds.origin.y;
 //    self.chapterTable.frame = CGRectMake(x, kj_y, w, h);
     
-    self.moveHeight = scrollView.bounds.origin.y;
+//    self.moveHeight = scrollView.bounds.origin.y;
 }
 
-- (void)setMoveHeight:(CGFloat)moveHeight{
-    NSLog(@"%f--%f",moveHeight,SCREEN_HEIGHT/3-64);
-    if (moveHeight>SCREEN_HEIGHT/3-64) {
-        return;
-    }else if (moveHeight<0){
-        return;
-    }
-    self.chapterTable.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight -20);
-}
+//- (void)setMoveHeight:(CGFloat)moveHeight{
+//    NSLog(@"%f--%f",moveHeight,SCREEN_HEIGHT/3-64);
+//    if (moveHeight>SCREEN_HEIGHT/3-64) {
+//        return;
+//    }else if (moveHeight<0){
+//        return;
+//    }
+//    self.chapterTable.frame = CGRectMake(0, 0, SCREEN_WIDTH, moveHeight+SCREEN_HEIGHT-SCREEN_HEIGHT/3-44+backButtonViewHeight -20);
+//}
 
 
 @end
