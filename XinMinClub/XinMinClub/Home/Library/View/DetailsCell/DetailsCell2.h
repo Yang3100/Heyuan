@@ -10,9 +10,15 @@
 
 @interface DetailsCell2 : UITableViewCell
 
-@property(nonatomic, copy) NSString *details2Text;
-@property (nonatomic, strong) NSString *details2Time;
-@property(nonatomic, copy) NSString *details2Title;
-@property (nonatomic, strong) NSString *detailsImageUrl;
+@property(nonatomic, strong) NSString *details2Text;
+@property(nonatomic, strong) NSString *details2Time;
+@property(nonatomic, strong) NSString *details2Title;
+@property(nonatomic, strong) NSString *detailsImageUrl;
+
+
+
+- (NSString*)imageToString:(UIImage*)image;
+
 
 @end
+

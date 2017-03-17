@@ -247,6 +247,7 @@
 		6865F12A1E10AFB00099D6F3 /* 123loog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1251E10AFB00099D6F3 /* 123loog.png */; };
 		6865F12B1E10AFB00099D6F3 /* dishangfangloog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1261E10AFB00099D6F3 /* dishangfangloog.png */; };
 		6865F12E1E10AFB00099D6F3 /* QQloog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1291E10AFB00099D6F3 /* QQloog.png */; };
+		6866599B1E66B80900EA992F /* commentModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6866599A1E66B80900EA992F /* commentModule.m */; };
 		6873A2EB1E49684A0007E2D3 /* jiu_gong_ge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2E81E49684A0007E2D3 /* jiu_gong_ge.gif */; };
 		6873A2EC1E49684A0007E2D3 /* ru_shi_dao.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2E91E49684A0007E2D3 /* ru_shi_dao.gif */; };
 		6873A2ED1E49684A0007E2D3 /* ba_gua.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6873A2EA1E49684A0007E2D3 /* ba_gua.gif */; };
@@ -761,6 +762,8 @@
 		6865F1251E10AFB00099D6F3 /* 123loog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123loog.png; sourceTree = "<group>"; };
 		6865F1261E10AFB00099D6F3 /* dishangfangloog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishangfangloog.png; sourceTree = "<group>"; };
 		6865F1291E10AFB00099D6F3 /* QQloog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQloog.png; sourceTree = "<group>"; };
+		686659991E66B80900EA992F /* commentModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentModule.h; sourceTree = "<group>"; };
+		6866599A1E66B80900EA992F /* commentModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentModule.m; sourceTree = "<group>"; };
 		6873A2E81E49684A0007E2D3 /* jiu_gong_ge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jiu_gong_ge.gif; sourceTree = "<group>"; };
 		6873A2E91E49684A0007E2D3 /* ru_shi_dao.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ru_shi_dao.gif; sourceTree = "<group>"; };
 		6873A2EA1E49684A0007E2D3 /* ba_gua.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ba_gua.gif; sourceTree = "<group>"; };
@@ -1115,6 +1118,8 @@
 				792CB8A11CE36355001933E4 /* subcatalogCell.xib */,
 				6852D24A1E0ABA1600CA55D6 /* detailsView.h */,
 				6852D24B1E0ABA1600CA55D6 /* detailsView.m */,
+				686659991E66B80900EA992F /* commentModule.h */,
+				6866599A1E66B80900EA992F /* commentModule.m */,
 				6852D24D1E0ABB2500CA55D6 /* readView.h */,
 				6852D24E1E0ABB2500CA55D6 /* readView.m */,
 			);
@@ -2577,6 +2582,7 @@
 				1A1B13C31CBB7B2B00BCE619 /* SetViewController.m in Sources */,
 				68987BB11CB5FAD50007303A /* SaveClass.m in Sources */,
 				1A91BE801CB360D500689AE0 /* ILikeAuthor.m in Sources */,
+				6866599B1E66B80900EA992F /* commentModule.m in Sources */,
 				682F42991E1200B6004B3651 /* courseListViewController.swift in Sources */,
 				68622F901CA3F23500F13471 /* UINavigationBar+Awesome.m in Sources */,
 				1A91BE9E1CB360D500689AE0 /* SecondTableViewCell.m in Sources */,

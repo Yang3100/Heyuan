@@ -19,9 +19,15 @@
 
 @implementation DetailsCell2
 
+- (NSString*)imageToString:(UIImage*)image{
+    NSData *imageData = UIImageJPEGRepresentation(image,0.7);
+    //NSData 转NSString
+    NSString *imageStr = [imageData base64Encoding];
+    return imageStr;
+}
+
 - (void)setDetailsImageUrl:(NSString *)detailsImageUrl{
     UIImage *image = nil;
-    
     NSData *imageData = [[NSData alloc] initWithBase64Encoding:detailsImageUrl];
     if (![detailsImageUrl isEqualToString:@""]) {
         image = nil;

@@ -103,6 +103,10 @@ class EBookViewController: UIViewController ,UITabBarDelegate {
     }
     
     private func loadText(title:String,text:String){
+        
+        // 文本滚动到顶部
+        textView.contentOffset = CGPoint.zero
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
         paragraphStyle.firstLineHeadIndent = 4;

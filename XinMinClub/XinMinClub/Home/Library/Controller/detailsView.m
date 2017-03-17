@@ -170,7 +170,7 @@
 
 - (UIView*)kj_backView{
     if (!_kj_backView) {
-        _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
+//        _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
         _kj_backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-60, SCREEN_WIDTH, 60)];
         _kj_backView.backgroundColor = RGB255_COLOR(235, 235, 235, 1);
         
@@ -243,7 +243,7 @@
     if ([DataModel defaultDataModel].isFristShowKeyboard>=2) {
         self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-60,SCREEN_WIDTH, 60);
     }else{
-        self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-130,SCREEN_WIDTH, 60);
+        self.kj_backView.frame = CGRectMake(0, SCREEN_HEIGHT-keyboardHeight-100,SCREEN_WIDTH, 60);
     }
     [DataModel defaultDataModel].isFristShowKeyboard++;
     self.backView.hidden = NO;
@@ -296,7 +296,7 @@
         }
     } else {
         if (indexPath.row == commentArray.count) {
-            NSLog(@"~~~~~~~~~~~%f",addViewHeight);
+//            NSLog(@"~~~~~~~~~~~%f",addViewHeight);
             return addViewHeight;
         }else{
             return UITableViewAutomaticDimension;

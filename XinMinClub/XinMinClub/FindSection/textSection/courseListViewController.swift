@@ -173,6 +173,7 @@ class courseListViewController : UINavigationController,UITableViewDataSource,UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let wvc =  WebViewController()
         wvc.teacher = (findDict.value(forKey:"KC_CONTENT") as? String)!
+        wvc.kcID = findDict.value(forKey:"KC_ID") as! String
         wvc.setDic(dic: self.findDataArray[indexPath.row] as! NSDictionary)
         self.present(wvc, animated: true, completion:nil)
     }

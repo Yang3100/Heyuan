@@ -13,3 +13,6 @@
 #import "UIImageView+WebCache.h"  // 加载网络图片
 #import "FristLoadView.h"
 
+#import "DetailsCell2.h"  // 评价cell
+#import "LoadAnimation.h"
+
